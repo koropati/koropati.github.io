@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Quality Monitoring System Based on IoT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Print Controls -->
+  <div class="print-controls">
+    <button id="print-button" class="print-button">
+      <i class="fas fa-print mr-2"></i> Export to PDF
+    </button>
+    <button id="screenshot-button" class="screenshot-button">
+      <i class="fas fa-camera mr-2"></i> Export as Screenshots
+    </button>
+    <button id="language-button" class="language-button">
+      <i class="fas fa-language mr-2"></i> Bahasa Indonesia
+    </button>
+    <button id="fullscreen-button" class="fullscreen-button">
+      <i class="fas fa-expand mr-2"></i> Fullscreen
+    </button>
+  </div>
+
+  <!-- Right Side Drawer Navigation -->
+  <div class="drawer-toggle" id="drawer-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+
+  <div class="side-drawer" id="side-drawer">
+    <div class="drawer-header">
+      <h3 class="text-lg font-semibold text-indigo-700">Table of Contents</h3>
+      <button id="close-drawer" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="toc-list" id="toc-list">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1: Cover (Enhanced) -->
+  <section class="section cover-section" id="section-1">
+    <div class="flex flex-col items-center justify-center h-full w-full text-center">
+      <div class="gradient-bg text-white p-8 rounded-lg shadow-lg max-w-5xl w-full relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+          <i class="fas fa-microchip text-6xl absolute top-10 left-10 rotate-slow"></i>
+          <i class="fas fa-cloud text-5xl absolute bottom-10 right-10 rotate-slow"></i>
+          <i class="fas fa-wind text-4xl absolute top-1/4 right-1/4 rotate-slow"></i>
+          <i class="fas fa-network-wired text-5xl absolute bottom-1/4 left-1/4 rotate-slow"></i>
+        </div>
+
+        <h1 class="font-bold mb-4 text-4xl relative z-10">Air Quality Monitoring System Based on IoT</h1>
+        <div class="w-32 h-1 bg-white mx-auto my-6"></div>
+        <p class="mb-8 text-xl">Real Time System Monitoring and Analysis Using Internet of Things Technology in Measuring Outdoor Air Quality</p>
+
+        <div class="flex justify-center mb-8">
+          <div class="p-6 bg-white bg-opacity-20 rounded-full pulse">
+            <i class="fas fa-wind text-7xl"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float">
+            <h2 class="font-semibold mb-2">Program:</h2>
+            <p>Master of Computer Science</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float" style="animation-delay: 0.5s">
+            <h2 class="font-semibold mb-2">Course:</h2>
+            <p>Mobile Computing</p>
+          </div>
+        </div>
+
+        <div class="border-t border-white pt-6 relative">
+          <div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+          <h2 class="font-semibold mb-2">Paper by:</h2>
+          <p class="text-lg font-bold mb-1">Yuda Irawan, Refni Wahyuni, Muhardi, Hendry Fonda, Muhammad Luthfi Hamzah, Rometdo Muzawi</p>
+          <p class="mb-2">Published in: International Journal of Interactive Mobile Technologies (2021)</p>
+
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+            <div class="bg-white bg-opacity-10 px-4 py-2 rounded-lg">
+              <p>Review Presentation</p>
+            </div>
+          </div>
+
+          <!-- Presenter Information -->
+          <div class="mt-6 bg-white bg-opacity-20 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">Presented by:</h3>
+            <p class="text-lg font-bold">Dewa Ketut Satriawan Suditresnajaya</p>
+            <p>NIM: 2429101036</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Outline -->
+  <section class="section" id="section-2">
+    <div class="flex flex-col h-full">
+      <h1 class="font-bold mb-6 text-indigo-700">Presentation Outline</h1>
+      <div class="flex-grow flex items-center justify-center">
+        <div class="max-w-3xl w-full">
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-info-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">1. Introduction</h2>
+              <p class="text-gray-600">Background, problem statement, and research objectives</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-book text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">2. Related Works</h2>
+              <p class="text-gray-600">Previous research on IoT-based air quality monitoring systems</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-cogs text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">3. Methodology</h2>
+              <p class="text-gray-600">Sensors, microcontrollers, and software approach used in the research</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-project-diagram text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">4. System Design</h2>
+              <p class="text-gray-600">Architecture, hardware configuration, and categorization of air quality</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-chart-bar text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">5. Results & Analysis</h2>
+              <p class="text-gray-600">Test measurements, web interface, and data visualization</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-check-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">6. Conclusion & Future Work</h2>
+              <p class="text-gray-600">Summary of findings and recommendations for improvement</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Introduction -->
+  <section class="section" id="section-3">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Introduction</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 mb-6">
+        <div class="md:w-1/2">
+          <h2 class="font-semibold mb-3">Background</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Air pollution is a major environmental and public health challenge globally</li>
+            <li>Riau province in Indonesia has the largest peatland in Sumatra (4,044 million hectares)</li>
+            <li>Illegal forest burning causes significant air pollution and thick smog annually</li>
+            <li>Current monitoring systems (ISPU) are limited in:
+              <ul class="list-circle pl-5 mt-1">
+                <li>Fixed installation points with limited coverage</li>
+                <li>Non-real-time updates (only at 15:00 WIB each day)</li>
+                <li>Slow data processing and management</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <h2 class="font-semibold mb-3">Research Objectives</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Develop a real-time air quality monitoring system based on IoT</li>
+              <li>Create an accessible web interface to display air quality information</li>
+              <li>Measure multiple air quality parameters: temperature, humidity, CO, CO2, and alcohol presence</li>
+              <li>Enable remote access to air quality data for public awareness</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex flex-col justify-center items-center pt-8">
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div class="text-center mb-4">
+              <i class="fas fa-smog text-5xl text-indigo-600"></i>
+            </div>
+            <p class="text-center italic text-gray-600">
+              "IoT technology enables transferring data over a network without requiring human-to-human or human-to-computer interaction, creating systems that can sense and connect to their environment."
+            </p>
+          </div>
+
+          <div class="mt-8 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <h3 class="font-semibold text-blue-700">Internet of Things (IoT)</h3>
+            <p class="text-gray-700">A network of physical devices connected to the internet that can collect and exchange data without human intervention, providing real-time insights and enabling smarter decision-making.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Related Works -->
+  <section class="section" id="section-4">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Related Works</h1>
+
+      <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+            <img src="assets/back-arrow.png" alt="Prior Research on IoT" class="w-2/3 md:w-1/2 mb-4 rounded-lg">
+          </div>
+          <div class="md:w-2/3 md:pl-6">
+            <h2 class="font-semibold mb-3">Previous Research Overview</h2>
+            <p class="text-gray-700 mb-4">
+              The researchers reviewed five previous studies to establish the foundation for their work, identifying gaps and opportunities in IoT-based environmental monitoring systems.
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li>Most previous studies focused on either air, water, or soil quality individually</li>
+              <li>Limited research on systems that combine multiple environmental parameters</li>
+              <li>Lack of real-time web interfaces for public information dissemination</li>
+              <li>Need for improved accessibility and user-friendly visualization</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-code-branch text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Fuzzy Logic Approach</h3>
+          </div>
+          <p class="text-gray-700">
+            Prayudha et al. (2018) combined IoT with fuzzy intelligence methods for air quality measurement, achieving more accurate results than conventional methods but requiring high-speed internet connectivity.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-tint text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Water Quality Monitoring</h3>
+          </div>
+          <p class="text-gray-700">
+            Yusuf (2018) implemented IoT technology for water quality monitoring, measuring temperature, turbidity, and oxygen levels in the Cimahi river using Arduino Uno.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-mobile-alt text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Mobile Application Integration</h3>
+          </div>
+          <p class="text-gray-700">
+            Waworundeng & Lengkong (2018) used the Wemos microcontroller with the MQ135 sensor to notify users about indoor air quality through the Blynk mobile application.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-leaf text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Automated Plant Irrigation</h3>
+          </div>
+          <p class="text-gray-700">
+            Putri et al. (2019) designed an IoT-based automatic plant sprinkler for miniature greenhouses using the DHT11 sensor to monitor humidity and temperature to automate watering systems.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+        <div class="flex items-start">
+          <i class="fas fa-lightbulb text-2xl text-yellow-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-yellow-700 mb-1">Research Gap Identified</h3>
+            <p class="text-gray-700">Previous research had not studied an air quality monitoring system that combined measuring CO, CO2, alcohol, temperature, and air humidity using an IoT-based website as an interface. This opportunity led to the development of the proposed system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Methodology -->
+  <section class="section" id="section-5">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Methodology</h1>
+
+      <div class="mb-6">
+        <h2 class="font-semibold mb-3">Sensors & Hardware</h2>
+        <div class="responsive-table">
+          <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b">Component</th>
+                <th class="py-2 px-4 border-b">Description</th>
+                <th class="py-2 px-4 border-b">Function in System</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">DHT11 Sensor</td>
+                <td class="py-2 px-4 border-b">Temperature and humidity sensor</td>
+                <td class="py-2 px-4 border-b">Measures ambient temperature (°C) and humidity (%)</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">MQ135 Sensor</td>
+                <td class="py-2 px-4 border-b">Air quality gas sensor</td>
+                <td class="py-2 px-4 border-b">Detects CO, CO2, alcohol, ammonia, NOx, benzene (in ppm)</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Arduino Uno</td>
+                <td class="py-2 px-4 border-b">Microcontroller board</td>
+                <td class="py-2 px-4 border-b">Interfaces with sensors, processes analog outputs from MQ135</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Raspberry Pi</td>
+                <td class="py-2 px-4 border-b">Single-board computer</td>
+                <td class="py-2 px-4 border-b">Receives data from Arduino, connects to the internet, sends data to server</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Software Development Approach</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium">Waterfall Method:</span> Structured and sequential process used for web development</li>
+            <li><span class="font-medium">Requirements Definition:</span> Identifying system needs and functionality</li>
+            <li><span class="font-medium">System and Software Design:</span> Creating the architecture for hardware and web interface</li>
+            <li><span class="font-medium">Implementation:</span> Coding and hardware assembly</li>
+            <li><span class="font-medium">Integration & Testing:</span> Connecting components and verifying functionality</li>
+            <li><span class="font-medium">Operation & Maintenance:</span> Deployment and ongoing management</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Air Quality Assessment Categories</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium text-green-600">Good:</span> 0-50 ppm average contaminant level</li>
+            <li><span class="font-medium text-blue-600">Moderate:</span> 51-100 ppm average contaminant level</li>
+            <li><span class="font-medium text-orange-600">Unhealthy:</span> 101-199 ppm average contaminant level</li>
+            <li><span class="font-medium text-red-600">Very Unhealthy:</span> 200-299 ppm average contaminant level</li>
+            <li><span class="font-medium text-black">Dangerous:</span> 300-500 ppm average contaminant level</li>
+            <li>
+              <span class="font-medium">Temperature Assessment:</span>
+              <ul class="list-circle pl-5 mt-1">
+                <li class="text-green-600">24-27°C: Normal (green indicator)</li>
+                <li class="text-red-600">Above 27°C: Hot/Abnormal (red indicator)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+        <div class="flex items-start">
+          <i class="fas fa-flask text-2xl text-blue-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-blue-700 mb-1">Measurement Scenario</h3>
+            <p class="text-gray-700">The research team designed a testing methodology by placing the sensor in "Good" condition areas, then gradually introducing smoke containing CO and alcohol to observe changes through different air quality levels. Tests were conducted at different times to validate temperature and humidity measurements, which naturally vary throughout the day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: System Design -->
+  <section class="section" id="section-6">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">System Design</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+            <div class="flex items-center mb-4">
+              <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-project-diagram text-indigo-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-indigo-700">System Architecture</h2>
+            </div>
+            <div class="flex justify-center">
+              <img src="assets/architecture.png" alt="System Architecture" class="w-2/3 md:w-1/2 rounded-lg mb-4">
+            </div>
+            <ul class="list-disc pl-5 text-gray-700">
+              <li>DHT11 & MQ135 sensors connect to Arduino Uno</li>
+              <li>Arduino Uno connects to Raspberry Pi via serial connection</li>
+              <li>Raspberry Pi processes data and connects to the internet</li>
+              <li>Data is sent to MySQL database on a web server</li>
+              <li>Web interface displays results in real-time</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-50 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-code text-purple-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-purple-700">Implementation Details</h2>
+            </div>
+            <ul class="list-disc pl-5 text-gray-700">
+              <li>Arduino Uno handles analog output from MQ135 sensor</li>
+              <li>Raspberry Pi receives data through serial connection</li>
+              <li>Wi-Fi connection used for wireless data transmission</li>
+              <li>Real-time data synchronization with MySQL database</li>
+              <li>Web interface developed for visualization and user access</li>
+              <li>Air quality categorization based on averaged sensor data</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+                  <img src="assets/flowchart.png" alt="Hardware Implementation" class="rounded-lg mb-4">
+              </div>
+              <div class="md:w-2/3 md:pl-6">
+                <h2 class="font-semibold mb-3">System Flowchart</h2>
+                <p class="text-gray-700">
+                  The flowchart illustrates the sequential process of data collection, processing, and display:
+                </p>
+                <ol class="list-decimal pl-5 space-y-1 text-gray-700 mt-2">
+                  <li>DHT11 sensor detects temperature and humidity</li>
+                  <li>MQ135 sensor detects air contaminants (CO, CO2, alcohol)</li>
+                  <li>Data is sent to Arduino Uno for initial processing</li>
+                  <li>Processed data is transferred to Raspberry Pi</li>
+                  <li>Raspberry Pi sends data to web server via internet</li>
+                  <li>Web interface displays monitoring results for users</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-yellow-50 p-5 rounded-lg shadow-md mb-6">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+                  <img src="assets/hardware.png" alt="Hardware Implementation" class="rounded-lg mb-4">
+              </div>
+              <div class="md:w-2/3 md:pl-6">
+                <h2 class="font-semibold mb-3">Hardware Configuration</h2>
+                <p class="text-gray-700">The hardware assembly connects sensors to the processing units:</p>
+                <ul class="list-disc pl-5 space-y-1 text-gray-700 mt-2">
+                  <li>DHT11 connected to Arduino digital pins</li>
+                  <li>MQ135 connected to Arduino analog pins</li>
+                  <li>Arduino Uno connected to Raspberry Pi via USB</li>
+                  <li>Raspberry Pi configured with internet connectivity</li>
+                  <li>Power supplied to ensure continuous operation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Results & Analysis -->
+  <section class="section" id="section-7">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Results & Analysis</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Web Interface Visualization</h2>
+          <div class="justify-center mb-4">
+            <img src="assets/good.png" alt="Web Interface for Good Air Quality" class="w-2/3 md:w-1/2 rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Good Air Quality (28 ppm average)</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Measured Values:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Temperature: 31°C (Red indicator - above normal)</li>
+                <li>Humidity: 54%</li>
+                <li>CO: 10 ppm</li>
+                <li>Alcohol: 50 ppm</li>
+                <li>CO2: 24 ppm</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Display Features:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Color-coded indicators for air quality (green)</li>
+                <li>Graphical representation of historical data</li>
+                <li>Real-time updates of all parameters</li>
+                <li>Tabular data for detailed analysis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Air Quality Categories Tested</h2>
+          <div class="mb-4">
+            <img src="assets/very-unhealthy.png" alt="All Air Quality Categories" class="w-2/3 md:w-1/2 rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Progression Through All Quality Levels</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Test Results Across Categories:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li><span class="font-bold text-green-600">Good (28 ppm):</span> Natural air conditions</li>
+                <li><span class="font-bold text-blue-600">Moderate (70.3 ppm):</span> After introducing small amount of smoke/alcohol</li>
+                <li><span class="font-bold text-orange-600">Unhealthy (161.33 ppm):</span> Increased smoke/alcohol concentration</li>
+                <li><span class="font-bold text-red-600">Very Unhealthy (227.33 ppm):</span> High contaminant level</li>
+                <li><span class="font-bold">Dangerous (331.33 ppm):</span> Maximum test concentration</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">System Response:</h4>
+              <p class="text-gray-700 text-sm">The system successfully detected changes in air quality levels and updated the web interface in real-time, with appropriate color coding and alerts for each category.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">Data Presentation Examples</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Tabular Data</h3>
+            <img src="assets/data-good.png" alt="Tabular Data Display" class="w-full rounded-lg mb-2">
+            <p class="text-gray-700 text-sm">Historical records of measurements showing time-based tracking of all parameters with timestamp information.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Graphical Trend</h3>
+            <img src="assets/moderate.png" alt="Graphical Trend Display" class="w-full rounded-lg mb-2">
+            <p class="text-gray-700 text-sm">Line graph visualization showing air quality parameter trends over time, enabling pattern recognition.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Dashboard Metrics</h3>
+            <img src="assets/very-unhealthy.png" alt="Dashboard Display" class="w-full rounded-lg mb-2">
+            <p class="text-gray-700 text-sm">Status panels showing current readings with color-coded indicators for immediate assessment of air quality.</p>
+          </div>
+        </div>
+        <div class="text-sm text-gray-500 text-center mt-3">
+          The web interface provided comprehensive visualization of air quality data in multiple formats for easy interpretation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Conclusion -->
+  <section class="section" id="section-8">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Conclusion & Future Work</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h2 class="font-semibold mb-3">Key Findings</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Successfully developed a real-time air quality monitoring system using IoT technology</li>
+              <li>Combined DHT11 and MQ135 sensors to measure both environmental conditions and air contaminants</li>
+              <li>Integrated Arduino Uno and Raspberry Pi to process and transmit data to a web server</li>
+              <li>Created a web interface displaying temperature, humidity, CO, CO2, and alcohol levels</li>
+              <li>Implemented categorization system with color-coded indicators for different air quality levels</li>
+              <li>Demonstrated accurate detection of changing air quality conditions in testing scenarios</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Advantages Over Existing Systems</h2>
+          <div class="space-y-4">
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-clock text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Real-Time Monitoring</h3>
+                  <p class="text-gray-700 text-sm">Unlike government ISPU systems that update only once daily at 15:00 WIB, this system provides continuous real-time data updates.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Remote Accessibility</h3>
+                  <p class="text-gray-700 text-sm">Users can access air quality information from anywhere via the web, not just at fixed monitoring stations.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-chart-bar text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Multi-Parameter Analysis</h3>
+                  <p class="text-gray-700 text-sm">Combines temperature and humidity with air contaminant measurements for more comprehensive air quality assessment.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-semibold mb-3">Recommendations for Future Research</h2>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-semibold text-gray-700 mb-2">Sensor Enhancements</h3>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                <li>Incorporate additional sensors for PM10, PM2.5, O3, NO2, and other air pollutants</li>
+                <li>Use more sensitive sensors compatible with Arduino for improved accuracy</li>
+                <li>Develop better calibration methods for sensor readings</li>
+                <li>Implement redundant sensor arrays for reliability</li>
+                <li>Explore energy-efficient sensor technologies for battery operation</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-gray-700 mb-2">System Improvements</h3>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                <li>Develop more accurate air quality calculation algorithms</li>
+                <li>Create mobile applications for enhanced user accessibility</li>
+                <li>Implement predictive analytics for air quality forecasting</li>
+                <li>Add notification systems for alerting users about poor air quality</li>
+                <li>Establish networks of devices for citywide air quality mapping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-gray-700 mb-2">Final Assessment</h2>
+          <p class="text-gray-700">The research successfully demonstrated a practical implementation of IoT technology for air quality monitoring that addresses limitations in existing systems. With further development and sensor additions, this approach could provide valuable public health information and environmental insights.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: References -->
+  <section class="section" id="section-9">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">References</h1>
+
+      <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+        <ol class="list-decimal pl-6 space-y-2 text-gray-700">
+          <li>Irawan, Y., Wahyuni, R., Muhardi, Fonda, H., Hamzah, M. L., & Muzawi, R. (2021). "Real Time System Monitoring and Analysis-Based Internet of Things (IoT) Technology in Measuring Outdoor Air Quality." <em>International Journal of Interactive Mobile Technologies</em>, 15(10), 224-240. https://doi.org/10.3991/ijim.v15i10.20707</li>
+          <li>Prayudha, J., Pranata, A., & Al Hafiz, A. (2018). "Implementasi metode fuzzy logic untuk sistem pengukuran kualitas udara di kota Medan berbasis internet of things (IoT)." <em>JURTEKSI (Jurnal Teknologi dan Sistem Informasi)</em>, 4(2), 141-148. https://doi.org/10.33330/jurteksi.v4i2.57</li>
+          <li>Yusuf, I. M. (2018). "Perancangan alat pemantau kualitas air (ATAIR) berbasis internet of things dengan parameter kekeruhan, oksigen terlarut, suhu dan pH." M. S. thesis, Pasundan University, Bandung.</li>
+          <li>Waworundeng, J., & Lengkong, O. (2018). "Sistem monitoring dan notifikasi kualitas udara dalam ruangan dengan platform IoT." <em>Cogito Smart Journal</em>, 4(1), 94-103.</li>
+          <li>Putri, A. R., Suroso, & Nasron. (2019). "Perancangan alat penyiram tanaman otomatis pada miniature greenhouse berbasis IoT." In <em>Seminar Nasional Inovasi dan Aplikasi Teknologi di Industri 2019</em>, 155-159.</li>
+          <li>Kumar, S., & Jasuja, A. (2017). "Air quality monitoring system based on IoT using Raspberry Pi." In <em>2017 International Conference on Computing, Communication and Automation (ICCCA)</em>, 1341-1346. https://doi.org/10.1109/CCAA.2017.8230005</li>
+        </ol>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-gray-700 mb-2">Thank You!</h2>
+          <p class="text-gray-700">Paper Review Presentation</p>
+          <p class="text-lg font-medium text-gray-700">Air Quality Monitoring System Based on IoT</p>
+          <p class="text-gray-600">Mobile Computing Course</p>
+          <p class="text-gray-600">Master of Computer Science Program</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
