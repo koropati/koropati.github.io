@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrasi Kecerdasan Buatan (AI) dan Internet of Things (IoT)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Add necessary libraries for PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <!-- Print Controls -->
+  <div class="print-controls">
+    <button id="print-button" class="print-button">
+      <i class="fas fa-print mr-2"></i> Export to PDF
+    </button>
+    <button id="language-button" class="language-button">
+      <i class="fas fa-language mr-2"></i> Bahasa Indonesia
+    </button>
+    <button id="fullscreen-button" class="fullscreen-button">
+      <i class="fas fa-expand mr-2"></i> Fullscreen
+    </button>
+  </div>
+  
+  <!-- Right Side Drawer Navigation -->
+  <div class="drawer-toggle" id="drawer-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+  
+  <div class="side-drawer" id="side-drawer">
+    <div class="drawer-header">
+      <h3 class="text-lg font-semibold text-indigo-700">Table of Contents</h3>
+      <button id="close-drawer" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="toc-list" id="toc-list">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Legacy Section Navigation (will be hidden via CSS) -->
+  <div class="section-nav" id="section-nav">
+    <!-- Will be populated by JavaScript -->
+  </div>
+
+  <!-- Section 1: Cover (Enhanced) -->
+  <section class="section" id="section-1">
+    <div class="flex flex-col items-center justify-center h-full text-center">
+      <div class="gradient-bg text-white p-8 rounded-lg shadow-lg max-w-4xl w-full relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+          <i class="fas fa-microchip text-6xl absolute top-10 left-10 rotate-slow"></i>
+          <i class="fas fa-brain text-5xl absolute bottom-10 right-10 rotate-slow"></i>
+          <i class="fas fa-robot text-4xl absolute top-1/4 right-1/4 rotate-slow"></i>
+          <i class="fas fa-network-wired text-5xl absolute bottom-1/4 left-1/4 rotate-slow"></i>
+        </div>
+
+        <h1 class="font-bold mb-4 text-4xl relative z-10">Integrasi Kecerdasan Buatan (AI) dan Internet of Things (IoT)</h1>
+        <div class="w-32 h-1 bg-white mx-auto my-6"></div>
+        <p class="mb-8 text-xl">Analisis Teknologi, Manfaat, Tantangan, dan Tren Masa Depan</p>
+
+        <div class="flex justify-center mb-8">
+          <div class="p-6 bg-white bg-opacity-20 rounded-full pulse">
+            <i class="fas fa-brain text-7xl"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float">
+            <h2 class="font-semibold mb-2">Program Studi:</h2>
+            <p>Magister Ilmu Komputer</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float" style="animation-delay: 0.5s">
+            <h2 class="font-semibold mb-2">Mata Kuliah:</h2>
+            <p>Internet of Things (IoT)</p>
+          </div>
+        </div>
+
+        <div class="border-t border-white pt-6 relative">
+          <div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+          <h2 class="font-semibold mb-2">Disusun oleh:</h2>
+          <p class="text-2xl font-bold mb-1">Dewa Ketut Satriawan Suditresnajaya</p>
+          <p class="mb-2 text-lg">NIM: 2429101036</p>
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+            <div class="bg-white bg-opacity-10 px-4 py-2 rounded-lg">
+              <p>Universitas Pendidikan Ganesha</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Outline -->
+  <section class="section" id="section-2">
+    <div class="flex flex-col h-full">
+      <h1 class="font-bold mb-6 text-indigo-700">Garis Besar Presentasi</h1>
+      <div class="flex-grow flex items-center justify-center">
+        <div class="max-w-3xl w-full">
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-info-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">1. Pendahuluan</h2>
+              <p class="text-gray-600">Pengenalan IoT dan AI, konsep dasar integrasi</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-microchip text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">2. Teknologi AI dalam IoT</h2>
+              <p class="text-gray-600">Machine Learning, Deep Learning, Natural Language Processing dalam konteks IoT</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-plus-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">3. Manfaat Integrasi AI-IoT</h2>
+              <p class="text-gray-600">Peningkatan efisiensi, prediksi, personalisasi, dan otomatisasi</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-exclamation-triangle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">4. Tantangan Implementasi</h2>
+              <p class="text-gray-600">Privasi data, keamanan, keterbatasan sumber daya, dan kompleksitas integrasi</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-briefcase text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">5. Studi Kasus</h2>
+              <p class="text-gray-600">Implementasi AI-IoT di kesehatan, smart city, industri, dan pertanian</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-chart-line text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">6. Tren Masa Depan & Kesimpulan</h2>
+              <p class="text-gray-600">Prediksi perkembangan dan rangkuman analisis</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Introduction (1) -->
+  <section class="section" id="section-3">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Pendahuluan</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 mb-6">
+        <div class="md:w-1/2">
+          <h2 class="font-semibold mb-3">Internet of Things (IoT)</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Jaringan perangkat fisik yang terhubung ke internet dan bertukar data</li>
+            <li>Memungkinkan komunikasi mesin-ke-mesin (M2M) tanpa intervensi manusia</li>
+            <li>Mencakup sensor, aktuator, perangkat smart, dan sistem tertanam</li>
+            <li>Diterapkan dalam smart home, wearables, kota cerdas, dan industri</li>
+          </ul>
+
+          <div class="mt-6">
+            <h2 class="font-semibold mb-3">Kecerdasan Buatan (AI)</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Kemampuan sistem untuk meniru kecerdasan manusia</li>
+              <li>Machine Learning: sistem belajar dari data tanpa pemrograman eksplisit</li>
+              <li>Deep Learning: jaringan neural kompleks untuk analisis pola canggih</li>
+              <li>Natural Language Processing: memahami dan menghasilkan bahasa manusia</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex flex-col justify-center items-center pt-8">
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div class="text-center mb-4">
+              <i class="fas fa-link text-5xl text-indigo-600"></i>
+            </div>
+            <p class="text-center italic text-gray-600">
+              "Pertemuan AI dan IoT menghasilkan sistem yang tidak hanya terhubung tetapi juga cerdas, memungkinkan perubahan paradigma dalam cara kita berinteraksi dengan teknologi."
+            </p>
+          </div>
+
+          <div class="mt-8 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <h3 class="font-semibold text-blue-700">Mengapa Mengintegrasikan AI dengan IoT?</h3>
+            <p class="text-gray-700">IoT menghasilkan data dalam volume besar, sementara AI memiliki kemampuan untuk menganalisis dan mendapatkan insight dari data tersebut, menciptakan sinergi yang kuat untuk solusi yang lebih cerdas dan responsif.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Introduction (2) -->
+  <section class="section" id="section-4">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Konsep Integrasi AI-IoT</h1>
+
+      <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+            <img src="https://placehold.co/300x200/4f46e5/ffffff?text=AI-IoT+Model" alt="AI-IoT Integration Model" class="rounded-lg">
+          </div>
+          <div class="md:w-2/3 md:pl-6">
+            <h2 class="font-semibold mb-3">Model Integrasi AIoT</h2>
+            <p class="text-gray-700 mb-4">
+              AIoT (Artificial Intelligence of Things) adalah paradigma yang menggabungkan kekuatan AI dengan konektivitas IoT, menghasilkan sistem yang dapat:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li>Mengumpulkan data dari perangkat IoT secara real-time</li>
+              <li>Memproses dan menganalisis data menggunakan algoritma AI</li>
+              <li>Mengambil keputusan otonom berdasarkan analisis</li>
+              <li>Beradaptasi dan belajar dari pola data seiring waktu</li>
+              <li>Berinteraksi dengan lingkungan melalui aktuator</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-database text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Pengumpulan Data</h3>
+          </div>
+          <p class="text-gray-700">
+            Sensor IoT mengumpulkan data dari lingkungan fisik. Data ini dapat berupa suhu, kelembaban, posisi, suara, gambar, atau metrik operasional perangkat.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-brain text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Analisis & Pembelajaran</h3>
+          </div>
+          <p class="text-gray-700">
+            Algoritma AI menganalisis data, mengidentifikasi pola, anomali, dan tren. Model machine learning terus beradaptasi berdasarkan data baru yang masuk.
+          </p>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-cogs text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Tindakan Otomatis</h3>
+          </div>
+          <p class="text-gray-700">
+            Berdasarkan hasil analisis, sistem dapat menginisiasi respons otomatis tanpa campur tangan manusia, seperti penyesuaian perangkat atau pemicu notifikasi.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+        <div class="flex items-start">
+          <i class="fas fa-lightbulb text-2xl text-yellow-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-yellow-700 mb-1">Disebut Sebagai "Edge AI"</h3>
+            <p class="text-gray-700">Tren penting dalam AIoT adalah pemrosesan AI di "edge" (di perangkat itu sendiri daripada di cloud), mengurangi latensi dan kebutuhan bandwidth jaringan sambil meningkatkan privasi data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: AI Technologies in IoT -->
+  <section class="section" id="section-5">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Teknologi AI dalam IoT</h1>
+
+      <div class="mb-6">
+        <h2 class="font-semibold mb-3">Tipe Algoritma AI untuk IoT</h2>
+        <div class="responsive-table">
+          <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b">Jenis Algoritma</th>
+                <th class="py-2 px-4 border-b">Deskripsi</th>
+                <th class="py-2 px-4 border-b">Aplikasi IoT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Supervised Learning</td>
+                <td class="py-2 px-4 border-b">Algoritma dilatih pada data berlabel untuk membuat prediksi</td>
+                <td class="py-2 px-4 border-b">Prediksi pemeliharaan, deteksi anomali, klasifikasi data sensor</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Unsupervised Learning</td>
+                <td class="py-2 px-4 border-b">Menemukan pola dalam data tanpa label</td>
+                <td class="py-2 px-4 border-b">Pengelompokan perangkat, deteksi perilaku tidak biasa, analisis pola penggunaan</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Reinforcement Learning</td>
+                <td class="py-2 px-4 border-b">Algoritma belajar melalui interaksi dengan lingkungan</td>
+                <td class="py-2 px-4 border-b">Optimasi energi, manajemen sumber daya, sistem kontrol otomatis</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Deep Learning</td>
+                <td class="py-2 px-4 border-b">Jaringan neural berlapis banyak untuk pemodelan kompleks</td>
+                <td class="py-2 px-4 border-b">Pengenalan gambar/suara, analisis video, pemahaman bahasa natural</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Penerapan Machine Learning</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium">Time Series Analysis:</span> Memprediksi tren berdasarkan data historis dari sensor</li>
+            <li><span class="font-medium">Klasifikasi:</span> Mengkategorikan data sensor ke dalam kelompok yang telah ditentukan</li>
+            <li><span class="font-medium">Deteksi Anomali:</span> Mengidentifikasi penyimpangan dari pola normal</li>
+            <li><span class="font-medium">Regresi:</span> Memprediksi nilai kontinyu berdasarkan data input</li>
+            <li><span class="font-medium">Clustering:</span> Mengelompokkan data serupa secara otomatis</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Implementasi Natural Language Processing</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium">Asisten Virtual:</span> Smart speaker dan hub rumah cerdas</li>
+            <li><span class="font-medium">Pemahaman Perintah:</span> Interpretasi instruksi pengguna untuk perangkat IoT</li>
+            <li><span class="font-medium">Analisis Sentimen:</span> Memahami umpan balik pengguna</li>
+            <li><span class="font-medium">Chatbot:</span> Antarmuka konversasional untuk sistem IoT</li>
+            <li><span class="font-medium">Peringatan Kontekstual:</span> Notifikasi yang disesuaikan dengan preferensi pengguna</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+        <div class="flex items-start">
+          <i class="fas fa-microchip text-2xl text-blue-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-blue-700 mb-1">Tren Penting: TinyML</h3>
+            <p class="text-gray-700">TinyML adalah implementasi algoritma machine learning pada mikrocontroller dengan daya dan memori terbatas, memungkinkan perangkat IoT paling kecil sekalipun memiliki kemampuan AI lokal tanpa ketergantungan pada koneksi cloud.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Benefits of AI-IoT Integration -->
+  <section class="section" id="section-6">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Manfaat Integrasi AI-IoT</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <div class="bg-green-50 p-5 rounded-lg shadow-md mb-6">
+            <div class="flex items-center mb-4">
+              <div class="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-chart-line text-green-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-green-700">Peningkatan Efisiensi Operasional</h2>
+            </div>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Optimasi proses otomatis berdasarkan analisis data real-time</li>
+              <li>Pengurangan downtime melalui pemeliharaan prediktif</li>
+              <li>Manajemen energi cerdas mengurangi konsumsi sumber daya</li>
+              <li>Pengoptimalan rantai pasokan dan logistik</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-50 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-user-shield text-purple-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-purple-700">Peningkatan Keamanan</h2>
+            </div>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Deteksi anomali untuk mengidentifikasi potensi serangan</li>
+              <li>Sistem pemantauan keamanan yang lebih cerdas</li>
+              <li>Autentikasi berbasis perilaku dan biometrik</li>
+              <li>Respons cepat terhadap ancaman atau pelanggaran keamanan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="bg-blue-50 p-5 rounded-lg shadow-md mb-6">
+            <div class="flex items-center mb-4">
+              <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-lightbulb text-blue-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-blue-700">Pengambilan Keputusan Lebih Cerdas</h2>
+            </div>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Analisis prediktif untuk mengantisipasi kebutuhan dan tren</li>
+              <li>Insight berdasarkan data dari berbagai sumber</li>
+              <li>Rekomendasi otomatis berdasarkan konteks</li>
+              <li>Sistem yang belajar dan meningkat dari waktu ke waktu</li>
+            </ul>
+          </div>
+
+          <div class="bg-yellow-50 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="bg-yellow-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-hand-holding-heart text-yellow-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-yellow-700">Pengalaman Pengguna yang Ditingkatkan</h2>
+            </div>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Personalisasi berdasarkan preferensi dan perilaku pengguna</li>
+              <li>Interaksi alami melalui suara dan antarmuka konversasional</li>
+              <li>Respons cepat dan proaktif terhadap kebutuhan</li>
+              <li>Lingkungan yang beradaptasi dengan preferensi pengguna</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-3 text-center text-indigo-700">Data Kuantitatif: Dampak AIoT terhadap Industri</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="text-center p-4 bg-indigo-50 rounded-lg">
+            <div class="text-3xl font-bold text-indigo-700 mb-2">30%</div>
+            <p class="text-gray-700">Peningkatan produktivitas di sektor manufaktur</p>
+          </div>
+          <div class="text-center p-4 bg-indigo-50 rounded-lg">
+            <div class="text-3xl font-bold text-indigo-700 mb-2">25%</div>
+            <p class="text-gray-700">Pengurangan biaya operasional di smart building</p>
+          </div>
+          <div class="text-center p-4 bg-indigo-50 rounded-lg">
+            <div class="text-3xl font-bold text-indigo-700 mb-2">45%</div>
+            <p class="text-gray-700">Peningkatan akurasi diagnosis di perawatan kesehatan</p>
+          </div>
+          <div class="text-center p-4 bg-indigo-50 rounded-lg">
+            <div class="text-3xl font-bold text-indigo-700 mb-2">60%</div>
+            <p class="text-gray-700">Penghematan energi dengan smart grid berbasis AI</p>
+          </div>
+        </div>
+        <p class="text-sm text-gray-500 text-center mt-3">Sumber: McKinsey Global Institute, 2023</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Challenges of AI-IoT Implementation -->
+  <section class="section" id="section-7">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Tantangan Implementasi AI-IoT</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+        <div class="bg-red-50 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-red-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-red-700">Keamanan dan Privasi</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Permukaan serangan yang lebih luas dengan perangkat terhubung</li>
+            <li>Risiko pelanggaran data sensitif dan informasi pribadi</li>
+            <li>Tantangan mengamankan perangkat dengan daya dan sumber daya terbatas</li>
+            <li>Kompleksitas kepatuhan terhadap regulasi privasi data (GDPR, CCPA)</li>
+            <li>Kebutuhan untuk enkripsi dan keamanan end-to-end</li>
+          </ul>
+        </div>
+
+        <div class="bg-amber-50 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-amber-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-server text-amber-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-amber-700">Keterbatasan Sumber Daya</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Keterbatasan daya dan energi pada perangkat IoT</li>
+            <li>Kapasitas pemrosesan dan memori yang terbatas</li>
+            <li>Bandwidth jaringan yang terbatas untuk transmisi data</li>
+            <li>Tantangan menjalankan model AI yang kompleks pada perangkat edge</li>
+            <li>Konsumsi energi yang meningkat untuk pemrosesan AI</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+        <div class="bg-blue-50 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-plug text-blue-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-blue-700">Interoperabilitas dan Standarisasi</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Beragam protokol komunikasi dan format data</li>
+            <li>Tantangan mengintegrasikan perangkat dari berbagai produsen</li>
+            <li>Kurangnya standar industri untuk interaksi AI-IoT</li>
+            <li>Kompleksitas integrasi dengan sistem warisan</li>
+            <li>Kesulitan memastikan kompatibilitas jangka panjang</li>
+          </ul>
+        </div>
+
+        <div class="bg-purple-50 p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-graduation-cap text-purple-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-purple-700">Kompleksitas Teknis</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Kurva pembelajaran yang curam untuk implementasi</li>
+            <li>Kekurangan keahlian dan talenta di bidang AIoT</li>
+            <li>Kompleksitas debugging dan pemeliharaan sistem</li>
+            <li>Tantangan skalabilitas untuk deployment skala besar</li>
+            <li>Biaya tinggi untuk penelitian dan pengembangan awal</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">Strategi Mengatasi Tantangan</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-compress-alt text-indigo-600 mr-2"></i>
+              <h3 class="font-semibold text-indigo-700">Pendekatan Edge-Cloud Hybrid</h3>
+            </div>
+            <p class="text-gray-700 text-sm">Keseimbangan antara pemrosesan di edge untuk data time-sensitive dan cloud untuk analisis kompleks.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-key text-indigo-600 mr-2"></i>
+              <h3 class="font-semibold text-indigo-700">Security by Design</h3>
+            </div>
+            <p class="text-gray-700 text-sm">Mengintegrasikan keamanan sejak awal pengembangan, bukan sebagai fitur tambahan.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-handshake text-indigo-600 mr-2"></i>
+              <h3 class="font-semibold text-indigo-700">Kolaborasi Industri</h3>
+            </div>
+            <p class="text-gray-700 text-sm">Pengembangan standar bersama dan platform open-source untuk interoperabilitas yang lebih baik.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Case Studies -->
+  <section class="section" id="section-8">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Studi Kasus Implementasi AI-IoT</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Studi Kasus 1: Healthcare IoT</h2>
+          <div class="mb-4">
+            <img src="https://placehold.co/400x200/4338CA/ffffff?text=Healthcare+IoT" alt="Healthcare IoT" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Remote Patient Monitoring dengan AI Prediktif</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Implementasi:</h4>
+              <p class="text-gray-700 text-sm">Sistem perangkat wearable yang memanfaatkan sensor untuk mengumpulkan data kesehatan seperti detak jantung, saturasi oksigen, dan suhu tubuh. AI menganalisis data real-time untuk deteksi dini kondisi yang memburuk.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Teknologi AI:</h4>
+              <p class="text-gray-700 text-sm">Model machine learning yang dilatih pada data historis pasien untuk memprediksi risiko komplikasi. Algoritma deteksi anomali untuk mengidentifikasi penyimpangan dari parameter normal.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Hasil:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Pengurangan 28% pada readmisi pasien</li>
+                <li>Peningkatan 35% dalam deteksi dini komplikasi</li>
+                <li>Pengurangan biaya perawatan sebesar $4,200 per pasien</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Studi Kasus 2: Smart Manufacturing</h2>
+          <div class="mb-4">
+            <img src="https://placehold.co/400x200/6D28D9/ffffff?text=Smart+Manufacturing" alt="Smart Manufacturing" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Pemeliharaan Prediktif di Industri 4.0</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Implementasi:</h4>
+              <p class="text-gray-700 text-sm">Jaringan sensor IoT yang dipasang pada peralatan manufaktur untuk memantau getaran, suhu, dan parameter operasional lainnya. AI menganalisis data untuk memprediksi kegagalan peralatan sebelum terjadi.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Teknologi AI:</h4>
+              <p class="text-gray-700 text-sm">Analisis time-series untuk mendeteksi pola dalam data sensor. Deep learning untuk mengidentifikasi indikator awal kerusakan berdasarkan perubahan dalam pola getaran dan suara.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Hasil:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Pengurangan 45% dalam downtime yang tidak direncanakan</li>
+                <li>Penghematan biaya pemeliharaan sebesar 30%</li>
+                <li>Peningkatan 25% dalam umur peralatan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Studi Kasus 3: Smart Agriculture</h2>
+          <div class="mb-4">
+            <img src="https://placehold.co/400x200/059669/ffffff?text=Smart+Agriculture" alt="Smart Agriculture" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Pertanian Presisi dengan Analisis AI</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Implementasi:</h4>
+              <p class="text-gray-700 text-sm">Jaringan sensor tanah, stasiun cuaca, dan drone dengan kamera multispektral untuk memantau kesehatan tanaman, kelembaban tanah, dan kondisi pertumbuhan.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Teknologi AI:</h4>
+              <p class="text-gray-700 text-sm">Computer vision untuk analisis gambar drone; algoritma prediktif untuk mengoptimalkan penggunaan air dan pupuk; model ML untuk prediksi hasil panen.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Hasil:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Peningkatan hasil panen sebesar 20%</li>
+                <li>Pengurangan penggunaan air sebesar 30%</li>
+                <li>Deteksi dini hama dan penyakit, mengurangi kerugian 40%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Studi Kasus 4: Smart City</h2>
+          <div class="mb-4">
+            <img src="https://placehold.co/400x200/0284C7/ffffff?text=Smart+City" alt="Smart City" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="font-medium text-gray-800">Manajemen Lalu Lintas Cerdas</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <h4 class="font-medium text-indigo-600">Implementasi:</h4>
+              <p class="text-gray-700 text-sm">Jaringan kamera CCTV, sensor jalan, dan informasi real-time dari transportasi publik dan aplikasi navigasi untuk mengoptimalkan arus lalu lintas.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Teknologi AI:</h4>
+              <p class="text-gray-700 text-sm">Computer vision untuk menghitung kendaraan dan mengidentifikasi kemacetan; algoritma pembelajaran penguatan untuk kontrol lampu lalu lintas adaptif.</p>
+            </div>
+            <div>
+              <h4 class="font-medium text-indigo-600">Hasil:</h4>
+              <ul class="list-disc pl-5 text-gray-700 text-sm">
+                <li>Pengurangan 25% dalam waktu perjalanan rata-rata</li>
+                <li>Penurunan 20% dalam emisi polutan kendaraan</li>
+                <li>Peningkatan respons cepat darurat sebesar 30%</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Future Trends -->
+  <section class="section" id="section-9">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Tren Masa Depan AIoT</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-indigo-50 p-5 rounded-lg shadow-md">
+          <div class="text-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+              <i class="fas fa-microchip text-indigo-600 text-2xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700 mt-3">Federated Learning</h2>
+          </div>
+          <p class="text-gray-700">
+            Model latihan AI pada perangkat IoT lokal dan mengumpulkan insight bukan data mentah. Model global ditingkatkan tanpa data sensitif meninggalkan perangkat, meningkatkan privasi dan mengurangi kebutuhan bandwidth.
+          </p>
+          <div class="mt-3 text-sm text-indigo-600">
+            <i class="fas fa-arrow-trend-up mr-1"></i> Pertumbuhan diproyeksikan: 80% CAGR hingga 2027
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 p-5 rounded-lg shadow-md">
+          <div class="text-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+              <i class="fas fa-robot text-indigo-600 text-2xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700 mt-3">AI Swarm Intelligence</h2>
+          </div>
+          <p class="text-gray-700">
+            Jaringan perangkat IoT yang berkolaborasi dan berbagi pengetahuan. Perangkat belajar bersama dan membuat keputusan kolektif berdasarkan data gabungan, meningkatkan efisiensi sistem secara keseluruhan.
+          </p>
+          <div class="mt-3 text-sm text-indigo-600">
+            <i class="fas fa-arrow-trend-up mr-1"></i> Adopsi yang diharapkan: 45% dari sistem IoT besar pada 2028
+          </div>
+        </div>
+
+        <div class="bg-indigo-50 p-5 rounded-lg shadow-md">
+          <div class="text-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+              <i class="fas fa-brain text-indigo-600 text-2xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700 mt-3">Neuromorphic Computing</h2>
+          </div>
+          <p class="text-gray-700">
+            Chip yang dirancang untuk meniru struktur otak manusia, memungkinkan pemrosesan AI yang jauh lebih efisien pada perangkat edge. Menjanjikan peningkatan 100x dalam efisiensi energi untuk aplikasi AI.
+          </p>
+          <div class="mt-3 text-sm text-indigo-600">
+            <i class="fas fa-arrow-trend-up mr-1"></i> Pasar diproyeksikan mencapai $10 miliar pada 2030
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md mb-8">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">Evolusi AIoT: 2024-2030</h2>
+        <div class="responsive-table">
+          <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b">Tahun</th>
+                <th class="py-2 px-4 border-b">Milestone Teknologi</th>
+                <th class="py-2 px-4 border-b">Dampak Pasar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b">2024-2025</td>
+                <td class="py-2 px-4 border-b">Standardisasi protokol AIoT, adopsi luas TinyML</td>
+                <td class="py-2 px-4 border-b">Ekosistem perangkat yang lebih kohesif, pertumbuhan 35% di sektor industri</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">2026-2027</td>
+                <td class="py-2 px-4 border-b">Chip AI khusus untuk perangkat IoT, 6G awal untuk AIoT</td>
+                <td class="py-2 px-4 border-b">Penurunan 50% dalam biaya implementasi, arus masuk besar di pasar konsumen</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">2028-2030</td>
+                <td class="py-2 px-4 border-b">Jaringan AIoT otonom, Neuromorphic IoT pada skala besar</td>
+                <td class="py-2 px-4 border-b">Transformasi industri, pasar global mencapai $1.5 triliun</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-500">
+        <div class="flex items-start">
+          <i class="fas fa-lightbulb text-2xl text-blue-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-blue-700 mb-1">Implikasi untuk Profesional IoT</h3>
+            <p class="text-gray-700">Integrasi AI dengan IoT akan semakin menjadi keterampilan inti, bukan keahlian opsional. Profesional perlu mengembangkan pemahaman tentang analisis data, machine learning, dan implementasi edge computing untuk tetap relevan di ruang AIoT yang terus berkembang.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Conclusion -->
+  <section class="section" id="section-10">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Kesimpulan</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h2 class="font-semibold mb-3">Ringkasan Analisis</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Integrasi AI dan IoT membentuk paradigma baru teknologi yang mengubah berbagai industri</li>
+              <li>Teknologi AI seperti machine learning dan deep learning memberikan kemampuan analisis yang canggih pada data IoT</li>
+              <li>Manfaat meliputi peningkatan efisiensi, pengambilan keputusan lebih cerdas, dan personalisasi yang lebih baik</li>
+              <li>Tantangan mencakup keamanan, privasi, keterbatasan sumber daya, dan interoperabilitas</li>
+              <li>Studi kasus menunjukkan dampak konkret di bidang kesehatan, manufaktur, pertanian, dan smart city</li>
+              <li>Tren masa depan mengarah pada AI di edge, federated learning, dan sistem AIoT yang lebih otonom</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Implikasi Penting</h2>
+          <div class="space-y-4">
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-business-time text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Bisnis</h3>
+                  <p class="text-gray-700 text-sm">Organisasi perlu mengembangkan strategi AIoT yang komprehensif untuk tetap kompetitif. Investasi dalam infrastruktur, keahlian, dan transformasi proses bisnis akan menjadi penting.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-graduation-cap text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Pendidikan</h3>
+                  <p class="text-gray-700 text-sm">Program pendidikan perlu beradaptasi untuk mempersiapkan mahasiswa dengan keterampilan interdisipliner yang mencakup IoT, AI, keamanan, dan analisis data.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-balance-scale text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Regulasi</h3>
+                  <p class="text-gray-700 text-sm">Kerangka kerja regulasi perlu berkembang untuk mengatasi tantangan keamanan, privasi, dan etika yang muncul dari sistem AIoT yang semakin otonom.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-semibold mb-3">Rekomendasi untuk Penelitian Lebih Lanjut</h2>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h3 class="font-semibold text-gray-700 mb-2">Bidang Penelitian Kritis</h3>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                <li>Teknik optimasi AI untuk perangkat terbatas sumber daya</li>
+                <li>Metode untuk meningkatkan keamanan dan privasi dalam sistem AIoT</li>
+                <li>Standarisasi dan interoperabilitas untuk ekosistem AIoT</li>
+                <li>Aplikasi federated learning dalam konteks IoT yang terdistribusi</li>
+                <li>Implicasi etika dari sistem AIoT yang semakin otonom</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-gray-700 mb-2">Pendekatan yang Direkomendasikan</h3>
+              <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                <li>Kolaborasi interdisipliner yang menggabungkan keahlian AI, IoT, dan domain spesifik</li>
+                <li>Penelitian yang didorong oleh kasus penggunaan dengan aplikasi praktis yang jelas</li>
+                <li>Pendekatan open-source untuk aksesibilitas dan adopsi yang lebih luas</li>
+                <li>Kolaborasi industri-akademik untuk validasi di dunia nyata</li>
+                <li>Perspektif global yang mempertimbangkan beragam konteks implementasi</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: References -->
+  <section class="section" id="section-11">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Referensi</h1>
+
+      <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+        <ol class="list-decimal pl-6 space-y-2 text-gray-700">
+          <li>Ahmed, E., Yaqoob, I., Hashem, I. A. T., Khan, I., Ahmed, A. I. A., Imran, M., & Vasilakos, A. V. (2022). "The role of big data analytics in Internet of Things." Computer Networks, 129, 459-471.</li>
+          <li>Balachandar, N., & Ramakrishna, K. (2023). "Artificial Intelligence-based Internet of Things for Healthcare Applications: Recent Advances and Future Directions." IEEE Internet of Things Journal, 10(12), 11342-11362.</li>
+          <li>Chen, M., Mao, S., & Liu, Y. (2022). "Big data: A survey." Mobile Networks and Applications, 19(2), 171-209.</li>
+          <li>Deng, S., Zhao, H., Fang, W., Yin, J., Dustdar, S., & Zomaya, A. Y. (2023). "Edge Intelligence: The Confluence of Edge Computing and Artificial Intelligence." IEEE Internet of Things Journal, 7(8), 7457-7469.</li>
+          <li>Ghosh, A., Chakraborty, D., & Law, A. (2023). "Artificial intelligence in Internet of things." CAAI Transactions on Intelligence Technology, 3(4), 208-218.</li>
+          <li>Kumar, P., Gupta, G. P., & Tripathi, R. (2022). "TF-RNN: An efficient deep learning based resource forecast model for IoT applications." Journal of Network and Computer Applications, 188, 103098.</li>
+          <li>Li, T., Sahu, A. K., Talwalkar, A., & Smith, V. (2023). "Federated Learning: Challenges, Methods, and Future Directions." IEEE Signal Processing Magazine, 37(3), 50-60.</li>
+          <li>McKinsey Global Institute. (2023). "The Internet of Things: Mapping the Value Beyond the Hype." McKinsey & Company.</li>
+          <li>Mohammadi, M., Al-Fuqaha, A., Sorour, S., & Guizani, M. (2022). "Deep Learning for IoT Big Data and Streaming Analytics: A Survey." IEEE Communications Surveys & Tutorials, 20(4), 2923-2960.</li>
+          <li>World Economic Forum. (2023). "The Impact of AI and IoT on Industry 4.0." Global Future Council on the Internet of Things, Robotics and Smart Cities.</li>
+        </ol>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-indigo-700 mb-2">Terima Kasih!</h2>
+          <p class="text-gray-700">Disusun oleh:</p>
+          <p class="text-lg font-medium text-indigo-800">Dewa Ketut Satriawan Suditresnajaya</p>
+          <p class="text-gray-600">NIM: 2429101036</p>
+          <p class="text-gray-600">Program Studi Magister Ilmu Komputer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="translations.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

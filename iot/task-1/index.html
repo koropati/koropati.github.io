@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Trends 2022-2024 and Future Projections</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
+  <!-- Navigation Buttons -->
+  <div id="leftNav" class="side-nav left-nav">
+    <button id="prevButton" disabled>
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  </div>
+
+  <div id="rightNav" class="side-nav right-nav">
+    <button id="nextButton">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Fullscreen button -->
+  <button onclick="toggleFullScreen()" class="fullscreen-button">
+    <i class="fas fa-expand"></i>
+  </button>
+  <button id="exportPdfButton" class="export-pdf-button" title="Export to PDF">
+    <i class="fas fa-file-pdf"></i>
+  </button>
+
+  <!-- Keyboard shortcut tip -->
+  <div id="keyboardTip" class="keyboard-tip">Press F to toggle fullscreen</div>
+  <div class="book-container">
+    <!-- Book Container -->
+    <!-- Page Indicator at top center -->
+    <div id="pageIndicator" class="page-indicator">Page 1 of 9</div>
+
+    <div class="book" id="book">
+      <!-- Page 1: Title -->
+      <div class="page active" data-page="1">
+        <div class="page-content bg-gradient-to-br from-blue-500 to-purple-600 text-white flex flex-col justify-center items-center text-center">
+          <div class="mb-8">
+            <i class="fas fa-network-wired text-6xl mb-4"></i>
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-6">TREN TEKNOLOGI INTERNET OF THINGS (IoT) 2022-2024 DAN PROYEKSI MASA DEPAN</h1>
+          <div class="mt-8 bg-white/20 backdrop-blur-sm p-4 rounded-lg">
+            <p class="text-xl mb-2">Dewa Ketut Satriawan Suditresnajaya</p>
+            <p class="text-lg mb-2">NIM: 2429101036</p>
+            <p class="text-lg mb-2">Program Studi Magister Ilmu Komputer</p>
+            <p class="text-lg mb-2">Universitas Pendidikan Ganesha</p>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 2: Agenda -->
+      <div class="page" data-page="2">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-8">AGENDA PRESENTASI</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex items-start">
+              <div class="bg-blue-100 p-3 rounded-full mr-4">
+                <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Pendahuluan dan Latar Belakang</h3>
+                <p class="text-gray-600 mt-1">Definisi dan perkembangan IoT</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-purple-100 p-3 rounded-full mr-4">
+                <i class="fas fa-search text-purple-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Metodologi Penelitian</h3>
+                <p class="text-gray-600 mt-1">Sumber dan pendekatan analisis</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-green-100 p-3 rounded-full mr-4">
+                <i class="fas fa-chart-line text-green-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Tinjauan Tren IoT 2022-2024</h3>
+                <p class="text-gray-600 mt-1">Tiga tren utama yang teridentifikasi</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-red-100 p-3 rounded-full mr-4">
+                <i class="fas fa-glasses text-red-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Analisis Perspektif Utama</h3>
+                <p class="text-gray-600 mt-1">Teknologi, bisnis, sosial, keberlanjutan</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                <i class="fas fa-rocket text-yellow-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Proyeksi Masa Depan</h3>
+                <p class="text-gray-600 mt-1">Jangka pendek, menengah, dan panjang</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="bg-teal-100 p-3 rounded-full mr-4">
+                <i class="fas fa-lightbulb text-teal-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800">Kesimpulan</h3>
+                <p class="text-gray-600 mt-1">Ringkasan dan rekomendasi</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline visual -->
+          <div class="mt-20 relative">
+            <div class="h-2 bg-gray-200 rounded-full">
+              <div class="h-2 bg-blue-500 rounded-full w-1/6"></div>
+            </div>
+            <div class="flex justify-between mt-2 text-sm text-gray-600">
+              <span>Pendahuluan</span>
+              <span>Metodologi</span>
+              <span>Tren</span>
+              <span>Analisis</span>
+              <span>Proyeksi</span>
+              <span>Kesimpulan</span>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 3: Introduction and Background -->
+      <div class="page" data-page="3">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">PENDAHULUAN DAN LATAR BELAKANG</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 flex items-center mb-3">
+                  <i class="fas fa-cube text-blue-500 mr-3"></i>
+                  Definisi Internet of Things
+                </h3>
+                <p class="text-gray-600">Jaringan perangkat fisik yang terhubung dan bertukar data melalui internet, menciptakan ekosistem terintegrasi yang mengubah cara kita berinteraksi dengan lingkungan dan teknologi.</p>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 flex items-center mb-3">
+                  <i class="fas fa-digital-tachograph text-green-500 mr-3"></i>
+                  Peranan dalam Transformasi Digital
+                </h3>
+                <p class="text-gray-600">Enabler utama untuk otomatisasi proses, smart environments, dan model bisnis baru yang mendorong inovasi dan efisiensi operasional di berbagai sektor industri.</p>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold text-gray-800 flex items-center mb-3">
+                  <i class="fas fa-globe-americas text-purple-500 mr-3"></i>
+                  Signifikansi Global
+                </h3>
+                <p class="text-gray-600">Jumlah perangkat IoT diprojeksikan mencapai lebih dari 30 miliar pada 2025, menciptakan ekosistem data dan konektivitas yang belum pernah terjadi sebelumnya.</p>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-semibold text-gray-800 flex items-center mb-3">
+                  <i class="fas fa-industry text-red-500 mr-3"></i>
+                  Adopsi di Berbagai Sektor
+                </h3>
+                <p class="text-gray-600">Penetrasi IoT yang meluas di manufaktur, kesehatan, pertanian, transportasi, dan kota pintar, masing-masing dengan kebutuhan dan manfaat spesifik.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart: Growth of IoT Devices -->
+          <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+            <h4 class="text-lg font-semibold text-gray-700 mb-2">Pertumbuhan Perangkat IoT Global (Miliar)</h4>
+            <div class="h-48 flex items-end justify-around p-4">
+              <div class="flex flex-col items-center">
+                <div class="w-16 bg-blue-400 rounded-t-lg" style="height: 20px;"></div>
+                <span class="mt-2 text-sm font-medium">2020</span>
+                <span class="text-xs text-gray-500">10B</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-16 bg-blue-500 rounded-t-lg" style="height: 60px;"></div>
+                <span class="mt-2 text-sm font-medium">2022</span>
+                <span class="text-xs text-gray-500">15B</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-16 bg-blue-600 rounded-t-lg" style="height: 100px;"></div>
+                <span class="mt-2 text-sm font-medium">2024</span>
+                <span class="text-xs text-gray-500">22B</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <div class="w-16 bg-blue-700 rounded-t-lg" style="height: 120px;"></div>
+                <span class="mt-2 text-sm font-medium">2025</span>
+                <span class="text-xs text-gray-500">30B+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 4: Research Methodology -->
+      <div class="page" data-page="4">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-8">METODOLOGI PENELITIAN</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-purple-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-4 flex items-center">
+                <i class="fas fa-search text-purple-500 mr-3"></i>
+                Pendekatan
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Analisis kualitatif berbasis literatur</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Identifikasi tren utama dari sumber terpilih</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Sintesis temuan dari perspektif berbeda</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Analisis proyeksi berdasarkan data terkini</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-4 flex items-center">
+                <i class="fas fa-filter text-blue-500 mr-3"></i>
+                Kriteria Seleksi
+              </h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Sumber dari jurnal akademik & laporan industri terkemuka</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Diterbitkan dalam periode 2022-2025</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Fokus pada tren teknologi IoT terkini</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Mencakup proyeksi masa depan berbasis data</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Methodology Flowchart -->
+          <div class="mt-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Alur Metodologi</h3>
+            <div class="flex flex-col md:flex-row justify-between items-center bg-gray-50 p-4 rounded-lg">
+              <div class="text-center p-3">
+                <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                  <i class="fas fa-book text-blue-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-medium">Identifikasi Sumber</p>
+              </div>
+              <i class="fas fa-arrow-right text-gray-400 my-2 md:my-0"></i>
+              <div class="text-center p-3">
+                <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-2">
+                  <i class="fas fa-file-alt text-green-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-medium">Ekstraksi Tren</p>
+              </div>
+              <i class="fas fa-arrow-right text-gray-400 my-2 md:my-0"></i>
+              <div class="text-center p-3">
+                <div class="w-16 h-16 mx-auto bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                  <i class="fas fa-balance-scale text-yellow-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-medium">Analisis Multi-Perspektif</p>
+              </div>
+              <i class="fas fa-arrow-right text-gray-400 my-2 md:my-0"></i>
+              <div class="text-center p-3">
+                <div class="w-16 h-16 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                  <i class="fas fa-chart-line text-purple-600 text-xl"></i>
+                </div>
+                <p class="text-sm font-medium">Pengembangan Proyeksi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 5: Primary Sources -->
+      <div class="page" data-page="5">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">SUMBER-SUMBER UTAMA</h2>
+
+          <div class="space-y-6">
+            <!-- Academic Article -->
+            <div class="bg-blue-50 p-2 rounded-lg flex flex-col md:flex-row">
+              <div class="md:w-1/6 flex justify-center mb-4 md:mb-0">
+                <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
+                  <i class="fas fa-scroll text-blue-600 text-4xl"></i>
+                </div>
+              </div>
+              <div class="md:w-5/6">
+                <h3 class="text-xl font-semibold text-blue-700 mb-2">Artikel Akademik</h3>
+                <p class="text-lg font-medium">Edge Computing: Architecture, Applications, and Future Challenges in a Decentralized Era</p>
+                <p class="text-gray-600 mt-1">Vinod Veeramachaneni (2025)</p>
+                <div class="mt-3 bg-white p-3 rounded border border-blue-200">
+                  <p class="text-sm text-gray-700"><strong>Fokus:</strong> Arsitektur edge computing dan integrasinya dengan IoT dalam konteks Industri 5.0, membahas pengurangan latensi hingga 40% dan peningkatan efisiensi sumber daya hingga 35%.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- McKinsey Report -->
+            <div class="bg-green-50 p-2 rounded-lg flex flex-col md:flex-row">
+              <div class="md:w-1/6 flex justify-center mb-4 md:mb-0">
+                <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center">
+                  <i class="fas fa-chart-pie text-green-600 text-4xl"></i>
+                </div>
+              </div>
+              <div class="md:w-5/6">
+                <h3 class="text-xl font-semibold text-green-700 mb-2">Laporan McKinsey</h3>
+                <p class="text-lg font-medium">The Internet of Things: Catching up to an accelerating opportunity</p>
+                <p class="text-gray-600 mt-1">Michael Chui, Mark Collins, Mark Patel, dan Christopher Thomas (2023)</p>
+                <div class="mt-3 bg-white p-3 rounded border border-green-200">
+                  <p class="text-sm text-gray-700"><strong>Fokus:</strong> Proyeksi nilai ekonomi IoT hingga 2030 mencapai $12.6 triliun, analisis tren adopsi di berbagai industri, dan perkembangan model bisnis berbasis IoT.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deloitte Report -->
+            <div class="bg-purple-50 p-2 rounded-lg flex flex-col md:flex-row">
+              <div class="md:w-1/6 flex justify-center mb-4 md:mb-0">
+                <div class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center">
+                  <i class="fas fa-broadcast-tower text-purple-600 text-4xl"></i>
+                </div>
+              </div>
+              <div class="md:w-5/6">
+                <h3 class="text-xl font-semibold text-purple-700 mb-2">Laporan Deloitte</h3>
+                <p class="text-lg font-medium">2023 Technology, Media and Telecommunications Predictions: The 5G Factor</p>
+                <p class="text-gray-600 mt-1">Paul Lee, Ariane Bucaille, dan Kevin Westcott (2022)</p>
+                <div class="mt-3 bg-white p-3 rounded border border-purple-200">
+                  <p class="text-sm text-gray-700"><strong>Fokus:</strong> Analisis bagaimana teknologi 5G bertransformasi dan memperkuat ekosistem IoT, termasuk pertumbuhan jaringan 5G privat dan implementasi network slicing untuk aplikasi IoT kritis.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 6: Trend #1 - Edge Computing -->
+      <div class="page" data-page="6">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">TREN #1: EDGE COMPUTING DAN KOMPUTASI TERDISTRIBUSI</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                  <i class="fas fa-microchip text-blue-600 mr-2"></i>
+                  Definisi & Konsep
+                </h3>
+                <p class="text-gray-700">Pemrosesan data lebih dekat dengan sumbernya (edge devices dan nodes), mengurangi kebutuhan transmisi data ke cloud dan meningkatkan waktu respons untuk aplikasi kritis.</p>
+              </div>
+
+              <div class="mb-6 bg-green-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                  <i class="fas fa-tachometer-alt text-green-600 mr-2"></i>
+                  Keunggulan Terukur
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span>Pengurangan latensi hingga 40%</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span>Peningkatan efisiensi sumber daya hingga 35%</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    <span>Indeks privasi data mencapai 95% melalui enkripsi lokal</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <!-- Edge Computing Architecture Diagram -->
+              <div class="bg-gray-50 p-4 rounded-lg h-64 mb-6">
+                <h4 class="text-lg font-medium text-gray-700 mb-4">Arsitektur Edge Computing</h4>
+                <div class="relative h-48">
+                  <!-- Cloud Layer -->
+                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-12 bg-blue-100 rounded-lg flex items-center justify-center border border-blue-300">
+                    <i class="fas fa-cloud text-blue-500 mr-2"></i>
+                    <span class="text-sm">Cloud</span>
+                  </div>
+
+                  <!-- Edge Layer -->
+                  <div class="absolute top-20 left-1/2 transform -translate-x-1/2 w-48 h-12 bg-green-100 rounded-lg flex items-center justify-center border border-green-300">
+                    <i class="fas fa-server text-green-500 mr-2"></i>
+                    <span class="text-sm">Edge Nodes</span>
+                  </div>
+
+                  <!-- Device Layer -->
+                  <div class="absolute bottom-0 left-0 right-0 flex justify-around">
+                    <div class="w-16 h-12 bg-purple-100 rounded-lg flex flex-col items-center justify-center border border-purple-300">
+                      <i class="fas fa-mobile-alt text-purple-500"></i>
+                      <span class="text-xs mt-1">Device</span>
+                    </div>
+                    <div class="w-16 h-12 bg-purple-100 rounded-lg flex flex-col items-center justify-center border border-purple-300">
+                      <i class="fas fa-industry text-purple-500"></i>
+                      <span class="text-xs mt-1">Sensor</span>
+                    </div>
+                    <div class="w-16 h-12 bg-purple-100 rounded-lg flex flex-col items-center justify-center border border-purple-300">
+                      <i class="fas fa-car text-purple-500"></i>
+                      <span class="text-xs mt-1">Vehicle</span>
+                    </div>
+                  </div>
+
+                  <!-- Connection Lines -->
+                  <div class="absolute top-12 left-1/2 w-px h-8 bg-gray-400"></div>
+                  <div class="absolute top-32 left-1/4 w-px h-16 bg-gray-400 transform -rotate-30"></div>
+                  <div class="absolute top-32 left-1/2 w-px h-16 bg-gray-400"></div>
+                  <div class="absolute top-32 left-3/4 w-px h-16 bg-gray-400 transform rotate-30"></div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                  <i class="fas fa-industry text-yellow-600 mr-2"></i>
+                  Implementasi dalam Industri 5.0
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-heartbeat text-red-500 mt-1 mr-2"></i>
+                    <span>Pemantauan kesehatan real-time dengan deteksi anomali</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-tools text-blue-500 mt-1 mr-2"></i>
+                    <span>Pemeliharaan prediktif di manufaktur dengan pengurangan downtime</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-robot text-purple-500 mt-1 mr-2"></i>
+                    <span>Kolaborasi manusia-mesin yang responsif</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 7: Trend #2 - IoT Economic Value -->
+      <div class="page" data-page="7">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-green-600 mb-6">TREN #2: PERCEPATAN NILAI EKONOMI IoT</h2>
+
+          <!-- Economic Value Projection -->
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-dollar-sign text-green-500 mr-2"></i>
+              Proyeksi Nilai Ekonomi Global IoT
+            </h3>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <div class="text-center mb-2">
+                <span class="text-2xl font-bold text-green-600">$12.6 Triliun</span>
+                <span class="text-lg text-gray-600 ml-2">pada 2030</span>
+              </div>
+              <!-- Bar Chart for Economic Value by Sector -->
+              <div class="h-48 flex items-end justify-around">
+                <div class="flex flex-col items-center">
+                  <div class="w-16 bg-green-700 rounded-t-lg" style="height: 140px;"></div>
+                  <span class="mt-2 text-sm font-medium">Manufaktur</span>
+                  <span class="text-xs text-gray-500">$4.4T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-16 bg-green-600 rounded-t-lg" style="height: 100px;"></div>
+                  <span class="mt-2 text-sm font-medium">Healthcare</span>
+                  <span class="text-xs text-gray-500">$1.7T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-16 bg-green-500 rounded-t-lg" style="height: 80px;"></div>
+                  <span class="mt-2 text-sm font-medium">Smart Cities</span>
+                  <span class="text-xs text-gray-500">$1.2T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-16 bg-green-400 rounded-t-lg" style="height: 60px;"></div>
+                  <span class="mt-2 text-sm font-medium">Retail</span>
+                  <span class="text-xs text-gray-500">$0.9T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-16 bg-green-300 rounded-t-lg" style="height: 40px;"></div>
+                  <span class="mt-2 text-sm font-medium">Energi</span>
+                  <span class="text-xs text-gray-500">$0.7T</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Adoption Shift -->
+            <div class="bg-blue-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                Pergeseran Fase Adopsi
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                  <span>Dari proof-of-concept menuju implementasi skala penuh</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                  <span>73% perusahaan melaporkan nilai bisnis signifikan dari investasi IoT</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                  <span>ROI terukur dan nilai bisnis yang terverifikasi</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- New Business Models -->
+            <div class="bg-purple-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-sitemap text-purple-600 mr-2"></i>
+                Model Bisnis Baru
+              </h3>
+              <div class="space-y-3">
+                <div class="bg-white p-2 rounded border border-purple-200">
+                  <h4 class="font-medium text-purple-600">IoT-as-a-Service</h4>
+                  <p class="text-sm text-gray-600">Mengurangi biaya awal dan kompleksitas implementasi</p>
+                </div>
+                <div class="bg-white p-2 rounded border border-purple-200">
+                  <h4 class="font-medium text-purple-600">Outcome-based Pricing</h4>
+                  <p class="text-sm text-gray-600">Pembayaran berdasarkan hasil yang dicapai</p>
+                </div>
+                <div class="bg-white p-2 rounded border border-purple-200">
+                  <h4 class="font-medium text-purple-600">Data-as-a-Service</h4>
+                  <p class="text-sm text-gray-600">Monetisasi insights dari data IoT</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 8: Trend #3 - IoT and 5G Integration -->
+      <div class="page" data-page="8">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-purple-600 mb-6">TREN #3: INTEGRASI IoT DENGAN 5G</h2>
+
+          <!-- 4G vs 5G Comparison -->
+          <div class="mb-8 bg-gray-50 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Perbandingan Teknologi Konektivitas</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="col-span-1 p-2">
+                <div class="text-center p-3">
+                  <h4 class="font-medium text-gray-700 mb-3">Kapasitas Perangkat</h4>
+                  <div class="flex justify-between items-center">
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-blue-700">4G</span>
+                      </div>
+                      <p class="text-xs">100K/km²</p>
+                    </div>
+                    <div class="w-16 flex justify-center">
+                      <i class="fas fa-arrows-alt-h text-gray-400"></i>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-purple-700">5G</span>
+                      </div>
+                      <p class="text-xs">1M/km²</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-1 p-2">
+                <div class="text-center p-3">
+                  <h4 class="font-medium text-gray-700 mb-3">Latensi</h4>
+                  <div class="flex justify-between items-center">
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-blue-700">4G</span>
+                      </div>
+                      <p class="text-xs">~50ms</p>
+                    </div>
+                    <div class="w-16 flex justify-center">
+                      <i class="fas fa-arrows-alt-h text-gray-400"></i>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-purple-700">5G</span>
+                      </div>
+                      <p class="text-xs">&lt;1ms</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-1 p-2">
+                <div class="text-center p-3">
+                  <h4 class="font-medium text-gray-700 mb-3">Bandwidth</h4>
+                  <div class="flex justify-between items-center">
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-blue-700">4G</span>
+                      </div>
+                      <p class="text-xs">1Gbps</p>
+                    </div>
+                    <div class="w-16 flex justify-center">
+                      <i class="fas fa-arrows-alt-h text-gray-400"></i>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-purple-100 rounded-full flex items-center justify-center mb-1">
+                        <span class="text-sm font-bold text-purple-700">5G</span>
+                      </div>
+                      <p class="text-xs">20Gbps</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Private 5G Growth -->
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-broadcast-tower text-purple-600 mr-2"></i>
+                Jaringan 5G Privat untuk IoT
+              </h3>
+              <div class="mb-3 text-gray-700">
+                <p>Pertumbuhan 3x lipat implementasi jaringan 5G privat untuk aplikasi IoT industri selama 2022-2024.</p>
+              </div>
+              <div class="bg-white p-3 rounded-lg border border-purple-200">
+                <h4 class="font-medium text-purple-600 mb-2">Use Cases Utama:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-industry text-gray-500 mt-1 mr-2"></i>
+                    <span>Otomatisasi pabrik dan manufaktur cerdas</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-eye text-gray-500 mt-1 mr-2"></i>
+                    <span>Monitoring aset dan infrastruktur jarak jauh</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-hard-hat text-gray-500 mt-1 mr-2"></i>
+                    <span>Sistem keselamatan pekerja berbasis IoT</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Network Slicing -->
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-layer-group text-blue-600 mr-2"></i>
+                Network Slicing untuk IoT
+              </h3>
+
+              <div class="mb-3 text-gray-700">
+                <p>QoS (Quality of Service) terjamin untuk aplikasi IoT kritis melalui segmentasi jaringan virtual yang terisolasi.</p>
+              </div>
+
+              <!-- Network Slicing Illustration -->
+              <div class="bg-white p-3 rounded-lg border border-blue-200">
+                <div class="flex flex-col space-y-2">
+                  <div class="bg-red-50 p-2 rounded flex items-center">
+                    <i class="fas fa-ambulance text-red-500 mr-2"></i>
+                    <div>
+                      <h5 class="text-sm font-medium">Slice Kritis</h5>
+                      <p class="text-xs text-gray-500">Ultra-low latency (telemedicine, otomasi)</p>
+                    </div>
+                  </div>
+                  <div class="bg-green-50 p-2 rounded flex items-center">
+                    <i class="fas fa-video text-green-500 mr-2"></i>
+                    <div>
+                      <h5 class="text-sm font-medium">Slice Broadband</h5>
+                      <p class="text-xs text-gray-500">High throughput (video surveillance)</p>
+                    </div>
+                  </div>
+                  <div class="bg-blue-50 p-2 rounded flex items-center">
+                    <i class="fas fa-sensor text-blue-500 mr-2"></i>
+                    <div>
+                      <h5 class="text-sm font-medium">Slice Masif</h5>
+                      <p class="text-xs text-gray-500">Koneksi perangkat dalam jumlah besar</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 9: Perspective - Technology -->
+      <div class="page" data-page="9">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">PERSPEKTIF TEKNOLOGI</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                  <i class="fas fa-network-wired text-blue-600 mr-2"></i>
+                  Arsitektur Edge Computing
+                </h3>
+                <p class="text-gray-700">Sistem terdesentralisasi dengan hirarki pemrosesan data yang lebih efisien dari edge devices, edge nodes, hingga cloud servers, memungkinkan pemrosesan data lokal yang lebih cepat dan privasi yang lebih baik.</p>
+              </div>
+
+              <div class="mb-6 bg-purple-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                  <i class="fas fa-exchange-alt text-purple-600 mr-2"></i>
+                  Evolusi Protokol Komunikasi
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                    <span>MQTT-SN dengan optimasi efisiensi energi</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                    <span>LoRaWAN dan NB-IoT untuk konektivitas jarak jauh</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-check-circle text-purple-500 mr-2"></i>
+                    <span>Standar Matter untuk interoperabilitas</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-6 bg-green-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                  <i class="fas fa-layer-group text-green-600 mr-2"></i>
+                  Network Slicing untuk QoS
+                </h3>
+                <p class="text-gray-700">Teknologi 5G yang memungkinkan segmentasi jaringan virtual terisolasi untuk menjamin QoS bagi aplikasi IoT dengan kebutuhan berbeda seperti bandwidth tinggi untuk video surveillance atau latensi rendah untuk aplikasi misi kritis.</p>
+                <!-- Network Slicing Illustration -->
+                <div class="bg-white p-3 rounded-lg border border-green-200 mt-3">
+                  <div class="flex flex-col space-y-2">
+                    <div class="bg-red-50 p-2 rounded flex items-center">
+                      <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                      <span class="text-sm">Ultra-low latency slice</span>
+                    </div>
+                    <div class="bg-blue-50 p-2 rounded flex items-center">
+                      <span class="w-3 h-3 bg-blue-500 rounded-full mr-2"></span>
+                      <span class="text-sm">High bandwidth slice</span>
+                    </div>
+                    <div class="bg-green-50 p-2 rounded flex items-center">
+                      <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                      <span class="text-sm">Massive IoT slice</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                  <i class="fas fa-shield-alt text-yellow-600 mr-2"></i>
+                  Keamanan dan Privasi Data
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-center">
+                    <i class="fas fa-lock text-yellow-500 mr-2"></i>
+                    <span>Enkripsi end-to-end menjadi standar</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-microchip text-yellow-500 mr-2"></i>
+                    <span>Secure boot dan manajemen kunci berbasis hardware</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-user-shield text-yellow-500 mr-2"></i>
+                    <span>Zero Trust Architecture dalam deploymen IoT enterprise</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 10: Perspective - Business and Economics -->
+      <div class="page" data-page="10">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-green-600 mb-6">PERSPEKTIF BISNIS DAN EKONOMI</h2>
+
+          <!-- Economic Value Projection by Sector -->
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-chart-bar text-green-500 mr-2"></i>
+              Proyeksi Nilai IoT per Sektor 2030
+            </h3>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <!-- Bar Chart -->
+              <div class="h-48 flex items-end justify-around">
+                <div class="flex flex-col items-center">
+                  <div class="w-14 bg-green-700 rounded-t-lg" style="height: 120px;"></div>
+                  <span class="mt-2 text-sm font-medium">Manufaktur</span>
+                  <span class="text-xs text-gray-500">$4.4T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-14 bg-green-600 rounded-t-lg" style="height: 80px;"></div>
+                  <span class="mt-2 text-sm font-medium">Kesehatan</span>
+                  <span class="text-xs text-gray-500">$1.7T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-14 bg-green-500 rounded-t-lg" style="height: 60px;"></div>
+                  <span class="mt-2 text-sm font-medium">Smart Cities</span>
+                  <span class="text-xs text-gray-500">$1.2T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-14 bg-green-400 rounded-t-lg" style="height: 40px;"></div>
+                  <span class="mt-2 text-sm font-medium">Retail</span>
+                  <span class="text-xs text-gray-500">$0.9T</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <div class="w-14 bg-green-300 rounded-t-lg" style="height: 30px;"></div>
+                  <span class="mt-2 text-sm font-medium">Energi</span>
+                  <span class="text-xs text-gray-500">$0.7T</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Implementation Maturity -->
+            <div class="bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-tasks text-blue-600 mr-2"></i>
+                Maturitas Implementasi
+              </h3>
+              <div class="space-y-3">
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold">2020-21</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Fase Eksperimental</h4>
+                    <p class="text-sm text-gray-600">Fokus pada proof-of-concept</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold">2022-23</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Fase Pertumbuhan</h4>
+                    <p class="text-sm text-gray-600">Implementasi skala penuh</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div class="w-12 h-12 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-xs font-bold">2024+</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Fase ROI Terukur</h4>
+                    <p class="text-sm text-gray-600">73% perusahaan melaporkan nilai bisnis signifikan</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Business Models -->
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-sitemap text-purple-600 mr-2"></i>
+                Model Bisnis Baru
+              </h3>
+              <div class="space-y-3">
+                <div class="bg-white p-3 rounded-lg border border-purple-200">
+                  <h4 class="font-medium text-purple-700">IoT-as-a-Service</h4>
+                  <p class="text-sm text-gray-600">Mengurangi biaya awal dan kompleksitas implementasi melalui model berlangganan</p>
+                  <h4 class="font-medium text-purple-700">Outcome-based Pricing</h4>
+                  <p class="text-sm text-gray-600">Pelanggan membayar berdasarkan hasil yang dicapai, bukan untuk teknologi</p>
+                  <h4 class="font-medium text-purple-700">Data-as-a-Service</h4>
+                  <p class="text-sm text-gray-600">Monetisasi insights dari data IoT melalui analytics lanjutan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 11: Perspective - Social -->
+      <div class="page" data-page="11">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-purple-600 mb-6">PERSPEKTIF SOSIAL</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <!-- Work Transformation -->
+              <div class="mb-6 bg-purple-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                  <i class="fas fa-briefcase text-purple-600 mr-2"></i>
+                  Transformasi Pola Kerja
+                </h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-robot text-gray-500 mt-1 mr-2"></i>
+                    <span>Otomatisasi dan monitoring yang lebih ekstensif</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-graduation-cap text-gray-500 mt-1 mr-2"></i>
+                    <span>Kebutuhan reskilling tenaga kerja</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-puzzle-piece text-gray-500 mt-1 mr-2"></i>
+                    <span>Adaptasi organisasi terhadap teknologi baru</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Human-Machine Collaboration -->
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                  <i class="fas fa-handshake text-blue-600 mr-2"></i>
+                  Kolaborasi Manusia-Mesin
+                </h3>
+                <div class="relative p-3 bg-white rounded-lg border border-blue-200">
+                  <p class="text-gray-700 mb-4">Dalam Industri 5.0, IoT melalui edge computing mendukung kolaborasi yang lebih harmonis, dimana teknologi melengkapi kemampuan manusia, bukan menggantikannya.</p>
+
+                  <!-- Simple Human-Machine Collaboration Illustration -->
+                  <div class="flex justify-center items-center space-x-8">
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-blue-600"></i>
+                      </div>
+                      <p class="text-xs mt-1">Manusia</p>
+                      <p class="text-xs text-gray-500">Kreativitas, Empati, Pengambilan Keputusan</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <i class="fas fa-exchange-alt text-gray-400 mb-2"></i>
+                      <i class="fas fa-sync text-gray-400"></i>
+                    </div>
+                    <div class="text-center">
+                      <div class="w-12 h-12 mx-auto bg-purple-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-microchip text-purple-600"></i>
+                      </div>
+                      <p class="text-xs mt-1">Mesin</p>
+                      <p class="text-xs text-gray-500">Analisis Data, Presisi, Monitoring</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <!-- Digital Divide -->
+              <div class="mb-6 bg-red-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-red-700 mb-3 flex items-center">
+                  <i class="fas fa-unlink text-red-600 mr-2"></i>
+                  Kesenjangan Digital
+                </h3>
+                <p class="text-gray-700 mb-3">Manfaat IoT belum merata terdistribusi. Daerah pedesaan dan negara berkembang masih menghadapi hambatan infrastruktur dan biaya.</p>
+                <div class="bg-white p-3 rounded border border-red-200">
+                  <h4 class="font-medium text-red-700 mb-2">Solusi Inklusif:</h4>
+                  <ul class="space-y-1 text-sm">
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>IoT khusus konteks low-resource</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>Irigasi cerdas bertenaga surya untuk petani kecil</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                      <span>Solusi kesehatan jarak jauh untuk daerah remote</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Privacy and Ethics -->
+              <div class="bg-yellow-50 p-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                  <i class="fas fa-user-shield text-yellow-600 mr-2"></i>
+                  Privasi dan Etika
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex items-start bg-white p-3 rounded border border-yellow-200">
+                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <i class="fas fa-eye text-yellow-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-medium">Pengawasan</h4>
+                      <p class="text-sm text-gray-600">Perdebatan tentang batasan pengumpulan data IoT di ruang publik dan tempat kerja</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start bg-white p-3 rounded border border-yellow-200">
+                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                      <i class="fas fa-balance-scale text-yellow-600 text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-medium">Persetujuan</h4>
+                      <p class="text-sm text-gray-600">Tantangan mendapatkan persetujuan yang bermakna dalam lingkungan IoT yang pervasif</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 12: Perspective - Sustainability -->
+      <div class="page" data-page="12">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-green-600 mb-6">PERSPEKTIF KEBERLANJUTAN DAN LINGKUNGAN</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Resource Efficiency -->
+            <div class="mb-6 bg-green-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                <i class="fas fa-leaf text-green-600 mr-2"></i>
+                Efisiensi Sumber Daya
+              </h3>
+              <p class="text-gray-700 mb-3">Studi McKinsey menunjukkan potensi pengurangan konsumsi energi hingga 20% di sektor industri dan bangunan komersial melalui solusi IoT.</p>
+              <!-- Energy Savings Visualization -->
+              <div class="bg-white p-3 rounded border border-green-200">
+                <h4 class="font-medium text-green-700 mb-2">Penghematan Energi Potensial</h4>
+                <div class="flex justify-around items-end h-24">
+                  <div class="flex flex-col items-center">
+                    <div class="bg-green-300 w-12" style="height: 40px;"></div>
+                    <p class="text-xs mt-1">Smart Homes</p>
+                    <p class="text-xs font-medium">15%</p>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="bg-green-400 w-12" style="height: 60px;"></div>
+                    <p class="text-xs mt-1">Buildings</p>
+                    <p class="text-xs font-medium">20%</p>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="bg-green-500 w-12" style="height: 70px;"></div>
+                    <p class="text-xs mt-1">Industry</p>
+                    <p class="text-xs font-medium">25%</p>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div class="bg-green-600 w-12" style="height: 50px;"></div>
+                    <p class="text-xs mt-1">Transportation</p>
+                    <p class="text-xs font-medium">18%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Edge Computing for Energy Savings -->
+            <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-bolt text-blue-600 mr-2"></i>
+                Edge Computing untuk Efisiensi Energi
+              </h3>
+              <p class="text-gray-700 mb-3">Edge computing berkontribusi pada penghematan energi dengan mengurangi kebutuhan transmisi data jarak jauh ke cloud, sekaligus meningkatkan waktu respons.</p>
+              <div class="bg-white p-3 rounded border border-blue-200">
+                <div class="flex items-center justify-around mb-3">
+                  <div class="text-center">
+                    <i class="fas fa-server text-red-500 text-2xl"></i>
+                    <p class="text-xs mt-1">Cloud-Only</p>
+                  </div>
+                  <div class="text-center text-2xl text-gray-400">
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                  </div>
+                  <div class="text-center">
+                    <i class="fas fa-microchip text-green-500 text-2xl"></i>
+                    <p class="text-xs mt-1">Edge+Cloud</p>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <p class="text-sm font-medium text-green-700">35% pengurangan bandwidth</p>
+                  <p class="text-xs text-gray-600">28% penghematan energi keseluruhan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Sustainable Design -->
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                <i class="fas fa-recycle text-yellow-600 mr-2"></i>
+                Desain Berkelanjutan
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Material yang dapat didaur ulang dan ramah lingkungan</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Desain modular untuk memfasilitasi perbaikan dan upgrade</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Skema take-back dan daur ulang oleh produsen</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                  <span>Optimasi konsumsi daya perangkat IoT</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Smart Grid Applications -->
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-solar-panel text-purple-600 mr-2"></i>
+                Aplikasi Smart Grid
+              </h3>
+              <p class="text-gray-700 mb-3">IoT memungkinkan integrasi energi terbarukan secara lebih efisien ke dalam jaringan listrik melalui monitoring dan pengelolaan real-time.</p>
+              <div class="bg-white p-3 rounded border border-purple-200">
+                <div class="flex flex-col space-y-2">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                      <i class="fas fa-sync-alt text-blue-600 text-sm"></i>
+                    </div>
+                    <p class="text-sm">Penyeimbangan beban dan permintaan secara dinamis</p>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-2">
+                      <i class="fas fa-sun text-green-600 text-sm"></i>
+                    </div>
+                    <p class="text-sm">Pengoptimalan distribusi energi terbarukan</p>
+                  </div>
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-2">
+                      <i class="fas fa-battery-half text-purple-600 text-sm"></i>
+                    </div>
+                    <p class="text-sm">Manajemen penyimpanan energi terdistribusi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 13: Future Projection - Short-term -->
+      <div class="page" data-page="13">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">PROYEKSI JANGKA PENDEK (1-2 TAHUN)</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Edge Computing Acceleration -->
+            <div class="mb-6 bg-blue-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-tachometer-alt text-blue-600 mr-2"></i>
+                Akselerasi Edge Computing
+              </h3>
+              <div class="bg-white p-3 rounded border border-blue-200 mb-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium">Pertumbuhan Implementasi Edge:</span>
+                  <span class="text-sm font-bold text-blue-600">+45%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                  <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                </div>
+              </div>
+              <p class="text-gray-700">Peningkatan signifikan implementasi edge computing di sektor manufaktur dan smart cities untuk mengurangi latensi dan meningkatkan privasi data.</p>
+              <div class="mt-3 flex">
+                <div class="flex-1 text-center p-2 bg-blue-100 rounded-l">
+                  <p class="text-xs font-medium">Manufaktur</p>
+                </div>
+                <div class="flex-1 text-center p-2 bg-green-100 rounded-r">
+                  <p class="text-xs font-medium">Smart Cities</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5G Private Networks -->
+            <div class="mb-6 bg-purple-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-broadcast-tower text-purple-600 mr-2"></i>
+                Jaringan 5G Privat
+              </h3>
+              <div class="bg-white p-3 rounded border border-purple-200 mb-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium">Pertumbuhan Tahunan:</span>
+                  <span class="text-sm font-bold text-purple-600">+35%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                  <div class="bg-purple-600 h-2.5 rounded-full" style="width: 35%"></div>
+                </div>
+              </div>
+              <p class="text-gray-700">Pertumbuhan signifikan implementasi jaringan 5G privat untuk use case IoT industri, termasuk otomatisasi pabrik, monitoring aset, dan keselamatan pekerja.</p>
+              <div class="mt-3 bg-white p-3 rounded border border-purple-200">
+                <h4 class="text-sm font-medium text-purple-700 mb-2">Use Cases Utama:</h4>
+                <div class="grid grid-cols-3 gap-2">
+                  <div class="text-center p-2 bg-purple-50 rounded">
+                    <i class="fas fa-industry text-purple-500 mb-1"></i>
+                    <p class="text-xs">Otomatisasi</p>
+                  </div>
+                  <div class="text-center p-2 bg-purple-50 rounded">
+                    <i class="fas fa-binoculars text-purple-500 mb-1"></i>
+                    <p class="text-xs">Monitoring</p>
+                  </div>
+                  <div class="text-center p-2 bg-purple-50 rounded">
+                    <i class="fas fa-hard-hat text-purple-500 mb-1"></i>
+                    <p class="text-xs">Keselamatan</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Projections -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Security Standardization -->
+            <div class="bg-yellow-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                <i class="fas fa-shield-alt text-yellow-600 mr-2"></i>
+                Standarisasi Keamanan
+              </h3>
+              <p class="text-gray-700 mb-3">Implementasi penuh dan adopsi standar keamanan IoT yang lebih komprehensif, termasuk EU Cyber Resilience Act dan standar keamanan IoT serupa di berbagai negara.</p>
+              <div class="bg-white p-3 rounded border border-yellow-200">
+                <h4 class="text-sm font-medium text-yellow-700 mb-2">Standar Utama:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                    <span>EU Cyber Resilience Act</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                    <span>IoT Security Foundation Framework</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                    <span>NIST IoT Device Cybersecurity Requirement</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Edge AI -->
+            <div class="bg-green-50 p-2 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                <i class="fas fa-brain text-green-600 mr-2"></i>
+                Integrasi AI Edge
+              </h3>
+              <p class="text-gray-700 mb-3">Peningkatan integrasi teknologi AI yang berjalan pada perangkat edge, memungkinkan pemrosesan lokal yang lebih cerdas dengan kebutuhan bandwidth minimal.</p>
+              <div class="bg-white p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Aplikasi Utama:</h4>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="p-2 bg-green-50 rounded flex items-center">
+                    <i class="fas fa-camera text-green-500 mr-2"></i>
+                    <span class="text-xs">Computer Vision</span>
+                  </div>
+                  <div class="p-2 bg-green-50 rounded flex items-center">
+                    <i class="fas fa-microphone text-green-500 mr-2"></i>
+                    <span class="text-xs">Speech Recognition</span>
+                  </div>
+                  <div class="p-2 bg-green-50 rounded flex items-center">
+                    <i class="fas fa-chart-line text-green-500 mr-2"></i>
+                    <span class="text-xs">Anomaly Detection</span>
+                  </div>
+                  <div class="p-2 bg-green-50 rounded flex items-center">
+                    <i class="fas fa-cogs text-green-500 mr-2"></i>
+                    <span class="text-xs">Predictive Maintenance</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 14: Future Projection - Medium-term -->
+      <div class="page" data-page="14">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-purple-600 mb-6">PROYEKSI JANGKA MENENGAH (3-5 TAHUN)</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Digital Twin Convergence -->
+            <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-cubes text-blue-600 mr-2"></i>
+                Konvergensi Digital Twin
+              </h3>
+              <p class="text-gray-700 mb-3">Konvergensi yang lebih dalam antara IoT, edge computing, dan digital twin menjadi standar dalam desain dan operasi sistem kompleks.</p>
+
+              <!-- Digital Twin Illustration -->
+              <div class="bg-white p-3 rounded border border-blue-200">
+                <h4 class="text-sm font-medium text-blue-700 mb-3">Ekosistem Digital Twin</h4>
+                <div class="flex justify-center items-center mb-3">
+                  <div class="relative w-48 h-48">
+                    <!-- Physical Layer -->
+                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gray-100 rounded-lg border border-gray-300 flex items-center justify-center">
+                      <div class="text-center">
+                        <i class="fas fa-industry text-gray-600 text-lg"></i>
+                        <p class="text-xs font-medium">Physical Asset</p>
+                      </div>
+                    </div>
+
+                    <!-- IoT Layer -->
+                    <div class="absolute bottom-14 left-6 right-6 h-14 bg-green-100 rounded-lg border border-green-300 flex items-center justify-center">
+                      <div class="text-center">
+                        <i class="fas fa-satellite-dish text-green-600 text-sm"></i>
+                        <p class="text-xs font-medium">IoT Sensors</p>
+                      </div>
+                    </div>
+
+                    <!-- Edge Layer -->
+                    <div class="absolute bottom-24 left-10 right-10 h-14 bg-blue-100 rounded-lg border border-blue-300 flex items-center justify-center">
+                      <div class="text-center">
+                        <i class="fas fa-microchip text-blue-600 text-sm"></i>
+                        <p class="text-xs font-medium">Edge Computing</p>
+                      </div>
+                    </div>
+
+                    <!-- Digital Twin Layer -->
+                    <div class="absolute top-0 left-16 right-16 h-18 bg-purple-100 rounded-lg border border-purple-300 flex items-center justify-center">
+                      <div class="text-center">
+                        <i class="fas fa-cube text-purple-600 text-lg"></i>
+                        <p class="text-xs font-medium">Digital Twin</p>
+                      </div>
+                    </div>
+
+                    <!-- Connection Lines -->
+                    <div class="absolute top-16 left-1/2 w-px h-8 bg-gray-400"></div>
+                    <div class="absolute top-36 left-1/2 w-px h-10 bg-gray-400"></div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <p class="text-xs text-gray-600">Optimasi real-time dan prediksi kegagalan yang lebih akurat</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Healthcare and Transportation -->
+            <div class="mb-6 bg-green-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                <i class="fas fa-hospital text-green-600 mr-2"></i>
+                Perluasan Sektor Kesehatan & Transportasi
+              </h3>
+              <div class="bg-white p-3 rounded border border-green-200 mb-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-medium">Peningkatan Nilai:</span>
+                  <span class="text-sm font-bold text-green-600">+30%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                  <div class="bg-green-600 h-2.5 rounded-full" style="width: 30%"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-3 rounded border border-green-200">
+                  <h4 class="text-sm font-medium text-green-700 mb-2">Kesehatan</h4>
+                  <ul class="space-y-1 text-xs">
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>Telemedicine berbasis IoT</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>Monitoring pasien jarak jauh</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>Digital therapeutics</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-white p-3 rounded border border-green-200">
+                  <h4 class="text-sm font-medium text-green-700 mb-2">Transportasi</h4>
+                  <ul class="space-y-1 text-xs">
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>Sistem transportasi pintar</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>Logistik dan supply chain IoT</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-check-circle text-green-500 mt-px mr-1"></i>
+                      <span>V2X communication</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outcome Economy -->
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+              <i class="fas fa-chart-pie text-purple-600 mr-2"></i>
+              Evolusi Menuju Outcome Economy
+            </h3>
+            <p class="text-gray-700 mb-4">Model bisnis bergeser dari penjualan perangkat atau software menuju nilai berbasis hasil dan pengaruh yang terukur, dengan model pay-per-outcome mendominasi ekosistem IoT.</p>
+
+            <div class="bg-white p-4 rounded border border-purple-200">
+              <h4 class="text-sm font-medium text-purple-700 mb-3">Pergeseran Model Bisnis</h4>
+              <div class="relative">
+                <!-- Timeline with nodes -->
+                <div class="absolute left-0 top-0 w-full h-1 bg-gray-200"></div>
+                <div class="absolute left-0 top-0 w-1/3 h-1 bg-purple-400"></div>
+                <div class="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-400 -mt-0.5"></div>
+                <div class="absolute left-1/3 top-0 w-2 h-2 rounded-full bg-purple-400 -mt-0.5"></div>
+                <div class="absolute left-2/3 top-0 w-2 h-2 rounded-full bg-gray-400 -mt-0.5"></div>
+                <div class="absolute right-0 top-0 w-2 h-2 rounded-full bg-gray-400 -mt-0.5"></div>
+
+                <!-- Labels -->
+                <div class="grid grid-cols-3 gap-4 pt-4">
+                  <div class="text-center">
+                    <p class="text-xs font-medium">Product-based</p>
+                    <p class="text-xs text-gray-500">2010-2020</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-xs font-medium text-purple-700">Service-based</p>
+                    <p class="text-xs text-purple-500">2020-2025</p>
+                  </div>
+                  <div class="text-center">
+                    <p class="text-xs font-medium">Outcome-based</p>
+                    <p class="text-xs text-gray-500">2025-2030</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 grid grid-cols-3 gap-2 text-center">
+                <div class="p-2 rounded bg-gray-50">
+                  <p class="text-xs font-medium">Perangkat IoT</p>
+                </div>
+                <div class="p-2 rounded bg-purple-50">
+                  <p class="text-xs font-medium">IoT-as-a-Service</p>
+                </div>
+                <div class="p-2 rounded bg-gray-50">
+                  <p class="text-xs font-medium">Pay-per-Outcome</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 15: Future Projection - Long-term -->
+      <div class="page" data-page="15">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">PROYEKSI JANGKA PANJANG (5+ TAHUN)</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Ambient Intelligence -->
+            <div class="mb-6 bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-air-freshener text-purple-600 mr-2"></i>
+                Ambient Intelligence
+              </h3>
+              <p class="text-gray-700 mb-3">IoT menjadi sedemikian terintegrasi dengan lingkungan fisik sehingga hampir tak terlihat. Interaksi berbasis konteks, intuitif, dan adaptif tanpa intervensi eksplisit.</p>
+
+              <div class="bg-white p-3 rounded border border-purple-200">
+                <h4 class="text-sm font-medium text-purple-700 mb-2">Karakteristik:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                    <span>Non-invasive dan pervasif</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                    <span>Context-aware dan responsive</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                    <span>Anticipatory dan proaktif</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                    <span>Bervariasi di berbagai domain kehidupan</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 6G Networks -->
+            <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-broadcast-tower text-blue-600 mr-2"></i>
+                Jaringan 6G untuk IoT
+              </h3>
+              <p class="text-gray-700 mb-3">Proliferasi jaringan 6G yang masih dalam penelitian awal diproyeksikan akan memberikan kemampuan baru untuk IoT dengan kecepatan 100x dibanding 5G dan latensi mendekati instan.</p>
+
+              <div class="bg-white p-3 rounded border border-blue-200">
+                <h4 class="text-sm font-medium text-blue-700 mb-2">Perbandingan:</h4>
+                <div class="overflow-hidden">
+                  <table class="w-full text-xs">
+                    <thead>
+                      <tr>
+                        <th class="text-left py-1"></th>
+                        <th class="text-center py-1 px-1">5G</th>
+                        <th class="text-center py-1 px-1 text-blue-700">6G</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-1">Kecepatan</td>
+                        <td class="text-center py-1 bg-gray-50">20 Gbps</td>
+                        <td class="text-center py-1 bg-blue-50">1 Tbps</td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">Latensi</td>
+                        <td class="text-center py-1 bg-gray-50">1ms</td>
+                        <td class="text-center py-1 bg-blue-50">0.1ms</td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">Devices/km²</td>
+                        <td class="text-center py-1 bg-gray-50">1M</td>
+                        <td class="text-center py-1 bg-blue-50">10M</td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">Spektrum</td>
+                        <td class="text-center py-1 bg-gray-50">Sub-6GHz, mmWave</td>
+                        <td class="text-center py-1 bg-blue-50">THz, Visible Light</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Circular Economy Enabler -->
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                <i class="fas fa-sync-alt text-green-600 mr-2"></i>
+                Enabler Ekonomi Sirkular
+              </h3>
+              <p class="text-gray-700 mb-3">IoT berperan krusial dalam mencapai target Net Zero dengan memungkinkan pelacakan dan optimasi penggunaan sumber daya di seluruh rantai nilai.</p>
+
+              <!-- Circular Economy Diagram -->
+              <div class="bg-white p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-3">Siklus Ekonomi Sirkular berbasis IoT</h4>
+                <div class="relative w-full h-32 mx-auto">
+                  <!-- Circular path -->
+                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-28 rounded-full border-2 border-dashed border-green-300"></div>
+
+                  <!-- Nodes -->
+                  <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <i class="fas fa-seedling text-green-600"></i>
+                    </div>
+                    <p class="text-xs mt-1 text-center">Desain</p>
+                  </div>
+
+                  <div class="absolute top-1/2 right-8 transform translate-y-1/2">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <i class="fas fa-industry text-green-600"></i>
+                    </div>
+                    <p class="text-xs mt-1 text-center">Produksi</p>
+                  </div>
+
+                  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <i class="fas fa-shopping-bag text-green-600"></i>
+                    </div>
+                    <p class="text-xs mt-1 text-center">Konsumsi</p>
+                  </div>
+
+                  <div class="absolute top-1/2 left-8 transform translate-y-1/2">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <i class="fas fa-recycle text-green-600"></i>
+                    </div>
+                    <p class="text-xs mt-1 text-center">Daur Ulang</p>
+                  </div>
+
+                  <!-- Center -->
+                  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                      <i class="fas fa-network-wired text-white"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Advanced Autonomous Systems -->
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                <i class="fas fa-robot text-yellow-600 mr-2"></i>
+                Sistem Otonom Canggih
+              </h3>
+              <p class="text-gray-700 mb-3">Transformasi sistem autonomi dengan edge AI yang lebih canggih, memungkinkan pengambilan keputusan mandiri dan adaptif berdasarkan data dan konteks real-time.</p>
+
+              <div class="bg-white p-3 rounded border border-yellow-200">
+                <h4 class="text-sm font-medium text-yellow-700 mb-2">Aplikasi:</h4>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="p-2 bg-yellow-50 rounded">
+                    <div class="flex items-center mb-1">
+                      <i class="fas fa-car text-yellow-500 mr-2"></i>
+                      <p class="text-xs font-medium">Kendaraan Otonom</p>
+                    </div>
+                    <p class="text-xs text-gray-600">Level 5 autonomy</p>
+                  </div>
+                  <div class="p-2 bg-yellow-50 rounded">
+                    <div class="flex items-center mb-1">
+                      <i class="fas fa-robot text-yellow-500 mr-2"></i>
+                      <p class="text-xs font-medium">Cobots Industri</p>
+                    </div>
+                    <p class="text-xs text-gray-600">Adaptif & self-learning</p>
+                  </div>
+                  <div class="p-2 bg-yellow-50 rounded">
+                    <div class="flex items-center mb-1">
+                      <i class="fas fa-drone text-yellow-500 mr-2"></i>
+                      <p class="text-xs font-medium">UAV Swarms</p>
+                    </div>
+                    <p class="text-xs text-gray-600">Koordinasi kolektif</p>
+                  </div>
+                  <div class="p-2 bg-yellow-50 rounded">
+                    <div class="flex items-center mb-1">
+                      <i class="fas fa-city text-yellow-500 mr-2"></i>
+                      <p class="text-xs font-medium">Infrastruktur</p>
+                    </div>
+                    <p class="text-xs text-gray-600">Self-healing systems</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 16: Challenges and Opportunities -->
+      <div class="page" data-page="16">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-red-600 mb-6">TANTANGAN DAN PELUANG</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Security and Privacy -->
+            <div class="mb-6 bg-red-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-red-700 mb-3 flex items-center">
+                <i class="fas fa-shield-alt text-red-600 mr-2"></i>
+                Keamanan dan Privasi
+              </h3>
+              <div class="bg-white p-3 rounded border border-red-200 mb-3">
+                <h4 class="text-sm font-medium text-red-700 mb-2">Tantangan:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Meningkatnya surface attack seiring pertumbuhan perangkat terhubung</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Kerentanan pada perangkat low-power dengan kapabilitas komputasi terbatas</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Risiko privasi dari pengumpulan data yang ekstensif</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Peluang:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Pendekatan Secure-by-Design dari awal pengembangan</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Privacy-preserving analytics dan federated learning</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Standar keamanan yang lebih kuat dan regulasi yang harmonis</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Interoperability -->
+            <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-exchange-alt text-blue-600 mr-2"></i>
+                Interoperabilitas dan Standardisasi
+              </h3>
+              <div class="bg-white p-3 rounded border border-blue-200 mb-3">
+                <h4 class="text-sm font-medium text-blue-700 mb-2">Tantangan:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Ekosistem IoT yang terfragmentasi dengan berbagai protokol berbeda</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Vendor lock-in dan keterbatasan pertukaran data antar platform</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Kompatibilitas terbatas antara solusi lama dan baru</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Peluang:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Adopsi standar terbuka seperti Matter dan Thread</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Platform middleware untuk integrasi antar perangkat heterogen</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>API standar dan semantic interoperability</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Resource Management -->
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                <i class="fas fa-battery-half text-yellow-600 mr-2"></i>
+                Manajemen Sumber Daya
+              </h3>
+              <div class="bg-white p-3 rounded border border-yellow-200 mb-3">
+                <h4 class="text-sm font-medium text-yellow-700 mb-2">Tantangan:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Alokasi kapasitas komputasi secara dinamis di jaringan edge</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Konsumsi energi perangkat IoT dalam jumlah masif</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Limbah elektronik dan penggunaan sumber daya terbatas</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Peluang:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Energy harvesting dari sumber ambient untuk perangkat self-powered</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Algoritma adaptif untuk optimasi sumber daya</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Material bio-degradable untuk komponen IoT</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Digital Skills -->
+            <div class="bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-graduation-cap text-purple-600 mr-2"></i>
+                Keterampilan Digital
+              </h3>
+              <div class="bg-white p-3 rounded border border-purple-200 mb-3">
+                <h4 class="text-sm font-medium text-purple-700 mb-2">Tantangan:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Kesenjangan keterampilan untuk implementasi dan pengelolaan IoT</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Kurikulum pendidikan yang belum mengikuti perkembangan teknologi</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                    <span>Resistensi terhadap perubahan dalam organisasi</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="bg-green-50 p-3 rounded border border-green-200">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Peluang:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Program upskilling dan reskilling untuk tenaga kerja</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Kolaborasi industri-akademia untuk kurikulum berbasis IoT</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-plus-circle text-green-500 mt-1 mr-2"></i>
+                    <span>Platform no-code/low-code untuk demokratisasi IoT</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 17: Conclusion -->
+      <div class="page" data-page="17">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">KESIMPULAN</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Key Trends Summary -->
+            <div class="mb-6 bg-blue-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-700 mb-3 flex items-center">
+                <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                Ringkasan Tren Utama
+              </h3>
+              <div class="space-y-3">
+                <div class="flex items-start bg-white p-3 rounded border border-blue-200">
+                  <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-sm font-bold text-blue-700">1</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Edge Computing</h4>
+                    <p class="text-sm text-gray-600">Komputasi terdesentralisasi yang meningkatkan responsivitas dan privasi</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white p-3 rounded border border-blue-200">
+                  <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-sm font-bold text-green-700">2</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Nilai Ekonomi IoT</h4>
+                    <p class="text-sm text-gray-600">Pertumbuhan signifikan dan ROI terukur di berbagai sektor industri</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white p-3 rounded border border-blue-200">
+                  <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span class="text-sm font-bold text-purple-700">3</span>
+                  </div>
+                  <div>
+                    <h4 class="font-medium">Integrasi dengan 5G</h4>
+                    <p class="text-sm text-gray-600">Konektivitas yang lebih cepat, handal, dan mampu mendukung device dalam jumlah masif</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Significance -->
+            <div class="mb-6 bg-purple-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-purple-700 mb-3 flex items-center">
+                <i class="fas fa-lightbulb text-purple-600 mr-2"></i>
+                Signifikansi dalam Transformasi Digital
+              </h3>
+              <p class="text-gray-700 mb-3">Tren ini merefleksikan evolusi IoT menuju tingkat kematangan yang lebih tinggi dengan fokus pada:</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                  <span>Nilai bisnis yang terukur dan ROI yang jelas</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                  <span>Keamanan dan privasi yang lebih terintegrasi</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                  <span>Keberlanjutan sebagai pertimbangan desain utama</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                  <span>Integrasi lebih mendalam dengan AI dan digital twin</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Implications for Indonesia -->
+            <div class="bg-green-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-700 mb-3 flex items-center">
+                <i class="fas fa-map-marked-alt text-green-600 mr-2"></i>
+                Implikasi untuk Indonesia
+              </h3>
+              <div class="bg-white p-3 rounded border border-green-200 mb-3">
+                <h4 class="text-sm font-medium text-green-700 mb-2">Prioritas:</h4>
+                <ul class="space-y-1 text-sm">
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                    <span>Pengembangan infrastruktur digital yang inklusif</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                    <span>Regulasi yang mendukung inovasi dengan perlindungan data</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                    <span>Pengembangan talent pool IoT melalui pendidikan dan pelatihan</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-arrow-right text-green-500 mt-1 mr-2"></i>
+                    <span>Insentif untuk UMKM dalam adopsi teknologi IoT</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="bg-yellow-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-700 mb-3 flex items-center">
+                <i class="fas fa-clipboard-check text-yellow-600 mr-2"></i>
+                Rekomendasi Penelitian Lanjutan
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-search text-yellow-500 mt-1 mr-2"></i>
+                  <span>IoT berkelanjutan untuk konteks negara berkembang</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-search text-yellow-500 mt-1 mr-2"></i>
+                  <span>Solusi keamanan IoT yang cost-effective</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-search text-yellow-500 mt-1 mr-2"></i>
+                  <span>Model bisnis IoT yang sesuai untuk UMKM Indonesia</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-search text-yellow-500 mt-1 mr-2"></i>
+                  <span>Strategi adopsi edge computing untuk infrastruktur yang ada</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 18: References -->
+      <div class="page" data-page="18">
+        <div class="page-content">
+          <h2 class="text-3xl font-bold text-blue-600 mb-6">REFERENSI</h2>
+
+          <div class="space-y-6">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Sumber-sumber Utama</h3>
+              <div class="space-y-4">
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">Veeramachaneni, V. (2025).</span>
+                    "Edge Computing: Architecture, Applications, and Future Challenges in a Decentralized Era."
+                    <span class="italic">Journal of Internet of Things and Cyber-Physical Systems</span>,
+                    7(2), 145-163.
+                  </p>
+                </div>
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">Chui, M., Collins, M., Patel, M., & Thomas, C. (2023).</span>
+                    "The Internet of Things: Catching up to an accelerating opportunity."
+                    <span class="italic">McKinsey Digital</span>.
+                    McKinsey & Company.
+                  </p>
+                </div>
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">Lee, P., Bucaille, A., & Westcott, K. (2022).</span>
+                    "2023 Technology, Media and Telecommunications Predictions: The 5G Factor."
+                    <span class="italic">Deloitte Insights</span>.
+                    Deloitte Development LLC.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Sumber-sumber Pendukung</h3>
+              <div class="space-y-4">
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">World Economic Forum. (2023).</span>
+                    "State of the Connected World 2023 Edition."
+                    <span class="italic">Insight Report</span>.
+                    World Economic Forum.
+                  </p>
+                </div>
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">Gartner, Inc. (2024).</span>
+                    "Top Strategic Technology Trends for 2025."
+                    <span class="italic">Gartner Research</span>.
+                  </p>
+                </div>
+                <div class="bg-white p-3 rounded border border-gray-200">
+                  <p class="text-sm">
+                    <span class="font-medium">International Telecommunication Union. (2023).</span>
+                    "The State of Broadband 2023: Sustainable Broadband for All."
+                    <span class="italic">ITU Publications</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h3 class="text-xl font-semibold text-gray-800 mb-4">Sumber Gambar dan Data</h3>
+              <ul class="space-y-2 text-sm pl-4">
+                <li class="list-disc">Gambar diagram edge computing diadaptasi dari Veeramachaneni (2025)</li>
+                <li class="list-disc">Data proyeksi nilai ekonomi IoT dari McKinsey Digital (2023)</li>
+                <li class="list-disc">Perbandingan teknologi 5G dan 6G dari IEEE Spectrum (2023)</li>
+                <li class="list-disc">Ikon dan ilustrasi berbasis visualisasi dari Font Awesome dan Tailwind CSS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+
+      <!-- Page 19: Q&A -->
+      <div class="page" data-page="19">
+        <div class="page-content flex flex-col justify-center items-center text-center h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+          <div class="mb-6">
+            <i class="fas fa-question-circle text-6xl"></i>
+          </div>
+          <h2 class="text-4xl font-bold mb-8">PERTANYAAN & DISKUSI</h2>
+          <div class="bg-white/20 backdrop-blur-sm p-6 rounded-lg w-full max-w-lg">
+            <p class="text-xl mb-6">Terima kasih atas perhatian Anda</p>
+            <div class="flex justify-center items-center space-x-6 mb-6">
+              <div class="flex flex-col items-center">
+                <i class="fas fa-envelope text-2xl mb-2"></i>
+                <span class="text-sm">Email</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <i class="fab fa-linkedin text-2xl mb-2"></i>
+                <span class="text-sm">LinkedIn</span>
+              </div>
+              <div class="flex flex-col items-center">
+                <i class="fab fa-github text-2xl mb-2"></i>
+                <span class="text-sm">GitHub</span>
+              </div>
+            </div>
+            <p class="text-lg">Dewa Ketut Satriawan Suditresnajaya</p>
+            <p class="text-md">Universitas Pendidikan Ganesha</p>
+          </div>
+        </div>
+        <div class="page-turn-effect"></div>
+      </div>
+    </div>
+
+    <!-- Add this just before the closing </div> of book-container -->
+    <div id="slideNavigation" class="slide-navigation">
+      <div class="navigation-container">
+        <div class="slide-minimap">
+          <!-- Slide thumbnails will be generated by JavaScript -->
+        </div>
+        <div class="slide-numbers">
+          <!-- Page numbers will be generated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
