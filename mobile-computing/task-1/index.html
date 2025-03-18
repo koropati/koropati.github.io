@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aquatic Ecosystem Monitoring using MLPNN and IoT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Print Controls -->
+  <div class="print-controls">
+    <button id="print-button" class="print-button">
+      <i class="fas fa-print mr-2"></i> Export to PDF
+    </button>
+    <button id="language-button" class="language-button">
+      <i class="fas fa-language mr-2"></i> Bahasa Indonesia
+    </button>
+    <button id="fullscreen-button" class="fullscreen-button">
+      <i class="fas fa-expand mr-2"></i> Fullscreen
+    </button>
+  </div>
+
+  <!-- Right Side Drawer Navigation -->
+  <div class="drawer-toggle" id="drawer-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+
+  <div class="side-drawer" id="side-drawer">
+    <div class="drawer-header">
+      <h3 class="text-lg font-semibold text-indigo-700">Table of Contents</h3>
+      <button id="close-drawer" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="toc-list" id="toc-list">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Legacy Section Navigation (will be hidden via CSS) -->
+  <div class="section-nav" id="section-nav">
+    <!-- Will be populated by JavaScript -->
+  </div>
+
+  <!-- Section 1: Cover (Enhanced) -->
+  <section class="section" id="section-1">
+    <div class="flex flex-col items-center justify-center h-full text-center">
+      <div class="gradient-bg text-white p-8 rounded-lg shadow-lg max-w-4xl w-full relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+          <i class="fas fa-water text-6xl absolute top-10 left-10 rotate-slow"></i>
+          <i class="fas fa-fish text-5xl absolute bottom-10 right-10 rotate-slow"></i>
+          <i class="fas fa-microchip text-4xl absolute top-1/4 right-1/4 rotate-slow"></i>
+          <i class="fas fa-wifi text-5xl absolute bottom-1/4 left-1/4 rotate-slow"></i>
+        </div>
+
+        <h1 class="font-bold mb-4 text-4xl relative z-10">Multi-Layer Perceptron Neural Network and Internet of Things for Improving the Realtime Aquatic Ecosystem Quality Monitoring and Analysis</h1>
+        <div class="w-32 h-1 bg-white mx-auto my-6"></div>
+        <p class="mb-8 text-xl">Paper Summary Presentation</p>
+
+        <div class="flex justify-center mb-8">
+          <div class="p-6 bg-white bg-opacity-20 rounded-full pulse">
+            <i class="fas fa-tint text-7xl"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float">
+            <h2 class="font-semibold mb-2">Original Paper Authors:</h2>
+            <p>Sumitra Nuanmeesri, Lap Poomhiran</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float" style="animation-delay: 0.5s">
+            <h2 class="font-semibold mb-2">Published in:</h2>
+            <p>International Journal of Interactive Mobile Technologies (2022)</p>
+          </div>
+        </div>
+
+        <div class="border-t border-white pt-6 relative">
+          <div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+          <h2 class="font-semibold mb-2">Presented by:</h2>
+          <p class="text-2xl font-bold mb-1">Dewa Ketut Satriawan Suditresnajaya</p>
+          <p class="mb-2 text-lg">NIM: 2429101036</p>
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+            <div class="bg-white bg-opacity-10 px-4 py-2 rounded-lg">
+              <p>Universitas Pendidikan Ganesha</p>
+            </div>
+            <div class="bg-white bg-opacity-10 px-4 py-2 rounded-lg">
+              <p>Mobile Computing Course</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Outline -->
+  <section class="section" id="section-2">
+    <div class="flex flex-col h-full">
+      <h1 class="font-bold mb-6 text-indigo-700">Presentation Outline</h1>
+      <div class="flex-grow flex items-center justify-center">
+        <div class="max-w-3xl w-full">
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-info-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">1. Introduction</h2>
+              <p class="text-gray-600">Background, challenges, and importance of aquatic ecosystem monitoring</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-tint text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">2. Water Quality Parameters</h2>
+              <p class="text-gray-600">Key indicators for aquatic ecosystem health and fish welfare</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-cogs text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">3. Research Methods</h2>
+              <p class="text-gray-600">Data acquisition, SMOTE, MLPNN, and IoT development</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-microchip text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">4. IoT System Implementation</h2>
+              <p class="text-gray-600">Sensors, hardware architecture, and automatic control functions</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-chart-bar text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">5. Results and Discussion</h2>
+              <p class="text-gray-600">Model evaluation and system performance analysis</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-sync-alt text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">6. Comparison with Previous Research</h2>
+              <p class="text-gray-600">Advantages and innovations compared to related studies</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-mobile-alt text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">7. UI and Application Implementation</h2>
+              <p class="text-gray-600">Mobile interface and system visualization</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-flag-checkered text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">8. Conclusion and Future Work</h2>
+              <p class="text-gray-600">Summary and suggestions for future research</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Introduction -->
+  <section class="section" id="section-3">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Introduction</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 mb-6">
+        <div class="md:w-1/2">
+          <h2 class="font-semibold mb-3">Background</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Raising fish reduces stress and blood pressure; helps treat adolescents with diabetes</li>
+            <li>COVID-19 pandemic led to increased popularity of ornamental fish keeping</li>
+            <li>Fish farming businesses often encounter challenges in adequate fish care</li>
+          </ul>
+
+          <div class="mt-6">
+            <h2 class="font-semibold mb-3">Challenges</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Insufficient staff or caretakers for aquarium maintenance</li>
+              <li>Difficulty maintaining appropriate water quality for each fish species</li>
+              <li>Poor water quality leads to fish fatalities and business losses</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex flex-col justify-center items-center">
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div class="text-center mb-4">
+              <i class="fas fa-fish text-5xl text-indigo-600"></i>
+            </div>
+            <p class="text-center italic text-gray-600">
+              "For fish to survive for a long time, there are many factors such as water temperature, turbidity, TDS, pH, ORP, EC, DO, nitrate and phosphate."
+            </p>
+          </div>
+
+          <div class="mt-8 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <h3 class="font-semibold text-blue-700">Why IoT and AI?</h3>
+            <p class="text-gray-700">Internet of Things and neural networks can efficiently monitor and control water quality, automate water replacement, and predict ideal conditions for fish survival and growth.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Water Quality Parameters -->
+  <section class="section" id="section-4">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Water Quality Parameters</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-thermometer-half text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">Temperature</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Fish are cold-blooded animals</li>
+            <li>Body temperature/metabolism changes with water temperature</li>
+            <li>Affects growth and breeding directly</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-chart-area text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">pH Level</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Concentration of hydrogen ions (H+)</li>
+            <li>pH 7.0 is neutral, below is acidic, above is alkaline</li>
+            <li>Suitable pH for fish: between 6.5 and 9.0</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-wind text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">Dissolved Oxygen (DO)</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Oxygen from atmosphere and plants dissolves in water</li>
+            <li>Minimum DO for many fish: 4.0-5.0 mg/L</li>
+            <li>Essential for fish respiration and metabolism</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-tint-slash text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">Turbidity</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Cloudiness in water from suspended solids</li>
+            <li>Affects light penetration and water clarity</li>
+            <li>Can clog fish respiratory system</li>
+            <li>Measured in Nephelometric Turbidity Units (NTU)</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-atom text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">Total Dissolved Solids (TDS)</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Concentration of dissolved organic and inorganic substances</li>
+            <li>Can cause toxicity through increased salinity</li>
+            <li>Affects fish metabolism and reproduction</li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <i class="fas fa-flask text-3xl text-blue-500 mr-3"></i>
+            <h2 class="font-semibold text-blue-700">Nitrate Ion</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Produced from nitrogen cycle in aquarium</li>
+            <li>Forms from fish waste and uneaten food</li>
+            <li>High levels decrease blood hemoglobin, affecting oxygen intake</li>
+            <li>Regular water replacement reduces nitrate levels</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-8 bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+        <div class="flex items-start">
+          <i class="fas fa-lightbulb text-2xl text-indigo-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-indigo-700">The Nitrogen Cycle</h3>
+            <p class="text-gray-700">Fish waste and uneaten food → Ammonia (NH₃) → Nitrites (NO₂⁻) → Nitrates (NO₃⁻). Water changes help remove nitrates which can be toxic to fish at high levels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Research Methods -->
+  <section class="section" id="section-5">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Research Methods</h1>
+
+      <div class="bg-gray-50 p-4 rounded-lg shadow-md mb-6">
+        <h2 class="font-semibold mb-3 text-center">Research Methodology Overview</h2>
+        <div class="flex flex-col md:flex-row justify-around items-center">
+          <div class="text-center mb-4 md:mb-0">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-database text-indigo-600 text-2xl"></i>
+            </div>
+            <p class="font-medium">Data<br>Acquisition</p>
+          </div>
+          <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+          <div class="text-center mb-4 md:mb-0">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-balance-scale text-indigo-600 text-2xl"></i>
+            </div>
+            <p class="font-medium">SMOTE<br>Balancing</p>
+          </div>
+          <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+          <div class="text-center mb-4 md:mb-0">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-brain text-indigo-600 text-2xl"></i>
+            </div>
+            <p class="font-medium">MLPNN<br>Model</p>
+          </div>
+          <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+          <div class="text-center">
+            <div class="bg-indigo-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-2">
+              <i class="fas fa-microchip text-indigo-600 text-2xl"></i>
+            </div>
+            <p class="font-medium">IoT<br>Implementation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="font-semibold mb-3">Data Acquisition</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Collected data from different ornamental fish farms</li>
+              <li>Focus on five favorite tropical fish in Thailand: Angelfish, Goldfish, Guppy, Platy, and Sumatran Tiger Barb</li>
+              <li>1,592 records with 10 features and 1 class (water quality)</li>
+              <li>Features: fish kind, pH, DO, TDS, nitrate, temperature, turbidity, etc.</li>
+              <li>Output class: water quality (good, poor)</li>
+            </ul>
+          </div>
+
+          <h2 class="font-semibold mt-6 mb-3">SMOTE for Imbalanced Data</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <p class="mb-3 text-gray-700">Synthetic Minority Over-Sampling Technique helps resynthesize data by:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Growing dataset size with small amount of class data</li>
+              <li>Making dataset consistent with largest class</li>
+              <li>Setting k=5 nearest neighbors and randomSeed=1</li>
+              <li>Increasing dataset from 1,592 to 5,469 records (400% SMOTE)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Multi-Layer Perceptron Neural Network</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md mb-6">
+            <p class="mb-3 text-gray-700">Key MLPNN characteristics:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Three layers: input, hidden, and output layers</li>
+              <li>Processing elements connected by weights for classification</li>
+              <li>Parameters: six hidden layers, sigmoid activation function</li>
+              <li>500 epochs, batch size=auto, early stopping=true</li>
+              <li>Adaptive moment optimization (Adam) with learning rate=0.005</li>
+              <li>Web API created with Flask framework for model deployment</li>
+            </ul>
+          </div>
+
+          <h2 class="font-semibold mb-3">Model Evaluation Methods</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Training accuracy and Mean Square Error (MSE)</li>
+              <li>10-fold cross-validation process</li>
+              <li>Confusion matrix for accuracy, sensitivity, and specificity</li>
+              <li>Comparison of original and SMOTE-enhanced models</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: IoT System Implementation -->
+  <section class="section" id="section-6">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">IoT System Implementation</h1>
+
+      <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+        <h2 class="font-semibold mb-3 text-center">IoT System Architecture</h2>
+        <div class="flex justify-center">
+          <div class="text-center">
+            <img src="assets/IoT-Architecture.png" alt="IoT System Architecture" class="rounded-lg max-w-full h-auto">
+            <p class="text-gray-600 italic mt-2">The infrastructure of automatic aquarium system</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="font-semibold mb-3">Hardware Components</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li><span class="font-semibold">ESP32 DevKitC:</span> Microcontroller with Wi-Fi capability</li>
+              <li><span class="font-semibold">Sensors:</span> DS18B20 (temperature), pH, DO, TDS, Nitrate ion, LDR (turbidity)</li>
+              <li><span class="font-semibold">Water Control:</span> 12V-water pump, 2-way solenoid valve, ultrasonic sensor, horizontal water level sensor</li>
+              <li><span class="font-semibold">Environmental Control:</span> 5V-LED tube light, 6V-12V air pumps, 12V cooling fans, water heater</li>
+              <li><span class="font-semibold">Feeding System:</span> 12V-step motor with driver, force sensor resistor (FSR)</li>
+              <li><span class="font-semibold">Other:</span> Power supply, relays, microSD card module</li>
+            </ul>
+          </div>
+
+          <h2 class="font-semibold mt-6 mb-3">Custom Turbidity Sensor</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <p class="mb-3 text-gray-700">Developed using white LED and LDR sensor:</p>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Clear water (0 NTU): Vout = 4.56V</li>
+              <li>Maximum turbidity (2,982 NTU): Vout = 2.50V</li>
+              <li>Quadratic equation derived for NTU calculation</li>
+              <li>NTU = -702.705 × Vout² + 3,513.526 × Vout - 1,409.908</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Automatic Control Functions</h2>
+          <div class="space-y-4">
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">1. Water Quality Monitoring</h3>
+              <p class="text-gray-700 text-sm">Temperature and DO measured every 5 minutes; pH, TDS, nitrate, and turbidity every 30 minutes. Values sent to server for analysis.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">2. Temperature Control</h3>
+              <p class="text-gray-700 text-sm">Cooling fans or water heater activated based on temperature readings to maintain optimal conditions.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">3. Air Pump Control</h3>
+              <p class="text-gray-700 text-sm">Air pumps automatically adjust to increase DO levels when readings are low.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">4. Water Replacement</h3>
+              <p class="text-gray-700 text-sm">Automatic water replacement when quality is poor, using water pump, ultrasonic sensor, and solenoid valve.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">5. Feeding System</h3>
+              <p class="text-gray-700 text-sm">Scheduled feeding with quantity monitoring using step motor and FSR sensor.</p>
+            </div>
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <h3 class="font-semibold text-indigo-700 mb-1">6. Notification System</h3>
+              <p class="text-gray-700 text-sm">LINE Notify sends alerts for critical events; mobile app provides real-time monitoring and control.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <h2 class="font-semibold mb-3">Software Architecture</h2>
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Arduino IDE for ESP32 controller programming (C++)</li>
+            <li>Apache web server for communication between smartphone and ESP32</li>
+            <li>MySQL database for data storage</li>
+            <li>Bootstrap framework for responsive mobile application</li>
+            <li>Flask framework for MLPNN model API</li>
+            <li>LINE Notify for push notifications</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Results and Discussion -->
+  <section class="section" id="section-7">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Results and Discussion</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h2 class="font-semibold mb-3">Model Effectiveness</h2>
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="responsive-table">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="py-2 px-3 border-b">Models</th>
+                    <th class="py-2 px-3 border-b">Data Records</th>
+                    <th class="py-2 px-3 border-b">Accuracy (%)</th>
+                    <th class="py-2 px-3 border-b">Sensitivity (%)</th>
+                    <th class="py-2 px-3 border-b">Specificity (%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Original+MLPNN</td>
+                    <td class="py-2 px-3 border-b">1,592</td>
+                    <td class="py-2 px-3 border-b">80.72</td>
+                    <td class="py-2 px-3 border-b">79.37</td>
+                    <td class="py-2 px-3 border-b">88.89</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">100% SMOTE+MLPNN</td>
+                    <td class="py-2 px-3 border-b">2,578</td>
+                    <td class="py-2 px-3 border-b">82.82</td>
+                    <td class="py-2 px-3 border-b">82.32</td>
+                    <td class="py-2 px-3 border-b">87.71</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">200% SMOTE+MLPNN</td>
+                    <td class="py-2 px-3 border-b">3,359</td>
+                    <td class="py-2 px-3 border-b">84.40</td>
+                    <td class="py-2 px-3 border-b">83.69</td>
+                    <td class="py-2 px-3 border-b">90.91</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">300% SMOTE+MLPNN</td>
+                    <td class="py-2 px-3 border-b">4,532</td>
+                    <td class="py-2 px-3 border-b">93.60</td>
+                    <td class="py-2 px-3 border-b">93.92</td>
+                    <td class="py-2 px-3 border-b">91.26</td>
+                  </tr>
+                  <tr class="bg-green-50">
+                    <td class="py-2 px-3 border-b font-medium">400% SMOTE+MLPNN</td>
+                    <td class="py-2 px-3 border-b font-medium">5,469</td>
+                    <td class="py-2 px-3 border-b font-medium">97.31</td>
+                    <td class="py-2 px-3 border-b font-medium">97.98</td>
+                    <td class="py-2 px-3 border-b font-medium">91.41</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">Table: Model effectiveness evaluation results</p>
+          </div>
+
+          <div class="mt-6 bg-white p-3 rounded-lg shadow-md flex items-center justify-center">
+            <div class="text-center">
+              <div class="inline-block rounded-full bg-indigo-100 p-5 mb-4">
+                <i class="fas fa-chart-line text-5xl text-indigo-600"></i>
+              </div>
+              <div class="text-center">
+                <span class="text-4xl font-bold text-indigo-700">97.31%</span>
+                <p class="text-gray-600">Overall Model Accuracy</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">System Accuracy Results</h2>
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="responsive-table">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="py-2 px-3 border-b">Term of Evaluation</th>
+                    <th class="py-2 px-3 border-b">Accuracy (%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto water quality monitoring</td>
+                    <td class="py-2 px-3 border-b">99.97</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto temperature control</td>
+                    <td class="py-2 px-3 border-b">99.97</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto air pump control</td>
+                    <td class="py-2 px-3 border-b">99.98</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto lighting control</td>
+                    <td class="py-2 px-3 border-b">99.91</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto water filling</td>
+                    <td class="py-2 px-3 border-b">99.92</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto water replacement (low quality)</td>
+                    <td class="py-2 px-3 border-b">99.56</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto water replacement (schedule)</td>
+                    <td class="py-2 px-3 border-b">99.98</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto food level control</td>
+                    <td class="py-2 px-3 border-b">99.83</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto food feeding</td>
+                    <td class="py-2 px-3 border-b">99.95</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Auto message notification</td>
+                    <td class="py-2 px-3 border-b">99.94</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-3 border-b">Online monitoring for user</td>
+                    <td class="py-2 px-3 border-b">99.78</td>
+                  </tr>
+                  <tr class="bg-green-50 font-medium">
+                    <td class="py-2 px-3 border-b">Average</td>
+                    <td class="py-2 px-3 border-b">99.89</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">Table: Accuracy results of the automatic aquarium system</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="font-semibold mb-3">Key Findings</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>400% SMOTE + MLPNN produced highest accuracy (97.31%)</li>
+              <li>Model stopped training at 218th epoch with lowest MSE (0.0154)</li>
+              <li>Overall system accuracy: 99.89%</li>
+              <li>External factors (weather, internet connection) slightly affected accuracy</li>
+              <li>Testing and installation at fifteen fish farms for thirty days confirmed reliability</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">System Benefits</h2>
+          <div class="space-y-4">
+            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-2xl text-green-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-green-700 mb-1">Reduced Fish Mortality</h3>
+                  <p class="text-gray-700">Maintained optimal water quality conditions for fish survival and growth.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-2xl text-green-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-green-700 mb-1">Automated Maintenance</h3>
+                  <p class="text-gray-700">Reduced labor requirements and human error in aquarium maintenance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-2xl text-green-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-green-700 mb-1">Remote Monitoring</h3>
+                  <p class="text-gray-700">Real-time monitoring and control via mobile application.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+              <div class="flex items-start">
+                <i class="fas fa-check-circle text-2xl text-green-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-green-700 mb-1">Customizable Settings</h3>
+                  <p class="text-gray-700">System can be configured for different fish species requirements.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Perbandingan dengan Penelitian Sebelumnya -->
+  <section class="section" id="section-8">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Comparison with Previous Research</h1>
+
+      <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+        <h2 class="font-semibold mb-3 text-center">System Advantages</h2>
+        <div class="responsive-table">
+          <table class="min-w-full">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-3 border-b">Parameter</th>
+                <th class="py-2 px-3 border-b">Previous Research</th>
+                <th class="py-2 px-3 border-b">Proposed System</th>
+                <th class="py-2 px-3 border-b">Advantage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-3 border-b">IoT-AI Integration</td>
+                <td class="py-2 px-3 border-b">Limited or separate</td>
+                <td class="py-2 px-3 border-b">Fully integrated</td>
+                <td class="py-2 px-3 border-b">Real-time prediction & automation</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 border-b">Prediction Accuracy</td>
+                <td class="py-2 px-3 border-b">80-85%</td>
+                <td class="py-2 px-3 border-b">97.31%</td>
+                <td class="py-2 px-3 border-b">+12% accuracy improvement</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 border-b">Sensors</td>
+                <td class="py-2 px-3 border-b">2-3 main sensors</td>
+                <td class="py-2 px-3 border-b">6 sensors & custom turbidity</td>
+                <td class="py-2 px-3 border-b">More comprehensive monitoring</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 border-b">Automatic Control</td>
+                <td class="py-2 px-3 border-b">Partial (1-2 functions)</td>
+                <td class="py-2 px-3 border-b">Complete (6+ functions)</td>
+                <td class="py-2 px-3 border-b">More autonomous system</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-3 border-b">AI Method</td>
+                <td class="py-2 px-3 border-b">Rule-based or simple algorithm</td>
+                <td class="py-2 px-3 border-b">MLPNN + SMOTE</td>
+                <td class="py-2 px-3 border-b">Adaptive to different conditions</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="font-semibold mb-3">Related Research</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Chen et al. (2015): Automated monitoring system based on IoT with temperature & pH sensors</li>
+              <li>Lin & Tseng (2019): "FishTalk" - mini aquarium with smartphone monitoring</li>
+              <li>Encinas et al. (2017): Distributed IoT system for water quality monitoring</li>
+              <li>Raju & Varma (2017): Knowledge-based real-time monitoring system for aquaculture</li>
+              <li>Kim et al. (2018): Fish farm control via mobile app</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Innovation Aspects</h2>
+          <div class="space-y-4">
+            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+              <div class="flex items-start">
+                <i class="fas fa-lightbulb text-2xl text-indigo-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Hybrid Approach</h3>
+                  <p class="text-gray-700">Unique combination of MLPNN + SMOTE achieves 97.31% prediction accuracy, surpassing basic methods.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+              <div class="flex items-start">
+                <i class="fas fa-lightbulb text-2xl text-indigo-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Custom Turbidity Sensor</h3>
+                  <p class="text-gray-700">Development of LED and LDR-based turbidity sensor with quadratic equation for NTU calculation.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+              <div class="flex items-start">
+                <i class="fas fa-lightbulb text-2xl text-indigo-500 mr-3 mt-1"></i>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Integrated Architecture</h3>
+                  <p class="text-gray-700">Full-stack architecture combining ESP32, AI modeling, database, and mobile application in one cohesive system.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Implementasi UI dan Aplikasi dari Paper -->
+  <section class="section" id="section-9">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">UI and Application Implementation</h1>
+
+      <div class="mb-8">
+        <h2 class="font-semibold mb-4 text-center">Mobile Application Interface</h2>
+        <div class="flex justify-center">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Mobile App Screens -->
+            <div class="bg-white p-3 rounded-lg shadow-md">
+              <h3 class="font-semibold text-indigo-700 mb-2 text-center">1. Account Registration</h3>
+              <img src="assets/mobile-ui-login.png" alt="Account Registration" class="mx-auto rounded-lg border border-gray-200">
+              <p class="mt-2 text-sm text-gray-600 text-center">Registration for new account or login to access the system</p>
+            </div>
+            
+            <div class="bg-white p-3 rounded-lg shadow-md">
+              <h3 class="font-semibold text-indigo-700 mb-2 text-center">2. Water Quality Monitoring</h3>
+              <img src="assets/mobile-ui-monitoring.png" alt="Water Quality Monitoring" class="mx-auto rounded-lg border border-gray-200">
+              <p class="mt-2 text-sm text-gray-600 text-center">Real-time display of water quality parameters</p>
+            </div>
+            
+            <div class="bg-white p-3 rounded-lg shadow-md">
+              <h3 class="font-semibold text-indigo-700 mb-2 text-center">3. System Control</h3>
+              <img src="assets/mobile-ui-control.png" alt="System Control" class="mx-auto rounded-lg border border-gray-200">
+              <p class="mt-2 text-sm text-gray-600 text-center">Interface to control various aquarium features</p>
+            </div>
+            
+            <div class="bg-white p-3 rounded-lg shadow-md">
+              <h3 class="font-semibold text-indigo-700 mb-2 text-center">4. Notification</h3>
+              <img src="assets/mobile-ui-notification.png" alt="LINE Notification" class="mx-auto rounded-lg border border-gray-200">
+              <p class="mt-2 text-sm text-gray-600 text-center">LINE notifications for critical conditions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+        <div>
+          <h2 class="font-semibold mb-3">IoT System Architecture</h2>
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <img src="assets/IoT-Architecture.png" alt="IoT System Architecture" class="w-full rounded-lg">
+            <p class="mt-2 text-sm text-gray-600 text-center">Architecture showing relationship between clients, server, and aquarium controllers</p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Hardware Component Details</h2>
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <img src="assets/Hardware-Components.png" alt="Hardware Components" class="w-full rounded-lg">
+            <p class="mt-2 text-sm text-gray-600 text-center">Details of hardware used in system implementation</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-indigo-50 p-6 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">UI/UX Development Process</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-pencil-ruler text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">Design</h3>
+            <p class="text-sm text-gray-700">UI created with Bootstrap framework for responsiveness across devices. Water quality parameters visualized with cards and color indicators.</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-code text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">Implementation</h3>
+            <p class="text-sm text-gray-700">Application developed with HTML5, CSS3, and JavaScript in frontend, with PHP5 and Python3 for backend. Communication with ESP32 via HTTP protocol.</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-user-check text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">Evaluation</h3>
+            <p class="text-sm text-gray-700">Testing with 15 fish farmers for 30 days showed 99.78% UI accuracy for monitoring and high user satisfaction.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Conclusion -->
+  <section class="section" id="section-10">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Conclusion</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h2 class="font-semibold mb-3">Summary of Contributions</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Proposed an automatic aquarium system using MLPNN and IoT for water quality monitoring</li>
+              <li>Applied SMOTE to balance data and improve model accuracy (97.31%)</li>
+              <li>Developed custom sensors and integrated with ESP32-based control system</li>
+              <li>Created mobile application for real-time monitoring and control</li>
+              <li>Successfully tested at fifteen fish farms with 99.89% average system accuracy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Future Work</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>Expand the scope to cover more ornamental fish species</li>
+              <li>Scale from small to large fish farming operations</li>
+              <li>Improve communication network to reduce hardware requirements</li>
+              <li>Develop adaptive learning model with additional parameters</li>
+              <li>Consider fish count, tank size, and feeding amount in model</li>
+              <li>Store sensor data in cloud for sharing among fish farmers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 p-6 bg-indigo-50 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">Key Takeaways</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-brain text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">MLPNN Effectiveness</h3>
+            <p class="text-sm text-gray-700">Multi-Layer Perceptron Neural Network with SMOTE provides highly accurate prediction of water quality conditions.</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-microchip text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">IoT Integration</h3>
+            <p class="text-sm text-gray-700">Internet of Things devices and sensors enable comprehensive monitoring and automated control of aquatic environments.</p>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow-md">
+            <div class="text-center mb-3">
+              <i class="fas fa-fish text-4xl text-indigo-500"></i>
+            </div>
+            <h3 class="font-semibold text-center mb-2">Business Impact</h3>
+            <p class="text-sm text-gray-700">Automated systems reduce fish mortality, reduce manual maintenance, and improve business outcomes for ornamental fish farmers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-indigo-700 mb-2">Thank You!</h2>
+          <p class="text-gray-700">Presented by:</p>
+          <p class="text-lg font-medium text-indigo-800">Dewa Ketut Satriawan Suditresnajaya</p>
+          <p class="text-gray-600">NIM: 2429101036</p>
+          <p class="text-gray-600">Univeristas Pendidikan Ganesha</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="translations.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
