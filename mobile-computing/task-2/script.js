@@ -303,109 +303,109 @@ document.addEventListener('DOMContentLoaded', function () {
     function handleLandscapePrinting() {
         // Save original scroll position
         const originalScrollPos = window.scrollY;
-
+    
         // Create print-specific CSS for expanded landscape orientation
         let printCSS = `
-        @page {
-          size: 29.7cm 21cm landscape;
-          margin: 0;
-        }
-        @media print {
-          body, html {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: auto !important;
-            width: 100% !important;
-            background-color: white;
-          }
-          
-          .print-controls, .section-nav, .side-drawer, .drawer-toggle {
-            display: none !important;
-          }
-          
-          .section {
-            box-sizing: border-box !important;
-            position: relative !important;
-            page-break-after: always !important;
-            break-after: page !important;
-            overflow: visible !important;
-            width: 100% !important;
-            border: none !important;
-            display: flex !important; 
-            height: 21cm !important;
-            min-height: 21cm !important;
-            max-height: 21cm !important;
-            padding: 1cm !important;
-            transform-origin: top left !important;
-          }
-          
-          #section-1 {
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-          }
-  
-          .section:not(#section-1) {
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            align-items: flex-start !important;
-          }
-          
-          .section > div {
-            width: 100% !important;
-            max-width: 100% !important;
-            overflow: visible !important;
-          }
-          
-          /* Force all background colors to print */
-          .gradient-bg {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-            background: linear-gradient(135deg, #6366f1, #a855f7) !important;
-          }
-          
-          /* Force all colored elements to print with color */
-          .bg-red-50, .bg-green-50, .bg-blue-50, .bg-yellow-50, .bg-indigo-50, 
-          .bg-purple-50, .bg-amber-50, .bg-gray-50, .bg-gray-100,
-          .bg-indigo-100, .bg-red-100, .bg-green-100, .bg-blue-100,
-          .bg-yellow-100, .bg-purple-100, .bg-amber-100 {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-          }
-          
-          /* Disable animations when printing */
-          .pulse, .float, .rotate-slow {
-            animation: none !important;
-          }
-
-          /* Ensure the final sections are visible */
-          #section-8 .mt-8.text-center,
-          #section-9 .mt-8.text-center {
-            position: relative !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-          }
-        }
-      `;
-
+            @page {
+              size: 29.7cm 21cm landscape;
+              margin: 0;
+            }
+            @media print {
+              body, html {
+                margin: 0 !important;
+                padding: 0 !important;
+                height: auto !important;
+                width: 100% !important;
+                background-color: white;
+              }
+              
+              .print-controls, .section-nav, .side-drawer, .drawer-toggle {
+                display: none !important;
+              }
+              
+              .section {
+                box-sizing: border-box !important;
+                position: relative !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                overflow: visible !important;
+                width: 100% !important;
+                border: none !important;
+                display: flex !important; 
+                height: 21cm !important;
+                min-height: 21cm !important;
+                max-height: 21cm !important;
+                padding: 1cm !important;
+                transform-origin: top left !important;
+              }
+              
+              #section-1 {
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+              }
+      
+              .section:not(#section-1) {
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+              }
+              
+              .section > div {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: visible !important;
+              }
+              
+              /* Force all background colors to print */
+              .gradient-bg {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                background: linear-gradient(135deg, #6366f1, #a855f7) !important;
+              }
+              
+              /* Force all colored elements to print with color */
+              .bg-red-50, .bg-green-50, .bg-blue-50, .bg-yellow-50, .bg-indigo-50, 
+              .bg-purple-50, .bg-amber-50, .bg-gray-50, .bg-gray-100,
+              .bg-indigo-100, .bg-red-100, .bg-green-100, .bg-blue-100,
+              .bg-yellow-100, .bg-purple-100, .bg-amber-100 {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+              }
+              
+              /* Disable animations when printing */
+              .pulse, .float, .rotate-slow {
+                animation: none !important;
+              }
+    
+              /* Ensure the final sections are visible */
+              #section-8 .mt-8.text-center,
+              #section-9 .mt-8.text-center {
+                position: relative !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+              }
+            }
+          `;
+    
         // Create and apply the print style
         const printStyle = document.createElement('style');
         printStyle.textContent = printCSS;
         document.head.appendChild(printStyle);
-
+    
         // Give browser time to apply styles before printing
         setTimeout(() => {
             window.print();
-
+    
             // Remove style after printing and restore scroll position
             setTimeout(() => {
                 document.head.removeChild(printStyle);
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function () {
         notification.className = 'notification';
         notification.textContent = uiTranslations[currentLanguage]['processingScreenshots'];
         document.body.appendChild(notification);
-
+    
         try {
             // Initialize jsPDF
             const { jsPDF } = window.jspdf;
@@ -430,24 +430,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 unit: 'mm',
                 format: 'a4'
             });
-
+    
             const pageWidth = doc.internal.pageSize.getWidth();
             const pageHeight = doc.internal.pageSize.getHeight();
-
+    
             // Original scroll position
             const originalScrollPos = window.scrollY;
-
+    
             // Hide controls and drawer for clean screenshots
             const controls = document.querySelector('.print-controls');
             const drawer = document.querySelector('.side-drawer');
             const drawerToggle = document.querySelector('.drawer-toggle');
-
+    
             controls.style.display = 'none';
             drawer.style.display = 'none';
             drawerToggle.style.display = 'none';
-
+    
             console.log("Starting PDF generation process");
-
+    
             // Split the export process into smaller chunks to avoid canvas size issues
             const chunkSize = 3; // Process 3 sections at a time
             for (let startIdx = 0; startIdx < sections.length; startIdx += chunkSize) {
@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     // Scroll to section
                     section.scrollIntoView({behavior: 'auto', block: 'start'});
-                    await new Promise(resolve => setTimeout(resolve, 500)); // Longer wait time
+                    await new Promise(resolve => setTimeout(resolve, 800)); // Longer wait time
                     
                     // Special section handling
                     if (i === 5) { // Section 6 (System Design)
@@ -488,47 +488,57 @@ document.addEventListener('DOMContentLoaded', function () {
                         await new Promise(resolve => setTimeout(resolve, 800));
                     }
                     
-                    // Final sections (conclusion and references)
+                    // IMPROVED HANDLING FOR FINAL SECTIONS (conclusion and references)
                     if (i >= sections.length - 2) {
-                        // Scroll to section top first
+                        console.log(`Special handling for final section ${i + 1}`);
+                        
+                        // First scroll to section top
                         section.scrollIntoView({block: 'start', behavior: 'auto'});
-                        await new Promise(resolve => setTimeout(resolve, 500));
+                        await new Promise(resolve => setTimeout(resolve, 800));
                         
-                        // Always scroll down a bit to reveal bottom content
-                        window.scrollBy(0, 200);
-                        await new Promise(resolve => setTimeout(resolve, 500));
+                        // Then scroll down to reveal bottom content
+                        window.scrollBy(0, 400); // Increased from 200 to 400
+                        await new Promise(resolve => setTimeout(resolve, 800));
                         
-                        // Add special handling for thank you and final assessment sections
-                        const finalBlocksInSection = section.querySelectorAll('.mt-8.text-center');
+                        // More specific targeting for final blocks
+                        const finalBlocksInSection = section.querySelectorAll('.mt-8.text-center, .inline-block.bg-indigo-50');
                         if (finalBlocksInSection.length > 0) {
-                            finalBlocksInSection[0].scrollIntoView({block: 'center'});
-                            await new Promise(resolve => setTimeout(resolve, 500));
+                            console.log(`Found ${finalBlocksInSection.length} final blocks in section ${i + 1}`);
+                            for (let block of finalBlocksInSection) {
+                                // Ensure each final block is visible
+                                block.scrollIntoView({block: 'center'});
+                                await new Promise(resolve => setTimeout(resolve, 800));
+                            }
                         }
+                        
+                        // Force additional scroll to bottom of section
+                        const sectionHeight = section.offsetHeight;
+                        const viewportHeight = window.innerHeight;
+                        window.scrollBy(0, Math.max(0, sectionHeight - viewportHeight - 100));
+                        await new Promise(resolve => setTimeout(resolve, 1000));
                     }
                     
                     // Add render preparation
                     window.scrollBy(0, 20);
                     window.scrollBy(0, -20);
-                    await new Promise(resolve => setTimeout(resolve, 300));
+                    await new Promise(resolve => setTimeout(resolve, 500));
                     
                     // Update notification
                     notification.textContent = `${uiTranslations[currentLanguage]['processingScreenshots']} (${i + 1}/${sections.length})`;
                     
-                    // Improved capture options with better error handling
+                    // Improved capture options
                     try {
                         const captureOptions = {
-                            scale: 1.5, // Reduced from 2 to avoid memory issues
+                            scale: 1.5,
                             useCORS: true,
                             allowTaint: true,
                             backgroundColor: '#FFFFFF',
                             logging: false,
                             width: window.innerWidth,
-                            height: section.offsetHeight > window.innerHeight ? 
-                                   section.offsetHeight : window.innerHeight,
+                            height: Math.max(section.offsetHeight, window.innerHeight) + 200, // Added extra padding
                             scrollX: 0,
                             scrollY: -window.scrollY,
                             ignoreElements: (element) => {
-                                // Ignore problematic elements that might cause rendering issues
                                 return element.classList.contains('drawer-toggle') || 
                                        element.classList.contains('print-controls');
                             }
@@ -602,21 +612,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             }
-
+    
             // Restore elements
             controls.style.display = '';
             drawer.style.display = '';
             drawerToggle.style.display = '';
-
+    
             // Restore original scroll position
             window.scrollTo(0, originalScrollPos);
-
+    
             // Update notification
             notification.textContent = uiTranslations[currentLanguage]['generatingPdf'];
-
+    
             // Save PDF
             doc.save('air_quality_monitoring_presentation.pdf');
-
+    
             // Update notification before removing
             notification.textContent = uiTranslations[currentLanguage]['downloadStarting'];
             setTimeout(() => {
@@ -625,12 +635,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.body.removeChild(notification);
                 }, 1000);
             }, 1500);
-
+    
         } catch (error) {
             console.error('Error generating PDF:', error);
             notification.textContent = 'Error: ' + error.message;
             notification.style.backgroundColor = '#f87171';
-
+    
             setTimeout(() => {
                 notification.classList.add('fade-out');
                 setTimeout(() => {
