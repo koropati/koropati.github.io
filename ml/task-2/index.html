@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computational Vision for Tomato Classification Using a Decision Tree Algorithm</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Added libraries for screenshot export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <!-- Print Controls -->
+  <div class="print-controls">
+    <button id="print-button" class="print-button">
+      <i class="fas fa-print mr-2"></i> Export to PDF
+    </button>
+    <button id="screenshot-button" class="screenshot-button">
+      <i class="fas fa-camera mr-2"></i> Export as Screenshots
+    </button>
+    <button id="fullscreen-button" class="fullscreen-button">
+      <i class="fas fa-expand mr-2"></i> Fullscreen
+    </button>
+  </div>
+
+  <!-- Right Side Drawer Navigation -->
+  <div class="drawer-toggle" id="drawer-toggle">
+    <i class="fas fa-chevron-left"></i>
+  </div>
+
+  <div class="side-drawer" id="side-drawer">
+    <div class="drawer-header">
+      <h3 class="text-lg font-semibold text-indigo-700">Table of Contents</h3>
+      <button id="close-drawer" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div class="toc-list" id="toc-list">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1: Cover -->
+  <section class="section cover-section" id="section-1">
+    <div class="flex flex-col items-center justify-center h-full w-full text-center">
+      <div class="gradient-bg text-white p-8 rounded-lg shadow-lg max-w-5xl w-full relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+          <i class="fas fa-apple-alt text-6xl absolute top-10 left-10 rotate-slow"></i>
+          <i class="fas fa-chart-tree-map text-5xl absolute bottom-10 right-10 rotate-slow"></i>
+          <i class="fas fa-camera text-4xl absolute top-1/4 right-1/4 rotate-slow"></i>
+          <i class="fas fa-leaf text-5xl absolute bottom-1/4 left-1/4 rotate-slow"></i>
+        </div>
+
+        <h1 class="font-bold mb-4 text-4xl relative z-10">Computational Vision for Tomato Classification Using a Decision Tree Algorithm</h1>
+        <div class="w-32 h-1 bg-white mx-auto my-6"></div>
+        <p class="mb-8 text-xl">Application of Tree-Based Methods for Classification Based on Colorimetric Characteristics</p>
+
+        <div class="flex justify-center mb-8">
+          <div class="p-6 bg-white bg-opacity-20 rounded-full pulse">
+            <i class="fas fa-tree text-7xl"></i>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float">
+            <h2 class="font-semibold mb-2">Authors:</h2>
+            <p>Caroline S. da Fonseca, Bilton G. Nhantumbo, Yuri M. Ferreira, Layana A. da Silva, Anderson G. Costa</p>
+          </div>
+
+          <div class="bg-white bg-opacity-10 p-5 rounded-lg border border-white border-opacity-20 float" style="animation-delay: 0.5s">
+            <h2 class="font-semibold mb-2">Published in:</h2>
+            <p>Engenharia Agrícola Journal (2025)</p>
+          </div>
+        </div>
+
+        <div class="border-t border-white pt-6 relative">
+          <div class="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"></div>
+          <h2 class="font-semibold mb-2">Paper Review:</h2>
+          <p class="text-lg font-bold mb-1">Machine Learning Course Presentation</p>
+          <p class="mb-2">Application of Tree-Based Methods in Agricultural Engineering</p>
+
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+            <div class="bg-white bg-opacity-10 px-4 py-2 rounded-lg">
+              <p>Master of Computer Science</p>
+            </div>
+          </div>
+
+          <!-- Presenter Information -->
+          <div class="mt-6 bg-white bg-opacity-20 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">Presented by:</h3>
+            <p class="text-lg font-bold">Dewa Ketut Satriawan Suditresnajaya</p>
+            <p>NIM: 2429101036</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Outline -->
+  <section class="section" id="section-2">
+    <div class="flex flex-col h-full">
+      <h1 class="font-bold mb-6 text-indigo-700">Presentation Outline</h1>
+      <div class="flex-grow flex items-center justify-center">
+        <div class="max-w-3xl w-full">
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-info-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">1. Introduction</h2>
+              <p class="text-gray-600">Background, problem statement, and importance of tomato quality inspection</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-apple-alt text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">2. Tomato Characterization</h2>
+              <p class="text-gray-600">Fruit characterization, image acquisition, and color model conversion</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-database text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">3. Dataset Details</h2>
+              <p class="text-gray-600">Dataset composition, feature characteristics, and statistical properties</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-camera text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">4. Data Acquisition & Preprocessing</h2>
+              <p class="text-gray-600">Image capture pipeline, feature extraction, and data preparation</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-cogs text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">5. Methodology</h2>
+              <p class="text-gray-600">Data analysis, principal component analysis, and decision tree development</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-tree text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">6. Decision Tree Model</h2>
+              <p class="text-gray-600">Training, pruning, and structure of the classification model</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-chart-bar text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">7. Results & Analysis</h2>
+              <p class="text-gray-600">Model performance evaluation and classification metrics</p>
+            </div>
+          </div>
+
+          <div class="flex items-center mb-6">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-exchange-alt text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">8. Comparison with Other ML Approaches</h2>
+              <p class="text-gray-600">Comparing decision trees with other machine learning techniques</p>
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <div class="bg-indigo-600 rounded-full w-12 h-12 flex items-center justify-center text-white mr-4">
+              <i class="fas fa-check-circle text-xl"></i>
+            </div>
+            <div>
+              <h2 class="font-semibold">9. Conclusion & Applications</h2>
+              <p class="text-gray-600">Key findings and implications for agricultural engineering</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Introduction -->
+  <section class="section" id="section-3">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Introduction</h1>
+
+      <div class="flex flex-col md:flex-row gap-8 mb-6">
+        <div class="md:w-1/2">
+          <h2 class="font-semibold mb-3">Background</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li>Quality inspection is a crucial step in tomato production and marketing</li>
+            <li>Physical attributes such as shape and color are key determinants of consumer acceptability</li>
+            <li>Current challenges in quality assessment:
+              <ul class="list-circle pl-5 mt-1">
+                <li>Manual inspection is prone to human error</li>
+                <li>Inconsistencies in standardization</li>
+                <li>Incorrect classification and processing delays</li>
+                <li>Subjective evaluations due to fatigue</li>
+              </ul>
+            </li>
+            <li>Improper sorting based on ripeness leads to:
+              <ul class="list-circle pl-5 mt-1">
+                <li>Accelerated ripening due to ethylene release</li>
+                <li>Reduced shelf life</li>
+                <li>Increased susceptibility to diseases</li>
+                <li>Economic losses across the production chain</li>
+              </ul>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <h2 class="font-semibold mb-3">Research Objectives</h2>
+            <p class="text-gray-700">
+              This study aims to classify tomatoes based on their colorimetric characteristics, which influence consumer purchasing potential, using the decision tree algorithm. The goal is to provide an automated solution for tomato classification that can improve quality control and reduce losses in the agricultural industry.
+            </p>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex flex-col justify-center items-center pt-8">
+          <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+            <div class="text-center mb-4">
+              <i class="fas fa-lightbulb text-5xl text-indigo-600"></i>
+            </div>
+            <p class="text-center italic text-gray-600">
+              "Automated selection methods offer a solution to limitations across agriculture, agroindustry, and retail sectors. Computer vision systems enhance inspection efficiency, reduce costs, and ensure more consistent standardization, improving the quality control process."
+            </p>
+          </div>
+
+          <div class="mt-8 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <h3 class="font-semibold text-blue-700">Advantages of Computer Vision</h3>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li>Fast and consistent evaluation of fruits</li>
+              <li>Elimination of human subjectivity</li>
+              <li>Ability to process large volumes of products</li>
+              <li>Integration with existing production lines</li>
+              <li>Quantitative measurement of quality parameters</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Tomato Characterization -->
+  <section class="section" id="section-4">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Tomato Characterization</h1>
+
+      <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+            <img src="assets/ripeness_level.png" alt="Tomato Ripeness Levels" class="w-full mb-4 rounded-lg">
+          </div>
+          <div class="md:w-2/3 md:pl-6">
+            <h2 class="font-semibold mb-3">Tomato Classification System</h2>
+            <p class="text-gray-700 mb-4">
+              Tomatoes were classified into two categories based on consumer purchasing potential:
+            </p>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+              <li><span class="font-bold">Major Purchasing Potential (MPP):</span> 20 fruits with mature red coloration (>90% red color)</li>
+              <li><span class="font-bold">Low Purchasing Potential (LPP):</span> 40 fruits with either immature (green) or intermediate (mix of green and red) coloration</li>
+              <li>Classification aligned with CEAGESP standards (2003)</li>
+              <li>Fruits were sourced from the Italiano cultivar (Solanum lycopersicum L.) grown in greenhouses</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-camera text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Image Acquisition Setup</h3>
+          </div>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li>Digital camera (Canon Powershot G9 X RGB) mounted 0.24m above bench</li>
+            <li>Two 100W halogen lamps positioned at 0.84m height</li>
+            <li>White background to minimize shading effects</li>
+            <li>Images processed using ImageJ software to extract RGB values</li>
+            <li>Controlled environment to ensure consistent lighting and image quality</li>
+          </ul>
+        </div>
+
+        <div class="bg-indigo-50 p-4 rounded-lg shadow-md">
+          <div class="flex items-center mb-3">
+            <div class="bg-indigo-100 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+              <i class="fas fa-palette text-indigo-600"></i>
+            </div>
+            <h3 class="font-semibold text-indigo-700">Color Model Conversion</h3>
+          </div>
+          <p class="text-gray-700 mb-3">
+            RGB values were converted to additional color models for comprehensive analysis:
+          </p>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li><span class="font-medium">RGB Model:</span> Red, Green, Blue intensity values</li>
+            <li><span class="font-medium">HSI Model:</span> Hue (H) representing color (0° to 360°)</li>
+            <li><span class="font-medium">CIELab Model:</span>
+              <ul class="list-circle pl-5 mt-1">
+                <li>Luminance (L): brightness (0 to 100)</li>
+                <li>Chromaticity a: green (-128) to red (+128)</li>
+                <li>Chromaticity b: blue (-128) to yellow (+128)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+        <div class="flex items-start">
+          <i class="fas fa-info-circle text-2xl text-blue-500 mr-3 mt-1"></i>
+          <div>
+            <h3 class="font-semibold text-blue-700 mb-1">Consumer Preference Factors</h3>
+            <p class="text-gray-700">For consumers, ripeness-related attributes such as color, texture, and firmness are critical indicators of quality. Specifically, red and uniform tomato coloration is a decisive factor for consumer acceptance. The study's classification into MPP and LPP categories was designed to align with these consumer preferences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Dataset Details (NEW) -->
+  <section class="section" id="section-dataset-details">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Dataset Details</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-database text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Dataset Characteristics</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><strong>Total fruits:</strong> 60 tomatoes (Italiano cultivar)</li>
+            <li><strong>Class distribution:</strong>
+              <ul class="list-circle pl-5 mt-1">
+                <li>Major Purchasing Potential (MPP): 20 fruits (33.3%)</li>
+                <li>Low Purchasing Potential (LPP): 40 fruits (66.7%)</li>
+              </ul>
+            </li>
+            <li><strong>Features extracted per fruit:</strong> 7 colorimetric characteristics</li>
+            <li><strong>Feature types:</strong> All continuous variables</li>
+            <li><strong>Growth conditions:</strong> Greenhouse cultivation</li>
+            <li><strong>Harvest timing:</strong> 85 days after planting</li>
+            <li><strong>Geographical source:</strong> Central-South region of Rio de Janeiro, Brazil (22°25'10" S latitude, 43°25'21" W longitude; average altitude: 610 m)</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-microscope text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Feature Characteristics</h2>
+          </div>
+          <div class="responsive-table">
+            <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="py-2 px-4 border-b">Feature</th>
+                  <th class="py-2 px-4 border-b">Range</th>
+                  <th class="py-2 px-4 border-b">Mean</th>
+                  <th class="py-2 px-4 border-b">CV (%)</th>
+                  <th class="py-2 px-4 border-b">Distribution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Red (R)</td>
+                  <td class="py-2 px-4 border-b">80.0 - 160.0</td>
+                  <td class="py-2 px-4 border-b">121.0</td>
+                  <td class="py-2 px-4 border-b">19.0</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Green (G)</td>
+                  <td class="py-2 px-4 border-b">12.0 - 104.0</td>
+                  <td class="py-2 px-4 border-b">53.5</td>
+                  <td class="py-2 px-4 border-b">55.1</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Blue (B)</td>
+                  <td class="py-2 px-4 border-b">5.0 - 24.0</td>
+                  <td class="py-2 px-4 border-b">11.9</td>
+                  <td class="py-2 px-4 border-b">50.0</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Hue (H)</td>
+                  <td class="py-2 px-4 border-b">2.0 - 61.0</td>
+                  <td class="py-2 px-4 border-b">27.7</td>
+                  <td class="py-2 px-4 border-b">76.8</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Luminance (L)</td>
+                  <td class="py-2 px-4 border-b">29.3 - 45.0</td>
+                  <td class="py-2 px-4 border-b">34.9</td>
+                  <td class="py-2 px-4 border-b">9.5</td>
+                  <td class="py-2 px-4 border-b">Normal, Mesokurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Chromaticity a</td>
+                  <td class="py-2 px-4 border-b">-2.9 - 47.5</td>
+                  <td class="py-2 px-4 border-b">24.0</td>
+                  <td class="py-2 px-4 border-b">77.3</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-medium">Chromaticity b</td>
+                  <td class="py-2 px-4 border-b">31.2 - 53.0</td>
+                  <td class="py-2 px-4 border-b">42.4</td>
+                  <td class="py-2 px-4 border-b">13.9</td>
+                  <td class="py-2 px-4 border-b">Normal, Platykurtic</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">CV = Coefficient of Variation. All features followed normal distribution (Shapiro-Wilk test, p<0.05).< /p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Data Acquisition & Preprocessing (NEW) -->
+  <section class="section" id="section-data-acquisition">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Data Acquisition & Preprocessing</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-camera text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Image Acquisition Pipeline</h2>
+          </div>
+          <div class="flex justify-center mb-4">
+            <img src="assets/acquisition.png" alt="Image Acquisition Pipeline" class="w-full rounded-lg">
+          </div>
+          <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+            <li><strong>Sample preparation:</strong> Tomatoes were cleaned and positioned individually on the measurement bench</li>
+            <li><strong>Image capture:</strong> Digital Canon Powershot G9 X RGB camera positioned 0.24m above bench</li>
+            <li><strong>Lighting control:</strong> Two 100W halogen lamps at 0.84m height provided consistent illumination</li>
+            <li><strong>Background preparation:</strong> White background to minimize shading effects</li>
+            <li><strong>Image digital storage:</strong> Images saved in high-resolution JPG format</li>
+            <li><strong>Quality control:</strong> Visual inspection of each image to ensure absence of reflections, shadows, or artifacts</li>
+          </ol>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-cogs text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Image Processing & Feature Extraction</h2>
+          </div>
+          <ol class="list-decimal pl-5 space-y-2 text-gray-700">
+            <li><strong>Software tool:</strong> ImageJ open-source software was used for all image processing</li>
+            <li><strong>Region of interest selection:</strong> Fruit area was isolated from the background</li>
+            <li><strong>RGB extraction:</strong> Average RGB values calculated from all pixels in the fruit region</li>
+            <li><strong>Color space conversion:</strong> RGB values mathematically transformed to:
+              <ul class="list-circle pl-5 mt-1">
+                <li>HSI Model using rotation transformation (Pedrini & Schwartz, 2008)</li>
+                <li>CIELab Model using standardized color space equations</li>
+              </ul>
+            </li>
+            <li><strong>Data organization:</strong> All extracted features compiled into a structured dataset</li>
+            <li><strong>Quality assurance:</strong> Statistical analysis conducted to check data integrity:
+              <ul class="list-circle pl-5 mt-1">
+                <li>Outlier detection using z-scores</li>
+                <li>Normality validation with Shapiro-Wilk test</li>
+                <li>Measurement of central tendency and dispersion for all features</li>
+              </ul>
+            </li>
+          </ol>
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2">Color Space Conversion Equations</h3>
+            <p class="text-gray-700 text-sm">
+              <strong>RGB to HSI conversion:</strong><br>
+              H = cos<sup>-1</sup>{[(R-G)+(R-B)]/[2√((R-G)<sup>2</sup>+(R-B)(G-B))]}<br>
+              S = 1 - [3/(R+G+B)][min(R,G,B)]<br>
+              I = (R+G+B)/3
+            </p>
+            <p class="text-gray-700 text-sm mt-2">
+              <strong>RGB to CIELab conversion:</strong><br>
+              First converted to XYZ space using standard transformation matrix, then to CIELab using non-linear transformations as defined by the International Commission on Illumination (CIE).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+            <i class="fas fa-table text-indigo-600 text-xl"></i>
+          </div>
+          <h2 class="font-semibold text-indigo-700">Data Preparation for Machine Learning</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Feature Selection</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li>Statistical significance testing with Student's t-test (p<0.05)< /li>
+              <li>Principal Component Analysis (PCA) for dimensionality assessment</li>
+              <li>Multicollinearity evaluation using correlation matrix</li>
+              <li>Gini impurity index for identifying most predictive features</li>
+            </ul>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Data Splitting</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li><strong>Training set (75%):</strong> 45 fruits
+                <ul class="list-circle pl-5 mt-1">
+                  <li>15 MPP fruits</li>
+                  <li>30 LPP fruits</li>
+                </ul>
+              </li>
+              <li><strong>Test set (25%):</strong> 15 fruits
+                <ul class="list-circle pl-5 mt-1">
+                  <li>5 MPP fruits</li>
+                  <li>10 LPP fruits</li>
+                </ul>
+              </li>
+              <li>Stratified sampling to maintain class proportions</li>
+              <li>Random selection to avoid selection bias</li>
+            </ul>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Feature Standardization</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li>No standardization required for Decision Tree model</li>
+              <li>Raw feature values used directly in the algorithm</li>
+              <li>This is an advantage of tree-based methods over other algorithms like SVM or neural networks</li>
+              <li>Natural interpretation of decision rules maintained using original measurement units</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Methodology -->
+  <section class="section" id="section-5">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Methodology</h1>
+
+      <div class="mb-6">
+        <h2 class="font-semibold mb-3">Statistical Analysis of Colorimetric Characteristics</h2>
+        <div class="responsive-table">
+          <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b">Variable</th>
+                <th class="py-2 px-4 border-b">MPP Average</th>
+                <th class="py-2 px-4 border-b">LPP Average</th>
+                <th class="py-2 px-4 border-b">Difference</th>
+                <th class="py-2 px-4 border-b">t-Test</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Red (R)</td>
+                <td class="py-2 px-4 border-b">147.2</td>
+                <td class="py-2 px-4 border-b">107.83</td>
+                <td class="py-2 px-4 border-b">39.38</td>
+                <td class="py-2 px-4 border-b">10.62*</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Green (G)</td>
+                <td class="py-2 px-4 border-b">18.45</td>
+                <td class="py-2 px-4 border-b">71.03</td>
+                <td class="py-2 px-4 border-b">52.58</td>
+                <td class="py-2 px-4 border-b">12.16*</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Blue (B)</td>
+                <td class="py-2 px-4 border-b">8.40</td>
+                <td class="py-2 px-4 border-b">13.63</td>
+                <td class="py-2 px-4 border-b">5.23</td>
+                <td class="py-2 px-4 border-b">3.51*</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Hue (H)</td>
+                <td class="py-2 px-4 border-b">3.75</td>
+                <td class="py-2 px-4 border-b">39.68</td>
+                <td class="py-2 px-4 border-b">35.93</td>
+                <td class="py-2 px-4 border-b">10.25*</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Luminance (L)</td>
+                <td class="py-2 px-4 border-b">34.03</td>
+                <td class="py-2 px-4 border-b">35.28</td>
+                <td class="py-2 px-4 border-b">1.24</td>
+                <td class="py-2 px-4 border-b">1.38<sup>ns</sup></td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Chromaticity a</td>
+                <td class="py-2 px-4 border-b">45.16</td>
+                <td class="py-2 px-4 border-b">13.40</td>
+                <td class="py-2 px-4 border-b">31.76</td>
+                <td class="py-2 px-4 border-b">10.7*</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b font-medium">Chromaticity b</td>
+                <td class="py-2 px-4 border-b">49.02</td>
+                <td class="py-2 px-4 border-b">39.15</td>
+                <td class="py-2 px-4 border-b">9.86</td>
+                <td class="py-2 px-4 border-b">9.91*</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-sm text-gray-500 mt-2">*Significant difference between classes at 5% significance level by t-Student test. <sup>ns</sup>Not significant.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Principal Component Analysis (PCA)</h2>
+          <img src="assets/pca.png" alt="PCA Scatterplot" class="w-full rounded-lg mb-3">
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium">PC1 (79.43% of variance):</span> Primarily distinguished mature from immature tomatoes</li>
+            <li><span class="font-medium">Features influencing MPP class:</span> R (red intensity), a (red chromaticity), b (yellow chromaticity)</li>
+            <li><span class="font-medium">Features influencing LPP class:</span> H (hue) and G (green intensity)</li>
+            <li><span class="font-medium">PC2 (17.73% of variance):</span> Influenced variations in the intermediate ripeness class</li>
+            <li>Clear separation between classes shown in two-dimensional plane</li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Decision Tree Development</h2>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><span class="font-medium">Algorithm:</span> Part (Recursive Partitioning and Regression Trees) implementing CART technique</li>
+            <li><span class="font-medium">Splitting criterion:</span> Gini index for maximizing class homogeneity</li>
+            <li><span class="font-medium">Pruning:</span> Applied to optimize complexity parameter (cp) and generate the most accurate model</li>
+            <li><span class="font-medium">Data splitting:</span>
+              <ul class="list-circle pl-5 mt-1">
+                <li>Training set: 75% (15 MPP fruits and 30 LPP fruits)</li>
+                <li>Test set: 25% (5 MPP fruits and 10 LPP fruits)</li>
+              </ul>
+            </li>
+            <li><span class="font-medium">Performance metrics:</span> Accuracy, precision, recall, and F1-score</li>
+          </ul>
+          <div class="mt-4 p-3 bg-yellow-50 rounded-lg">
+            <p class="text-sm text-gray-700"><span class="font-bold">Note:</span> The optimal complexity parameter (cp) value of 0.019 corresponded to a tree with four nodes, representing the best structure by balancing simplicity and accuracy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Decision Tree Model Implementation (ENHANCED) -->
+  <section class="section" id="section-dt-model-details">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Decision Tree Model Implementation</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-code text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Algorithm Implementation</h2>
+          </div>
+          <ul class="list-disc pl-5 space-y-2 text-gray-700">
+            <li><strong>Programming environment:</strong> R software (version 4.3.2)</li>
+            <li><strong>Algorithm:</strong> Part (Recursive Partitioning and Regression Trees)</li>
+            <li><strong>Implementation technique:</strong> CART (Classification and Regression Trees)</li>
+            <li><strong>Split criterion:</strong> Gini index impurity measure
+              <div class="mt-2 p-3 bg-gray-50 rounded-lg">
+                <p class="text-sm text-gray-700 font-mono">Gini index = 1 - Σ(p<sub>i</sub>)<sup>2</sup></p>
+                <p class="text-xs text-gray-600">Where p<sub>i</sub> is the probability of class i in a node</p>
+              </div>
+            </li>
+            <li><strong>R packages used:</strong>
+              <ul class="list-circle pl-5 mt-1">
+                <li><code>rpart</code> - For decision tree implementation</li>
+                <li><code>caret</code> - For model training and evaluation</li>
+                <li><code>e1071</code> - For statistical utilities</li>
+              </ul>
+            </li>
+            <li><strong>Pseudocode:</strong>
+              <div class="mt-2 p-3 bg-gray-50 rounded-lg">
+                <pre class="text-xs text-gray-700 font-mono">
+# Load libraries
+library(rpart)
+library(caret)
+
+# Split data
+set.seed(123)  # For reproducibility
+trainIndex <- createDataPartition(tomato_data$class, p=0.75, list=FALSE)
+training_data <- tomato_data[trainIndex,]
+testing_data <- tomato_data[-trainIndex,]
+
+# Train model with cross-validation for cp selection
+control <- rpart.control(minsplit=2, minbucket=1, cp=0.001)
+dt_model <- rpart(class ~ R + G + B + H + L + a + b, 
+                  data=training_data,
+                  method="class",
+                  control=control)
+
+# Prune tree
+optimal_cp <- dt_model$cptable[which.min(dt_model$cptable[,"xerror"]),"CP"]
+pruned_model <- prune(dt_model, cp=optimal_cp)
+
+# Evaluate on test set
+predictions <- predict(pruned_model, newdata=testing_data, type="class")
+conf_matrix <- confusionMatrix(predictions, testing_data$class)
+                </pre>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-sliders-h text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Hyperparameter Optimization</h2>
+          </div>
+
+          <h3 class="font-medium text-indigo-600 mb-2">Complexity Parameter (cp) Optimization</h3>
+          <p class="text-gray-700 mb-3">
+            The complexity parameter prevents overfitting by controlling tree growth. A smaller cp creates larger trees, while a larger cp creates smaller trees.
+          </p>
+          <div class="overflow-x-auto mb-4">
+            <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="py-2 px-3 border-b text-sm">CP Value</th>
+                  <th class="py-2 px-3 border-b text-sm">Tree Size</th>
+                  <th class="py-2 px-3 border-b text-sm">Rel. Error</th>
+                  <th class="py-2 px-3 border-b text-sm">Cross-Val. Error</th>
+                  <th class="py-2 px-3 border-b text-sm">Standard Deviation</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr>
+                  <td class="py-2 px-3 border-b">Inf</td>
+                  <td class="py-2 px-3 border-b">1</td>
+                  <td class="py-2 px-3 border-b">1.000</td>
+                  <td class="py-2 px-3 border-b">1.000</td>
+                  <td class="py-2 px-3 border-b">0.089</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b">0.180</td>
+                  <td class="py-2 px-3 border-b">2</td>
+                  <td class="py-2 px-3 border-b">0.500</td>
+                  <td class="py-2 px-3 border-b">0.500</td>
+                  <td class="py-2 px-3 border-b">0.075</td>
+                </tr>
+                <tr class="bg-green-50">
+                  <td class="py-2 px-3 border-b font-bold">0.019</td>
+                  <td class="py-2 px-3 border-b font-bold">4</td>
+                  <td class="py-2 px-3 border-b font-bold">0.150</td>
+                  <td class="py-2 px-3 border-b font-bold">0.150</td>
+                  <td class="py-2 px-3 border-b font-bold">0.053</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">The optimal cp value of 0.019 was selected as it provided the lowest cross-validation error while maintaining a simple tree structure with just 4 nodes.</p>
+
+          <h3 class="font-medium text-indigo-600 mb-2">Other Training Parameters</h3>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+            <li><strong>minsplit:</strong> 2 (minimum number of observations in a node for it to be split)</li>
+            <li><strong>minbucket:</strong> 1 (minimum number of observations in any terminal node)</li>
+            <li><strong>maxdepth:</strong> 30 (maximum depth of any node in the tree)</li>
+            <li><strong>usesurrogate:</strong> 2 (use surrogate splits to handle missing data)</li>
+          </ul>
+
+          <div class="mt-4 p-4 bg-yellow-50 rounded-lg">
+            <h3 class="font-medium text-yellow-700 mb-2">Cross-Validation Strategy</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li>10-fold cross-validation used to evaluate model performance</li>
+              <li>Dataset partitioned into 10 equal subsets</li>
+              <li>Each fold used as validation set once while the remaining folds formed the training set</li>
+              <li>Performance metrics averaged across all 10 iterations</li>
+              <li>This approach provides a robust estimate of model generalization capability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+            <i class="fas fa-code-branch text-indigo-600 text-xl"></i>
+          </div>
+          <h2 class="font-semibold text-indigo-700">Decision Tree Rule Set</h2>
+        </div>
+
+        <div class="flex justify-center mb-6">
+          <div class="p-4 bg-gray-50 rounded-lg shadow-sm w-full max-w-3xl">
+            <h3 class="font-semibold text-center mb-3">Pseudocode Rule Representation</h3>
+            <pre class="text-sm text-gray-700 font-mono">
+IF (G < 71) THEN
+  IF (R < 86) THEN
+    PREDICTION = "LPP"  # 7% of training samples
+  ELSE
+    IF (B < 19) THEN
+      PREDICTION = "MPP"  # 2% of training samples
+    ELSE
+      PREDICTION = "LPP"  # 31% of training samples
+    END IF
+  END IF
+ELSE
+  PREDICTION = "LPP"  # 67% of training samples
+END IF
+            </pre>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+          <div>
+            <h3 class="font-medium text-indigo-600 mb-2">Rule Interpretation</h3>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+              <li>First decision point (root node) depends on green intensity (G)</li>
+              <li>Green intensity
+
+                < 71 indicates potentially ripe fruits (needs further checking)</li>
+              <li>Green intensity ≥ 71 directly classifies fruits as LPP (immature)</li>
+              <li>For potentially ripe fruits, red intensity (R) becomes the second decision factor</li>
+              <li>If red intensity
+
+                < 86, fruits are classified as LPP (insufficient redness)</li>
+              <li>For fruits with adequate red intensity, blue intensity (B) provides final classification</li>
+              <li>Blue intensity
+
+                < 19 indicates MPP (fully ripe tomatoes)</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-medium text-indigo-600 mb-2">Biological Significance</h3>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+              <li>Green intensity (G) represents chlorophyll concentration in fruit skin</li>
+              <li>Red intensity (R) corresponds to lycopene pigment accumulation during ripening</li>
+              <li>Blue intensity (B) relates to various minor pigments and tissue structure</li>
+              <li>The decision path mirrors the biological ripening process:
+                <ul class="list-circle pl-5 mt-1">
+                  <li>As tomatoes ripen, chlorophyll (green) degrades</li>
+                  <li>Simultaneously, lycopene (red) content increases</li>
+                  <li>Fine distinctions in ripeness relate to subtle color characteristics</li>
+                </ul>
+              </li>
+              <li>Automated threshold detection approximates expert human judgment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Original Decision Tree Model (Can keep or replace) -->
+  <section class="section" id="section-6">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Decision Tree Model</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+            <div class="flex items-center mb-4">
+              <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-tree text-indigo-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-indigo-700">Decision Tree Structure</h2>
+            </div>
+            <div class="flex justify-center">
+              <img src="assets/tree.png" alt="Decision Tree Diagram" class="w-full rounded-lg mb-4">
+            </div>
+            <ul class="list-disc pl-5 text-gray-700">
+              <li><strong>First node:</strong> G
+
+                < 71 (Green intensity) <ul class="list-circle pl-5 mt-1">
+              <li>If G > 71, classify as LPP (33% of fruits)</li>
+              <li>If G
+
+                < 71, continue to next node</li>
+            </ul>
+            </li>
+            <li><strong>Second node:</strong> R
+
+              < 86 (Red intensity) <ul class="list-circle pl-5 mt-1">
+            <li>If R
+
+              < 86, classify as LPP (7% of fruits)</li>
+            <li>If R > 86, continue to next node</li>
+            </ul>
+            </li>
+            <li><strong>Third node:</strong> B
+
+              < 19 (Blue intensity) <ul class="list-circle pl-5 mt-1">
+            <li>If B
+
+              < 19, classify as MPP (2% of fruits)</li>
+            <li>If B > 19, classify as LPP (27% of fruits)</li>
+            </ul>
+            </li>
+            <li>67% of fruits in training set were directly classified as MPP</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-50 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="bg-purple-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-code-branch text-purple-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-purple-700">Tree Pruning Process</h2>
+            </div>
+            <img src="assets/complexity.png" alt="Complexity Parameter Plot" class="w-full rounded-lg mb-3">
+            <ul class="list-disc pl-5 text-gray-700">
+              <li>Complexity parameter (cp) evaluates overfitting and limits tree growth</li>
+              <li>Optimal cp value: 0.019</li>
+              <li>This value corresponds to a tree with 4 nodes</li>
+              <li>Represents best balance between simplicity and accuracy</li>
+              <li>Prevents overfitting while maintaining classification power</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="bg-white p-5 rounded-lg shadow-md mb-6">
+            <div class="flex items-center mb-4">
+              <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-chart-line text-indigo-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-indigo-700">Feature Importance</h2>
+            </div>
+
+            <div class="overflow-x-auto">
+              <h3 class="font-medium text-indigo-600 mb-4">Gini Importance</h3>
+              <table class="min-w-full border border-gray-300">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="border px-4 py-2 text-left">Feature</th>
+                    <th class="border px-4 py-2 text-right">Percentage</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border px-4 py-2">Green (G)</td>
+                    <td class="border px-4 py-2 text-right">48.3%</td>
+                  </tr>
+                  <tr>
+                    <td class="border px-4 py-2">Red (R)</td>
+                    <td class="border px-4 py-2 text-right">31.7%</td>
+                  </tr>
+                  <tr>
+                    <td class="border px-4 py-2">Blue (B)</td>
+                    <td class="border px-4 py-2 text-right">12.5%</td>
+                  </tr>
+                  <tr>
+                    <td class="border px-4 py-2">Hue (H)</td>
+                    <td class="border px-4 py-2 text-right">4.8%</td>
+                  </tr>
+                  <tr>
+                    <td class="border px-4 py-2">Chromaticity a</td>
+                    <td class="border px-4 py-2 text-right">2.1%</td>
+                  </tr>
+                  <tr>
+                    <td class="border px-4 py-2">Chromaticity b</td>
+                    <td class="border px-4 py-2 text-right">0.6%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <p class="text-gray-700 mb-3">The Gini index identified the following features as most important:</p>
+            <ol class="list-decimal pl-5 text-gray-700">
+              <li><strong>Green (G):</strong> Primary discriminator at the first node</li>
+              <li><strong>Red (R):</strong> Secondary discriminator at the second node</li>
+              <li><strong>Blue (B):</strong> Final discriminator at the third node</li>
+            </ol>
+            <p class="text-gray-700 mt-3">
+              Interestingly, despite the statistical significance of Hue (H) and chromaticities (a, b), the model selected the RGB components as the most effective predictors, possibly due to their direct correlation with the visual appearance of tomatoes.
+            </p>
+          </div>
+
+          <div class="bg-yellow-50 p-5 rounded-lg shadow-md">
+            <div class="flex items-center mb-4">
+              <div class="bg-yellow-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                <i class="fas fa-lightbulb text-yellow-600 text-xl"></i>
+              </div>
+              <h2 class="font-semibold text-yellow-700">Advantages of Decision Trees</h2>
+            </div>
+            <ul class="list-disc pl-5 text-gray-700">
+              <li><strong>Interpretability:</strong> Simple, human-readable rules</li>
+              <li><strong>Fast processing:</strong> Efficient for real-time applications</li>
+              <li><strong>Scalability:</strong> Can handle large volumes of data</li>
+              <li><strong>No normalization needed:</strong> Works with raw feature values</li>
+              <li><strong>Handles non-linear relationships:</strong> No assumption of linearity</li>
+              <li><strong>Intuitive decision process:</strong> Mimics human reasoning</li>
+              <li><strong>Feature importance:</strong> Clearly identifies most relevant characteristics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: Model Evaluation & Performance Analysis (NEW/ENHANCED) -->
+  <section class="section" id="section-model-evaluation">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Model Evaluation & Performance Analysis</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-balance-scale text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Evaluation Strategy</h2>
+          </div>
+
+          <h3 class="font-medium text-indigo-600 mb-2">Performance Metrics</h3>
+          <div class="mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-3 bg-indigo-50 rounded-lg">
+                <h4 class="font-medium text-indigo-700 mb-1">Accuracy</h4>
+                <p class="text-sm text-gray-700">Proportion of correct predictions among all predictions</p>
+                <p class="text-xs text-gray-600 font-mono mt-1">Accuracy = (TP + TN) / (TP + TN + FP + FN)</p>
+                <p class="text-lg font-bold text-indigo-800 mt-1">86.7%</p>
+              </div>
+
+              <div class="p-3 bg-indigo-50 rounded-lg">
+                <h4 class="font-medium text-indigo-700 mb-1">Precision</h4>
+                <p class="text-sm text-gray-700">Proportion of correct positive predictions</p>
+                <p class="text-xs text-gray-600 font-mono mt-1">Precision = TP / (TP + FP)</p>
+                <p class="text-lg font-bold text-indigo-800 mt-1">83.3%</p>
+              </div>
+
+              <div class="p-3 bg-indigo-50 rounded-lg">
+                <h4 class="font-medium text-indigo-700 mb-1">Recall (Sensitivity)</h4>
+                <p class="text-sm text-gray-700">Proportion of actual positives correctly identified</p>
+                <p class="text-xs text-gray-600 font-mono mt-1">Recall = TP / (TP + FN)</p>
+                <p class="text-lg font-bold text-indigo-800 mt-1">100.0%</p>
+              </div>
+
+              <div class="p-3 bg-indigo-50 rounded-lg">
+                <h4 class="font-medium text-indigo-700 mb-1">F1-Score</h4>
+                <p class="text-sm text-gray-700">Harmonic mean of precision and recall</p>
+                <p class="text-xs text-gray-600 font-mono mt-1">F1 = 2 × (Precision × Recall) / (Precision + Recall)</p>
+                <p class="text-lg font-bold text-indigo-800 mt-1">90.9%</p>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-chart-line text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Performance Analysis</h2>
+          </div>
+
+          <h3 class="font-medium text-indigo-600 mb-2">Confusion Matrix Analysis</h3>
+          <div class="justify-center mb-4">
+            <table class="min-w-full border border-gray-300 rounded-lg">
+              <thead>
+                <tr class="bg-indigo-50">
+                  <th class="py-2 px-4 border-b"></th>
+                  <th class="py-2 px-4 border-b" colspan="2">Predicted</th>
+                </tr>
+                <tr class="bg-indigo-50">
+                  <th class="py-2 px-4 border-b">Actual</th>
+                  <th class="py-2 px-4 border-b">LPP</th>
+                  <th class="py-2 px-4 border-b">MPP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-4 border-b font-bold">LPP</td>
+                  <td class="py-2 px-4 border-b bg-green-100 text-center">10 (TN)</td>
+                  <td class="py-2 px-4 border-b text-center">0 (FP)</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-bold">MPP</td>
+                  <td class="py-2 px-4 border-b text-center">2 (FN)</td>
+                  <td class="py-2 px-4 border-b bg-green-100 text-center">3 (TP)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2">Matrix Interpretation</h3>
+            <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+              <li><strong>True Positives (TP):</strong> 3 MPP tomatoes correctly classified as MPP</li>
+              <li><strong>True Negatives (TN):</strong> 10 LPP tomatoes correctly classified as LPP</li>
+              <li><strong>False Positives (FP):</strong> 0 LPP tomatoes incorrectly classified as MPP</li>
+              <li><strong>False Negatives (FN):</strong> 2 MPP tomatoes incorrectly classified as LPP</li>
+              <li><strong>Error analysis:</strong> The model tends to err by misclassifying some ripe tomatoes as unripe, rather than the opposite</li>
+              <li><strong>Practical implication:</strong> This conservative bias is preferable for food safety and quality control</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+            <i class="fas fa-search-plus text-indigo-600 text-xl"></i>
+          </div>
+          <h2 class="font-semibold text-indigo-700">Feature Importance Analysis</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-medium text-indigo-600 mb-2">Gini Importance</h3>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Green (G)</span>
+                <span class="text-sm font-medium">48.3%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-green-500 h-2.5 rounded-full" style="width: 48.3%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Red (R)</span>
+                <span class="text-sm font-medium">31.7%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-red-500 h-2.5 rounded-full" style="width: 31.7%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Blue (B)</span>
+                <span class="text-sm font-medium">12.5%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-blue-500 h-2.5 rounded-full" style="width: 12.5%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Hue (H)</span>
+                <span class="text-sm font-medium">4.8%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-purple-500 h-2.5 rounded-full" style="width: 4.8%"></div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Chromaticity a</span>
+                <span class="text-sm font-medium">2.1%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 2.1%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-sm font-medium">Chromaticity b</span>
+                <span class="text-sm font-medium">0.6%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-orange-500 h-2.5 rounded-full" style="width: 0.6%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-medium text-indigo-600 mb-2">Importance Analysis</h3>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700 text-sm">
+              <li><strong>Discrepancy between statistical significance and model importance:</strong> While statistical tests showed significant differences for almost all colorimetric characteristics, the decision tree algorithm selected only three (G, R, B) as the most effective predictors.</li>
+              <li><strong>Primary discriminator:</strong> Green intensity (G) emerged as the most important feature, serving as the first decision node in the tree. This aligns with the largest mean difference between classes observed in the statistical analysis.</li>
+              <li><strong>Secondary discriminators:</strong> Red (R) and Blue (B) intensities provided additional refinement in classification, particularly for fruits with lower green intensity values.</li>
+              <li><strong>Non-selected features:</strong> Despite statistical significance, Hue (H), luminance (L), and chromaticities (a, b) were not included in the final model, suggesting redundancy or lower predictive power when used in combination with RGB components.</li>
+              <li><strong>RGB vs. alternative color spaces:</strong> The decision tree's preference for RGB features over derived color spaces (HSI, CIELab) suggests that for this specific classification task, the direct color intensities provided sufficient discriminatory power without requiring conversion to perceptual color spaces.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: Results & Analysis (Original) -->
+  <section class="section" id="section-7">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Results & Analysis</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Confusion Matrix</h2>
+          <div class="justify-center mb-4">
+            <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+              <thead>
+                <tr>
+                  <th class="py-2 px-4 border-b"></th>
+                  <th class="py-2 px-4 border-b" colspan="2">Forecasts</th>
+                </tr>
+                <tr>
+                  <th class="py-2 px-4 border-b"></th>
+                  <th class="py-2 px-4 border-b">LPP</th>
+                  <th class="py-2 px-4 border-b">MPP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-2 px-4 border-b font-bold">LPP</td>
+                  <td class="py-2 px-4 border-b bg-green-100">10</td>
+                  <td class="py-2 px-4 border-b">0</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-4 border-b font-bold">MPP</td>
+                  <td class="py-2 px-4 border-b">2</td>
+                  <td class="py-2 px-4 border-b bg-green-100">3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="space-y-3">
+            <h3 class="font-medium text-indigo-600">Classification Results:</h3>
+            <ul class="list-disc pl-5 text-gray-700 text-sm">
+              <li>LPP Class: 10 out of 10 fruits correctly classified (100%)</li>
+              <li>MPP Class: 3 out of 5 fruits correctly classified (60%)</li>
+              <li>2 MPP fruits incorrectly classified as LPP</li>
+              <li>Overall accuracy of 86.7%</li>
+            </ul>
+            <p class="text-gray-700 text-sm">
+              The model demonstrated excellent performance in identifying LPP tomatoes, with perfect recognition. For MPP tomatoes, the performance was good but showed some room for improvement. The higher accuracy for LPP is beneficial from a food safety perspective, as it ensures that immature or partially ripe tomatoes are not incorrectly marketed as fully ripe.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <h2 class="font-semibold mb-3 text-indigo-700">Performance Metrics</h2>
+          <div class="mb-6">
+            <div class="flex items-center justify-between p-3 bg-indigo-50 rounded-lg mb-3">
+              <span class="font-medium text-indigo-700">Accuracy</span>
+              <span class="font-bold text-indigo-800">86.7%</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-indigo-50 rounded-lg mb-3">
+              <span class="font-medium text-indigo-700">Precision</span>
+              <span class="font-bold text-indigo-800">83.3%</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-indigo-50 rounded-lg mb-3">
+              <span class="font-medium text-indigo-700">Recall</span>
+              <span class="font-bold text-indigo-800">100.0%</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-indigo-50 rounded-lg">
+              <span class="font-medium text-indigo-700">F1-Score</span>
+              <span class="font-bold text-indigo-800">90.9%</span>
+            </div>
+          </div>
+          <div class="mt-4 p-4 bg-green-50 rounded-lg">
+            <h3 class="font-medium text-green-700 mb-2">Interpretation of Results</h3>
+            <ul class="list-disc pl-5 text-gray-700 text-sm space-y-2">
+              <li><strong>Accuracy (86.7%):</strong> High overall correctness of classification</li>
+              <li><strong>Precision (83.3%):</strong> Good reliability of positive predictions</li>
+              <li><strong>Recall (100%):</strong> Perfect identification of all LPP samples</li>
+              <li><strong>F1-Score (90.9%):</strong> Excellent balance between precision and recall</li>
+              <li>The high F1-score indicates that the model effectively balances false positives and false negatives, making it suitable for practical applications in quality control</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <h2 class="font-semibold mb-4 text-center text-indigo-700">Comparison with Other Applications</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Disease Detection in Papaya</h3>
+            <p class="text-gray-700 text-sm">Habib et al. (2020) used decision trees for detecting diseases in papaya, achieving accuracy levels exceeding 75%.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Classification of Date Fruits</h3>
+            <p class="text-gray-700 text-sm">Özaltın (2024) applied machine learning algorithms for date fruit classification based on morphological and colorimetric features.</p>
+          </div>
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Raisin Classification</h3>
+            <p class="text-gray-700 text-sm">Raihen & Akter (2024) classified raisins by size, shape, color, and texture using decision trees with high accuracy.</p>
+          </div>
+        </div>
+        <div class="text-sm text-gray-500 text-center mt-3">
+          The performance achieved in this study (86.7% accuracy, 90.9% F1-score) compares favorably with similar agricultural applications, demonstrating the effectiveness of this approach for fruit classification.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 12: Comparison with Other ML Approaches (NEW) -->
+  <section class="section" id="section-comparison">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Comparison with Other ML Approaches</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-exchange-alt text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Decision Trees vs. Other Machine Learning Methods</h2>
+          </div>
+
+          <div class="responsive-table mb-4">
+            <table class="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="py-2 px-3 border-b">Aspect</th>
+                  <th class="py-2 px-3 border-b">Decision Tree</th>
+                  <th class="py-2 px-3 border-b">Support Vector Machine</th>
+                  <th class="py-2 px-3 border-b">Neural Network</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Interpretability</td>
+                  <td class="py-2 px-3 border-b bg-green-50">High - Transparent decision rules</td>
+                  <td class="py-2 px-3 border-b">Low - Black box model</td>
+                  <td class="py-2 px-3 border-b">Very Low - Complex black box</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Feature Scaling</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Not required</td>
+                  <td class="py-2 px-3 border-b">Required</td>
+                  <td class="py-2 px-3 border-b">Required</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Sample Size Requirements</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Works well with small datasets</td>
+                  <td class="py-2 px-3 border-b">Moderate sample size needed</td>
+                  <td class="py-2 px-3 border-b">Large sample size preferred</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Non-linear Relationships</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Naturally handles non-linearities</td>
+                  <td class="py-2 px-3 border-b">Requires kernel functions</td>
+                  <td class="py-2 px-3 border-b">Requires deep architecture</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Training Speed</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Fast</td>
+                  <td class="py-2 px-3 border-b">Moderate</td>
+                  <td class="py-2 px-3 border-b">Slow</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Prediction Speed</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Very fast</td>
+                  <td class="py-2 px-3 border-b">Fast</td>
+                  <td class="py-2 px-3 border-b">Fast</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Hyperparameter Tuning</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Simple (few parameters)</td>
+                  <td class="py-2 px-3 border-b">Complex</td>
+                  <td class="py-2 px-3 border-b">Very complex</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Handling Missing Values</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Built-in support</td>
+                  <td class="py-2 px-3 border-b">Requires preprocessing</td>
+                  <td class="py-2 px-3 border-b">Requires preprocessing</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 border-b font-medium">Implementation Complexity</td>
+                  <td class="py-2 px-3 border-b bg-green-50">Low</td>
+                  <td class="py-2 px-3 border-b">Moderate</td>
+                  <td class="py-2 px-3 border-b">High</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="p-4 bg-yellow-50 rounded-lg">
+            <h3 class="font-medium text-yellow-700 mb-2">Why Decision Trees for This Application?</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li><strong>Small dataset compatibility:</strong> With only 60 tomato samples, decision trees avoid overfitting issues common in more complex models</li>
+              <li><strong>Interpretability for domain experts:</strong> Agricultural engineers and food scientists can understand and trust the classification rules</li>
+              <li><strong>Implementation in real-time systems:</strong> Fast processing suitable for automated sorting lines</li>
+              <li><strong>Non-linear decision boundaries:</strong> Can capture complex relationships between color features and ripeness</li>
+              <li><strong>Feature importance feedback:</strong> Provides insights into which colorimetric characteristics are most relevant</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white p-5 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+              <i class="fas fa-globe text-indigo-600 text-xl"></i>
+            </div>
+            <h2 class="font-semibold text-indigo-700">Performance in Similar Agricultural Applications</h2>
+          </div>
+
+          <div class="space-y-4">
+            <div class="border-l-4 border-indigo-300 pl-4 py-2">
+              <h3 class="font-medium text-indigo-700">Papaya Disease Detection</h3>
+              <p class="text-sm text-gray-700 mb-2">Habib et al. (2020) applied machine vision techniques to detect diseases in papaya based on visual characteristics.</p>
+              <ul class="list-disc pl-5 text-xs text-gray-600">
+                <li>Features: RGB color, texture patterns, morphology</li>
+                <li>SVM classification accuracy: 90%+</li>
+                <li>K-means clustering for segmentation</li>
+                <li>Dataset: 400 papaya images</li>
+              </ul>
+            </div>
+
+            <div class="border-l-4 border-indigo-300 pl-4 py-2">
+              <h3 class="font-medium text-indigo-700">Date Fruit Classification</h3>
+              <p class="text-sm text-gray-700 mb-2">Özaltın (2024) compared multiple ML algorithms for date fruit classification based on morphological and colorimetric features.</p>
+              <ul class="list-disc pl-5 text-xs text-gray-600">
+                <li>Features: Color, shape, size, texture (34 features total)</li>
+                <li>Decision Tree accuracy: 86.59%</li>
+                <li>KNN accuracy: 92.18% (Euclidean distance)</li>
+                <li>Neural Networks accuracy: 93.85% (Medium NN)</li>
+                <li>SVM accuracy: 92.74% (Quadratic kernel)</li>
+                <li>Dataset: 898 date fruit images across seven varieties</li>
+              </ul>
+            </div>
+
+            <div class="border-l-4 border-indigo-300 pl-4 py-2">
+              <h3 class="font-medium text-indigo-700">Chemical Adulteration Detection in Fruits</h3>
+              <p class="text-sm text-gray-700 mb-2">Sattar et al. (2024) developed comprehensive approaches for detecting chemical adulteration in fruits using computer vision and sensors.</p>
+              <ul class="list-disc pl-5 text-xs text-gray-600">
+                <li>Features: Image data + chemical sensor readings</li>
+                <li>Decision Tree accuracy: 81%</li>
+                <li>Naïve Bayes accuracy: 82%</li>
+                <li>Deep Learning (DurbeenNet) accuracy: 96.71%</li>
+                <li>Hybrid model (SensorNet) accuracy: 97.03%</li>
+                <li>Dataset: Combined image and sensor data from four fruit types</li>
+              </ul>
+            </div>
+
+            <div class="border-l-4 border-indigo-300 pl-4 py-2">
+              <h3 class="font-medium text-indigo-700">Our Tomato Classification</h3>
+              <p class="text-sm text-gray-700 mb-2">Our study classified tomatoes based on colorimetric characteristics using decision tree algorithm.</p>
+              <ul class="list-disc pl-5 text-xs text-gray-600">
+                <li>Features: RGB, HSI, and CIELab color models (7 features)</li>
+                <li>Decision Tree accuracy: 86.7%</li>
+                <li>F1-score: 90.9%</li>
+                <li>Dataset: 60 tomato samples (20 MPP, 40 LPP)</li>
+                <li>Focus on consumer purchase potential classification</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2">Comparative Analysis</h3>
+            <p class="text-sm text-gray-700">Our decision tree model (86.7% accuracy) compares favorably with similar agricultural applications. While neural networks and hybrid models may achieve higher accuracy in some cases, our approach offers several advantages:</p>
+            <ul class="list-disc pl-5 text-xs text-gray-600 mt-2">
+              <li>Simple implementation with minimal hyperparameter tuning requirements</li>
+              <li>Clear interpretability of decision rules based on colorimetric thresholds</li>
+              <li>Practical approach for real-time classification in sorting systems</li>
+              <li>No need for complex preprocessing or feature normalization</li>
+              <li>Effectively captures the relationship between color characteristics and consumer preferences</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-5 rounded-lg shadow-md">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-100 rounded-full w-12 h-12 flex items-center justify-center mr-4">
+            <i class="fas fa-tree text-indigo-600 text-xl"></i>
+          </div>
+          <h2 class="font-semibold text-indigo-700">Evolution of Tree-Based Methods</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Early Tree Models</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li><strong>ID3 Algorithm (1986)</strong> - Iterative Dichotomiser 3, developed by Ross Quinlan</li>
+              <li><strong>C4.5 (1993)</strong> - Extension of ID3 with improved handling of continuous attributes</li>
+              <li><strong>CART (1984)</strong> - Classification and Regression Trees by Breiman et al.</li>
+              <li>Limited to simple decision boundaries</li>
+              <li>Prone to overfitting with complex data</li>
+            </ul>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Ensemble Methods</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li><strong>Random Forests (2001)</strong> - Multiple trees on bootstrapped samples</li>
+              <li><strong>Gradient Boosting (1999)</strong> - Sequential improvement of weak learners</li>
+              <li><strong>XGBoost (2016)</strong> - Optimized gradient boosting implementation</li>
+              <li>Higher accuracy than single trees</li>
+              <li>More robust against overfitting</li>
+              <li>Reduced interpretability compared to single trees</li>
+            </ul>
+          </div>
+
+          <div class="bg-indigo-50 p-4 rounded-lg">
+            <h3 class="font-semibold text-indigo-700 text-center mb-2">Recent Developments</h3>
+            <ul class="list-disc pl-5 text-sm text-gray-700">
+              <li><strong>Explainable AI (XAI)</strong> - Methods to interpret complex tree ensembles</li>
+              <li><strong>Reinforcement Learning Trees</strong> - Adaptive tree growth</li>
+              <li><strong>Fuzzy Decision Trees</strong> - Incorporating uncertainty in decisions</li>
+              <li><strong>Neural-backed Decision Trees</strong> - Hybrid approaches</li>
+              <li>Focus on balancing performance with interpretability</li>
+              <li>Integration with deep learning approaches</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="p-4 bg-gray-50 rounded-lg">
+          <h3 class="font-medium text-gray-700 mb-2 text-center">Positioning of Current Study in ML Evolution</h3>
+          <p class="text-sm text-gray-700 text-center">
+            Our research leverages classic decision tree methodology (CART) with modern optimization techniques (cross-validation based pruning). The focus on interpretability and practical implementation aligns with contemporary trends in applied machine learning, where explainability is increasingly valued alongside raw performance metrics.
+          </p>
+          <p class="text-sm text-gray-700 text-center mt-2">
+            While ensemble methods might offer marginal improvements in classification accuracy, our study prioritizes model simplicity and clear decision rules that can be easily implemented in agricultural and food processing environments. This approach demonstrates how established machine learning techniques can be effectively applied to solve practical problems in agricultural engineering.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 13: Conclusion -->
+  <section class="section" id="section-8">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">Conclusion & Applications</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h2 class="font-semibold mb-3">Key Findings</h2>
+          <div class="bg-gray-50 p-4 rounded-lg shadow-md">
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+              <li>All colorimetric characteristics except luminance (L) significantly distinguished between MPP and LPP classes</li>
+              <li>The green (G) component showed the greatest significant difference between classes in RGB model</li>
+              <li>Chromaticity a (measuring red-green variation) was the most reliable characteristic in CIELab model</li>
+              <li>Principal component analysis effectively separated tomato classes on a two-dimensional plane</li>
+              <li>Decision tree algorithm achieved excellent classification performance with high accuracy (86.7%) and F1-score (90.9%)</li>
+              <li>The RGB color model parameters (R, G, B) were selected as the most effective predictors by the Gini index</li>
+              <li>The optimal tree structure contained just 4 nodes, balancing simplicity with accuracy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-semibold mb-3">Practical Applications</h2>
+          <div class="space-y-4">
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-industry text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Automated Sorting Systems</h3>
+                  <p class="text-gray-700 text-sm">Integration with conveyor belt systems in packing houses for real-time classification of tomatoes, reducing labor costs and improving standardization.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-robot text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Robotic Harvesting</h3>
+                  <p class="text-gray-700 text-sm">Implementation in robotic harvesting systems to identify ripe tomatoes in the field, enabling selective harvesting and reducing post-harvest losses.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-store text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Retail Quality Control</h3>
+                  <p class="text-gray-700 text-sm">Application at retail points to ensure consistent quality, extend shelf life by proper grouping, and improve consumer satisfaction.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-indigo-50 p-4 rounded-lg">
+              <div class="flex items-start">
+                <div class="bg-indigo-100 rounded-full w-8 h-8 flex items-center justify-center mt-1 mr-3 flex-shrink-0">
+                  <i class="fas fa-mobile-alt text-indigo-600"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-indigo-700 mb-1">Mobile Applications</h3>
+                  <p class="text-gray-700 text-sm">Development of smartphone applications allowing producers and consumers to assess tomato quality using device cameras.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-gray-700 mb-2">Future Directions</h2>
+          <p class="text-gray-700">The integration of computer vision with decision tree algorithms optimizes fruit classification and enhances automated agricultural production processes. By ensuring the selection of high-quality products, these technologies benefit the agricultural industry and simultaneously improve consumer satisfaction and safety. Future work should focus on extending this approach to other fruits and vegetables, incorporating additional quality parameters, and developing more sophisticated machine learning models to further improve classification accuracy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 14: References -->
+  <section class="section" id="section-9">
+    <div>
+      <h1 class="font-bold mb-6 text-indigo-700">References</h1>
+
+      <div class="bg-white p-4 rounded-lg shadow-md mb-8">
+        <ol class="list-decimal pl-6 space-y-2 text-gray-700">
+          <li>Fonseca, C. S., Nhantumbo, B. G., Ferreira, Y. M., Silva, L. A., & Costa, A. G. (2025). "Computational vision for tomato classification using a decision tree algorithm." <em>Engenharia Agrícola</em>, 45, e20240124.</li>
+          <li>Andreuccetti, C., Ferreira, M. D., & Tavares, M. (2005). "Perfil dos compradores de tomate de mesa em supermercados da região de Campinas." <em>Horticultura Brasileira</em>, 23(1), 148-153.</li>
+          <li>Brandão, C. P., Oliveira, M. S. P., Santos, J. C., & Oliveira Junior, M. C. M. (2021). "Perfil e preferências do consumidor de frutos de pupunha da cidade de Belém, Pará." <em>Research, Society and Development</em>, 10(7), e28810716502.</li>
+          <li>Cubero, S., Aleixos, N., Moltó, E., Gómez-Sanchis, J., & Blasco, J. (2011). "Advances in machine vision applications for automatic inspection and quality evaluation of fruits and vegetables." <em>Food and bioprocess technology</em>, 4, 487-504.</li>
+          <li>Habib, M. T., Majumder, A., Jakaria, A. Z. M., Akter, M., Uddin, M. S., & Ahmed, F. (2020). "Machine vision based papaya disease recognition." <em>Journal of King Saud University-Computer and Information Sciences</em>, 32(3), 300-309.</li>
+        </ol>
+      </div>
+
+      <div class="mt-8 text-center">
+        <div class="inline-block bg-indigo-50 p-5 rounded-lg border border-indigo-100">
+          <h2 class="font-semibold text-gray-700 mb-2">Thank You!</h2>
+          <p class="text-gray-700">Paper Review Presentation</p>
+          <p class="text-lg font-medium text-gray-700">Computational Vision for Tomato Classification Using a Decision Tree Algorithm</p>
+          <p class="text-gray-600">Machine Learning Course</p>
+          <p class="text-gray-600">Master of Computer Science Program</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
