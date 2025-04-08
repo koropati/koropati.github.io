@@ -1,0 +1,114 @@
+/* Custom CSS Styles */
+
+body {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.slide {
+    transition: transform 0.3s ease;
+}
+
+.slide:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+/* PDF Export styling */
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    .slide {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        page-break-after: always;
+        margin-bottom: 20px;
+    }
+    
+    #exportBtn {
+        display: none;
+    }
+}
+
+/* Additional styling for PDF export */
+.pdf-page {
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+
+.slide {
+    /* Ensuring content is compact enough for PDF */
+    max-height: 1100px; /* Approximately fits on A4 */
+    overflow: hidden;
+}
+
+/* Progress indicator for PDF export */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.progress-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    width: 350px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+#progress-message {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2d3748;
+}
+
+#progress-status {
+    font-size: 14px;
+    color: #718096;
+    min-height: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

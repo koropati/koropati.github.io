@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fusion of 6G, AI and IoT - Resume</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-blue-600">Resume: The Fusion of 6G, AI and IoT</h1>
+            <div>
+                <button id="exportBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <i class="fas fa-file-pdf mr-2"></i>Export to PDF
+                </button>
+            </div>
+        </div>
+
+        <div id="content-to-export">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold text-gray-800">The Fusion of 6G, AI and IoT:</h2>
+                        <div class="text-right">
+                            <p class="text-blue-600 font-semibold">Smart/Intelligent Connectivity of AI and TinyML</p>
+                            <p class="text-gray-600">Dr. Yi-Chih Tung</p>
+                            <p class="text-gray-600">Department of Electronic Engineering</p>
+                            <p class="text-gray-600">Ming Chi University of Technology (MCUT), Taiwan</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600 italic">Resume by: Dewa Ketut Satriawan Suditresnajaya (2429101036)</p>
+                        <p class="text-gray-600 italic">Mobile Computing Course</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 1: Introduction -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Introduction to B5G/6G, 5G, and LTE Advanced</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Key Technologies</h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li><strong class="text-red-500">QoAIS, AIaaS</strong> - Quality of AI Service, AI as a Service</li>
+                                <li><strong>B5G/6G</strong> - Beyond 5G/6G Generation</li>
+                                <li><strong>5G</strong> - Fifth Generation Mobile Network</li>
+                                <li><strong>LTE Advanced</strong> - Long-Term Evolution Advanced</li>
+                                <li><strong>Role of 5G and LTE Advanced in 6G</strong></li>
+                                <li><strong>Native AI for 6G: Net4AI and AI4Net</strong></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">B5G/6G is the Next Generation of Mobile Communications</h3>
+                            <p class="text-gray-700 mb-4">
+                                B5G/6G is the next generation of mobile communications technology that offers stronger performance and meets future user needs effectively. 5G and LTE Advanced play an important role in the development of 6G.
+                            </p>
+                            <p class="text-gray-700">
+                                In the future, 6G is expected to be able to answer the increasingly complex demands of cellular communication technology in everyday life.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Background on 5G con imagen actualizada -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">5G Background</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">5G: A New Mobile Broadband Network</h3>
+                            <p class="text-gray-700 mb-4">
+                                5G is becoming a new mobile broadband network, which will provide large-scale support services for the Internet of Things (IoT).
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                3GPP has completed 5G NR Release 16, which is the second 5G standard in 2020. It maximizes the range of 5G and achieves the expansion of potential new services, new radio spectrum and new possibilities of deployment.
+                            </p>
+                            <p class="text-gray-700">
+                                The Release 16 comprehensively intensifies and extends the basis of Release 15 and accomplishes a vertical ecosystem with more mobility.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="bg-gray-100 p-4 rounded-lg w-full">
+                                <!-- Imagen actualizada de torre 5G -->
+                                <img src="assets/tower.png" alt="5G Cellular Tower Infrastructure" class="w-64 h-auto mx-auto rounded-lg">
+                                <p class="text-center text-gray-600 mt-2">5G Cellular Tower Infrastructure</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: 5G Smart Pole  -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">5G Smart Pole Technology</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">What is a 5G Smart Pole?</h3>
+                            <p class="text-gray-700 mb-4">
+                                A 5G-based smart pole is an IoT-based streetlight pole that consists of streetlights as its hardware, IoT devices with different functions, and an intelligent network interface with 5G communications protocol.
+                            </p>
+                            <p class="text-gray-700">
+                                A 5G-based smart pole is usually stationed at the LAN environment and connects to WAN via 5G in the street to perform these applications. The 5G-based pole also collects IoT data dynamically and provides various services.
+                            </p>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-6">Smart Pole Functions</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-green-100 p-2 rounded">Camera</div>
+                                <div class="bg-green-100 p-2 rounded">Voice Measurement</div>
+                                <div class="bg-green-100 p-2 rounded">Smart Light</div>
+                                <div class="bg-green-100 p-2 rounded">Emergency Warning</div>
+                                <div class="bg-green-100 p-2 rounded">Solar Charging</div>
+                                <div class="bg-green-100 p-2 rounded">5G Router</div>
+                                <div class="bg-green-100 p-2 rounded col-span-2">Smart Sensor</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="bg-gray-100 p-4 rounded-lg w-full">
+                                <img src="assets/smartpole.png" alt="5G Smart Pole with Integrated Sensors" class="w-64 h-auto mx-auto rounded-lg">
+                                <p class="text-center text-gray-600 mt-2">5G Smart Pole with Integrated Sensors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Smart Light System -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Smart Light Sub-System</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Smart Light Features</h3>
+                            <div class="bg-green-100 p-4 rounded-lg mb-4">
+                                <p class="text-gray-700">
+                                    The system will automatically detect the time, and the light bulb will be turned on and off automatically after the specified time.
+                                </p>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg mb-4">
+                                <p class="text-gray-700">
+                                    The system will reckon the sky's brightness and automatically adjust the luminance of the bulbs to save energy.
+                                </p>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg">
+                                <p class="text-gray-700">
+                                    Automatic detection of faulty system loops, current load detection, and overcurrent protection.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="bg-gray-100 p-4 rounded-lg w-full">
+                                <img src="assets/smartlight.png" alt="Smart Light System with Component Labels" class="w-64 h-auto mx-auto rounded-lg">
+                                <p class="text-center text-gray-600 mt-2">Smart Light System with Integrated Components</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Sensors System -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Smart Sensors Sub-System</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Environmental Sensors</h3>
+                            <div class="bg-green-100 p-4 rounded-lg mb-4">
+                                <p class="text-gray-700">
+                                    This system combines smart electric poles with temperature-humidity sensors to collect local environmental data (humidity and temperature) and microphone sensor to measure the noise around.
+                                </p>
+                            </div>
+                            <div class="bg-green-100 p-4 rounded-lg">
+                                <p class="text-gray-700">
+                                    The collected data are used to consider the suitability of the environment such as plant planting. A warning sign would be issued when the data exceeds the standard.
+                                </p>
+                            </div>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-6">Experiment with DHT11</h3>
+                            <p class="text-gray-700">
+                                The research team used the DHT11 sensor combined with the 5G smart pole to detect temperature and humidity in the air for various applications.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Sensor Flow Process</h3>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-gray-700 mb-3">
+                                    The team designed a Sensor flow chart and combined it with Petri Net to verify the model works well from input to output:
+                                </p>
+                                <ol class="list-decimal pl-6 space-y-2 text-gray-700">
+                                    <li>Start at sensor activation</li>
+                                    <li>Check if environmental data is detected</li>
+                                    <li>If not detected, make a notification</li>
+                                    <li>If detected, collect data</li>
+                                    <li>Check if value exceeds threshold</li>
+                                    <li>If not exceeded, show normal status (LED light green)</li>
+                                    <li>If exceeded, trigger alarm (LED light red)</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: TinyML Security -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">TinyML Security Applications in Smart Poles</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">What is TinyML?</h3>
+                            <p class="text-gray-700 mb-4">
+                                TinyML refers to machine learning implementations for very low-power devices, running ML models on microcontrollers and small sensors.
+                            </p>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-4">TinyML Security Applications</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Intrusion Detection</h4>
+                                    <p class="text-sm text-gray-700">Monitoring for unauthorized access to pole infrastructure</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Anomaly Detection</h4>
+                                    <p class="text-sm text-gray-700">Identifying unusual patterns in network traffic through the pole</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Secure Authentication</h4>
+                                    <p class="text-sm text-gray-700">Providing secure access to network services</p>
+                                </div>
+                                <div class="bg-blue-100 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Threat Monitoring</h4>
+                                    <p class="text-sm text-gray-700">Continuous surveillance for potential security threats in the area</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Edge Computing Advantages</h3>
+                            <div class="space-y-3">
+                                <div class="flex">
+                                    <div class="bg-gray-200 p-2 rounded-full mr-2 flex-shrink-0">01</div>
+                                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                                        <h4 class="font-semibold">Reduced Latency</h4>
+                                        <p class="text-sm text-gray-700">Data processing happens directly on the device, eliminating transfer delays</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="bg-gray-200 p-2 rounded-full mr-2 flex-shrink-0">02</div>
+                                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                                        <h4 class="font-semibold">Energy Efficiency</h4>
+                                        <p class="text-sm text-gray-700">Microcontrollers require minimal power, enabling long operation periods without recharging</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="bg-gray-200 p-2 rounded-full mr-2 flex-shrink-0">03</div>
+                                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                                        <h4 class="font-semibold">Enhanced Data Privacy</h4>
+                                        <p class="text-sm text-gray-700">Data remains on the device, not sent to external servers</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="bg-gray-200 p-2 rounded-full mr-2 flex-shrink-0">04</div>
+                                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                                        <h4 class="font-semibold">Real-time Processing</h4>
+                                        <p class="text-sm text-gray-700">Enables immediate response to security threats</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: 6G and AI -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">6G and AI Integration</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">6G Network: Faster, Wider, and More Advanced</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Higher Speeds</li>
+                                <li>Lower Latency</li>
+                                <li>Greater Capacity</li>
+                                <li>Broader Spectrum</li>
+                                <li>Advanced Technologies</li>
+                                <li>Innovative Applications</li>
+                            </ul>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-6">Challenges</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Spectrum Efficiency</li>
+                                <li>Affordability</li>
+                            </ul>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-6">Solutions</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>AI-based predictive networking (QoAIS, AIaaS)</li>
+                                <li>Innovation and collaboration</li>
+                                <li>Native AI for 6G: Net4AI and AI4Net</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Quality of Service (QoS) for B5G/6G Networking</h3>
+                            <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                                <p class="text-gray-700">
+                                    6G networks are designed to deliver highly flexible quality of service (QoS). This allows for support of use cases with different requirements, including:
+                                </p>
+                                <ul class="list-disc pl-6 mt-2 space-y-1 text-gray-700">
+                                    <li>High data rates</li>
+                                    <li>Low latency</li>
+                                    <li>High reliability</li>
+                                </ul>
+                            </div>
+                            
+                            <h3 class="text-lg font-semibold mb-3 mt-4">The Difference between 6G and 5G:</h3>
+                            <div class="bg-blue-100 p-4 rounded-lg">
+                                <p class="text-gray-700">
+                                    6G requires more comprehensive QoS control than 5G. This is because 6G must support a wider range of use cases with more diverse requirements.
+                                </p>
+                                <p class="text-gray-700 mt-3">
+                                    6G considers additional QoS dimensions such as security and sustainability.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: MAC Scheduling -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">MAC Scheduling in 6G Networks</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Media Access Control (MAC) Scheduler</h3>
+                            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                                <h4 class="font-semibold mb-2">PHY and MAC Layers</h4>
+                                <p class="text-gray-700">
+                                    The gNB (5G base station) MAC layer can ensure fair resource sharing between UEs (user equipment) to prevent interference. This allows the UE to achieve the desired throughput and latency for different applications, such as video streaming or online gaming.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-gray-700">
+                                    6G, 5G, and LTE-advanced Wireless Networks use advanced technologies to achieve high performance and reliability. Efficient wireless resource allocation and adaptive MAC scheduling are critical to meeting diverse QoS requirements and achieving the full potential of these networks.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Scheduling Mechanism</h3>
+                            <div class="bg-blue-100 p-4 rounded-lg mb-4">
+                                <h4 class="font-semibold mb-2">Characteristics of Wireless Broadband Data Services</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-gray-700">
+                                    <li>Fast data scheduling</li>
+                                    <li>Uplink and downlink scheduling</li>
+                                    <li>Dynamic resource allocation</li>
+                                    <li>QoS Orientation</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-blue-100 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Explanation of MAC Scheduling Service in 6G Protocol</h4>
+                                <ul class="list-disc pl-6 space-y-1 text-gray-700">
+                                    <li>Downlink and Uplink Resource Allocation</li>
+                                    <li>User Feedback and Adaptive Scheduling</li>
+                                    <li>MAC Scheduling per Connection</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Q&A Part 1 of 3 -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Q&A Session (Part 1 of 3)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-gray-700 font-semibold">Question from Gede Bramanda:</p>
+                            <p class="text-gray-600 italic">
+                                Good afternoon, Sir. My name is Bramanda. I would like to ask a question regarding the necessity of 5G in IoT implementation. Considering that most IoT devices transmit only small amounts of data, wouldn't 4G be sufficient in most cases? Or are there specific scenarios such as complex processing on the device that truly require 5G?
+                            </p>
+                            <p class="text-gray-700 mt-2">
+                                <strong>Answer:</strong> That's an excellent question. You're right that many IoT devices transmit relatively small amounts of data. For these devices, we've developed Narrowband IoT (NBIoT), which is actually designed to work within 4G/LTE networks and doesn't necessarily require full 5G implementation. NBIoT is optimized for low power consumption, low cost, and providing connectivity in challenging locations.
+                                <br><br>
+                                However, there are several scenarios where 5G becomes necessary for IoT:
+                                <br>
+                                1. For massive IoT deployments where thousands of devices need to connect simultaneously within a small area
+                                <br>
+                                2. For real-time applications requiring ultra-low latency, such as autonomous vehicles or industrial automation
+                                <br>
+                                3. For high-bandwidth IoT applications like surveillance systems or augmented reality
+                                <br><br>
+                                The advantage of 5G for IoT isn't just about speed, but also about network slicing capabilities, which allow dedicated virtual networks with specific quality of service guarantees for different applications.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Q&A Part 2 of 3 -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Q&A Session (Part 2 of 3)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-gray-700 font-semibold">Questions from PUTU INDRA MAHARDIKA:</p>
+                            <p class="text-gray-600 italic">
+                                Good afternoon, Mr Windu and Mr Yi Chi Tung, my name is Putu Indra Mahardika and I am from the informatics education study program. So, I would like to ask a few questions regarding the course material specifically about "The Fusion of 6G, AI, and IoT: Smart/Intelligent Connectivity of AI and TinyML."
+                                <br><br>
+                                1. Integration of 6G, AI, and IoT:
+                                <br>
+                                - How do these three technologies interact and support each other in creating smarter connectivity?
+                                <br><br>
+                                2. Real-World Applications:
+                                <br>
+                                - What are some real-world applications of this technology in everyday life?
+                                <br>
+                                - How can 6G enhance the efficiency of IoT devices?
+                                <br>
+                                - What role does AI play in analyzing the data generated by IoT devices?
+                                <br><br>
+                                3. Implementation Challenges:
+                                <br>
+                                - What challenges may be faced in implementing this technology?
+                                <br>
+                                - What obstacles should be considered, particularly regarding data security and interoperability between devices?
+                            </p>
+                            <p class="text-gray-700 mt-2">
+                                <strong>Answer:</strong> Thank you for these comprehensive questions. Let me address the first two points:
+                                <br><br>
+                                <strong>1. Integration of 6G, AI, and IoT:</strong>
+                                <br>
+                                B5G/6G networks fundamentally transform how these technologies interact by supporting massive device connectivity at unprecedented scale. Where 5G can handle about 1 million devices per square kilometer, 6G aims to support 10 million or more. This enables truly ubiquitous sensing and data collection.
+                                <br><br>
+                                AI serves two critical roles in this integration: AI4Net (AI for Network) optimizes the network itself—managing resources, predicting congestion, and self-healing; while Net4AI (Network for AI) creates a communication infrastructure specifically designed to support distributed AI processing across edge devices, which leads us to TinyML.
+                                <br><br>
+                                <strong>2. Real-World Applications:</strong>
+                                <br>
+                                The applications are remarkably diverse, from smart cities to precision agriculture. For instance, our smart poles demonstrate how this fusion enables environmental monitoring, adaptive lighting, and security applications in urban spaces. 
+                                <br><br>
+                                6G enhances IoT efficiency through Quality of AI Service (QoAIS) and AI as a Service (AIaaS) frameworks that ensure computational resources are allocated optimally. The ultra-low latency (potentially sub-millisecond) enables real-time applications like augmented reality or autonomous systems.
+                                <br><br>
+                                AI's role in analyzing IoT data is transformative. Through approaches like AI for Edge Services (AI4ES) and TinyML, we can perform complex analytics directly on the device without cloud dependency. This enables instantaneous decisions with privacy preservation. For example, a surveillance camera with TinyML can identify specific events of interest without sending constant video streams to the cloud.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Q&A Part 3 of 3 -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Q&A Session (Part 3 of 3)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-gray-700 font-semibold">Questions from PUTU INDRA MAHARDIKA (Continued):</p>
+                            <p class="text-gray-600 italic">
+                                3. Implementation Challenges:
+                                <br>
+                                - What challenges may be faced in implementing this technology?
+                                <br>
+                                - What obstacles should be considered, particularly regarding data security and interoperability between devices?
+                            </p>
+                            <p class="text-gray-700 mt-2">
+                                <strong>Answer (Continued):</strong>
+                                <br>
+                                <strong>3. Implementation Challenges:</strong>
+                                <br>
+                                The primary challenges include energy efficiency for always-on devices, security at massive scale, and interoperability between diverse ecosystems. MAC scheduling becomes particularly complex when billions of devices need coordinated access to the network.
+                                <br><br>
+                                Security concerns are amplified because the attack surface expands dramatically with each connected device. We're addressing this through distributed security approaches where TinyML security models run on the edge devices themselves rather than relying solely on centralized protection.
+                                <br><br>
+                                Interoperability remains a significant hurdle. To address this, we're working on standardization efforts that focus on semantic interoperability rather than just syntactic connectivity. This means devices will not only be able to exchange data but also understand the meaning and context of that data across different platforms and manufacturers.
+                            </p>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <p class="text-gray-700 font-semibold">Question from NI Komang Diani:</p>
+                            <p class="text-gray-600 italic">
+                                Hello Mr Windu and Mr Yi Chi Tung, I am Ni Komang Diani. I am curious about the potential applications of this smart pole technology. Can it be implemented in various settings, including rural villages? What are the prospects for its implementation in a village setting, considering that it appears to be more suited for urban areas?
+                            </p>
+                            <p class="text-gray-700 mt-2">
+                                <strong>Answer:</strong> That's a very thoughtful question about extending this technology beyond urban environments. Rural implementation is absolutely possible and potentially transformative, though with some adaptations:
+                                <br><br>
+                                Fixed Wireless Access (FWA) technology is key here. Unlike urban deployments where fiber backhaul is readily available, smart poles in rural areas would leverage FWA to connect to the broader network. This provides high-bandwidth connectivity without requiring expensive fiber infrastructure throughout remote areas.
+                                <br><br>
+                                For functionality in rural settings, we're developing applications based on Robot Operating System (ROS and its successor ROS2). These platforms enable adaptive functionality based on local needs rather than urban use cases. For example, rather than traffic monitoring, rural smart poles might focus on:
+                                <br><br>
+                                1. Agricultural monitoring (soil moisture, crop health)
+                                <br>
+                                2. Early wildfire detection in forested areas
+                                <br>
+                                3. Weather monitoring for farming communities
+                                <br>
+                                4. Emergency communications in disaster-prone regions
+                                <br>
+                                5. Educational connectivity for remote schools
+                                <br><br>
+                                The modularity of our design allows customization based on local needs, and the solar charging capabilities make these poles particularly suitable for areas with unreliable power infrastructure.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Conclusion -->
+            <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+                <div class="bg-blue-500 text-white p-4">
+                    <h2 class="text-xl font-bold">Conclusion</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Summary</h3>
+                            <p class="text-gray-700 mb-4">
+                                The fusion of 6G, AI, and IoT represents the next leap in communication technology, enabling smarter and more efficient connectivity. 5G Smart Poles serve as a practical implementation of this integration, providing various services through embedded sensors and communication capabilities.
+                            </p>
+                            <p class="text-gray-700">
+                                TinyML brings the power of machine learning to edge devices with limited resources, enabling real-time processing and decision-making without relying on cloud infrastructure. This combination of technologies paves the way for truly smart cities and communities.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Future Directions</h3>
+                            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                                <li>Development of more energy-efficient sensors and communication modules</li>
+                                <li>Integration of renewable energy sources for sustainability</li>
+                                <li>Enhanced security protocols for IoT devices</li>
+                                <li>Standardization of 6G communication protocols</li>
+                                <li>Expansion of TinyML capabilities for more complex tasks</li>
+                                <li>Broader implementation in rural and developing areas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="p-6 text-center">
+                    <p class="text-gray-600">
+                        Resume created by Dewa Ketut Satriawan Suditresnajaya (2429101036)
+                    </p>
+                    <p class="text-gray-600">
+                        Mobile Computing Course
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
