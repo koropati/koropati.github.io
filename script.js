@@ -5,17 +5,10 @@ const GITHUB_REPO = 'koropati.github.io'; // Change to your repository name
 // Fallback structure in case API fails
 const fallbackStructure = [
     {
-        name: 'blood-cell-preprocessing',
+        name: 'Fetching...',
         type: 'folder',
         children: [
-            { name: 'index.html', type: 'file', path: 'blood-cell-preprocessing/index.html' }
-        ]
-    },
-    {
-        name: 'image-filtering-presentation',
-        type: 'folder',
-        children: [
-            { name: 'index.html', type: 'file', path: 'image-filtering-presentation/index.html' }
+            { name: 'waiting...', type: 'file', path: 'index.html' }
         ]
     }
 ];
