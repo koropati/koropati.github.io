@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Pemaparan Presentasi Blood Cell Preprocessing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #4338ca;
+            text-align: center;
+            border-bottom: 2px solid #4338ca;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #1e40af;
+            margin-top: 30px;
+            border-left: 4px solid #1e40af;
+            padding-left: 10px;
+            background-color: #e0e7ff;
+            padding: 8px 10px;
+        }
+        h3 {
+            color: #3730a3;
+            margin-top: 25px;
+        }
+        .time {
+            font-size: 14px;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .tips {
+            background-color: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .tips h3 {
+            margin-top: 0;
+            color: #b45309;
+        }
+        strong {
+            color: #4f46e5;
+        }
+        .question {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .question p:first-child {
+            font-weight: bold;
+            color: #0369a1;
+            margin-top: 0;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            border-top: 1px solid #d1d5db;
+            padding-top: 20px;
+        }
+        .slide-marker {
+            display: inline-block;
+            background-color: #4338ca;
+            color: white;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Panduan Pemaparan Presentasi<br>Blood Cell Preprocessing with Median Filtering</h1>
+
+    <h2>Pembukaan</h2>
+    <div class="time">(1 menit)</div>
+    <p>
+        Selamat pagi/siang/sore Bapak/Ibu dosen dan teman-teman sekalian. Perkenalkan, nama saya Dewa Ketut Satriawan Suditresnajaya, NIM 2429101036. Pada kesempatan ini, saya akan memaparkan tentang "Blood Cell Preprocessing with Median Filtering", yaitu penggunaan teknik median filtering dalam preprocessing citra sel darah.
+    </p>
+
+    <h2><span class="slide-marker">Slide 1</span> Blood Cell Classification: Dataset & Challenges</h2>
+
+    <h3>Pendahuluan</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Pada slide pertama ini, saya akan menjelaskan tentang dataset sel darah yang digunakan dan tantangan dalam preprocessing-nya."</li>
+        <li>"Dataset yang digunakan berasal dari Kaggle, dengan jumlah 17.092 gambar sel darah dari alat CellaVision DM96."</li>
+        <li>"Tiap gambar berukuran 360×363 piksel, dengan 8 kelas berbeda seperti neutrofil, eosinofil, dan limfosit."</li>
+        <li>"Sel-sel ini diwarnai dengan metode Wright-Giemsa, dimana sel inti berwarna ungu dan sitoplasma memiliki warna yang bervariasi."</li>
+    </ul>
+
+    <h3>Tantangan Preprocessing</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Ada beberapa tantangan dalam preprocessing citra sel darah, diantaranya:"</li>
+        <li>"<strong>Noise</strong>: dari sensor CCD mikroskop yang menyebabkan kualitas gambar tidak optimal."</li>
+        <li>"<strong>Pewarnaan yang tidak konsisten</strong>: sehingga profil warna sel bervariasi."</li>
+        <li>"<strong>Artifak</strong>: seperti debu, gelembung udara, dan elemen non-sel yang mengganggu."</li>
+        <li>"<strong>Tumpang tindih antar sel</strong>: yang menyulitkan pendeteksian batas sel."</li>
+        <li>"<strong>Kebutuhan lokalisasi presisi</strong>: dari komponen sel."</li>
+    </ul>
+
+    <h3>Tujuan Pipeline Preprocessing</h3>
+    <div class="time">(1 menit)</div>
+    <ul>
+        <li>"Pipeline preprocessing yang kami kembangkan bertujuan untuk:"</li>
+        <li>"Mengurangi noise namun tetap mempertahankan fitur morfologi penting."</li>
+        <li>"Meningkatkan batas sel untuk segmentasi yang lebih baik."</li>
+        <li>"Mengidentifikasi dan mengisolasi sel utama yang menjadi fokus dalam setiap gambar."</li>
+        <li>"Standardisasi gambar untuk analisis yang konsisten."</li>
+        <li>"Pendekatan utama kami adalah menggunakan median filtering sebagai teknik preprocessing inti."</li>
+    </ul>
+
+    <h2><span class="slide-marker">Slide 2</span> Median Filtering: Mathematical Foundation & Implementation</h2>
+
+    <h3>Definisi Median Filter</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Pada slide kedua, saya akan menjelaskan dasar matematika dan implementasi dari median filtering."</li>
+        <li>"Secara matematis, untuk window W berukuran m×n yang berpusat di posisi (x,y), citra hasil median filter g(x,y) didefinisikan sebagai nilai median dari piksel-piksel tetangga f(x-s, y-t) dimana (s,t) berada dalam window W."</li>
+        <li>"Dalam implementasi kami, kami menggunakan window berukuran 5×5 yang memberikan keseimbangan optimal antara reduksi noise dan preservasi fitur."</li>
+    </ul>
+
+    <h3>Mengapa Median Filtering untuk Sel Darah?</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Ada beberapa alasan kuat mengapa median filtering sangat cocok untuk citra sel darah:"</li>
+        <li>"<strong>Pertama</strong>, kemampuannya menghilangkan noise salt-and-pepper yang umum terjadi pada citra mikroskopi."</li>
+        <li>"<strong>Kedua</strong>, kemampuannya mempertahankan tepi penting, tidak seperti mean filtering yang cenderung mengaburkan tepi."</li>
+        <li>"<strong>Ketiga</strong>, sifatnya yang non-linear, tidak memperkenalkan nilai intensitas baru yang tidak ada pada citra asli."</li>
+        <li>"<strong>Keempat</strong>, ketahanannya terhadap outlier, sehingga kurang terpengaruh oleh nilai piksel ekstrim dari artifak."</li>
+    </ul>
+
+    <h3>Detail Implementasi</h3>
+    <div class="time">(2-3 menit)</div>
+    <ul>
+        <li>"Berikut detail implementasi pipeline preprocessing kami:"</li>
+        <li>"<strong>Tahap pertama</strong> adalah median filtering, menggunakan fungsi cv2.medianBlur dengan kernel size 5 untuk mengurangi noise."</li>
+        <li>"<strong>Tahap kedua</strong> adalah segmentasi warna menggunakan ruang warna HSV, dimana kami mendeteksi rentang warna ungu dan biru yang merupakan warna inti sel."</li>
+        <li>"<strong>Selanjutnya</strong>, operasi morfologi opening dan closing dengan kernel 5×5 untuk menghilangkan noise kecil dan mengisi lubang pada mask."</li>
+        <li>"Kami juga melakukan filtering tambahan menggunakan ruang warna Lab, khususnya channel b untuk meningkatkan separasi."</li>
+        <li>"Operasi median filter 5×5 bekerja dengan cara mengambil 25 nilai piksel di sekitar piksel tengah, mengurutkannya, dan mengganti nilai piksel tengah dengan nilai median (urutan ke-13)."</li>
+    </ul>
+
+    <h3>Alur Preprocessing Pipeline</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Pipeline lengkap preprocessing kami terdiri dari 9 tahapan yang telah dijelaskan di slide, mulai dari median filtering, segmentasi warna, operasi morfologi, hingga standardisasi ukuran."</li>
+        <li>"Proses ini memastikan bahwa citra sel darah telah dibersihkan dari noise, tersegmentasi dengan baik, dan siap untuk proses analisis lebih lanjut."</li>
+    </ul>
+
+    <h2><span class="slide-marker">Slide 3</span> Results & Downstream Applications</h2>
+
+    <h3>Hasil Preprocessing</h3>
+    <div class="time">(1-2 menit)</div>
+    <ul>
+        <li>"Pada slide ketiga ini, saya akan menunjukkan hasil preprocessing dan aplikasi lebih lanjut."</li>
+        <li>"Gambar pertama menunjukkan hasil dari setiap tahap preprocessing, mulai dari citra asli, filtering, segmentasi, hingga deteksi sel."</li>
+        <li>"Gambar kedua menunjukkan sampel dari berbagai kelas sel darah setelah melalui proses preprocessing."</li>
+    </ul>
+
+    <h3>Manfaat Downstream & Aplikasi</h3>
+    <div class="time">(2-3 menit)</div>
+    <ul>
+        <li>"Preprocessing dengan median filtering diharapkan memberikan beberapa manfaat signifikan dalam analisis sel darah:"</li>
+        <li>"<strong>Pertama</strong>, diharapkan dapat meningkatkan akurasi klasifikasi hingga 20%, karena fokus pada bentuk objek dan menghilangkan area yang tidak begitu diperlukan."</li>
+        <li>"<strong>Kedua</strong>, analisis morfologi yang lebih baik. Diharapkan batas sel yang lebih bersih dapat memungkinkan pengukuran morfologi yang lebih akurat (ukuran, bentuk, rasio inti-sitoplasma), yang krusial untuk diagnosis leukemia dan gangguan darah lainnya."</li>
+        <li>"<strong>Ketiga</strong>, diharapkan dapat mengurangi waktu pelatihan karena data citra sudah di-cleaning dan diringkas ke bentuk yang pas, sehingga model dapat belajar dari fitur yang relevan saja."</li>
+        <li>"<strong>Keempat</strong>, diharapkan dapat meningkatkan performa deteksi objek. Model YOLO untuk deteksi sel darah kemungkinan akan menunjukkan peningkatan mAP yang signifikan ketika dilatih dengan gambar yang telah difilter."</li>
+    </ul>
+
+    <h3>Aplikasi Masa Depan</h3>
+    <div class="time">(1 menit)</div>
+    <p>
+        "Pipeline preprocessing ini diharapkan dapat diintegrasikan ke dalam sistem analisis sel darah lengkap untuk penghitungan diferensial otomatis, skrining leukemia, dan kontrol kualitas di laboratorium klinis. Teknik median filtering diharapkan akan sangat berharga untuk memproses gambar apusan darah dengan kualitas bervariasi dari peralatan mikroskop yang berbeda."
+    </p>
+
+    <h2>Penutupan</h2>
+    <div class="time">(1 menit)</div>
+    <ul>
+        <li>"Demikianlah pemaparan saya tentang preprocessing citra sel darah menggunakan median filtering. Dengan pendekatan ini, diharapkan kita dapat secara signifikan meningkatkan kualitas citra sel darah untuk analisis lebih lanjut."</li>
+        <li>"Preprocessing dengan median filtering tidak hanya diharapkan mengurangi noise tetapi juga mempertahankan fitur penting sel, yang sangat krusial untuk diagnosis dan analisis akurat."</li>
+        <li>"Terima kasih atas perhatian Bapak/Ibu dan teman-teman sekalian. Apakah ada pertanyaan yang ingin diajukan?"</li>
+    </ul>
+
+    <div class="tips">
+        <h3>Antisipasi Pertanyaan</h3>
+        <div class="question">
+            <p>Mengapa memilih median filter dibandingkan filter lainnya seperti gaussian?</p>
+            <p>"Median filter dipilih karena kemampuannya menghilangkan noise salt-and-pepper tanpa mengaburkan tepi sel yang penting, berbeda dengan gaussian filter yang cenderung mengaburkan detail tepi."</p>
+        </div>
+
+        <div class="question">
+            <p>Bagaimana pengaruh ukuran kernel terhadap hasil filtering?</p>
+            <p>"Ukuran kernel 5×5 memberikan keseimbangan optimal. Kernel yang lebih kecil kurang efektif menghilangkan noise, sementara kernel yang lebih besar dapat menghilangkan detail penting dan membutuhkan komputasi yang lebih berat."</p>
+        </div>
+
+        <div class="question">
+            <p>Apakah teknik ini bisa diterapkan untuk jenis sel atau jaringan lain?</p>
+            <p>"Ya, dengan modifikasi parameter segmentasi warna dan morfologi, teknik ini dapat diterapkan pada berbagai jenis sel atau jaringan biologis lainnya."</p>
+        </div>
+
+        <div class="question">
+            <p>Apakah ada trade-off antara noise reduction dan preservasi detail?</p>
+            <p>"Ya, selalu ada trade-off. Median filter ukuran 5×5 menyediakan keseimbangan yang baik, tetapi untuk kasus khusus mungkin perlu penyesuaian parameter lebih lanjut."</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Dewa Ketut Satriawan Suditresnajaya - 2429101036<br>Pengolahan Citra Digital - April 9, 2025</p>
+    </footer>
+</body>
+</html>
