@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT dan Implementasinya pada Smart Garden</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body class="font-sans relative">
+  <!-- Landing Page / Cover Slide -->
+  <div id="landing-page" class="min-h-screen relative overflow-hidden bg-gradient-to-b from-red-700 via-red-600 to-red-800">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden">
+      <!-- Animated IoT Particles -->
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+      <div class="particle particle-5"></div>
+      <div class="particle particle-6"></div>
+
+      <!-- Circuit Pattern Overlay -->
+      <div class="absolute top-0 left-0 w-full h-full bg-circuit-pattern opacity-10"></div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container mx-auto px-4 py-12 relative z-10">
+      <!-- Logo Section -->
+      <div class="flex justify-between items-start">
+        <div class="logo-container">
+          <div class="p-3 transform hover:scale-105 transition duration-300 inline-block">
+            <img src="https://bsa.id/wp-content/uploads/2022/02/Bima-Sakti-Alterra-LOGO-putih-web.png" alt="Bima Sakti Alterra Logo" class="h-16">
+          </div>
+        </div>
+        <div>
+          <button id="startBtn" class="bg-white text-red-600 hover:bg-red-50 font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition duration-300 flex items-center">
+            <span>Mulai Presentasi</span>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Title Section -->
+      <div class="flex flex-col md:flex-row items-center justify-between mt-16 md:mt-24">
+        <div class="md:w-1/2 mb-12 md:mb-0">
+          <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-8 title-glow">
+            IoT dan Implementasinya pada Smart Garden
+          </h1>
+
+          <p class="text-xl text-white mb-8 subtitle-fade-in">
+            Membangun sistem pertanian pintar dengan teknologi Internet of Things untuk efisiensi dan produktivitas yang lebih tinggi.
+          </p>
+
+          <div class="flex flex-wrap gap-4 tags-slide-up">
+            <span class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full backdrop-filter backdrop-blur-sm">
+              <i class="fas fa-microchip mr-2"></i>Mikrokontroler
+            </span>
+            <span class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full backdrop-filter backdrop-blur-sm">
+              <i class="fas fa-wifi mr-2"></i>ESP8266/ESP32
+            </span>
+            <span class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full backdrop-filter backdrop-blur-sm">
+              <i class="fas fa-seedling mr-2"></i>Smart Garden
+            </span>
+            <span class="bg-white bg-opacity-20 text-white px-4 py-2 rounded-full backdrop-filter backdrop-blur-sm">
+              <i class="fas fa-server mr-2"></i>MQTT
+            </span>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center">
+          <div class="relative illustration-container">
+            <!-- Main Illustration -->
+            <div class="bg-white p-4 rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition duration-500">
+              <img src="assets/plant.png" alt="Smart Garden IoT Illustration" class="rounded-lg w-full max-w-md">
+            </div>
+
+            <!-- Floating Elements -->
+            <div class="absolute -top-6 -right-6 bg-yellow-400 p-3 rounded-full shadow-lg pulse-animation">
+              <i class="fas fa-lightbulb text-2xl text-yellow-900"></i>
+            </div>
+
+            <div class="absolute -bottom-4 -left-4 bg-blue-500 p-3 rounded-full shadow-lg float-animation">
+              <i class="fas fa-tint text-2xl text-white"></i>
+            </div>
+
+            <div class="absolute top-1/2 -right-8 bg-green-500 p-3 rounded-full shadow-lg float-animation-delay">
+              <i class="fas fa-leaf text-2xl text-white"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker Profile -->
+      <div class="mt-24 md:mt-32 bg-white bg-opacity-10 backdrop-filter backdrop-blur-md rounded-xl p-6 shadow-xl slide-up-animation">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/4 mb-6 md:mb-0">
+            <div class="bg-gradient-to-br from-red-500 to-red-700 p-1 rounded-full inline-block">
+              <img src="assets/photo-profile.jpg" alt="Speaker" class="rounded-full w-32 h-32 md:w-40 md:h-40 border-4 border-white">
+            </div>
+          </div>
+          <div class="md:w-3/4 md:pl-8">
+            <h2 class="text-2xl font-bold text-white mb-2">Dewa Ketut Satriawan Suditresnajaya</h2>
+            <p class="text-white text-lg mb-3">Software Engineer (IoT)</p>
+
+            <div class="flex flex-wrap gap-y-2 mb-4">
+              <div class="flex items-center mr-6 text-white">
+                <div class="bg-white bg-opacity-20 p-2 rounded-full mr-2">
+                  <i class="fas fa-briefcase"></i>
+                </div>
+                <span>PT Bima Sakti Alterra</span>
+              </div>
+              <div class="flex items-center mr-6 text-white">
+                <div class="bg-white bg-opacity-20 p-2 rounded-full mr-2">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span>Pengajar Robotika</span>
+              </div>
+              <div class="flex items-center text-white">
+                <div class="bg-white bg-opacity-20 p-2 rounded-full mr-2">
+                  <i class="fas fa-code"></i>
+                </div>
+                <span>5+ Tahun Pengalaman</span>
+              </div>
+            </div>
+
+            <p class="text-white italic">
+              "Menghubungkan dunia fisik dengan dunia digital melalui Internet of Things untuk menciptakan solusi cerdas yang berkelanjutan."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center mt-16 fade-in-animation">
+        <button id="mobileStartBtn" class="md:hidden bg-white text-red-600 hover:bg-red-50 font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 flex items-center mx-auto">
+          <span>Mulai Presentasi</span>
+          <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+
+        <p class="text-white mt-8 opacity-75">© 2025 PT Bima Sakti Alterra | Materi khusus untuk SMK Jurusan Teknik Komputer dan Jaringan</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Presentation Container (Hidden initially) -->
+  <div id="presentation-container" class="hidden">
+    <div class="container mx-auto p-4">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-red-600">IoT dan Implementasinya pada Smart Garden</h1>
+        <div>
+          <button id="exportBtn" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            <i class="fas fa-file-pdf mr-2"></i>Export to PDF
+          </button>
+        </div>
+      </div>
+
+      <div id="content-to-export">
+        <!-- Slide 1: Tentang Pembicara -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Tentang Pembicara</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Dewa Ketut Satriawan Suditresnajaya</h3>
+                <p class="text-gray-700 mb-4">
+                  Software Engineer (IoT) di Bima Sakti Alterra
+                </p>
+                <p class="text-gray-700 font-bold mb-2">Pengalaman:</p>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700">Pengajar Robotika (R-Akademi), 2019 - Nov 2020</li>
+                  <li class="text-gray-700">Programmer (BIT House), Nov 2020 - Feb 2022</li>
+                  <li class="text-gray-700">Software Engineer (BSA), Feb 2022 - Saat ini</li>
+                </ul>
+              </div>
+              <div class="flex items-center justify-center">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                  <img src="assets/photo-profile.jpg" alt="Speaker Profile Image" class="w-48 h-auto mx-auto rounded-lg">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Agenda Presentasi -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Agenda Presentasi</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <ol class="list-decimal pl-6 space-y-4">
+                  <li class="text-gray-700 text-lg">Pengenalan Internet of Things (IoT)</li>
+                  <li class="text-gray-700 text-lg">Mikrokontroler dalam Ekosistem IoT</li>
+                  <li class="text-gray-700 text-lg">Protokol Komunikasi IoT</li>
+                  <li class="text-gray-700 text-lg">Pengenalan Smart Garden</li>
+                  <li class="text-gray-700 text-lg">Arsitektur Sistem Smart Garden</li>
+                  <li class="text-gray-700 text-lg">Implementasi Praktis Smart Garden</li>
+                  <li class="text-gray-700 text-lg">Demo dan Studi Kasus</li>
+                  <li class="text-gray-700 text-lg">Prospek Karir di Bidang IoT</li>
+                  <li class="text-gray-700 text-lg">Tanya Jawab</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Pengenalan IoT -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Pengenalan Internet of Things (IoT)</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Apa itu Internet of Things (IoT)?</h3>
+                <div class="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-600">
+                  <p class="text-gray-700">
+                    IoT adalah jaringan perangkat yang terhubung ke internet untuk saling bertukar data.
+                  </p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 mt-6">Statistik Terkini:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700">Lebih dari 30 miliar perangkat IoT terhubung di 2023</li>
+                  <li class="text-gray-700">Diperkirakan meningkat hingga 75 miliar pada 2025</li>
+                  <li class="text-gray-700">Pasar Smart Garden global bernilai USD 14,4 miliar (2023)</li>
+                  <li class="text-gray-700">Pertumbuhan tahunan 18,6% hingga 2030</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Komponen Utama IoT</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">1</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Perangkat</h4>
+                      <p class="text-gray-700">Sensor (mengumpulkan data) dan Aktuator (melakukan tindakan)</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">2</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Konektivitas</h4>
+                      <p class="text-gray-700">WiFi, Bluetooth, ZigBee, LoRa, 5G</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">3</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Cloud</h4>
+                      <p class="text-gray-700">Penyimpanan data, pemrosesan dan analisis</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">4</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Aplikasi</h4>
+                      <p class="text-gray-700">Antarmuka pengguna, visualisasi data, kontrol dan monitoring</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Contoh Penggunaan IoT -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Contoh Penggunaan IoT</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-home text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Smart Home</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Otomasi lampu, AC, dan keamanan</li>
+                  <li class="text-gray-700">Kontrol perangkat via smartphone</li>
+                  <li class="text-gray-700">Monitoring energi dan utilitas</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-city text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Smart City</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Manajemen lalu lintas</li>
+                  <li class="text-gray-700">Pemantauan kualitas udara</li>
+                  <li class="text-gray-700">Pengelolaan sampah dan energi</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-seedling text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Smart Agriculture</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Pemantauan kelembaban tanah</li>
+                  <li class="text-gray-700">Pengairan otomatis</li>
+                  <li class="text-gray-700">Monitoring kondisi tanaman</li>
+                  <li class="text-gray-700 font-bold">Smart Garden (fokus presentasi)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Mikrokontroler dalam IoT -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Mikrokontroler dalam Ekosistem IoT</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Definisi Mikrokontroler</h3>
+                <div class="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-600">
+                  <p class="text-gray-700">
+                    Mikrokontroler adalah perangkat komputasi kecil yang dapat diprogram untuk mengontrol perangkat lain.
+                  </p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3">Komponen Mikrokontroler</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700"><strong>CPU:</strong> Otak mikrokontroler</li>
+                  <li class="text-gray-700"><strong>Memori:</strong> ROM, RAM, EEPROM</li>
+                  <li class="text-gray-700"><strong>I/O Ports:</strong> Komunikasi dengan perangkat luar</li>
+                  <li class="text-gray-700"><strong>Timer dan Counter:</strong> Pengukuran waktu</li>
+                  <li class="text-gray-700"><strong>ADC/DAC:</strong> Konversi sinyal analog-digital</li>
+                  <li class="text-gray-700"><strong>Komunikasi:</strong> UART, SPI, I2C, WiFi, BLE</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Fungsi Utama Mikrokontroler</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">
+                      <i class="fas fa-arrow-right-to-bracket"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">INPUT</h4>
+                      <p class="text-gray-700">Menerima sinyal dari sensor atau perangkat lain</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">
+                      <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">PROSES</h4>
+                      <p class="text-gray-700">Mengolah data berdasarkan kode program</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">
+                      <i class="fas fa-arrow-right-from-bracket"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">OUTPUT</h4>
+                      <p class="text-gray-700">Mengendalikan aktuator atau perangkat lain</p>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 mt-6">Jenis Mikrokontroler Populer</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-red-100 p-2 rounded">Arduino (AVR)</div>
+                  <div class="bg-red-100 p-2 rounded">ESP8266/ESP32</div>
+                  <div class="bg-red-100 p-2 rounded">Raspberry Pi Pico</div>
+                  <div class="bg-red-100 p-2 rounded">STM32</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 6: ESP8266 vs ESP32 -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">ESP8266 vs ESP32: Perbandingan</h2>
+          </div>
+          <div class="p-6">
+            <div class="overflow-auto">
+              <table class="min-w-full bg-white border border-gray-300">
+                <thead>
+                  <tr>
+                    <th class="py-2 px-4 border-b bg-red-100">Fitur</th>
+                    <th class="py-2 px-4 border-b bg-red-100">ESP8266</th>
+                    <th class="py-2 px-4 border-b bg-red-100">ESP32</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">CPU</td>
+                    <td class="py-2 px-4 border-b">Single-core 80MHz</td>
+                    <td class="py-2 px-4 border-b">Dual-core 240MHz</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">WiFi</td>
+                    <td class="py-2 px-4 border-b">2.4 GHz</td>
+                    <td class="py-2 px-4 border-b">2.4 GHz</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">Bluetooth</td>
+                    <td class="py-2 px-4 border-b">Tidak ada</td>
+                    <td class="py-2 px-4 border-b">BLE & Classic</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">GPIO</td>
+                    <td class="py-2 px-4 border-b">~11 pin</td>
+                    <td class="py-2 px-4 border-b">36+ pin</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">ADC</td>
+                    <td class="py-2 px-4 border-b">1 channel (10-bit)</td>
+                    <td class="py-2 px-4 border-b">18 channels (12-bit)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">Harga</td>
+                    <td class="py-2 px-4 border-b">$2-4 (Rp 25.000 - 50.000)</td>
+                    <td class="py-2 px-4 border-b">$3-10 (Rp 45.000 - 150.000)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 px-4 border-b font-semibold">RAM</td>
+                    <td class="py-2 px-4 border-b">~50KB</td>
+                    <td class="py-2 px-4 border-b">520KB</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">ESP8266: Pilihan Ekonomis</h3>
+                <p class="text-gray-700">
+                  Cocok untuk proyek IoT sederhana dengan kebutuhan konektivitas WiFi dan pengukuran sensor terbatas. Ideal untuk pemula dan proyek dengan budget terbatas.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">ESP32: Lebih Bertenaga</h3>
+                <p class="text-gray-700">
+                  Lebih cocok untuk proyek kompleks yang memerlukan koneksi Bluetooth, banyak sensor, atau pemrosesan data yang lebih intensif.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 7: Pengenalan ESP8266 -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Pengenalan ESP8266</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Apa Itu ESP8266?</h3>
+                <div class="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-600">
+                  <p class="text-gray-700">
+                    ESP8266 adalah modul WiFi berbasis mikrokontroler dengan harga terjangkau yang dibuat oleh Espressif Systems.
+                  </p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3">Kelebihan ESP8266:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700">Mendukung koneksi WiFi 2.4GHz</li>
+                  <li class="text-gray-700">Hemat daya (konsumsi <1W)< /li>
+                  <li class="text-gray-700">Cocok untuk proyek IoT skala kecil-menengah</li>
+                  <li class="text-gray-700">Harga murah (Rp 25.000 - 50.000)</li>
+                  <li class="text-gray-700">Dukungan komunitas yang luas</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Varian ESP8266</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">1</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">ESP-01</h4>
+                      <p class="text-gray-700">Versi kompak, 8 pin, ukuran kecil</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">2</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">NodeMCU</h4>
+                      <p class="text-gray-700">Development board lengkap dengan USB</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">3</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Wemos D1 Mini</h4>
+                      <p class="text-gray-700">Bentuk kecil, pin kompatibel Arduino</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">4</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">ESP-12E/F</h4>
+                      <p class="text-gray-700">Module dengan lebih banyak GPIO</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 8: Cara Kerja ESP8266 -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Cara Kerja ESP8266</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Alur Kerja ESP8266</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">1</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Koneksi WiFi</h4>
+                      <p class="text-gray-700">ESP8266 terhubung ke jaringan WiFi atau membuat access point sendiri</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">2</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Pemrograman</h4>
+                      <p class="text-gray-700">Program ditulis menggunakan Arduino IDE, MicroPython, atau NodeMCU (Lua)</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">3</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Interaksi dengan Sensor/Aktuator</h4>
+                      <p class="text-gray-700">Membaca data dari sensor dan mengontrol aktuator melalui pin GPIO</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">4</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Komunikasi Data</h4>
+                      <p class="text-gray-700">Mengirim data ke cloud atau server melalui HTTP, MQTT, atau protokol lainnya</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Struktur Program Arduino</h3>
+                <div class="bg-gray-800 rounded-lg text-white p-4 font-mono text-sm">
+                  <div class="text-green-400">// Library yang dibutuhkan</div>
+                  <div class="text-blue-400">#include</div> <span class="text-yellow-400">&lt;ESP8266WiFi.h&gt;</span>
+                  <br><br>
+                  <div class="text-green-400">// Definisi variabel</div>
+                  <div class="text-blue-400">const char*</div> ssid = <span class="text-yellow-400">"WiFi_SSID"</span>;
+                  <div class="text-blue-400">const char*</div> password = <span class="text-yellow-400">"WiFi_Password"</span>;
+                  <br><br>
+                  <div class="text-blue-400">void</div> <span class="text-purple-400">setup</span>() {
+                  <div class="ml-4">
+                    <div class="text-green-400">// Kode inisialisasi, dijalankan sekali</div>
+                    Serial.<span class="text-purple-400">begin</span>(115200);
+                    <span class="text-purple-400">pinMode</span>(LED_BUILTIN, OUTPUT);
+                    <br>
+                    <div class="text-green-400">// Koneksi ke WiFi</div>
+                    WiFi.<span class="text-purple-400">begin</span>(ssid, password);
+                  </div>
+                  }
+                  <br>
+                  <div class="text-blue-400">void</div> <span class="text-purple-400">loop</span>() {
+                  <div class="ml-4">
+                    <div class="text-green-400">// Kode utama, dijalankan berulang-ulang</div>
+                    <span class="text-purple-400">digitalWrite</span>(LED_BUILTIN, HIGH); <div class="text-green-400 inline">// LED menyala</div>
+                    <span class="text-purple-400">delay</span>(1000);
+                    <span class="text-purple-400">digitalWrite</span>(LED_BUILTIN, LOW); <div class="text-green-400 inline">// LED mati</div>
+                    <span class="text-purple-400">delay</span>(1000);
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 9: Protokol Komunikasi IoT -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Protokol Komunikasi IoT</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Protokol Populer dalam IoT</h3>
+                <div class="overflow-auto">
+                  <table class="min-w-full bg-white border border-gray-300">
+                    <thead>
+                      <tr>
+                        <th class="py-2 px-3 border-b bg-red-100">Protokol</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Overhead</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Keamanan</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Use Case</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-2 px-3 border-b font-semibold">HTTP/HTTPS</td>
+                        <td class="py-2 px-3 border-b">Tinggi</td>
+                        <td class="py-2 px-3 border-b">SSL/TLS</td>
+                        <td class="py-2 px-3 border-b">Web API</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b font-semibold">MQTT</td>
+                        <td class="py-2 px-3 border-b">Rendah</td>
+                        <td class="py-2 px-3 border-b">SSL/TLS</td>
+                        <td class="py-2 px-3 border-b">IoT, Sensor</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b font-semibold">CoAP</td>
+                        <td class="py-2 px-3 border-b">Rendah</td>
+                        <td class="py-2 px-3 border-b">DTLS</td>
+                        <td class="py-2 px-3 border-b">Perangkat terbatas</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b font-semibold">WebSocket</td>
+                        <td class="py-2 px-3 border-b">Medium</td>
+                        <td class="py-2 px-3 border-b">SSL/TLS</td>
+                        <td class="py-2 px-3 border-b">Real-time data</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">MQTT: Protocol for IoT</h3>
+                <div class="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-600">
+                  <p class="text-gray-700">
+                    MQTT (Message Queuing Telemetry Transport) adalah protokol komunikasi ringan berbasis model publish/subscribe yang ideal untuk IoT.
+                  </p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 mt-4">Keunggulan MQTT:</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Overhead minimal (hanya 2 bytes)</li>
+                  <li class="text-gray-700">Mendukung Quality of Service (QoS)</li>
+                  <li class="text-gray-700">Menyimpan pesan untuk klien offline</li>
+                  <li class="text-gray-700">Dukungan TLS/SSL untuk keamanan</li>
+                  <li class="text-gray-700">Ideal untuk jaringan dengan bandwidth terbatas</li>
+                </ul>
+
+                <h3 class="text-lg font-semibold mb-3 mt-4">Komponen MQTT:</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700"><strong>Broker:</strong> Server pusat (Mosquitto, HiveMQ)</li>
+                  <li class="text-gray-700"><strong>Publisher:</strong> Pengirim data (sensor)</li>
+                  <li class="text-gray-700"><strong>Subscriber:</strong> Penerima data (aplikasi)</li>
+                  <li class="text-gray-700"><strong>Topic:</strong> Jalur kategorisasi pesan</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 10: MQTT Di Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Implementasi MQTT di Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Cara Kerja MQTT</h3>
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                  <ol class="list-decimal pl-6 space-y-2">
+                    <li class="text-gray-700"><strong>Publish:</strong> Sensor mengirim data ke broker dengan topik tertentu
+                      <div class="bg-gray-200 p-2 rounded mt-1 font-mono text-sm">
+                        PUBLISH smartgarden/sensor1/humidity 85.5
+                      </div>
+                    </li>
+                    <li class="text-gray-700"><strong>Subscribe:</strong> Aplikasi mendaftar untuk menerima data dari topik
+                      <div class="bg-gray-200 p-2 rounded mt-1 font-mono text-sm">
+                        SUBSCRIBE smartgarden/sensor1/#
+                      </div>
+                    </li>
+                    <li class="text-gray-700"><strong>Quality of Service (QoS):</strong>
+                      <ul class="list-disc pl-6 mt-1">
+                        <li>QoS 0: Kirim sekali, tidak ada konfirmasi</li>
+                        <li>QoS 1: Kirim hingga dikonfirmasi</li>
+                        <li>QoS 2: Pastikan diterima tepat sekali</li>
+                      </ul>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Contoh Topik di Smart Garden</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Sensor Data
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow font-mono">
+                      smartgarden/sensor1/humidity<br>
+                      smartgarden/sensor1/temperature<br>
+                      smartgarden/sensor1/soil
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Kontrol
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow font-mono">
+                      smartgarden/control/pump<br>
+                      smartgarden/control/light<br>
+                      smartgarden/control/fan
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Status Sistem
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow font-mono">
+                      smartgarden/status/connection<br>
+                      smartgarden/status/battery<br>
+                      smartgarden/status/error
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 11: Pengenalan Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Pengenalan Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Apa itu Smart Garden?</h3>
+                <div class="bg-red-50 p-4 rounded-lg mb-4 border-l-4 border-red-600">
+                  <p class="text-gray-700">
+                    Smart Garden adalah sistem berbasis IoT yang memantau dan mengontrol lingkungan tanaman secara otomatis untuk mengoptimalkan pertumbuhan dan efisiensi sumber daya.
+                  </p>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3">Statistik Terkini:</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700">Pasar Smart Garden Indonesia tumbuh 22% (2022-2023)</li>
+                  <li class="text-gray-700">Penghematan air hingga 40-60% dibanding metode manual</li>
+                  <li class="text-gray-700">ROI untuk petani kecil: 6-18 bulan</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Fitur Utama Smart Garden</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">1</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Monitoring Kondisi Tanaman</h4>
+                      <p class="text-gray-700">Kelembaban tanah, suhu, kelembaban udara, intensitas cahaya</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">2</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Otomasi</h4>
+                      <p class="text-gray-700">Sistem pengairan otomatis, penerangan tambahan, kontrol nutrisi</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-full mr-2 flex-shrink-0 h-8 w-8 flex items-center justify-center">3</div>
+                    <div class="bg-gray-100 p-2 rounded-lg flex-grow">
+                      <h4 class="font-semibold">Analisis Data</h4>
+                      <p class="text-gray-700">Tren pertumbuhan, prediksi kebutuhan air, deteksi anomali</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 12: Manfaat Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Manfaat Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-tint text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Efisiensi Sumber Daya</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Penghematan air hingga 60%</li>
+                  <li class="text-gray-700">Pengurangan penggunaan pupuk</li>
+                  <li class="text-gray-700">Optimalisasi energi</li>
+                  <li class="text-gray-700">Pengairan otomatis hanya saat diperlukan</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-chart-line text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Peningkatan Produktivitas</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Pertumbuhan tanaman optimal</li>
+                  <li class="text-gray-700">Deteksi dini hama dan penyakit</li>
+                  <li class="text-gray-700">Mengurangi gagal panen</li>
+                  <li class="text-gray-700">Pengaturan kondisi ideal</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-mobile-alt text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Kemudahan Operasional</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Monitoring jarak jauh</li>
+                  <li class="text-gray-700">Notifikasi real-time</li>
+                  <li class="text-gray-700">Mengurangi kebutuhan tenaga kerja</li>
+                  <li class="text-gray-700">Data akses kapan saja, di mana saja</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 13: Komponen Utama Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Komponen Utama Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Hardware</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Sensor
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Sensor Kelembaban Tanah</p>
+                      <p class="text-sm text-gray-700">Mengukur kandungan air dalam tanah</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Sensor
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">DHT11/DHT22</p>
+                      <p class="text-sm text-gray-700">Mengukur suhu dan kelembaban udara</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Sensor
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Sensor Cahaya</p>
+                      <p class="text-sm text-gray-700">Mengukur intensitas cahaya (LDR/BH1750)</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Aktuator
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Relay & Solenoid Valve</p>
+                      <p class="text-sm text-gray-700">Mengontrol aliran air untuk penyiraman</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Mikrokontroler
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">ESP8266/ESP32</p>
+                      <p class="text-sm text-gray-700">Otak sistem yang menghubungkan semua komponen</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Software</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Firmware
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Program pada ESP8266/ESP32</p>
+                      <p class="text-sm text-gray-700">Kode yang menjalankan logika kontrol dan komunikasi</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Broker
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">MQTT Broker</p>
+                      <p class="text-sm text-gray-700">Server yang menangani komunikasi data (Mosquitto/HiveMQ)</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Backend
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Database & Server Logic</p>
+                      <p class="text-sm text-gray-700">Menyimpan dan memproses data dari sensor</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Frontend
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Dashboard Web/Mobile</p>
+                      <p class="text-sm text-gray-700">Antarmuka untuk monitoring dan kontrol sistem</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 14: Arsitektur Sistem Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Arsitektur Sistem Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 gap-6">
+              <div class="text-center">
+                <img src="assets/smart-garden-architecture.svg" alt="Smart Garden Architecture Diagram" class="mx-auto rounded-lg">
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-gray-100 p-4 rounded-lg">
+                  <h3 class="text-lg font-semibold text-center mb-2">Lapisan Fisik</h3>
+                  <ul class="list-disc pl-6 space-y-1">
+                    <li class="text-gray-700">Sensor dan aktuator</li>
+                    <li class="text-gray-700">Mikrokontroler (ESP8266/ESP32)</li>
+                    <li class="text-gray-700">Relay dan komponen elektronik</li>
+                    <li class="text-gray-700">Solenoid valve untuk pengairan</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                  <h3 class="text-lg font-semibold text-center mb-2">Lapisan Komunikasi</h3>
+                  <ul class="list-disc pl-6 space-y-1">
+                    <li class="text-gray-700">WiFi local</li>
+                    <li class="text-gray-700">MQTT Broker</li>
+                    <li class="text-gray-700">Internet/Cloud connectivity</li>
+                    <li class="text-gray-700">Protokol komunikasi aman</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                  <h3 class="text-lg font-semibold text-center mb-2">Lapisan Aplikasi</h3>
+                  <ul class="list-disc pl-6 space-y-1">
+                    <li class="text-gray-700">Database</li>
+                    <li class="text-gray-700">Backend logic</li>
+                    <li class="text-gray-700">Frontend dashboard</li>
+                    <li class="text-gray-700">Aplikasi mobile</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 15: Alur Data dalam Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Alur Data dalam Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <ol class="list-decimal pl-6 space-y-4">
+                  <li class="text-gray-700">
+                    <strong>Sensor → ESP8266/ESP32:</strong> Sensor mengirim data ke mikrokontroler
+                    <div class="bg-gray-100 p-2 rounded mt-1 text-sm">
+                      <code>float humidity = dht.readHumidity();</code>
+                    </div>
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>ESP8266/ESP32 → MQTT Broker:</strong> Data dikirim ke broker via WiFi
+                    <div class="bg-gray-100 p-2 rounded mt-1 text-sm">
+                      <code>client.publish("smartgarden/sensor1/humidity", String(humidity).c_str());</code>
+                    </div>
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>MQTT Broker → Server/Cloud:</strong> Broker mendistribusikan data
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>Server → Database:</strong> Data disimpan untuk analisis
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>Server → Frontend:</strong> Data ditampilkan di dashboard
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>Frontend → MQTT Broker:</strong> Perintah kontrol dari user
+                    <div class="bg-gray-100 p-2 rounded mt-1 text-sm">
+                      <code>client.publish("smartgarden/control/pump", "ON");</code>
+                    </div>
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>MQTT Broker → ESP8266/ESP32:</strong> Perintah diterima mikrokontroler
+                    <div class="bg-gray-100 p-2 rounded mt-1 text-sm">
+                      <code>if (String(topic) == "smartgarden/control/pump" && String(payload) == "ON") {
+                        digitalWrite(RELAY_PIN, HIGH);
+                        }</code>
+                    </div>
+                  </li>
+                  <li class="text-gray-700">
+                    <strong>ESP8266/ESP32 → Aktuator:</strong> Mikrokontroler mengontrol pompa/solenoid
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 16: Implementasi Praktis Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Implementasi Praktis Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Skema Rangkaian Dasar</h3>
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                  <img src="assets/smart-garden-circuit.svg" alt="Smart Garden Circuit Diagram" class="mx-auto rounded-lg">
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3">Komponen:</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">NodeMCU ESP8266</li>
+                  <li class="text-gray-700">Sensor kelembaban tanah YL-69/FC-28</li>
+                  <li class="text-gray-700">Sensor DHT11/DHT22</li>
+                  <li class="text-gray-700">Relay modul 5V</li>
+                  <li class="text-gray-700">Solenoid valve 12V</li>
+                  <li class="text-gray-700">Adaptor 12V dan regulator 5V</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Wiring Diagram</h3>
+                <div class="overflow-auto">
+                  <table class="min-w-full bg-white border border-gray-300">
+                    <thead>
+                      <tr>
+                        <th class="py-2 px-3 border-b bg-red-100">Komponen</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Pin ESP8266</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Catatan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-2 px-3 border-b">Sensor Kelembaban</td>
+                        <td class="py-2 px-3 border-b">A0</td>
+                        <td class="py-2 px-3 border-b">Analog input</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">DHT11/DHT22</td>
+                        <td class="py-2 px-3 border-b">D4 (GPIO2)</td>
+                        <td class="py-2 px-3 border-b">Digital input</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">Relay</td>
+                        <td class="py-2 px-3 border-b">D2 (GPIO4)</td>
+                        <td class="py-2 px-3 border-b">Digital output</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">LED Indikator</td>
+                        <td class="py-2 px-3 border-b">D1 (GPIO5)</td>
+                        <td class="py-2 px-3 border-b">Digital output</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">OLED Display</td>
+                        <td class="py-2 px-3 border-b">D3,D5 (SDA,SCL)</td>
+                        <td class="py-2 px-3 border-b">I2C</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 17: Kode Program Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Kode Program Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="bg-gray-800 rounded-lg text-white p-4 font-mono text-sm">
+              <div class="text-green-400">// Library yang dibutuhkan</div>
+              <div class="text-blue-400">#include</div> <span class="text-yellow-400">&lt;ESP8266WiFi.h&gt;</span>
+              <div class="text-blue-400">#include</div> <span class="text-yellow-400">&lt;PubSubClient.h&gt;</span>
+              <div class="text-blue-400">#include</div> <span class="text-yellow-400">&lt;DHT.h&gt;</span>
+              <div class="text-blue-400">#include</div> <span class="text-yellow-400">&lt;ArduinoJson.h&gt;</span>
+              <br>
+              <div class="text-green-400">// WiFi credentials</div>
+              <div class="text-blue-400">const char*</div> ssid = <span class="text-yellow-400">"YOUR_SSID"</span>;
+              <div class="text-blue-400">const char*</div> password = <span class="text-yellow-400">"YOUR_PASSWORD"</span>;
+              <br>
+              <div class="text-green-400">// MQTT Broker</div>
+              <div class="text-blue-400">const char*</div> mqtt_server = <span class="text-yellow-400">"broker.hivemq.com"</span>;
+              <div class="text-blue-400">const int</div> mqtt_port = 1883;
+              <br>
+              <div class="text-green-400">// Sensor pins</div>
+              <div class="text-blue-400">#define</div> SOIL_MOISTURE_PIN A0
+              <div class="text-blue-400">#define</div> DHTPIN D4
+              <div class="text-blue-400">#define</div> DHTTYPE DHT22
+              <div class="text-blue-400">#define</div> RELAY_PIN D2
+              <br>
+              <div class="text-green-400">// Variables</div>
+              <div class="text-blue-400">float</div> temperature, humidity, soilMoisture;
+              <div class="text-blue-400">bool</div> pumpStatus = <div class="text-purple-400">false</div>;
+              <div class="text-blue-400">int</div> soilMoistureThreshold = 30; <div class="text-green-400">// percentage</div>
+              <br>
+              <div class="text-green-400">// Initialize objects</div>
+              DHT dht(DHTPIN, DHTTYPE);
+              WiFiClient espClient;
+              PubSubClient client(espClient);
+              <br>
+              <div class="text-blue-400">void</div> <span class="text-purple-400">setup</span>() {
+              <span class="text-purple-400">pinMode</span>(RELAY_PIN, OUTPUT);
+              dht.<span class="text-purple-400">begin</span>();
+              <span class="text-purple-400">setup_wifi</span>();
+              client.<span class="text-purple-400">setServer</span>(mqtt_server, mqtt_port);
+              client.<span class="text-purple-400">setCallback</span>(callback);
+              }
+              <br>
+              <div class="text-green-400">// Implementasi lengkap tersedia di GitHub:
+                // https://github.com/bsa-iot/smart-garden</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 18: Desain Dashboard -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Desain Dashboard</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Fitur Dashboard</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                  <li class="text-gray-700">Visualisasi data real-time
+                    <ul class="list-circle pl-6 mt-1">
+                      <li class="text-gray-600">Gauge chart untuk kelembaban tanah</li>
+                      <li class="text-gray-600">Indikator suhu dan kelembaban udara</li>
+                    </ul>
+                  </li>
+                  <li class="text-gray-700">Grafik historis
+                    <ul class="list-circle pl-6 mt-1">
+                      <li class="text-gray-600">Tampilan harian/mingguan/bulanan</li>
+                      <li class="text-gray-600">Analisis tren</li>
+                    </ul>
+                  </li>
+                  <li class="text-gray-700">Kontrol manual
+                    <ul class="list-circle pl-6 mt-1">
+                      <li class="text-gray-600">Tombol on/off untuk pompa air</li>
+                      <li class="text-gray-600">Pengaturan durasi penyiraman</li>
+                    </ul>
+                  </li>
+                  <li class="text-gray-700">Pengaturan threshold otomasi
+                    <ul class="list-circle pl-6 mt-1">
+                      <li class="text-gray-600">Nilai minimum kelembaban tanah</li>
+                      <li class="text-gray-600">Jadwal penyiraman</li>
+                    </ul>
+                  </li>
+                  <li class="text-gray-700">Notifikasi
+                    <ul class="list-circle pl-6 mt-1">
+                      <li class="text-gray-600">Email/Telegram alert</li>
+                      <li class="text-gray-600">Peringatan kondisi ekstrem</li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Preview Dashboard</h3>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                  <img src="/api/placeholder/500/300" alt="Smart Garden Dashboard Preview" class="w-full rounded-lg">
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 mt-4">Teknologi Dashboard</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-red-100 p-2 rounded">Laravel Backend</div>
+                  <div class="bg-red-100 p-2 rounded">Laravel Frontend</div>
+                  <div class="bg-red-100 p-2 rounded">MySQL Database</div>
+                  <div class="bg-red-100 p-2 rounded">MQTT Integration</div>
+                  <div class="bg-red-100 p-2 rounded">Chart.js Visualizations</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 19: Studi Kasus -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Studi Kasus</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Smart Garden Skala Rumahan</h3>
+                <div class="text-center mb-4">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-home text-2xl"></i>
+                  </span>
+                </div>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">5-10 tanaman pot</li>
+                  <li class="text-gray-700">Budget
+
+                    < Rp 500.000</li>
+                  <li class="text-gray-700">Kontrol via smartphone</li>
+                  <li class="text-gray-700">ESP8266 + DHT11 + 1 sensor kelembaban</li>
+                  <li class="text-gray-700">Pompa air mini 5V</li>
+                  <li class="text-gray-700">Power via adaptor</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Vertical Garden Perkotaan</h3>
+                <div class="text-center mb-4">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-building text-2xl"></i>
+                  </span>
+                </div>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">50-100 tanaman</li>
+                  <li class="text-gray-700">Multiple zone control</li>
+                  <li class="text-gray-700">Data logging dan analisis</li>
+                  <li class="text-gray-700">ESP32 + multiple sensor</li>
+                  <li class="text-gray-700">Solenoid valve per zona</li>
+                  <li class="text-gray-700">Power via listrik + solar backup</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Greenhouse Komersial</h3>
+                <div class="text-center mb-4">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-industry text-2xl"></i>
+                  </span>
+                </div>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">500+ tanaman</li>
+                  <li class="text-gray-700">Integrasi multi-sensor</li>
+                  <li class="text-gray-700">Prediksi ML untuk panen</li>
+                  <li class="text-gray-700">Multiple ESP32 + Gateway</li>
+                  <li class="text-gray-700">Sistem irigasi industri</li>
+                  <li class="text-gray-700">Kontrol iklim komprehensif</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 20: Praktik Terbaik Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Praktik Terbaik Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Hardware</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Gunakan waterproof casing untuk elektronik</li>
+                  <li class="text-gray-700">Perlindungan terhadap arus lebih (fuse)</li>
+                  <li class="text-gray-700">Backup power (baterai/solar panel)</li>
+                  <li class="text-gray-700">Gunakan sensor berkualitas baik</li>
+                  <li class="text-gray-700">Hindari koneksi langsung 220V tanpa pengalaman</li>
+                  <li class="text-gray-700">Gunakan PCB anti korosi untuk luar ruangan</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Software</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">OTA updates (Over-The-Air)</li>
+                  <li class="text-gray-700">Failsafe mode saat internet terputus</li>
+                  <li class="text-gray-700">Data caching untuk mencegah kehilangan data</li>
+                  <li class="text-gray-700">Enkripsi komunikasi (TLS/SSL)</li>
+                  <li class="text-gray-700">Watchdog timer untuk restart otomatis</li>
+                  <li class="text-gray-700">Logging komprehensif untuk troubleshooting</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-center mb-2">Operasional</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Kalibrasi sensor secara berkala</li>
+                  <li class="text-gray-700">Pembersihan filter dan nozzle</li>
+                  <li class="text-gray-700">Monitoring baterai dan power supply</li>
+                  <li class="text-gray-700">Backup database secara reguler</li>
+                  <li class="text-gray-700">Persiapan untuk kondisi ekstrem (banjir, listrik padam)</li>
+                  <li class="text-gray-700">Dokumentasi lengkap sistem</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 21: Prospek Karir di Bidang IoT -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Prospek Karir di Bidang IoT</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Posisi Pekerjaan di Bidang IoT</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Development
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">IoT Developer</p>
+                      <p class="text-sm text-gray-700">Membuat aplikasi dan firmware untuk perangkat IoT</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Engineering
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Embedded Systems Engineer</p>
+                      <p class="text-sm text-gray-700">Hardware dan software untuk perangkat tertanam</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Architecture
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">IoT Solution Architect</p>
+                      <p class="text-sm text-gray-700">Merancang sistem IoT end-to-end</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Data
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Data Scientist (IoT Analytics)</p>
+                      <p class="text-sm text-gray-700">Menganalisis big data dari perangkat IoT</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-32 flex items-center">
+                      Specialist
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Smart Agriculture Specialist</p>
+                      <p class="text-sm text-gray-700">Implementasi IoT di bidang pertanian</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Kisaran Gaji di Indonesia</h3>
+                <div class="overflow-auto">
+                  <table class="min-w-full bg-white border border-gray-300">
+                    <thead>
+                      <tr>
+                        <th class="py-2 px-3 border-b bg-red-100">Posisi</th>
+                        <th class="py-2 px-3 border-b bg-red-100">Gaji per Bulan (IDR)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-2 px-3 border-b">Junior IoT Developer</td>
+                        <td class="py-2 px-3 border-b">Rp 5-8 juta</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">Mid-level IoT Engineer</td>
+                        <td class="py-2 px-3 border-b">Rp 10-15 juta</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">Senior IoT Engineer</td>
+                        <td class="py-2 px-3 border-b">Rp 15-25 juta</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">IoT Solution Architect</td>
+                        <td class="py-2 px-3 border-b">Rp 25-40 juta</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 px-3 border-b">IoT Project Manager</td>
+                        <td class="py-2 px-3 border-b">Rp 20-35 juta</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h3 class="text-lg font-semibold mb-3 mt-4">Skills yang Dibutuhkan</h3>
+                <div class="grid grid-cols-2 gap-2">
+                  <div class="bg-red-100 p-2 rounded">Embedded Programming</div>
+                  <div class="bg-red-100 p-2 rounded">Networking & Protocols</div>
+                  <div class="bg-red-100 p-2 rounded">Cloud Platforms</div>
+                  <div class="bg-red-100 p-2 rounded">Database</div>
+                  <div class="bg-red-100 p-2 rounded">Frontend/Mobile Dev</div>
+                  <div class="bg-red-100 p-2 rounded">Problem Solving</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 22: Tren Masa Depan IoT & Smart Garden -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Tren Masa Depan IoT & Smart Garden</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-brain text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">AI & Machine Learning</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Prediksi pertumbuhan tanaman</li>
+                  <li class="text-gray-700">Deteksi dini penyakit tanaman</li>
+                  <li class="text-gray-700">Optimasi otomatis penggunaan air</li>
+                  <li class="text-gray-700">Analisis gambar untuk identifikasi hama</li>
+                  <li class="text-gray-700">Sistem rekomendasi nutrisi adaptif</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-microchip text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Edge Computing</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">Pemrosesan data di perangkat lokal</li>
+                  <li class="text-gray-700">Mengurangi ketergantungan koneksi internet</li>
+                  <li class="text-gray-700">Respons lebih cepat untuk tindakan kritis</li>
+                  <li class="text-gray-700">Penghematan bandwidth dan energi</li>
+                  <li class="text-gray-700">Peningkatan privasi dan keamanan data</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-broadcast-tower text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Low-Power Networks</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700">LoRaWAN untuk area luas</li>
+                  <li class="text-gray-700">NB-IoT untuk penetrasi dalam gedung</li>
+                  <li class="text-gray-700">Baterai tahan bertahun-tahun</li>
+                  <li class="text-gray-700">Jangkauan hingga puluhan kilometer</li>
+                  <li class="text-gray-700">Ideal untuk pertanian area luas</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 23: Sumber Belajar Lanjutan -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Sumber Belajar Lanjutan</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-graduation-cap text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Online Courses</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700"><strong>Coursera:</strong> IoT Specialization (UC San Diego)</li>
+                  <li class="text-gray-700"><strong>Udemy:</strong> ESP8266 & ESP32 IoT Projects</li>
+                  <li class="text-gray-700"><strong>YouTube:</strong> Andreas Spiess, GreatScott!</li>
+                  <li class="text-gray-700"><strong>edX:</strong> IoT Fundamentals</li>
+                  <li class="text-gray-700"><strong>LinkedIn Learning:</strong> ESP8266 Essentials</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-users text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Communities</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700"><strong>Hackster.io</strong> - Proyek IoT</li>
+                  <li class="text-gray-700"><strong>Forum ESP8266.com</strong></li>
+                  <li class="text-gray-700"><strong>Arduino Forum</strong></li>
+                  <li class="text-gray-700"><strong>Komunitas IoT Indonesia</strong></li>
+                  <li class="text-gray-700"><strong>Stack Exchange</strong> IoT</li>
+                  <li class="text-gray-700"><strong>Reddit</strong> r/esp8266, r/esp32</li>
+                </ul>
+              </div>
+              <div class="bg-gray-100 p-4 rounded-lg">
+                <div class="text-center mb-2">
+                  <span class="inline-block bg-red-600 text-white rounded-full p-3">
+                    <i class="fas fa-book text-2xl"></i>
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold text-center mb-2">Documentation</h3>
+                <ul class="list-disc pl-6 space-y-1">
+                  <li class="text-gray-700"><strong>ESP8266 Arduino Core</strong></li>
+                  <li class="text-gray-700"><strong>MQTT.org</strong></li>
+                  <li class="text-gray-700"><strong>Espressif Systems</strong> Documentation</li>
+                  <li class="text-gray-700"><strong>PubSubClient</strong> Library</li>
+                  <li class="text-gray-700"><strong>Arduino</strong> Official Documentation</li>
+                  <li class="text-gray-700"><strong>NodeMCU</strong> Reference</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 24: Terima Kasih -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Terima Kasih!</h2>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="text-lg font-semibold mb-3">Kontak:</h3>
+                <div class="space-y-3">
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-10 flex items-center justify-center">
+                      <i class="fas fa-user"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="font-semibold">Dewa Ketut Satriawan Suditresnajaya</p>
+                      <p class="text-sm text-gray-700">Software Engineer (IoT)</p>
+                      <p class="text-sm text-gray-700">Bima Sakti Alterra</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-10 flex items-center justify-center">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="text-gray-700">commercial@bsa.id</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-10 flex items-center justify-center">
+                      <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="text-gray-700">+62361 4785050</p>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="bg-red-600 text-white p-2 rounded-l flex-shrink-0 w-10 flex items-center justify-center">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-r flex-grow">
+                      <p class="text-gray-700">Griya Bimasakti</p>
+                      <p class="text-gray-700">Jl. Melati No.61, Dangin Puri Kangin, Kec. Denpasar Utara, Kota Denpasar, Bali 80231</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                <div class="bg-gray-100 p-6 rounded-lg mb-4 w-full max-w-md">
+                  <h3 class="text-lg font-semibold text-center mb-3">Sesi Tanya Jawab</h3>
+                  <p class="text-center text-gray-700 mb-4">
+                    Silakan ajukan pertanyaan tentang materi yang telah disampaikan atau proyek IoT yang ingin Anda kembangkan.
+                  </p>
+                  <div class="text-center">
+                    <img src="/api/placeholder/200/200" alt="QR Code Presentasi" class="mx-auto rounded-lg mb-2">
+                    <p class="text-sm text-gray-600">Scan untuk mengunduh presentasi ini</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-6 text-center border-t pt-6">
+              <p class="text-gray-700">"Menghubungkan dunia fisik dengan dunia digital untuk menciptakan masa depan yang lebih cerdas dan berkelanjutan."</p>
+              <p class="text-gray-500 mt-2">© 2025 PT Bima Sakti Alterra | All Rights Reserved</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 25: Sesi Tanya Jawab -->
+        <div class="slide bg-white rounded-lg shadow-lg overflow-hidden mb-6 pdf-page">
+          <div class="bg-red-600 text-white p-4">
+            <h2 class="text-xl font-bold">Sesi Tanya Jawab</h2>
+          </div>
+          <div class="p-6 text-center">
+            <div class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg">
+              <div class="text-center mb-6">
+                <span class="inline-block bg-red-600 text-white rounded-full p-4">
+                  <i class="fas fa-question text-3xl"></i>
+                </span>
+              </div>
+              <h3 class="text-2xl font-semibold mb-4">Ada Pertanyaan?</h3>
+              <p class="text-gray-700 mb-8 text-lg">
+                Silakan ajukan pertanyaan tentang IoT, Smart Garden, atau topik lain yang telah dibahas dalam presentasi ini.
+              </p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h4 class="font-semibold text-red-600 mb-2">Konsultasi Proyek</h4>
+                  <p class="text-gray-700">Diskusikan ide proyek IoT Anda dengan kami</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                  <h4 class="font-semibold text-red-600 mb-2">Workshop & Pelatihan</h4>
+                  <p class="text-gray-700">Informasi tentang kelas IoT berikutnya</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

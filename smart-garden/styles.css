@@ -1,0 +1,304 @@
+/* Custom CSS Styles */
+
+/* Base Styles */
+body {
+    background-color: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.slide {
+    transition: transform 0.3s ease;
+}
+
+.slide:hover {
+    transform: translateY(-5px);
+}
+
+/* Landing Page Decorative Elements */
+.bg-circuit-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* Floating IoT Particles */
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+.particle-1 {
+    top: 20%;
+    left: 10%;
+    animation: float 8s ease-in-out infinite;
+}
+
+.particle-2 {
+    top: 30%;
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation: float 12s ease-in-out infinite 1s;
+}
+
+.particle-3 {
+    top: 15%;
+    right: 20%;
+    width: 12px;
+    height: 12px;
+    animation: float 10s ease-in-out infinite 2s;
+}
+
+.particle-4 {
+    bottom: 25%;
+    left: 15%;
+    width: 8px;
+    height: 8px;
+    animation: float 14s ease-in-out infinite 3s;
+}
+
+.particle-5 {
+    bottom: 20%;
+    right: 10%;
+    width: 14px;
+    height: 14px;
+    animation: float 9s ease-in-out infinite 1.5s;
+}
+
+.particle-6 {
+    top: 45%;
+    right: 25%;
+    width: 10px;
+    height: 10px;
+    animation: float 11s ease-in-out infinite 2.5s;
+}
+
+/* Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    25% {
+        transform: translateY(-15px) translateX(15px);
+    }
+    50% {
+        transform: translateY(0) translateX(30px);
+    }
+    75% {
+        transform: translateY(15px) translateX(15px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+.title-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+    }
+}
+
+.subtitle-fade-in {
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.tags-slide-up {
+    animation: slideUp 1.5s ease-in-out 0.5s both;
+}
+
+.slide-up-animation {
+    animation: slideUp 1.5s ease-in-out 1s both;
+}
+
+.fade-in-animation {
+    animation: fadeIn 2s ease-in-out 1.5s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+.float-animation {
+    animation: float-icon 3s ease-in-out infinite;
+}
+
+.float-animation-delay {
+    animation: float-icon 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes float-icon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.illustration-container {
+    animation: appear 1s ease-in-out 0.5s both;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) rotate(3deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(3deg);
+    }
+}
+
+/* Progress indicator for PDF export */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.progress-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    width: 350px;
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #B91C1C;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+#progress-message {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2d3748;
+}
+
+#progress-status {
+    font-size: 14px;
+    color: #718096;
+    min-height: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    h2 {
+        font-size: 1.2rem !important;
+    }
+    
+    h3 {
+        font-size: 1rem !important;
+    }
+    
+    .illustration-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* PDF Export styling */
+@media print {
+    body {
+        background-color: white !important;
+    }
+    
+    .slide {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        page-break-after: always;
+        margin-bottom: 20px;
+    }
+    
+    #exportBtn, #landing-page {
+        display: none;
+    }
+    
+    #presentation-container {
+        display: block !important;
+    }
+}
+
+/* Additional styling for PDF export */
+.pdf-page {
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+
+.slide {
+    /* Ensuring content is compact enough for PDF */
+    max-height: 1100px; /* Approximately fits on A4 */
+    overflow: hidden;
+}
