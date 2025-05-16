@@ -7,6 +7,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+        
+        @media print {
+            html, body {
+                width: 297mm;
+                height: 210mm;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .slide {
+                page-break-after: always;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container-fluid">
@@ -556,7 +576,7 @@
                         </div>
                         <div class="col-md-5">
                             <div class="conclusion-img">
-                                <img src="assets/smart-city3.jpg" alt="Ilustrasi Kota Pintar" class="img-fluid smart-city-img">
+                                <img src="assets/smart-city2.jpg" alt="Ilustrasi Kota Pintar" class="img-fluid smart-city-img">
                             </div>
                         </div>
                     </div>

@@ -1441,21 +1441,72 @@ hr {
     margin-top: 50px;
 }
 
-/* PDF Export styling */
+/* Perbaikan untuk PDF Export */
 @media print {
     body {
         background-color: white;
+        margin: 0;
+        padding: 0;
     }
     
     .slide-controls {
-        display: none;
+        display: none !important;
     }
     
     .slide {
-        display: block;
-        box-shadow: none;
-        margin: 0;
-        page-break-after: always;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+        page-break-before: auto !important;
+        border: none !important;
+        overflow: visible !important;
+    }
+    
+    .slide-content {
+        padding: 20px !important;
+        transform: none !important;
+        overflow: visible !important;
+    }
+    
+    #presentation {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Pastikan tidak ada halaman kosong */
+    .slide + .slide {
+        page-break-before: always !important;
+    }
+    
+    /* Fix untuk halaman pertama */
+    #slide1 {
+        position: relative !important;
+        height: 100% !important;
+        page-break-after: always !important;
+        overflow: visible !important;
+    }
+    
+    #slide1 .slide-content {
+        height: auto !important;
+        overflow: visible !important;
+    }
+    
+    #slide1 .team-members {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+    
+    /* Mengatasi scrollbar pada referensi */
+    #slide11 .references {
+        max-height: none !important;
+        overflow: visible !important;
     }
 }
 

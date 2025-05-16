@@ -391,40 +391,69 @@ function updateFullscreenDisplay() {
     }
 }
 
-// Fungsi untuk mengekspor ke PDF
+// Fungsi untuk mengekspor ke PDF yang sudah diperbaiki
 document.getElementById('exportBtn').addEventListener('click', () => {
     // Sembunyikan kontrol slide saat ekspor
     const controls = document.querySelector('.slide-controls');
     controls.style.display = 'none';
     
+    // Tampilkan semua slide untuk ekspor
+    const slides = document.querySelectorAll('.slide');
+    slides.forEach(slide => {
+        // Reset tampilan dan styling
+        slide.style.display = 'block';
+        slide.style.height = '';
+        slide.style.width = '';
+        slide.style.margin = '0';
+        slide.style.pageBreakAfter = 'always';
+        slide.style.position = 'relative';
+        slide.style.overflow = 'visible';
+        
+        // Reset class active
+        slide.classList.remove('active');
+        
+        // Reset transformasi konten
+        const slideContent = slide.querySelector('.slide-content');
+        if (slideContent) {
+            slideContent.style.transform = '';
+            slideContent.style.height = '';
+            slideContent.style.padding = '20px';
+            slideContent.style.overflow = 'visible';
+        }
+    });
+    
+    // Persiapkan presentasi untuk ekspor
+    const presentationElement = document.getElementById('presentation');
+    presentationElement.style.display = 'block';
+    
     // Siapkan opsi untuk html2pdf
     const options = {
         filename: 'IoT_untuk_Kota_Pintar.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg', quality: 1.0 },
         html2canvas: { 
             scale: 2,
             useCORS: true,
-            logging: false
+            logging: false,
+            letterRendering: true,
+            allowTaint: true,
+            scrollX: 0,
+            scrollY: 0
         },
         jsPDF: { 
             unit: 'mm', 
             format: 'a4', 
-            orientation: 'landscape' 
+            orientation: 'landscape',
+            compress: true,
+            precision: 16
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        pagebreak: { 
+            mode: ['avoid-all', 'css', 'legacy'],
+            before: '.slide + .slide',
+            avoid: 'img'
+        }
     };
     
-    // Persiapkan elemen untuk ekspor
-    const presentationElement = document.getElementById('presentation');
-    
-    // Tampilkan semua slide untuk ekspor
-    const slides = document.querySelectorAll('.slide');
-    slides.forEach(slide => {
-        slide.style.display = 'block';
-        slide.classList.remove('active');
-    });
-    
-    // Ekspor ke PDF
+    // Ekspor ke PDF dengan callback
     html2pdf()
         .set(options)
         .from(presentationElement)
@@ -432,9 +461,21 @@ document.getElementById('exportBtn').addEventListener('click', () => {
         .then(() => {
             // Kembalikan tampilan seperti semula setelah ekspor
             controls.style.display = 'flex';
+            
             slides.forEach(slide => {
                 slide.style.display = 'none';
+                slide.style.pageBreakAfter = '';
+                slide.style.margin = '';
             });
+            
+            // Aktifkan kembali slide yang sedang ditampilkan
+            const currentSlideElement = document.getElementById('slide' + currentSlide);
+            if (currentSlideElement) {
+                currentSlideElement.classList.add('active');
+                currentSlideElement.style.display = 'block';
+            }
+            
+            // Tampilkan kembali presentasi dengan benar
             showSlide(currentSlide);
         });
 });
