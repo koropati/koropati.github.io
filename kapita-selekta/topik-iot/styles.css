@@ -183,25 +183,21 @@ hr {
     font-size: 1.2rem;
 }
 
-/* ==================== COVER SLIDE ==================== */
+/* ==================== COVER SLIDE WITH SMART CITY BACKGROUND ==================== */
 .cover-slide {
-    background: var(--bg-gradient);
+    background: 
+        linear-gradient(135deg, rgba(52, 152, 219, 0.85), rgba(26, 188, 156, 0.85)),
+        url('assets/smart-city3.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: white;
     text-align: center;
     position: relative;
+    overflow: hidden;
 }
 
-.cover-slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-    opacity: 0.3;
-}
-
+/* Pastikan konten berada di atas semua layer dengan z-index tinggi */
 .cover-slide .slide-content {
     position: relative;
     z-index: 1;
@@ -1104,7 +1100,12 @@ hr {
 
 /* ==================== THANK YOU SLIDE ==================== */
 .thank-you-slide {
-    background: var(--bg-gradient);
+    background: 
+        linear-gradient(135deg, rgba(52, 152, 219, 0.85), rgba(26, 188, 156, 0.85)),
+        url('assets/smart-city.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: white;
     text-align: center;
     position: relative;
@@ -1407,6 +1408,23 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
     margin-top: 1.5rem !important;
 }
 
+/* ==================== RESPONSIVE DESIGN FOR COVER WITH BACKGROUND ==================== */
+@media (max-width: 768px) {
+    .cover-slide::before {
+        opacity: 0.1; /* Kurangi opacity di mobile untuk readability yang lebih baik */
+        background-size: contain; /* Ubah ke contain di mobile jika perlu */
+    }
+}
+
+/* ==================== FULLSCREEN OPTIMIZATIONS FOR BACKGROUND ==================== */
+#presentation:fullscreen .cover-slide::before,
+#presentation:-webkit-full-screen .cover-slide::before,
+#presentation:-moz-full-screen .cover-slide::before,
+#presentation:-ms-fullscreen .cover-slide::before {
+    background-size: cover;
+    background-position: center center;
+}
+
 /* ==================== PDF PRINT STYLES ==================== */
 @media print {
     @page {
@@ -1502,6 +1520,20 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
+    }
+
+    /* Print optimizations for cover background */
+    .cover-slide::before {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        opacity: 0.1 !important; /* Kurangi opacity untuk print agar tinta tidak terlalu boros */
+    }
+    
+    .cover-slide::after {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 
     /* Typography for print */
