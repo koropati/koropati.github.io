@@ -1,939 +1,4 @@
-.team-members {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    padding: 5px 20px;
-}
-
-.team-list p {
-    margin: 3px 0;
-    font-size: 0.9rem;
-}
-
-.team-members-thank-you {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 5px 20px;
-}
-
-.team-members-thank-you p {
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
-/* Perbaikan untuk fullscreen mode - slide cover dan terima kasih */
-/* Perbaikan khusus untuk slide cover (Slide 1) dalam fullscreen */
-#presentation:fullscreen #slide1 .slide-content,
-#presentation:-webkit-full-screen #slide1 .slide-content,
-#presentation:-moz-full-screen #slide1 .slide-content,
-#presentation:-ms-fullscreen #slide1 .slide-content {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-#presentation:fullscreen #slide1 h1,
-#presentation:-webkit-full-screen #slide1 h1,
-#presentation:-moz-full-screen #slide1 h1,
-#presentation:-ms-fullscreen #slide1 h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-#presentation:fullscreen #slide1 h3,
-#presentation:-webkit-full-screen #slide1 h3,
-#presentation:-moz-full-screen #slide1 h3,
-#presentation:-ms-fullscreen #slide1 h3 {
-    font-size: 1.5rem;
-    margin: 5px 0 10px 0;
-}
-
-#presentation:fullscreen #slide1 .cover-icon,
-#presentation:-webkit-full-screen #slide1 .cover-icon,
-#presentation:-moz-full-screen #slide1 .cover-icon,
-#presentation:-ms-fullscreen #slide1 .cover-icon {
-    font-size: 3rem;
-    margin: 15px 0;
-}
-
-#presentation:fullscreen #slide1 .cover-icon i,
-#presentation:-webkit-full-screen #slide1 .cover-icon i,
-#presentation:-moz-full-screen #slide1 .cover-icon i,
-#presentation:-ms-fullscreen #slide1 .cover-icon i {
-    margin: 0 10px;
-}
-
-#presentation:fullscreen #slide1 .team-members,
-#presentation:-webkit-full-screen #slide1 .team-members,
-#presentation:-moz-full-screen #slide1 .team-members,
-#presentation:-ms-fullscreen #slide1 .team-members {
-    padding: 8px;
-    margin: 5px auto;
-    max-height: 40vh;
-    overflow-y: auto;
-}
-
-#presentation:fullscreen #slide1 .team-list p,
-#presentation:-webkit-full-screen #slide1 .team-list p,
-#presentation:-moz-full-screen #slide1 .team-list p,
-#presentation:-ms-fullscreen #slide1 .team-list p {
-    margin: 1px 0;
-    font-size: 0.8rem;
-    line-height: 1.2;
-}
-
-#presentation:fullscreen #slide1 .course-info,
-#presentation:-webkit-full-screen #slide1 .course-info,
-#presentation:-moz-full-screen #slide1 .course-info,
-#presentation:-ms-fullscreen #slide1 .course-info {
-    margin-top: 8px;
-    font-size: 0.85rem;
-}
-
-#presentation:fullscreen #slide12 .team-members-thank-you,
-#presentation:-webkit-full-screen #slide12 .team-members-thank-you,
-#presentation:-moz-full-screen #slide12 .team-members-thank-you,
-#presentation:-ms-fullscreen #slide12 .team-members-thank-you {
-    padding: 10px;
-    margin: 10px auto;
-}
-
-#presentation:fullscreen #slide12 .team-members-thank-you p,
-#presentation:-webkit-full-screen #slide12 .team-members-thank-you p,
-#presentation:-moz-full-screen #slide12 .team-members-thank-you p,
-#presentation:-ms-fullscreen #slide12 .team-members-thank-you p {
-    margin: 2px 0;
-    font-size: 0.85rem;
-}
-
-.course-info {
-    margin-top: 15px;
-}/* Perbaikan untuk slide Pengenalan IoT (Slide 3) */
-#presentation:fullscreen #slide3 .slide-content,
-#presentation:-webkit-full-screen #slide3 .slide-content,
-#presentation:-moz-full-screen #slide3 .slide-content,
-#presentation:-ms-fullscreen #slide3 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen #slide3 .row,
-#presentation:-webkit-full-screen #slide3 .row,
-#presentation:-moz-full-screen #slide3 .row,
-#presentation:-ms-fullscreen #slide3 .row {
-    flex: 1;
-    display: flex;
-    align-items: flex-start;
-}
-
-#presentation:fullscreen #slide3 h4,
-#presentation:-webkit-full-screen #slide3 h4,
-#presentation:-moz-full-screen #slide3 h4,
-#presentation:-ms-fullscreen #slide3 h4 {
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-}
-
-#presentation:fullscreen #slide3 ul,
-#presentation:-webkit-full-screen #slide3 ul,
-#presentation:-moz-full-screen #slide3 ul,
-#presentation:-ms-fullscreen #slide3 ul {
-    padding-left: 15px;
-    margin: 5px 0;
-}
-
-#presentation:fullscreen #slide3 li,
-#presentation:-webkit-full-screen #slide3 li,
-#presentation:-moz-full-screen #slide3 li,
-#presentation:-ms-fullscreen #slide3 li {
-    margin-bottom: 5px;
-    font-size: 0.85rem;
-}
-
-#presentation:fullscreen #slide3 .component-box,
-#presentation:-webkit-full-screen #slide3 .component-box,
-#presentation:-moz-full-screen #slide3 .component-box,
-#presentation:-ms-fullscreen #slide3 .component-box {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-#presentation:fullscreen #slide3 .component-item,
-#presentation:-webkit-full-screen #slide3 .component-item,
-#presentation:-moz-full-screen #slide3 .component-item,
-#presentation:-ms-fullscreen #slide3 .component-item {
-    padding: 10px;
-}
-
-#presentation:fullscreen #slide3 .component-item i,
-#presentation:-webkit-full-screen #slide3 .component-item i,
-#presentation:-moz-full-screen #slide3 .component-item i,
-#presentation:-ms-fullscreen #slide3 .component-item i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
-
-#presentation:fullscreen #slide3 .component-item h5,
-#presentation:-webkit-full-screen #slide3 .component-item h5,
-#presentation:-moz-full-screen #slide3 .component-item h5,
-#presentation:-ms-fullscreen #slide3 .component-item h5 {
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide3 .component-item p,
-#presentation:-webkit-full-screen #slide3 .component-item p,
-#presentation:-moz-full-screen #slide3 .component-item p,
-#presentation:-ms-fullscreen #slide3 .component-item p {
-    margin: 0;
-    font-size: 0.8rem;
-}
-
-#presentation:fullscreen #slide3 .quote-box,
-#presentation:-webkit-full-screen #slide3 .quote-box,
-#presentation:-moz-full-screen #slide3 .quote-box,
-#presentation:-ms-fullscreen #slide3 .quote-box {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.85rem;
-}
-
-/* Perbaikan untuk slide Referensi (Slide 11) */
-#presentation:fullscreen #slide11 .slide-content,
-#presentation:-webkit-full-screen #slide11 .slide-content,
-#presentation:-moz-full-screen #slide11 .slide-content,
-#presentation:-ms-fullscreen #slide11 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-#presentation:fullscreen #slide11 .references,
-#presentation:-webkit-full-screen #slide11 .references,
-#presentation:-moz-full-screen #slide11 .references,
-#presentation:-ms-fullscreen #slide11 .references {
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-#presentation:fullscreen #slide11 .references ol,
-#presentation:-webkit-full-screen #slide11 .references ol,
-#presentation:-moz-full-screen #slide11 .references ol,
-#presentation:-ms-fullscreen #slide11 .references ol {
-    padding-left: 25px;
-    margin: 5px 0;
-}
-
-#presentation:fullscreen #slide11 .references li,
-#presentation:-webkit-full-screen #slide11 .references li,
-#presentation:-moz-full-screen #slide11 .references li,
-#presentation:-ms-fullscreen #slide11 .references li {
-    margin-bottom: 8px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-}
-
-/* Memastikan scrollbar referensi terlihat baik */
-#presentation:fullscreen #slide11 .references::-webkit-scrollbar,
-#presentation:-webkit-full-screen #slide11 .references::-webkit-scrollbar,
-#presentation:-moz-full-screen #slide11 .references::-webkit-scrollbar,
-#presentation:-ms-fullscreen #slide11 .references::-webkit-scrollbar {
-    width: 5px;
-}
-
-#presentation:fullscreen #slide11 .references::-webkit-scrollbar-track,
-#presentation:-webkit-full-screen #slide11 .references::-webkit-scrollbar-track,
-#presentation:-moz-full-screen #slide11 .references::-webkit-scrollbar-track,
-#presentation:-ms-fullscreen #slide11 .references::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-#presentation:fullscreen #slide11 .references::-webkit-scrollbar-thumb,
-#presentation:-webkit-full-screen #slide11 .references::-webkit-scrollbar-thumb,
-#presentation:-moz-full-screen #slide11 .references::-webkit-scrollbar-thumb,
-#presentation:-ms-fullscreen #slide11 .references::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
-}/* Perbaikan khusus untuk slide-slide yang masih terpotong */
-
-/* 1. Konsep Kota Pintar (Slide 4) */
-#presentation:fullscreen #slide4 .slide-content,
-#presentation:-webkit-full-screen #slide4 .slide-content,
-#presentation:-moz-full-screen #slide4 .slide-content,
-#presentation:-ms-fullscreen #slide4 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-#presentation:fullscreen #slide4 .smart-city-pillars,
-#presentation:-webkit-full-screen #slide4 .smart-city-pillars,
-#presentation:-moz-full-screen #slide4 .smart-city-pillars,
-#presentation:-ms-fullscreen #slide4 .smart-city-pillars {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 15px;
-}
-
-#presentation:fullscreen #slide4 .pillar-item,
-#presentation:-webkit-full-screen #slide4 .pillar-item,
-#presentation:-moz-full-screen #slide4 .pillar-item,
-#presentation:-ms-fullscreen #slide4 .pillar-item {
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide4 .pillar-item i,
-#presentation:-webkit-full-screen #slide4 .pillar-item i,
-#presentation:-moz-full-screen #slide4 .pillar-item i,
-#presentation:-ms-fullscreen #slide4 .pillar-item i {
-    font-size: 1.8rem;
-}
-
-#presentation:fullscreen #slide4 .pillar-item h5,
-#presentation:-webkit-full-screen #slide4 .pillar-item h5,
-#presentation:-moz-full-screen #slide4 .pillar-item h5,
-#presentation:-ms-fullscreen #slide4 .pillar-item h5 {
-    margin: 5px 0;
-    font-size: 0.95rem;
-}
-
-#presentation:fullscreen #slide4 .pillar-item p,
-#presentation:-webkit-full-screen #slide4 .pillar-item p,
-#presentation:-moz-full-screen #slide4 .pillar-item p,
-#presentation:-ms-fullscreen #slide4 .pillar-item p {
-    margin: 0;
-    font-size: 0.85rem;
-}
-
-/* 2. Studi Kasus (Slide 6) */
-#presentation:fullscreen #slide6 .slide-content,
-#presentation:-webkit-full-screen #slide6 .slide-content,
-#presentation:-moz-full-screen #slide6 .slide-content,
-#presentation:-ms-fullscreen #slide6 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen #slide6 .row,
-#presentation:-webkit-full-screen #slide6 .row,
-#presentation:-moz-full-screen #slide6 .row,
-#presentation:-ms-fullscreen #slide6 .row {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-}
-
-#presentation:fullscreen #slide6 .card-body,
-#presentation:-webkit-full-screen #slide6 .card-body,
-#presentation:-moz-full-screen #slide6 .card-body,
-#presentation:-ms-fullscreen #slide6 .card-body {
-    font-size: 0.9rem;
-    padding: 10px;
-}
-
-#presentation:fullscreen #slide6 .card-body ul,
-#presentation:-webkit-full-screen #slide6 .card-body ul,
-#presentation:-moz-full-screen #slide6 .card-body ul,
-#presentation:-ms-fullscreen #slide6 .card-body ul {
-    padding-left: 15px;
-    margin: 5px 0;
-}
-
-#presentation:fullscreen #slide6 .card-body li,
-#presentation:-webkit-full-screen #slide6 .card-body li,
-#presentation:-moz-full-screen #slide6 .card-body li,
-#presentation:-ms-fullscreen #slide6 .card-body li {
-    margin-bottom: 3px;
-    font-size: 0.85rem;
-}
-
-/* 3. Teknologi Pendukung (Slide 7) */
-#presentation:fullscreen #slide7 .slide-content,
-#presentation:-webkit-full-screen #slide7 .slide-content,
-#presentation:-moz-full-screen #slide7 .slide-content,
-#presentation:-ms-fullscreen #slide7 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen #slide7 .tech-pillar,
-#presentation:-webkit-full-screen #slide7 .tech-pillar,
-#presentation:-moz-full-screen #slide7 .tech-pillar,
-#presentation:-ms-fullscreen #slide7 .tech-pillar {
-    padding: 15px;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide7 .tech-pillar ul,
-#presentation:-webkit-full-screen #slide7 .tech-pillar ul,
-#presentation:-moz-full-screen #slide7 .tech-pillar ul,
-#presentation:-ms-fullscreen #slide7 .tech-pillar ul {
-    padding-left: 15px;
-    margin: 5px 0;
-}
-
-#presentation:fullscreen #slide7 .tech-pillar li,
-#presentation:-webkit-full-screen #slide7 .tech-pillar li,
-#presentation:-moz-full-screen #slide7 .tech-pillar li,
-#presentation:-ms-fullscreen #slide7 .tech-pillar li {
-    margin-bottom: 3px;
-    font-size: 0.85rem;
-}
-
-#presentation:fullscreen #slide7 .quote-box,
-#presentation:-webkit-full-screen #slide7 .quote-box,
-#presentation:-moz-full-screen #slide7 .quote-box,
-#presentation:-ms-fullscreen #slide7 .quote-box {
-    margin-top: 10px;
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-/* 4. Tantangan Implementasi (Slide 8) */
-#presentation:fullscreen #slide8 .slide-content,
-#presentation:-webkit-full-screen #slide8 .slide-content,
-#presentation:-moz-full-screen #slide8 .slide-content,
-#presentation:-ms-fullscreen #slide8 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen #slide8 .challenge-box,
-#presentation:-webkit-full-screen #slide8 .challenge-box,
-#presentation:-moz-full-screen #slide8 .challenge-box,
-#presentation:-ms-fullscreen #slide8 .challenge-box {
-    margin-bottom: 15px;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide8 .challenge-content ul,
-#presentation:-webkit-full-screen #slide8 .challenge-content ul,
-#presentation:-moz-full-screen #slide8 .challenge-content ul,
-#presentation:-ms-fullscreen #slide8 .challenge-content ul {
-    padding-left: 15px;
-    margin: 5px 0;
-}
-
-#presentation:fullscreen #slide8 .challenge-content li,
-#presentation:-webkit-full-screen #slide8 .challenge-content li,
-#presentation:-moz-full-screen #slide8 .challenge-content li,
-#presentation:-ms-fullscreen #slide8 .challenge-content li {
-    margin-bottom: 3px;
-    font-size: 0.85rem;
-}
-
-/* 5. Peluang dan Masa Depan (Slide 9) */
-#presentation:fullscreen #slide9 .slide-content,
-#presentation:-webkit-full-screen #slide9 .slide-content,
-#presentation:-moz-full-screen #slide9 .slide-content,
-#presentation:-ms-fullscreen #slide9 .slide-content {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen #slide9 .trend-item,
-#presentation:-webkit-full-screen #slide9 .trend-item,
-#presentation:-moz-full-screen #slide9 .trend-item,
-#presentation:-ms-fullscreen #slide9 .trend-item {
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide9 .trend-item h5,
-#presentation:-webkit-full-screen #slide9 .trend-item h5,
-#presentation:-moz-full-screen #slide9 .trend-item h5,
-#presentation:-ms-fullscreen #slide9 .trend-item h5 {
-    margin: 0 0 3px 0;
-    font-size: 0.95rem;
-}
-
-#presentation:fullscreen #slide9 .trend-item p,
-#presentation:-webkit-full-screen #slide9 .trend-item p,
-#presentation:-moz-full-screen #slide9 .trend-item p,
-#presentation:-ms-fullscreen #slide9 .trend-item p {
-    margin: 0;
-    font-size: 0.85rem;
-}
-
-#presentation:fullscreen #slide9 .metric-card,
-#presentation:-webkit-full-screen #slide9 .metric-card,
-#presentation:-moz-full-screen #slide9 .metric-card,
-#presentation:-ms-fullscreen #slide9 .metric-card {
-    padding: 10px;
-    font-size: 0.9rem;
-}
-
-#presentation:fullscreen #slide9 .metric-value,
-#presentation:-webkit-full-screen #slide9 .metric-value,
-#presentation:-moz-full-screen #slide9 .metric-value,
-#presentation:-ms-fullscreen #slide9 .metric-value {
-    font-size: 1.5rem;
-}
-
-/* Perbaikan untuk semua slide saat fullscreen */
-#presentation:fullscreen h2,
-#presentation:-webkit-full-screen h2,
-#presentation:-moz-full-screen h2,
-#presentation:-ms-fullscreen h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-#presentation:fullscreen h4,
-#presentation:-webkit-full-screen h4,
-#presentation:-moz-full-screen h4,
-#presentation:-ms-fullscreen h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-#presentation:fullscreen hr,
-#presentation:-webkit-full-screen hr,
-#presentation:-moz-full-screen hr,
-#presentation:-ms-fullscreen hr {
-    margin-bottom: 15px;
-}/* Perbaikan Full Screen untuk Semua Slide */
-
-/* Aturan dasar untuk semua slide dalam fullscreen */
-#presentation:fullscreen,
-#presentation:-webkit-full-screen,
-#presentation:-moz-full-screen,
-#presentation:-ms-fullscreen {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    background-color: white;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-#presentation:fullscreen .slide.active,
-#presentation:-webkit-full-screen .slide.active,
-#presentation:-moz-full-screen .slide.active,
-#presentation:-ms-fullscreen .slide.active {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    overflow: hidden; /* Penting! Menghilangkan scrollbar */
-}
-
-#presentation:fullscreen .slide-content,
-#presentation:-webkit-full-screen .slide-content,
-#presentation:-moz-full-screen .slide-content,
-#presentation:-ms-fullscreen .slide-content {
-    padding: 40px;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden; /* Penting! Menghilangkan scrollbar */
-}
-
-/* Perbaikan khusus untuk slide daftar isi (slide 2) */
-#presentation:fullscreen #slide2 .slide-content,
-#presentation:-webkit-full-screen #slide2 .slide-content,
-#presentation:-moz-full-screen #slide2 .slide-content,
-#presentation:-ms-fullscreen #slide2 .slide-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-#presentation:fullscreen #slide2 .content-list,
-#presentation:-webkit-full-screen #slide2 .content-list,
-#presentation:-moz-full-screen #slide2 .content-list,
-#presentation:-ms-fullscreen #slide2 .content-list {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    max-height: calc(100vh - 150px);
-}
-
-#presentation:fullscreen #slide2 .content-list li,
-#presentation:-webkit-full-screen #slide2 .content-list li,
-#presentation:-moz-full-screen #slide2 .content-list li,
-#presentation:-ms-fullscreen #slide2 .content-list li {
-    padding: 8px 0;
-    font-size: 1.1rem;
-}body.is-fullscreen {
-    overflow: hidden;
-}
-
-body.is-fullscreen .slide.active {
-    font-size: 120%; /* Perbesar teks untuk keterbacaan */
-}
-
-/* Responsif slide di mode fullscreen */
-#presentation:fullscreen .slide.active,
-#presentation:-webkit-full-screen .slide.active,
-#presentation:-moz-full-screen .slide.active,
-#presentation:-ms-fullscreen .slide.active {
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    padding: 20px;
-    margin: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen .slide-content,
-#presentation:-webkit-full-screen .slide-content,
-#presentation:-moz-full-screen .slide-content,
-#presentation:-ms-fullscreen .slide-content {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    overflow: auto;
-    position: relative;
-    box-sizing: border-box;
-}
-
-/* Tampilan responsif untuk konten aplikasi */
-.application-grid {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.application-item {
-    width: 100%;
-    margin-bottom: 15px;
-    height: auto;
-}
-
-.application-desc {
-    padding: 10px;
-}
-
-.application-desc ul {
-    padding-left: 15px;
-    margin: 5px 0;
-}
-
-.application-desc li {
-    margin-bottom: 5px;
-    line-height: 1.3;
-}
-
-/* Ukuran teks responsif */
-@media (max-height: 700px) {
-    h2 {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-    }
-    
-    h4 {
-        font-size: 1.1rem;
-    }
-    
-    p, li {
-        font-size: 0.9rem;
-    }
-    
-    .slide-content {
-        padding: 15px;
-    }
-}
-
-/* Mengoptimalkan layout untuk layar kecil */
-@media (max-width: 992px) {
-    .component-box, 
-    .smart-city-pillars, 
-    .impact-metrics,
-    .tech-pillar,
-    .case-study-card {
-        margin-bottom: 15px;
-    }
-}
-
-/* Responsif slide dalam fullscreen mode */
-body.is-fullscreen .slide-content {
-    transform-origin: top center;
-    transform: scale(1);
-}
-
-/* Fix untuk masalah konten yang terpotong seperti pada screenshot */
-body.is-fullscreen .application-grid .col-md-3 {
-    padding: 5px;
-}
-
-body.is-fullscreen .application-item {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-body.is-fullscreen .application-desc {
-    flex: 1;
-    font-size: 0.9em;
-    overflow: visible;
-}
-
-body.is-fullscreen .application-desc h4 {
-    font-size: 1em;
-    margin: 5px 0;
-}
-
-body.is-fullscreen .application-desc ul {
-    margin: 5px 0;
-}
-
-body.is-fullscreen .application-desc li {
-    margin-bottom: 3px;
-    line-height: 1.2;
-}
-
-/* Menyesuaikan konten slide "Penerapan IoT dalam Kota Pintar" yang di screenshot */
-/* Styling untuk slide Penerapan IoT */
-.penerapan-iot-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    width: 100%;
-    padding: 10px;
-}
-
-.penerapan-item {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.penerapan-header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--light-color);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.penerapan-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--bg-gradient);
-    color: white;
-    font-size: 1.5rem;
-    margin-right: 15px;
-    flex-shrink: 0;
-}
-
-.penerapan-header h4 {
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.penerapan-body {
-    padding: 10px 15px;
-    flex: 1;
-    background-color: white;
-}
-
-.penerapan-body ul {
-    padding-left: 20px;
-    margin: 0;
-}
-
-.penerapan-body li {
-    margin-bottom: 5px;
-    font-size: 0.95rem;
-}
-
-@media (max-width: 768px) {
-    .penerapan-iot-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Perbaikan untuk fullscreen pada slide 5 */
-#presentation:fullscreen #slide5 .penerapan-iot-grid,
-#presentation:-webkit-full-screen #slide5 .penerapan-iot-grid,
-#presentation:-moz-full-screen #slide5 .penerapan-iot-grid,
-#presentation:-ms-fullscreen #slide5 .penerapan-iot-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: calc(100vh - 150px);
-    overflow: visible;
-}
-
-/* Perbaikan responsive untuk semua slide */
-.slide .row {
-    width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-/* Memastikan semua konten terlihat */
-body.is-fullscreen .slide-content {
-    overflow: auto;
-    max-height: 100vh;
-}.keyboard-hint {
-    margin-left: 10px;
-    color: #6c757d;
-    font-size: 0.9rem;
-}
-
-.keyboard-hint kbd {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
-    color: #212529;
-    display: inline-block;
-    font-size: 0.8rem;
-    line-height: 1;
-    padding: 3px 6px;
-    margin: 0 2px;
-}/* Fullscreen styling */
-#presentation:-webkit-full-screen {
-    background: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#presentation:-webkit-full-screen .slide.active {
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 100vw;
-    height: 100vh;
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#presentation:-moz-full-screen {
-    background: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#presentation:-moz-full-screen .slide.active {
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 100vw;
-    height: 100vh;
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#presentation:-ms-fullscreen {
-    background: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#presentation:-ms-fullscreen .slide.active {
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 100vw;
-    height: 100vh;
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#presentation:fullscreen {
-    background: white;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-#presentation:fullscreen .slide.active {
-    max-width: 100vw;
-    max-height: 100vh;
-    width: 100vw;
-    height: 100vh;
-    box-shadow: none;
-    margin: 0;
-    border-radius: 0;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-#presentation:fullscreen .slide-content {
-    padding: 40px;
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-}/* Gaya dasar untuk presentasi */
+/* ==================== ROOT VARIABLES ==================== */
 :root {
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
@@ -946,325 +11,635 @@ body.is-fullscreen .slide-content {
     --gray-color: #95a5a6;
     --text-color: #333;
     --bg-gradient: linear-gradient(135deg, var(--primary-color), #1abc9c);
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     margin: 0;
     padding: 0;
     color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Slide Controls */
+/* ==================== SLIDE CONTROLS ==================== */
 .slide-controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-light);
     z-index: 1000;
-}
-
-/* Sembunyikan kontrol saat fullscreen */
-#presentation:fullscreen ~ .slide-controls,
-#presentation:-webkit-full-screen ~ .slide-controls,
-#presentation:-moz-full-screen ~ .slide-controls,
-#presentation:-ms-fullscreen ~ .slide-controls {
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-/* Tampilkan kontrol saat mouse bergerak di fullscreen */
-#presentation:fullscreen:hover ~ .slide-controls,
-#presentation:-webkit-full-screen:hover ~ .slide-controls,
-#presentation:-moz-full-screen:hover ~ .slide-controls,
-#presentation:-ms-fullscreen:hover ~ .slide-controls {
-    opacity: 1;
+    transition: var(--transition);
 }
 
 .slide-controls button {
-    margin: 0 5px;
+    margin: 0 8px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    transition: var(--transition);
+    font-size: 1.1rem;
+}
+
+.slide-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
 }
 
 .slide-controls button#exportBtn {
-    border-radius: 20px;
+    border-radius: 25px;
     width: auto;
-    padding: 0 15px;
+    padding: 0 20px;
+    height: 45px;
 }
 
 #slideCounter {
-    margin: 0 20px;
-    font-weight: bold;
+    margin: 0 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-color);
 }
 
-/* Slide dasar */
+.keyboard-hint {
+    margin-left: 20px;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.keyboard-hint kbd {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    color: #212529;
+    display: inline-block;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 4px 8px;
+    margin: 0 3px;
+}
+
+/* ==================== SLIDE BASE STYLES ==================== */
 .slide {
-    width: 297mm;  /* Ukuran A4 landscape */
-    height: 210mm;  /* Ukuran A4 landscape */
-    margin: 20px auto;
-    background-color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: var(--shadow-heavy);
     overflow: hidden;
     display: none;
     page-break-after: always;
+    page-break-inside: avoid;
+    border-radius: 0;
+    position: relative;
 }
 
 .slide.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
 .slide-content {
-    padding: 40px;
+    padding: 50px;
     height: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Header Judul */
+/* ==================== TYPOGRAPHY ==================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
 h2 {
     color: var(--primary-color);
-    margin-top: 0;
-    margin-bottom: 15px;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
     font-weight: 700;
+}
+
+h4 {
+    color: var(--dark-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    color: var(--dark-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
 }
 
 hr {
     border: none;
-    height: 3px;
+    height: 4px;
     background: var(--bg-gradient);
-    margin-bottom: 25px;
+    margin-bottom: 2rem;
+    border-radius: 2px;
 }
 
-/* Slide Cover */
+/* ==================== CUSTOM LISTS ==================== */
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.custom-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ==================== COVER SLIDE ==================== */
 .cover-slide {
     background: var(--bg-gradient);
     color: white;
     text-align: center;
+    position: relative;
+}
+
+.cover-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="60" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.cover-slide .slide-content {
+    position: relative;
+    z-index: 1;
 }
 
 .cover-slide h1 {
-    font-weight: 700;
-    margin-bottom: 20px;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.cover-slide h3 {
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 2rem;
 }
 
 .cover-icon {
-    font-size: 5rem;
-    margin: 40px 0;
+    font-size: 6rem;
+    margin: 3rem 0;
+    opacity: 0.9;
 }
 
 .cover-icon i {
-    margin: 0 15px;
+    margin: 0 20px;
+    animation: float 3s ease-in-out infinite;
 }
 
-/* Slide Daftar Isi */
+.cover-icon i:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.cover-icon i:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.cover-info p {
+    margin: 0.5rem 0;
+    font-weight: 300;
+}
+
+/* ==================== MEMBER CARDS ==================== */
+.member-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    height: 100%;
+    border: 1px solid rgba(52, 152, 219, 0.1);
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
+}
+
+.member-photo {
+    margin-bottom: 20px;
+}
+
+.photo-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--bg-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+    box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+    padding: 5px; /* Space for gradient border */
+}
+
+/* Photo styling for real member images */
+.member-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: none;
+    display: block;
+    z-index: 2;
+    position: relative;
+}
+
+/* Fallback icon when image fails to load */
+.photo-fallback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: white;
+    z-index: 1;
+    display: none; /* Hidden by default */
+}
+
+/* Show fallback when image fails */
+.member-img:not([src]), 
+.member-img[src=""], 
+.member-img:invalid {
+    display: none;
+}
+
+.member-img:not([src]) + .photo-fallback,
+.member-img[src=""] + .photo-fallback,
+.member-img:invalid + .photo-fallback {
+    display: block;
+}
+
+/* Handle broken image with JavaScript fallback */
+.photo-placeholder .member-img {
+    transition: opacity 0.3s ease;
+}
+
+.photo-placeholder .member-img.error {
+    display: none;
+}
+
+.photo-placeholder .member-img.error + .photo-fallback {
+    display: block;
+}
+
+.member-info h5 {
+    color: var(--dark-color);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.member-info .nim {
+    color: var(--gray-color);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ==================== CONTENT LIST ==================== */
 .content-list {
     list-style-type: none;
     padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .content-list li {
-    padding: 8px 0;
-    font-size: 1.2rem;
+    padding: 15px 0;
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    transition: var(--transition);
+    border-radius: var(--border-radius);
+    padding-left: 20px;
+}
+
+.content-list li:hover {
+    background: rgba(52, 152, 219, 0.05);
+    transform: translateX(10px);
 }
 
 .list-number {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    background-color: var(--primary-color);
+    background: var(--bg-gradient);
     color: white;
     font-weight: bold;
-    margin-right: 15px;
-    font-size: 0.95rem;
+    margin-right: 20px;
+    font-size: 1rem;
+    box-shadow: var(--shadow-light);
 }
 
-/* Slide Pengenalan */
-.component-box {
+/* ==================== COMPONENT GRID ==================== */
+.component-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
 }
 
 .component-item {
-    background-color: var(--light-color);
-    padding: 15px;
-    border-radius: 8px;
+    background: white;
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    border-radius: var(--border-radius);
+    padding: 25px;
     text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+}
+
+.component-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
 }
 
 .component-item i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .component-item h5 {
-    margin: 10px 0;
+    margin: 15px 0 10px 0;
     color: var(--dark-color);
+    font-weight: 600;
 }
 
+.component-item p {
+    color: var(--gray-color);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==================== QUOTE BOX ==================== */
 .quote-box {
-    background-color: rgba(52, 152, 219, 0.1);
-    border-left: 4px solid var(--primary-color);
-    padding: 15px;
-    margin-top: 25px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(26, 188, 156, 0.1));
+    border-left: 5px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 25px 0;
     position: relative;
+    box-shadow: var(--shadow-light);
 }
 
 .quote-box i {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
     font-size: 1.5rem;
-    color: rgba(52, 152, 219, 0.3);
+    color: rgba(52, 152, 219, 0.4);
 }
 
 .quote-box p {
-    margin-left: 25px;
+    margin-left: 30px;
     font-style: italic;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--dark-color);
 }
 
 .quote-box small {
     display: block;
     text-align: right;
     color: var(--gray-color);
+    font-weight: 600;
+    margin-left: 30px;
 }
 
-/* Slide Smart City */
+/* ==================== SMART CITY PILLARS ==================== */
 .smart-city-pillars {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
 }
 
 .pillar-item {
-    background-color: var(--light-color);
-    padding: 15px;
-    border-radius: 8px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
     text-align: center;
-    transition: transform 0.3s;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+    border: 2px solid transparent;
 }
 
 .pillar-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
 }
 
 .pillar-item i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .pillar-item h5 {
-    margin: 10px 0;
+    margin: 15px 0 10px 0;
     color: var(--dark-color);
+    font-weight: 600;
 }
 
-.smart-city-img {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.placeholder-img {
-    background-color: rgba(52, 152, 219, 0.1);
-    border: 2px dashed var(--primary-color);
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-.placeholder-img i {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.placeholder-img p {
-    margin: 0;
+.pillar-item p {
     color: var(--gray-color);
+    margin: 0;
+    font-size: 0.95rem;
 }
 
-/* Slide Penerapan */
-.application-grid {
-    margin-top: 20px;
+/* ==================== PENERAPAN GRID ==================== */
+.penerapan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
 }
 
-.application-item {
-    display: flex;
-    background-color: var(--light-color);
-    border-radius: 8px;
-    margin-bottom: 20px;
+/* 2-column specific layout for slide 6 */
+.penerapan-grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 25px;
+    align-items: start;
+}
+
+.penerapan-item {
+    background: white;
+    border-radius: var(--border-radius);
     overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    height: 100%;
 }
 
-.application-icon {
-    background: var(--bg-gradient);
-    color: white;
+.penerapan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.penerapan-header {
+    display: flex;
+    align-items: center;
     padding: 20px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(26, 188, 156, 0.1));
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.penerapan-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg-gradient);
+    color: white;
+    font-size: 1.8rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-light);
 }
 
-.application-desc {
-    padding: 15px;
-    flex: 1;
-}
-
-.application-desc h4 {
-    margin-top: 0;
+.penerapan-header h4 {
+    margin: 0;
     color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
-.application-desc ul {
+.penerapan-body {
+    padding: 25px;
+    background: white;
+}
+
+.penerapan-body ul {
     padding-left: 20px;
+    margin: 0;
 }
 
-/* Slide Studi Kasus */
+.penerapan-body li {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.penerapan-body li:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================== CASE STUDY CARDS ==================== */
 .case-study-card {
-    background-color: white;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background: white;
+    box-shadow: var(--shadow-medium);
+    border-radius: var(--border-radius);
     overflow: hidden;
-    height: 100%;
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
 }
 
 .card-header {
     background: var(--bg-gradient);
     color: white;
-    padding: 15px;
+    padding: 20px;
     display: flex;
     align-items: center;
 }
 
 .card-header i {
     font-size: 1.5rem;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .card-header h4 {
     margin: 0;
+    font-weight: 600;
 }
 
 .card-body {
-    padding: 15px;
+    padding: 20px;
+}
+
+.card-body ul {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.card-body li {
+    margin-bottom: 8px;
+    line-height: 1.5;
 }
 
 .source {
@@ -1272,26 +647,38 @@ hr {
     font-style: italic;
     font-size: 0.9rem;
     text-align: right;
+    margin: 0;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* Slide Teknologi */
+/* ==================== TECH PILLARS ==================== */
 .tech-pillar {
-    background-color: var(--light-color);
-    border-radius: 8px;
-    padding: 20px;
-    height: 100%;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
     text-align: center;
+    box-shadow: var(--shadow-light);
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    transition: var(--transition);
+}
+
+.tech-pillar:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
 }
 
 .tech-icon {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--primary-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .tech-pillar h4 {
     color: var(--dark-color);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .tech-pillar ul {
@@ -1299,84 +686,134 @@ hr {
     padding-left: 20px;
 }
 
-/* Slide Tantangan */
+.tech-pillar li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ==================== CHALLENGE BOXES ==================== */
 .challenge-box {
     display: flex;
-    background-color: var(--light-color);
-    border-radius: 8px;
-    margin-bottom: 20px;
+    background: white;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
     overflow: hidden;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.challenge-box:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
 }
 
 .challenge-icon {
     background: var(--bg-gradient);
     color: white;
-    padding: 20px;
+    padding: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    min-width: 80px;
 }
 
 .challenge-content {
-    padding: 15px;
+    padding: 20px;
     flex: 1;
 }
 
 .challenge-content h4 {
     margin-top: 0;
+    margin-bottom: 15px;
     color: var(--primary-color);
+    font-weight: 600;
 }
 
 .challenge-content ul {
     padding-left: 20px;
+    margin: 0;
 }
 
-/* Slide Masa Depan */
+.challenge-content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* ==================== FUTURE TRENDS ==================== */
 .future-trends {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .trend-item {
     display: flex;
     align-items: center;
-    background-color: var(--light-color);
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.trend-item:hover {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-medium);
 }
 
 .trend-item i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    margin-right: 15px;
-    padding: 10px;
-}
-
-.trend-item h5 {
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: var(--dark-color);
-}
-
-.impact-metrics {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-}
-
-.metric-card {
-    background-color: var(--light-color);
-    border-radius: 8px;
+    margin-right: 20px;
     padding: 15px;
+    background: rgba(52, 152, 219, 0.1);
+    border-radius: 50%;
+    min-width: 70px;
     text-align: center;
 }
 
+.trend-item h5 {
+    margin: 0 0 5px 0;
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.trend-item p {
+    margin: 0;
+    color: var(--gray-color);
+    line-height: 1.4;
+}
+
+/* ==================== IMPACT METRICS ==================== */
+.impact-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.metric-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    transition: var(--transition);
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--primary-color);
+}
+
 .metric-value {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1386,77 +823,633 @@ hr {
     margin-right: 10px;
 }
 
-/* Slide Kesimpulan */
+.metric-card p {
+    margin: 0;
+    color: var(--dark-color);
+    font-weight: 500;
+}
+
+/* ==================== RESEARCH ITEMS ==================== */
+.research-item {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    margin-bottom: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.research-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.research-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(26, 188, 156, 0.1));
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.research-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-gradient);
+    color: white;
+    font-size: 1.3rem;
+    margin-right: 15px;
+    flex-shrink: 0;
+    box-shadow: var(--shadow-light);
+}
+
+.research-header h4 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.research-content {
+    padding: 20px;
+}
+
+.research-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.research-source {
+    font-size: 0.85rem;
+    color: var(--gray-color);
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ==================== CONCLUSION STYLES ==================== */
 .conclusion-points {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .point-item {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.point-item:hover {
+    background: rgba(52, 152, 219, 0.1);
+    transform: translateX(10px);
 }
 
 .point-item i {
     color: var(--success-color);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-right: 15px;
     margin-top: 3px;
+    flex-shrink: 0;
 }
 
 .point-item p {
     margin: 0;
     flex: 1;
+    font-weight: 500;
 }
 
-/* Slide Referensi */
+/* Smart City Illustration Container */
+.conclusion-visual-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.smart-city-illustration {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(26, 188, 156, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smart-city-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.smart-city-img:hover {
+    transform: scale(1.05);
+}
+
+/* Fallback when image is not available */
+.illustration-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-gradient);
+    color: white;
+}
+
+.fallback-visual {
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.fallback-visual i {
+    font-size: 3rem;
+    margin: 0 15px;
+    opacity: 0.9;
+}
+
+.fallback-visual i:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.fallback-visual i:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.fallback-visual i:nth-child(3) {
+    animation-delay: 1s;
+}
+
+/* Show fallback when image fails */
+.smart-city-img:not([src]), 
+.smart-city-img[src=""], 
+.smart-city-img.error {
+    display: none;
+}
+
+.smart-city-img:not([src]) ~ .illustration-fallback,
+.smart-city-img[src=""] ~ .illustration-fallback,
+.smart-city-img.error ~ .illustration-fallback {
+    display: flex;
+}
+
+/* Conclusion Message */
+.conclusion-message {
+    text-align: center;
+    padding: 25px;
+    background: var(--bg-gradient);
+    border-radius: var(--border-radius);
+    color: white;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: var(--shadow-medium);
+}
+
+.conclusion-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.conclusion-message h4 {
+    margin: 0 0 15px 0;
+    color: white;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.conclusion-tagline {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Legacy conclusion visual (kept for backward compatibility) */
+.conclusion-visual {
+    text-align: center;
+    padding: 30px;
+    background: var(--bg-gradient);
+    border-radius: var(--border-radius);
+    color: white;
+}
+
+.conclusion-visual .conclusion-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.conclusion-visual h4 {
+    margin: 0;
+    color: white;
+    font-weight: 600;
+}
+
+/* ==================== REFERENCES ==================== */
 .references {
-    padding-left: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 20px;
 }
 
 .references ol {
-    padding-left: 20px;
+    padding-left: 25px;
+    margin: 0;
 }
 
 .references li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.03);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
 }
 
-/* Slide Terima Kasih */
+.references::-webkit-scrollbar {
+    width: 8px;
+}
+
+.references::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.references::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+/* ==================== THANK YOU SLIDE ==================== */
 .thank-you-slide {
+    background: var(--bg-gradient);
+    color: white;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.thank-you-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    opacity: 0.3;
+}
+
+.thank-you-slide .slide-content {
+    position: relative;
+    z-index: 1;
+}
+
+.thank-you-slide h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-weight: 800;
+}
+
+.thank-you-slide h4 {
+    color: white;
+    font-weight: 400;
+    opacity: 0.9;
 }
 
 .thank-you-icon {
     font-size: 5rem;
-    margin: 40px 0;
+    margin: 3rem 0;
+    opacity: 0.9;
 }
 
 .thank-you-icon i {
-    margin: 0 15px;
-    color: var(--primary-color);
+    margin: 0 20px;
+    animation: bounce 2s ease-in-out infinite;
 }
 
-.contact-info {
-    margin-top: 50px;
+.thank-you-icon i:nth-child(2) {
+    animation-delay: 0.3s;
 }
 
-/* Perbaikan untuk PDF Export */
+.thank-you-icon i:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* ==================== FULLSCREEN OPTIMIZATIONS ==================== */
+body.is-fullscreen {
+    overflow: hidden;
+}
+
+#presentation:fullscreen,
+#presentation:-webkit-full-screen,
+#presentation:-moz-full-screen,
+#presentation:-ms-fullscreen {
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#presentation:fullscreen .slide.active,
+#presentation:-webkit-full-screen .slide.active,
+#presentation:-moz-full-screen .slide.active,
+#presentation:-ms-fullscreen .slide.active {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#presentation:fullscreen .slide-content,
+#presentation:-webkit-full-screen .slide-content,
+#presentation:-moz-full-screen .slide-content,
+#presentation:-ms-fullscreen .slide-content {
+    padding: 40px 60px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide controls in fullscreen but show on hover */
+#presentation:fullscreen ~ .slide-controls,
+#presentation:-webkit-full-screen ~ .slide-controls,
+#presentation:-moz-full-screen ~ .slide-controls,
+#presentation:-ms-fullscreen ~ .slide-controls {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+body:hover #presentation:fullscreen ~ .slide-controls,
+body:hover #presentation:-webkit-full-screen ~ .slide-controls,
+body:hover #presentation:-moz-full-screen ~ .slide-controls,
+body:hover #presentation:-ms-fullscreen ~ .slide-controls {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Specific optimizations for cover and thank you slides in fullscreen */
+#presentation:fullscreen #slide1.slide.active,
+#presentation:-webkit-full-screen #slide1.slide.active,
+#presentation:-moz-full-screen #slide1.slide.active,
+#presentation:-ms-fullscreen #slide1.slide.active,
+#presentation:fullscreen #slide14.slide.active,
+#presentation:-webkit-full-screen #slide14.slide.active,
+#presentation:-moz-full-screen #slide14.slide.active,
+#presentation:-ms-fullscreen #slide14.slide.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+#presentation:fullscreen #slide1 .slide-content,
+#presentation:-webkit-full-screen #slide1 .slide-content,
+#presentation:-moz-full-screen #slide1 .slide-content,
+#presentation:-ms-fullscreen #slide1 .slide-content,
+#presentation:fullscreen #slide14 .slide-content,
+#presentation:-webkit-full-screen #slide14 .slide-content,
+#presentation:-moz-full-screen #slide14 .slide-content,
+#presentation:-ms-fullscreen #slide14 .slide-content {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+#presentation:fullscreen #slide1 .container-fluid,
+#presentation:-webkit-full-screen #slide1 .container-fluid,
+#presentation:-moz-full-screen #slide1 .container-fluid,
+#presentation:-ms-fullscreen #slide1 .container-fluid,
+#presentation:fullscreen #slide14 .container-fluid,
+#presentation:-webkit-full-screen #slide14 .container-fluid,
+#presentation:-moz-full-screen #slide14 .container-fluid,
+#presentation:-ms-fullscreen #slide14 .container-fluid {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+}
+
+#presentation:fullscreen #slide1 .row,
+#presentation:-webkit-full-screen #slide1 .row,
+#presentation:-moz-full-screen #slide1 .row,
+#presentation:-ms-fullscreen #slide1 .row,
+#presentation:fullscreen #slide14 .row,
+#presentation:-webkit-full-screen #slide14 .row,
+#presentation:-moz-full-screen #slide14 .row,
+#presentation:-ms-fullscreen #slide14 .row {
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#presentation:fullscreen #slide1 .col-12,
+#presentation:-webkit-full-screen #slide1 .col-12,
+#presentation:-moz-full-screen #slide1 .col-12,
+#presentation:-ms-fullscreen #slide1 .col-12,
+#presentation:fullscreen #slide14 .col-12,
+#presentation:-webkit-full-screen #slide14 .col-12,
+#presentation:-moz-full-screen #slide14 .col-12,
+#presentation:-ms-fullscreen #slide14 .col-12 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Typography optimization for fullscreen cover and thank you slides */
+#presentation:fullscreen #slide1 h1,
+#presentation:-webkit-full-screen #slide1 h1,
+#presentation:-moz-full-screen #slide1 h1,
+#presentation:-ms-fullscreen #slide1 h1 {
+    font-size: 3.5rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1rem !important;
+    color: white !important;
+}
+
+#presentation:fullscreen #slide1 h3,
+#presentation:-webkit-full-screen #slide1 h3,
+#presentation:-moz-full-screen #slide1 h3,
+#presentation:-ms-fullscreen #slide1 h3 {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    color: white !important;
+}
+
+#presentation:fullscreen #slide1 .cover-icon,
+#presentation:-webkit-full-screen #slide1 .cover-icon,
+#presentation:-moz-full-screen #slide1 .cover-icon,
+#presentation:-ms-fullscreen #slide1 .cover-icon {
+    font-size: 4rem !important;
+    margin: 2rem 0 !important;
+}
+
+#presentation:fullscreen #slide1 .cover-info,
+#presentation:-webkit-full-screen #slide1 .cover-info,
+#presentation:-moz-full-screen #slide1 .cover-info,
+#presentation:-ms-fullscreen #slide1 .cover-info {
+    margin-top: 1.5rem !important;
+}
+
+#presentation:fullscreen #slide14 h2,
+#presentation:-webkit-full-screen #slide14 h2,
+#presentation:-moz-full-screen #slide14 h2,
+#presentation:-ms-fullscreen #slide14 h2 {
+    font-size: 4rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 1rem !important;
+    color: white !important;
+}
+
+#presentation:fullscreen #slide14 h4,
+#presentation:-webkit-full-screen #slide14 h4,
+#presentation:-moz-full-screen #slide14 h4,
+#presentation:-ms-fullscreen #slide14 h4 {
+    font-size: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    color: white !important;
+}
+
+#presentation:fullscreen #slide14 .thank-you-icon,
+#presentation:-webkit-full-screen #slide14 .thank-you-icon,
+#presentation:-moz-full-screen #slide14 .thank-you-icon,
+#presentation:-ms-fullscreen #slide14 .thank-you-icon {
+    font-size: 4rem !important;
+    margin: 2rem 0 !important;
+}
+
+#presentation:fullscreen #slide14 .contact-info,
+#presentation:-webkit-full-screen #slide14 .contact-info,
+#presentation:-moz-full-screen #slide14 .contact-info,
+#presentation:-ms-fullscreen #slide14 .contact-info {
+    margin-top: 1.5rem !important;
+}
+
+/* ==================== PDF PRINT STYLES ==================== */
 @media print {
-    body {
-        background-color: white;
-        margin: 0;
-        padding: 0;
+    @page {
+        size: A4 landscape;
+        margin: 20mm;
     }
-    
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    html, body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        height: auto !important;
+        width: auto !important;
+        font-size: 12pt !important;
+    }
+
     .slide-controls {
         display: none !important;
     }
-    
+
+    #presentation {
+        width: 100% !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        overflow: visible !important;
+        background: white !important;
+    }
+
     .slide {
         display: block !important;
         width: 100% !important;
-        height: 100% !important;
+        height: auto !important;
+        min-height: 250mm !important;
+        max-width: 100% !important;
         box-shadow: none !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -1465,65 +1458,278 @@ hr {
         page-break-before: auto !important;
         border: none !important;
         overflow: visible !important;
-    }
-    
-    .slide-content {
-        padding: 20px !important;
-        transform: none !important;
-        overflow: visible !important;
-    }
-    
-    #presentation {
-        width: 100% !important;
-        height: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Pastikan tidak ada halaman kosong */
-    .slide + .slide {
-        page-break-before: always !important;
-    }
-    
-    /* Fix untuk halaman pertama */
-    #slide1 {
         position: relative !important;
-        height: 100% !important;
-        page-break-after: always !important;
-        overflow: visible !important;
+        background: white !important;
+        border-radius: 0 !important;
     }
-    
-    #slide1 .slide-content {
+
+    .slide:last-child {
+        page-break-after: avoid !important;
+    }
+
+    .slide-content {
+        padding: 15mm !important;
         height: auto !important;
+        min-height: 220mm !important;
         overflow: visible !important;
+        display: block !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        transform: none !important;
+        background: white !important;
     }
-    
-    #slide1 .team-members {
+
+    /* Special handling for cover and thank you slides */
+    .cover-slide, .thank-you-slide {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        min-height: 250mm !important;
+    }
+
+    .cover-slide .slide-content,
+    .thank-you-slide .slide-content {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 220mm !important;
+    }
+
+    .cover-slide .container-fluid,
+    .thank-you-slide .container-fluid {
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Typography for print */
+    h1 { font-size: 24pt !important; }
+    h2 { font-size: 20pt !important; }
+    h3 { font-size: 18pt !important; }
+    h4 { font-size: 16pt !important; }
+    h5 { font-size: 14pt !important; }
+    p, li { font-size: 12pt !important; }
+
+    /* Ensure content doesn't break across pages */
+    .member-card,
+    .component-item,
+    .pillar-item,
+    .penerapan-item,
+    .case-study-card,
+    .tech-pillar,
+    .challenge-box,
+    .trend-item,
+    .metric-card,
+    .research-item,
+    .point-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 5mm !important;
+    }
+
+    /* Fix references overflow */
+    .references {
         max-height: none !important;
         overflow: visible !important;
+        page-break-inside: auto !important;
     }
-    
-    /* Mengatasi scrollbar pada referensi */
-    #slide11 .references {
-        max-height: none !important;
-        overflow: visible !important;
+
+    .references li {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 5mm !important;
+    }
+
+    /* Ensure grids don't break poorly */
+    .component-grid,
+    .smart-city-pillars,
+    .penerapan-grid,
+    .penerapan-grid-2col,
+    .impact-metrics {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 5mm !important;
+    }
+
+    /* Special handling for 2-column layout in print */
+    .penerapan-grid-2col {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8mm !important;
+        margin-top: 5mm !important;
+    }
+
+    .penerapan-grid-2col .penerapan-item {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 5mm !important;
+        height: auto !important;
+        min-height: 60mm !important;
+    }
+
+    /* Hide animations and transitions for print */
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        animation-duration: 0s !important;
+        animation-delay: 0s !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+    }
+
+    /* Ensure backgrounds print */
+    .cover-slide,
+    .thank-you-slide,
+    .quote-box,
+    .member-card,
+    .component-item,
+    .pillar-item,
+    .penerapan-item,
+    .case-study-card,
+    .tech-pillar,
+    .challenge-box,
+    .trend-item,
+    .metric-card,
+    .research-item {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Adjust spacing for print */
+    .row { margin: 0 !important; }
+    .col-lg-3, .col-lg-4, .col-lg-6, .col-lg-8, .col-md-6 {
+        width: 50% !important;
+        float: left !important;
+        padding: 2.5mm !important;
+    }
+    .col-12 { width: 100% !important; }
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 1200px) {
+    .slide-content {
+        padding: 40px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    .component-grid,
+    .smart-city-pillars,
+    .penerapan-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Keep 2-column layout on tablet for slide 6 */
+    .penerapan-grid-2col {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
 }
 
-/* Responsive design */
+@media (max-width: 992px) {
+    .penerapan-grid-2col {
+        gap: 20px;
+    }
+    
+    .penerapan-header h4 {
+        font-size: 1.1rem;
+    }
+    
+    .penerapan-body {
+        padding: 20px;
+    }
+    
+    .penerapan-body li {
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .slide {
         width: 100%;
         height: auto;
         min-height: 100vh;
+        margin: 10px 0;
     }
-    
-    .component-box, .smart-city-pillars, .impact-metrics {
+
+    .slide-content {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .component-grid,
+    .smart-city-pillars,
+    .penerapan-grid,
+    .penerapan-grid-2col,
+    .impact-metrics {
         grid-template-columns: 1fr;
     }
-    
-    .row {
-        margin-left: 0;
+
+    .cover-icon {
+        font-size: 4rem;
+    }
+
+    .thank-you-icon {
+        font-size: 3rem;
+    }
+
+    .challenge-box {
+        flex-direction: column;
+    }
+
+    .challenge-icon {
+        padding: 20px;
+        min-width: auto;
+    }
+
+    .trend-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .trend-item i {
         margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .slide-controls {
+        padding: 10px 15px;
+    }
+
+    .keyboard-hint {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-content {
+        padding: 20px 15px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-list li {
+        font-size: 1.1rem;
+    }
+
+    .member-card {
+        padding: 20px;
+    }
+
+    .photo-placeholder {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
     }
 }

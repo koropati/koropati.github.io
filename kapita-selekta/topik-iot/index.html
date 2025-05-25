@@ -1,651 +1,879 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IoT untuk Kota Pintar: Transformasi Kehidupan Perkotaan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        @page {
-            size: A4 landscape;
-            margin: 0;
-        }
-        
-        @media print {
-            html, body {
-                width: 297mm;
-                height: 210mm;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .slide {
-                page-break-after: always;
-                page-break-inside: avoid;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT untuk Kota Pintar: Transformasi Kehidupan Perkotaan</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container-fluid">
-        <div class="slide-controls fixed-top">
-            <button id="prevBtn" class="btn btn-secondary" aria-label="Previous slide"><i class="bi bi-chevron-left"></i></button>
-            <span id="slideCounter">1 / 12</span>
-            <button id="nextBtn" class="btn btn-secondary" aria-label="Next slide"><i class="bi bi-chevron-right"></i></button>
-            <button id="fullscreenBtn" class="btn btn-secondary" aria-label="Toggle fullscreen"><i class="bi bi-fullscreen"></i></button>
-            <button id="exportBtn" class="btn btn-primary" aria-label="Export to PDF"><i class="bi bi-file-earmark-pdf"></i> Export PDF</button>
-            <span class="keyboard-hint d-none d-md-inline-block">Navigasi: <kbd>←</kbd> <kbd>→</kbd></span>
-        </div>
-
-        <div id="presentation">
-            <!-- Slide 1: Cover -->
-            <div class="slide" id="slide1">
-                <div class="slide-content cover-slide">
-                    <div class="row align-items-center justify-content-center h-100">
-                        <div class="col-12 text-center">
-                            <h1 class="display-3">Internet of Things (IoT) untuk Kota Pintar</h1>
-                            <h3 class="my-3">Transformasi Kehidupan Perkotaan</h3>
-                            <div class="cover-icon">
-                                <i class="bi bi-cpu"></i>
-                                <i class="bi bi-buildings"></i>
-                                <i class="bi bi-wifi"></i>
-                            </div>
-                            <p class="mt-3 mb-2">Kelompok 4</p>
-                            <div class="team-members">
-                                <div class="team-list">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p>I Made Agus Rai Indra Buana (2429101031)</p>
-                                            <p>I Putu Candrawan (2429101032)</p>
-                                            <p>I Putu Agra Arimbawa (2429101033)</p>
-                                            <p>Ni Putu Fina Silviantari (2429101034)</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>I Nyoman Ari Arthasusila (2429101035)</p>
-                                            <p>Dewa Ketut Satriawan S. (2429101036)</p>
-                                            <p>I Gusti Putu Ananta Mahanata (2429101039)</p>
-                                            <p>I Putu Andika Putra (2429101040)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="course-info mt-2 mb-0">Mata Kuliah Kapita Selekta</p>
-                            <p>Ilmu Komputer S2 - UNDIKSHA - 2025</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2: Daftar Isi -->
-            <div class="slide" id="slide2">
-                <div class="slide-content">
-                    <h2>Daftar Isi</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="content-list">
-                                <li><span class="list-number">1</span> Pengenalan IoT</li>
-                                <li><span class="list-number">2</span> Konsep Kota Pintar (Smart Cities)</li>
-                                <li><span class="list-number">3</span> Penerapan IoT dalam Kota Pintar</li>
-                                <li><span class="list-number">4</span> Studi Kasus: Implementasi Sukses</li>
-                                <li><span class="list-number">5</span> Teknologi Pendukung IoT</li>
-                                <li><span class="list-number">6</span> Tantangan dan Masa Depan</li>
-                                <li><span class="list-number">7</span> Kesimpulan</li>
-                                <li><span class="list-number">8</span> Referensi</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3: Pengenalan IoT -->
-            <div class="slide" id="slide3">
-                <div class="slide-content">
-                    <h2>Pengenalan Internet of Things (IoT)</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h4>Apa itu IoT?</h4>
-                            <ul>
-                                <li>Jaringan perangkat fisik yang terhubung internet</li>
-                                <li>Memungkinkan pengumpulan dan pertukaran data tanpa intervensi manusia</li>
-                                <li>Dilengkapi dengan sensor, perangkat lunak, dan teknologi lainnya</li>
-                            </ul>
-                            <div class="quote-box">
-                                <i class="bi bi-quote"></i>
-                                <p>"IoT adalah transformasi teknologi yang mengubah objek fisik menjadi ekosistem digital terhubung"</p>
-                                <small>- IEEE IoT Journal</small>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <h4>Komponen Utama IoT</h4>
-                            <div class="component-box">
-                                <div class="component-item">
-                                    <i class="bi bi-cpu-fill"></i>
-                                    <h5>Sensor & Aktuator</h5>
-                                    <p>Mengumpulkan data dan melakukan tindakan</p>
-                                </div>
-                                <div class="component-item">
-                                    <i class="bi bi-wifi"></i>
-                                    <h5>Konektivitas</h5>
-                                    <p>WiFi, Bluetooth, LPWAN, 5G</p>
-                                </div>
-                                <div class="component-item">
-                                    <i class="bi bi-database-fill"></i>
-                                    <h5>Platform Data</h5>
-                                    <p>Penyimpanan dan analisis data</p>
-                                </div>
-                                <div class="component-item">
-                                    <i class="bi bi-phone"></i>
-                                    <h5>Antarmuka Pengguna</h5>
-                                    <p>Aplikasi dan dasbor</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4: Konsep Kota Pintar -->
-            <div class="slide" id="slide4">
-                <div class="slide-content">
-                    <h2>Konsep Kota Pintar (Smart Cities)</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h4>Definisi Kota Pintar</h4>
-                            <p>Kota yang mengintegrasikan teknologi informasi dan komunikasi (TIK) untuk meningkatkan:</p>
-                            <ul>
-                                <li>Efisiensi operasional kota</li>
-                                <li>Kualitas layanan publik</li>
-                                <li>Kesejahteraan warga</li>
-                            </ul>
-                            <div class="smart-city-img">
-                                <img src="assets/smart-city3.jpg" alt="Ilustrasi Kota Pintar" class="img-fluid smart-city-img">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h4>Pilar Utama Kota Pintar</h4>
-                            <div class="smart-city-pillars">
-                                <div class="pillar-item">
-                                    <i class="bi bi-bank"></i>
-                                    <h5>Smart Governance</h5>
-                                    <p>Pemerintahan dan layanan publik</p>
-                                </div>
-                                <div class="pillar-item">
-                                    <i class="bi bi-car-front-fill"></i>
-                                    <h5>Smart Mobility</h5>
-                                    <p>Transportasi dan lalu lintas</p>
-                                </div>
-                                <div class="pillar-item">
-                                    <i class="bi bi-tree-fill"></i>
-                                    <h5>Smart Environment</h5>
-                                    <p>Pengelolaan lingkungan dan energi</p>
-                                </div>
-                                <div class="pillar-item">
-                                    <i class="bi bi-house-fill"></i>
-                                    <h5>Smart Living</h5>
-                                    <p>Keamanan dan kualitas hidup</p>
-                                </div>
-                                <div class="pillar-item">
-                                    <i class="bi bi-graph-up"></i>
-                                    <h5>Smart Economy</h5>
-                                    <p>Inovasi ekonomi digital</p>
-                                </div>
-                                <div class="pillar-item">
-                                    <i class="bi bi-people-fill"></i>
-                                    <h5>Smart People</h5>
-                                    <p>Pendidikan dan partisipasi warga</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 5: Penerapan IoT dalam Kota Pintar -->
-            <div class="slide" id="slide5">
-                <div class="slide-content">
-                    <h2>Penerapan IoT dalam Kota Pintar</h2>
-                    <hr>
-                    <div class="penerapan-iot-grid">
-                        <div class="penerapan-item">
-                            <div class="penerapan-header">
-                                <div class="penerapan-icon">
-                                    <i class="bi bi-signpost-split-fill"></i>
-                                </div>
-                                <h4>Manajemen Transportasi Cerdas</h4>
-                            </div>
-                            <div class="penerapan-body">
-                                <ul>
-                                    <li>Pemantauan lalu lintas real-time</li>
-                                    <li>Sistem parkir cerdas</li>
-                                    <li>Transportasi umum terhubung</li>
-                                    <li>Pengurangan kemacetan dan emisi</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="penerapan-item">
-                            <div class="penerapan-header">
-                                <div class="penerapan-icon">
-                                    <i class="bi bi-lightning-charge-fill"></i>
-                                </div>
-                                <h4>Pengelolaan Energi dan Lingkungan</h4>
-                            </div>
-                            <div class="penerapan-body">
-                                <ul>
-                                    <li>Smart grid dan meter pintar</li>
-                                    <li>Pemantauan kualitas udara dan air</li>
-                                    <li>Pengelolaan limbah cerdas</li>
-                                    <li>Penghematan energi pada bangunan</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="penerapan-item">
-                            <div class="penerapan-header">
-                                <div class="penerapan-icon">
-                                    <i class="bi bi-bridge"></i>
-                                </div>
-                                <h4>Infrastruktur Publik Terhubung</h4>
-                            </div>
-                            <div class="penerapan-body">
-                                <ul>
-                                    <li>Pencahayaan jalan adaptif</li>
-                                    <li>Pemantauan infrastruktur (jembatan, jalan)</li>
-                                    <li>Pengelolaan air dan drainase</li>
-                                    <li>Sistem peringatan dini bencana</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="penerapan-item">
-                            <div class="penerapan-header">
-                                <div class="penerapan-icon">
-                                    <i class="bi bi-hospital-fill"></i>
-                                </div>
-                                <h4>Layanan Publik Digital</h4>
-                            </div>
-                            <div class="penerapan-body">
-                                <ul>
-                                    <li>Keamanan publik berbasis IoT</li>
-                                    <li>Layanan kesehatan terhubung</li>
-                                    <li>Sistem pendidikan interaktif</li>
-                                    <li>E-governance dan partisipasi warga</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 6: Studi Kasus -->
-            <div class="slide" id="slide6">
-                <div class="slide-content">
-                    <h2>Studi Kasus: Implementasi Sukses</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="case-study-card">
-                                <div class="card-header">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <h4>Songdo, Korea Selatan</h4>
-                                </div>
-                                <div class="card-body">
-                                    <ul>
-                                        <li>Kota pintar yang dibangun dari awal (greenfield)</li>
-                                        <li>Sistem pengelolaan limbah pneumatik tanpa truk sampah</li>
-                                        <li>Jaringan sensor terpadu untuk monitoring lingkungan</li>
-                                        <li>Penghematan energi 30% dibanding kota konvensional</li>
-                                    </ul>
-                                    <p class="source">Sumber: Jurnal Smart Cities, 2023</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="case-study-card">
-                                <div class="card-header">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <h4>Barcelona, Spanyol</h4>
-                                </div>
-                                <div class="card-body">
-                                    <ul>
-                                        <li>Smart lighting menghemat €37 juta per tahun</li>
-                                        <li>Sistem irigasi cerdas mengurangi penggunaan air 25%</li>
-                                        <li>Sensor parkir mengurangi kemacetan hingga 30%</li>
-                                        <li>Aplikasi warga untuk partisipasi dalam perencanaan kota</li>
-                                    </ul>
-                                    <p class="source">Sumber: IEEE Smart Cities Initiative, 2022</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="case-study-card">
-                                <div class="card-header">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <h4>Jakarta Smart City, Indonesia</h4>
-                                </div>
-                                <div class="card-body">
-                                    <ul>
-                                        <li>Program CCTV terhubung untuk keamanan publik</li>
-                                        <li>Aplikasi Qlue untuk pelaporan masalah perkotaan</li>
-                                        <li>Sistem transportasi umum terintegrasi (JakLingko)</li>
-                                        <li>Pengelolaan banjir berbasis IoT</li>
-                                    </ul>
-                                    <p class="source">Sumber: Jakarta Smart City Blueprint, 2022</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 7: Teknologi Pendukung -->
-            <div class="slide" id="slide7">
-                <div class="slide-content">
-                    <h2>Teknologi Pendukung IoT untuk Kota Pintar</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="tech-pillar">
-                                <div class="tech-icon">
-                                    <i class="bi bi-broadcast-pin"></i>
-                                </div>
-                                <h4>Infrastruktur Konektivitas</h4>
-                                <ul>
-                                    <li><strong>5G:</strong> Konektivitas ultra-cepat & rendah latensi</li>
-                                    <li><strong>LPWAN</strong> (LoRaWAN, NB-IoT): Konektivitas jarak jauh, energi rendah</li>
-                                    <li><strong>Fiber Optic:</strong> Backbone infrastruktur digital</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="tech-pillar">
-                                <div class="tech-icon">
-                                    <i class="bi bi-bar-chart-fill"></i>
-                                </div>
-                                <h4>Analitik Data & AI</h4>
-                                <ul>
-                                    <li><strong>Big Data Analytics:</strong> Pengolahan data masif dari sensor</li>
-                                    <li><strong>Machine Learning:</strong> Prediksi pola & anomali</li>
-                                    <li><strong>Digital Twin:</strong> Model virtual kota untuk simulasi</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="tech-pillar">
-                                <div class="tech-icon">
-                                    <i class="bi bi-hdd-network-fill"></i>
-                                </div>
-                                <h4>Edge Computing</h4>
-                                <ul>
-                                    <li>Pemrosesan data dekat dengan sumber</li>
-                                    <li>Mengurangi latensi dan bandwidth</li>
-                                    <li>Privasi dan keamanan data lebih terjamin</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="quote-box mt-4">
-                        <i class="bi bi-quote"></i>
-                        <p>"Edge computing memungkinkan respons real-time dan mengurangi beban jaringan dalam ekosistem IoT kota pintar"</p>
-                        <small>- Cisco Annual Internet Report</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 8: Tantangan Implementasi -->
-            <div class="slide" id="slide8">
-                <div class="slide-content">
-                    <h2>Tantangan Implementasi IoT di Kota Pintar</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="challenge-box">
-                                <div class="challenge-icon">
-                                    <i class="bi bi-shield-lock-fill"></i>
-                                </div>
-                                <div class="challenge-content">
-                                    <h4>Keamanan dan Privasi</h4>
-                                    <ul>
-                                        <li>Kerentanan perangkat terhadap serangan cyber</li>
-                                        <li>Perlindungan data pribadi warga</li>
-                                        <li>Standarisasi keamanan yang belum matang</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="challenge-box">
-                                <div class="challenge-icon">
-                                    <i class="bi bi-gear-fill"></i>
-                                </div>
-                                <div class="challenge-content">
-                                    <h4>Teknologi dan Infrastruktur</h4>
-                                    <ul>
-                                        <li>Interoperabilitas antar sistem</li>
-                                        <li>Ketahanan dan skalabilitas jaringan</li>
-                                        <li>Kebutuhan energi untuk perangkat IoT</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="challenge-box">
-                                <div class="challenge-icon">
-                                    <i class="bi bi-people-fill"></i>
-                                </div>
-                                <div class="challenge-content">
-                                    <h4>Sosial dan Kebijakan</h4>
-                                    <ul>
-                                        <li>Kesenjangan digital (digital divide)</li>
-                                        <li>Regulasi dan tata kelola data</li>
-                                        <li>Adopsi dan penerimaan masyarakat</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="challenge-box">
-                                <div class="challenge-icon">
-                                    <i class="bi bi-cash-coin"></i>
-                                </div>
-                                <div class="challenge-content">
-                                    <h4>Ekonomi dan Keberlanjutan</h4>
-                                    <ul>
-                                        <li>Biaya investasi awal yang tinggi</li>
-                                        <li>Model bisnis dan pengembalian investasi</li>
-                                        <li>Keberlanjutan jangka panjang</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 9: Peluang dan Masa Depan -->
-            <div class="slide" id="slide9">
-                <div class="slide-content">
-                    <h2>Peluang dan Masa Depan</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Tren Masa Depan</h4>
-                            <div class="future-trends">
-                                <div class="trend-item">
-                                    <i class="bi bi-robot"></i>
-                                    <div>
-                                        <h5>IoT + AI</h5>
-                                        <p>Kecerdasan terdistribusi di kota</p>
-                                    </div>
-                                </div>
-                                <div class="trend-item">
-                                    <i class="bi bi-boxes"></i>
-                                    <div>
-                                        <h5>Digital Twin</h5>
-                                        <p>Replika virtual kota untuk simulasi dan prediksi</p>
-                                    </div>
-                                </div>
-                                <div class="trend-item">
-                                    <i class="bi bi-person-plus-fill"></i>
-                                    <div>
-                                        <h5>Citizen-centric IoT</h5>
-                                        <p>Partisipasi warga dalam pengembangan solusi</p>
-                                    </div>
-                                </div>
-                                <div class="trend-item">
-                                    <i class="bi bi-recycle"></i>
-                                    <div>
-                                        <h5>Circular Economy</h5>
-                                        <p>IoT untuk ekonomi sirkuler dan keberlanjutan</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Dampak Potensial</h4>
-                            <div class="impact-metrics">
-                                <div class="metric-card">
-                                    <div class="metric-value">
-                                        <i class="bi bi-cloud-minus-fill"></i>
-                                        <span>15%</span>
-                                    </div>
-                                    <p>Pengurangan emisi karbon</p>
-                                </div>
-                                <div class="metric-card">
-                                    <div class="metric-value">
-                                        <i class="bi bi-lightning-fill"></i>
-                                        <span>20-30%</span>
-                                    </div>
-                                    <p>Penghematan energi</p>
-                                </div>
-                                <div class="metric-card">
-                                    <div class="metric-value">
-                                        <i class="bi bi-stopwatch-fill"></i>
-                                        <span>15-20%</span>
-                                    </div>
-                                    <p>Pengurangan waktu perjalanan</p>
-                                </div>
-                                <div class="metric-card">
-                                    <div class="metric-value">
-                                        <i class="bi bi-heart-fill"></i>
-                                        <span>↑</span>
-                                    </div>
-                                    <p>Peningkatan kualitas hidup</p>
-                                </div>
-                            </div>
-                            <div class="quote-box mt-3">
-                                <i class="bi bi-quote"></i>
-                                <p>"Kota pintar berbasis IoT bukan sekadar tentang teknologi, tetapi tentang meningkatkan kualitas hidup warga"</p>
-                                <small>- World Economic Forum</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 10: Kesimpulan -->
-            <div class="slide" id="slide10">
-                <div class="slide-content">
-                    <h2>Kesimpulan</h2>
-                    <hr>
-                    <div class="row align-items-center">
-                        <div class="col-md-7">
-                            <div class="conclusion-points">
-                                <div class="point-item">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <p>IoT menjadi tulang punggung transformasi kota konvensional menjadi kota pintar</p>
-                                </div>
-                                <div class="point-item">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <p>Integrasi teknologi harus berpusat pada kebutuhan warga</p>
-                                </div>
-                                <div class="point-item">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <p>Pendekatan holistik melibatkan aspek teknologi, sosial, dan kebijakan</p>
-                                </div>
-                                <div class="point-item">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <p>Keberlanjutan menjadi faktor kunci keberhasilan jangka panjang</p>
-                                </div>
-                                <div class="point-item">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                    <p>Indonesia memiliki potensi besar untuk adopsi IoT dalam pengembangan kota pintar</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="conclusion-img">
-                                <img src="assets/smart-city2.jpg" alt="Ilustrasi Kota Pintar" class="img-fluid smart-city-img">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 11: Referensi -->
-            <div class="slide" id="slide11">
-                <div class="slide-content">
-                    <h2>Referensi</h2>
-                    <hr>
-                    <div class="references">
-                        <ol>
-                            <li>Zanella, A., et al. (2023). "Internet of Things for Smart Cities". <em>IEEE Internet of Things Journal</em>, 10(1), 22-32.</li>
-                            <li>World Economic Forum. (2022). "IoT Guidelines for Sustainability: Smart City Applications".</li>
-                            <li>Gartner Research. (2023). "Market Guide for Smart City IoT Platforms".</li>
-                            <li>Kementerian Komunikasi dan Informatika RI. (2022). "Roadmap IoT Nasional Indonesia 2020-2024".</li>
-                            <li>McKinsey Global Institute. (2024). "Smart Cities: Digital Solutions for a More Livable Future".</li>
-                            <li>Gunawan, H., & Suroso, J. (2023). "Implementasi IoT untuk Smart City di Indonesia: Tantangan dan Peluang". <em>Jurnal Teknologi Informasi Indonesia</em>, 8(2), 67-79.</li>
-                            <li>Cisco Annual Internet Report. (2023). "Edge Computing in Smart Cities Infrastructure".</li>
-                            <li>IEEE Smart Cities Initiative. (2022). "Barcelona: A Global Leader in Smart City Implementation".</li>
-                            <li>Jakarta Smart City. (2022). "Jakarta Smart City Blueprint 2022-2027".</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 12: Terima Kasih -->
-            <div class="slide" id="slide12">
-                <div class="slide-content thank-you-slide">
-                    <div class="row align-items-center h-100">
-                        <div class="col-12 text-center">
-                            <h2 class="display-4">Terima Kasih</h2>
-                            <div class="thank-you-icon">
-                                <i class="bi bi-cpu"></i>
-                                <i class="bi bi-buildings"></i>
-                                <i class="bi bi-wifi"></i>
-                            </div>
-                            <h4 class="mt-4">Pertanyaan?</h4>
-                            <div class="contact-info mt-4">
-                                <p class="mb-3">Kelompok 4</p>
-                                <div class="team-members-thank-you">
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-6">
-                                            <p>I Made Agus Rai Indra Buana (2429101031)</p>
-                                            <p>I Putu Candrawan (2429101032)</p>
-                                            <p>I Putu Agra Arimbawa (2429101033)</p>
-                                            <p>Ni Putu Fina Silviantari (2429101034)</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>I Nyoman Ari Arthasusila (2429101035)</p>
-                                            <p>Dewa Ketut Satriawan S. (2429101036)</p>
-                                            <p>I Gusti Putu Ananta Mahanata (2429101039)</p>
-                                            <p>I Putu Andika Putra (2429101040)</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mt-3">Mata Kuliah Kapita Selekta</p>
-                                <p>Ilmu Komputer S2 - UNDIKSHA - 2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="container-fluid">
+    <div class="slide-controls fixed-top">
+      <button id="prevBtn" class="btn btn-secondary" aria-label="Previous slide">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <span id="slideCounter">1 / 14</span>
+      <button id="nextBtn" class="btn btn-secondary" aria-label="Next slide">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+      <button id="fullscreenBtn" class="btn btn-secondary" aria-label="Toggle fullscreen">
+        <i class="bi bi-fullscreen"></i>
+      </button>
+      <button id="exportBtn" class="btn btn-primary" aria-label="Export to PDF">
+        <i class="bi bi-file-earmark-pdf"></i> Export PDF
+      </button>
+      <span class="keyboard-hint d-none d-md-inline-block">
+        Navigasi: <kbd>←</kbd> <kbd>→</kbd> | Fullscreen: <kbd>F</kbd> | Exit: <kbd>Esc</kbd>
+      </span>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="script.js"></script>
+    <div id="presentation">
+      <!-- Slide 1: Cover -->
+      <div class="slide" id="slide1">
+        <div class="slide-content cover-slide">
+          <div class="container-fluid h-100">
+            <div class="row align-items-center justify-content-center h-100">
+              <div class="col-12 text-center">
+                <h1 class="display-2 fw-bold mb-4">Internet of Things (IoT) untuk Kota Pintar</h1>
+                <h3 class="mb-4 text-light">Transformasi Kehidupan Perkotaan</h3>
+                <div class="cover-icon my-4">
+                  <i class="bi bi-cpu"></i>
+                  <i class="bi bi-buildings"></i>
+                  <i class="bi bi-wifi"></i>
+                </div>
+                <div class="cover-info">
+                  <p class="fs-4 mb-3">Kelompok 4</p>
+                  <p class="fs-5 mb-2">Mata Kuliah Kapita Selekta</p>
+                  <p class="fs-5">Ilmu Komputer S2 - UNDIKSHA - 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Anggota Kelompok -->
+      <div class="slide" id="slide2">
+        <div class="slide-content">
+          <h2 class="text-center mb-4">Anggota Kelompok 4</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man.png" alt="I Made Agus Rai Indra Buana" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Made Agus Rai Indra Buana</h5>
+                    <p class="nim">2429101031</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-6.png" alt="I Putu Candrawan" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Putu Candrawan</h5>
+                    <p class="nim">2429101032</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-2.png" alt="I Putu Agra Arimbawa" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Putu Agra Arimbawa</h5>
+                    <p class="nim">2429101033</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/girl.png" alt="Ni Putu Fina Silviantari" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>Ni Putu Fina Silviantari</h5>
+                    <p class="nim">2429101034</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-3.png" alt="I Nyoman Ari Arthasusila" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Nyoman Ari Arthasusila</h5>
+                    <p class="nim">2429101035</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-5.png" alt="Dewa Ketut Satriawan S." class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>Dewa Ketut Satriawan S.</h5>
+                    <p class="nim">2429101036</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-4.png" alt="I Gusti Putu Ananta Mahanata" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Gusti Putu Ananta Mahanata</h5>
+                    <p class="nim">2429101039</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="member-card">
+                  <div class="member-photo">
+                    <div class="photo-placeholder">
+                      <img src="assets/avatar/man-7.png" alt="I Putu Andika Putra" class="member-img">
+                      <div class="photo-fallback">
+                        <i class="bi bi-person-circle"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="member-info">
+                    <h5>I Putu Andika Putra</h5>
+                    <p class="nim">2429101040</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Daftar Isi -->
+      <div class="slide" id="slide3">
+        <div class="slide-content">
+          <h2>Daftar Isi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <ul class="content-list">
+                  <li><span class="list-number">1</span> Pengenalan IoT</li>
+                  <li><span class="list-number">2</span> Konsep Kota Pintar (Smart Cities)</li>
+                  <li><span class="list-number">3</span> Penerapan IoT dalam Kota Pintar</li>
+                  <li><span class="list-number">4</span> Studi Kasus: Implementasi Sukses</li>
+                  <li><span class="list-number">5</span> Teknologi Pendukung IoT</li>
+                  <li><span class="list-number">6</span> Tantangan dan Masa Depan</li>
+                  <li><span class="list-number">7</span> Contoh Penelitian untuk Topik Tesis</li>
+                  <li><span class="list-number">8</span> Kesimpulan</li>
+                  <li><span class="list-number">9</span> Referensi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Pengenalan IoT -->
+      <div class="slide" id="slide4">
+        <div class="slide-content">
+          <h2>Pengenalan Internet of Things (IoT)</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-5">
+                <h4>Apa itu IoT?</h4>
+                <ul class="custom-list">
+                  <li>Jaringan perangkat fisik yang terhubung internet</li>
+                  <li>Memungkinkan pengumpulan dan pertukaran data tanpa intervensi manusia</li>
+                  <li>Dilengkapi dengan sensor, perangkat lunak, dan teknologi lainnya</li>
+                </ul>
+                <div class="quote-box">
+                  <i class="bi bi-quote"></i>
+                  <p>"IoT adalah transformasi teknologi yang mengubah objek fisik menjadi ekosistem digital terhubung"</p>
+                  <small>- IEEE IoT Journal</small>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <h4>Komponen Utama IoT</h4>
+                <div class="component-grid">
+                  <div class="component-item">
+                    <i class="bi bi-cpu-fill"></i>
+                    <h5>Sensor & Aktuator</h5>
+                    <p>Mengumpulkan data dan melakukan tindakan</p>
+                  </div>
+                  <div class="component-item">
+                    <i class="bi bi-wifi"></i>
+                    <h5>Konektivitas</h5>
+                    <p>WiFi, Bluetooth, LPWAN, 5G</p>
+                  </div>
+                  <div class="component-item">
+                    <i class="bi bi-database-fill"></i>
+                    <h5>Platform Data</h5>
+                    <p>Penyimpanan dan analisis data</p>
+                  </div>
+                  <div class="component-item">
+                    <i class="bi bi-phone"></i>
+                    <h5>Antarmuka Pengguna</h5>
+                    <p>Aplikasi dan dasbor</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Konsep Kota Pintar -->
+      <div class="slide" id="slide5">
+        <div class="slide-content">
+          <h2>Konsep Kota Pintar (Smart Cities)</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-4">
+                <h4>Definisi Kota Pintar</h4>
+                <p>Kota yang mengintegrasikan teknologi informasi dan komunikasi (TIK) untuk meningkatkan:</p>
+                <ul class="custom-list">
+                  <li>Efisiensi operasional kota</li>
+                  <li>Kualitas layanan publik</li>
+                  <li>Kesejahteraan warga</li>
+                </ul>
+              </div>
+              <div class="col-lg-8">
+                <h4>Pilar Utama Kota Pintar</h4>
+                <div class="smart-city-pillars">
+                  <div class="pillar-item">
+                    <i class="bi bi-bank"></i>
+                    <h5>Smart Governance</h5>
+                    <p>Pemerintahan dan layanan publik</p>
+                  </div>
+                  <div class="pillar-item">
+                    <i class="bi bi-car-front-fill"></i>
+                    <h5>Smart Mobility</h5>
+                    <p>Transportasi dan lalu lintas</p>
+                  </div>
+                  <div class="pillar-item">
+                    <i class="bi bi-tree-fill"></i>
+                    <h5>Smart Environment</h5>
+                    <p>Pengelolaan lingkungan dan energi</p>
+                  </div>
+                  <div class="pillar-item">
+                    <i class="bi bi-house-fill"></i>
+                    <h5>Smart Living</h5>
+                    <p>Keamanan dan kualitas hidup</p>
+                  </div>
+                  <div class="pillar-item">
+                    <i class="bi bi-graph-up"></i>
+                    <h5>Smart Economy</h5>
+                    <p>Inovasi ekonomi digital</p>
+                  </div>
+                  <div class="pillar-item">
+                    <i class="bi bi-people-fill"></i>
+                    <h5>Smart People</h5>
+                    <p>Pendidikan dan partisipasi warga</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Penerapan IoT dalam Kota Pintar -->
+      <div class="slide" id="slide6">
+        <div class="slide-content">
+          <h2>Penerapan IoT dalam Kota Pintar</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="penerapan-grid">
+              <div class="penerapan-item">
+                <div class="penerapan-header">
+                  <div class="penerapan-icon">
+                    <i class="bi bi-signpost-split-fill"></i>
+                  </div>
+                  <h4>Manajemen Transportasi Cerdas</h4>
+                </div>
+                <div class="penerapan-body">
+                  <ul>
+                    <li>Pemantauan lalu lintas real-time</li>
+                    <li>Sistem parkir cerdas</li>
+                    <li>Transportasi umum terhubung</li>
+                    <li>Pengurangan kemacetan dan emisi</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="penerapan-item">
+                <div class="penerapan-header">
+                  <div class="penerapan-icon">
+                    <i class="bi bi-lightning-charge-fill"></i>
+                  </div>
+                  <h4>Pengelolaan Energi dan Lingkungan</h4>
+                </div>
+                <div class="penerapan-body">
+                  <ul>
+                    <li>Smart grid dan meter pintar</li>
+                    <li>Pemantauan kualitas udara dan air</li>
+                    <li>Pengelolaan limbah cerdas</li>
+                    <li>Penghematan energi pada bangunan</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="penerapan-item">
+                <div class="penerapan-header">
+                  <div class="penerapan-icon">
+                    <i class="bi bi-train-front"></i>
+                  </div>
+                  <h4>Infrastruktur Publik Terhubung</h4>
+                </div>
+                <div class="penerapan-body">
+                  <ul>
+                    <li>Pencahayaan jalan adaptif</li>
+                    <li>Pemantauan infrastruktur (jembatan, jalan)</li>
+                    <li>Pengelolaan air dan drainase</li>
+                    <li>Sistem peringatan dini bencana</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="penerapan-item">
+                <div class="penerapan-header">
+                  <div class="penerapan-icon">
+                    <i class="bi bi-hospital-fill"></i>
+                  </div>
+                  <h4>Layanan Publik Digital</h4>
+                </div>
+                <div class="penerapan-body">
+                  <ul>
+                    <li>Keamanan publik berbasis IoT</li>
+                    <li>Layanan kesehatan terhubung</li>
+                    <li>Sistem pendidikan interaktif</li>
+                    <li>E-governance dan partisipasi warga</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Studi Kasus -->
+      <div class="slide" id="slide7">
+        <div class="slide-content">
+          <h2>Studi Kasus: Implementasi Sukses</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="case-study-card h-100">
+                  <div class="card-header">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h4>Songdo, Korea Selatan</h4>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Kota pintar yang dibangun dari awal (greenfield)</li>
+                      <li>Sistem pengelolaan limbah pneumatik tanpa truk sampah</li>
+                      <li>Jaringan sensor terpadu untuk monitoring lingkungan</li>
+                      <li>Penghematan energi 30% dibanding kota konvensional</li>
+                    </ul>
+                    <p class="source">Sumber: Jurnal Smart Cities, 2023</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="case-study-card h-100">
+                  <div class="card-header">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h4>Barcelona, Spanyol</h4>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Smart lighting menghemat €37 juta per tahun</li>
+                      <li>Sistem irigasi cerdas mengurangi penggunaan air 25%</li>
+                      <li>Sensor parkir mengurangi kemacetan hingga 30%</li>
+                      <li>Aplikasi warga untuk partisipasi dalam perencanaan kota</li>
+                    </ul>
+                    <p class="source">Sumber: IEEE Smart Cities Initiative, 2022</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="case-study-card h-100">
+                  <div class="card-header">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <h4>Jakarta Smart City, Indonesia</h4>
+                  </div>
+                  <div class="card-body">
+                    <ul>
+                      <li>Program CCTV terhubung untuk keamanan publik</li>
+                      <li>Aplikasi Qlue untuk pelaporan masalah perkotaan</li>
+                      <li>Sistem transportasi umum terintegrasi (JakLingko)</li>
+                      <li>Pengelolaan banjir berbasis IoT</li>
+                    </ul>
+                    <p class="source">Sumber: Jakarta Smart City Blueprint, 2022</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Teknologi Pendukung -->
+      <div class="slide" id="slide8">
+        <div class="slide-content">
+          <h2>Teknologi Pendukung IoT untuk Kota Pintar</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="tech-pillar h-100">
+                  <div class="tech-icon">
+                    <i class="bi bi-broadcast-pin"></i>
+                  </div>
+                  <h4>Infrastruktur Konektivitas</h4>
+                  <ul>
+                    <li><strong>5G:</strong> Konektivitas ultra-cepat & rendah latensi</li>
+                    <li><strong>LPWAN</strong> (LoRaWAN, NB-IoT): Konektivitas jarak jauh, energi rendah</li>
+                    <li><strong>Fiber Optic:</strong> Backbone infrastruktur digital</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="tech-pillar h-100">
+                  <div class="tech-icon">
+                    <i class="bi bi-bar-chart-fill"></i>
+                  </div>
+                  <h4>Analitik Data & AI</h4>
+                  <ul>
+                    <li><strong>Big Data Analytics:</strong> Pengolahan data masif dari sensor</li>
+                    <li><strong>Machine Learning:</strong> Prediksi pola & anomali</li>
+                    <li><strong>Digital Twin:</strong> Model virtual kota untuk simulasi</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="tech-pillar h-100">
+                  <div class="tech-icon">
+                    <i class="bi bi-hdd-network-fill"></i>
+                  </div>
+                  <h4>Edge Computing</h4>
+                  <ul>
+                    <li>Pemrosesan data dekat dengan sumber</li>
+                    <li>Mengurangi latensi dan bandwidth</li>
+                    <li>Privasi dan keamanan data lebih terjamin</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="quote-box">
+                  <i class="bi bi-quote"></i>
+                  <p>"Edge computing memungkinkan respons real-time dan mengurangi beban jaringan dalam ekosistem IoT kota pintar"</p>
+                  <small>- Cisco Annual Internet Report</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Tantangan Implementasi -->
+      <div class="slide" id="slide9">
+        <div class="slide-content">
+          <h2>Tantangan Implementasi IoT di Kota Pintar</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="challenge-box">
+                  <div class="challenge-icon">
+                    <i class="bi bi-shield-lock-fill"></i>
+                  </div>
+                  <div class="challenge-content">
+                    <h4>Keamanan dan Privasi</h4>
+                    <ul>
+                      <li>Kerentanan perangkat terhadap serangan cyber</li>
+                      <li>Perlindungan data pribadi warga</li>
+                      <li>Standarisasi keamanan yang belum matang</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="challenge-box">
+                  <div class="challenge-icon">
+                    <i class="bi bi-gear-fill"></i>
+                  </div>
+                  <div class="challenge-content">
+                    <h4>Teknologi dan Infrastruktur</h4>
+                    <ul>
+                      <li>Interoperabilitas antar sistem</li>
+                      <li>Ketahanan dan skalabilitas jaringan</li>
+                      <li>Kebutuhan energi untuk perangkat IoT</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="challenge-box">
+                  <div class="challenge-icon">
+                    <i class="bi bi-people-fill"></i>
+                  </div>
+                  <div class="challenge-content">
+                    <h4>Sosial dan Kebijakan</h4>
+                    <ul>
+                      <li>Kesenjangan digital (digital divide)</li>
+                      <li>Regulasi dan tata kelola data</li>
+                      <li>Adopsi dan penerimaan masyarakat</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="challenge-box">
+                  <div class="challenge-icon">
+                    <i class="bi bi-cash-coin"></i>
+                  </div>
+                  <div class="challenge-content">
+                    <h4>Ekonomi dan Keberlanjutan</h4>
+                    <ul>
+                      <li>Biaya investasi awal yang tinggi</li>
+                      <li>Model bisnis dan pengembalian investasi</li>
+                      <li>Keberlanjutan jangka panjang</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 10: Peluang dan Masa Depan -->
+      <div class="slide" id="slide10">
+        <div class="slide-content">
+          <h2>Peluang dan Masa Depan</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4>Tren Masa Depan</h4>
+                <div class="future-trends">
+                  <div class="trend-item">
+                    <i class="bi bi-robot"></i>
+                    <div>
+                      <h5>IoT + AI</h5>
+                      <p>Kecerdasan terdistribusi di kota</p>
+                    </div>
+                  </div>
+                  <div class="trend-item">
+                    <i class="bi bi-boxes"></i>
+                    <div>
+                      <h5>Digital Twin</h5>
+                      <p>Replika virtual kota untuk simulasi dan prediksi</p>
+                    </div>
+                  </div>
+                  <div class="trend-item">
+                    <i class="bi bi-person-plus-fill"></i>
+                    <div>
+                      <h5>Citizen-centric IoT</h5>
+                      <p>Partisipasi warga dalam pengembangan solusi</p>
+                    </div>
+                  </div>
+                  <div class="trend-item">
+                    <i class="bi bi-recycle"></i>
+                    <div>
+                      <h5>Circular Economy</h5>
+                      <p>IoT untuk ekonomi sirkuler dan keberlanjutan</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4>Dampak Potensial</h4>
+                <div class="impact-metrics">
+                  <div class="metric-card">
+                    <div class="metric-value">
+                      <i class="bi bi-cloud-minus-fill"></i>
+                      <span>15%</span>
+                    </div>
+                    <p>Pengurangan emisi karbon</p>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-value">
+                      <i class="bi bi-lightning-fill"></i>
+                      <span>20-30%</span>
+                    </div>
+                    <p>Penghematan energi</p>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-value">
+                      <i class="bi bi-stopwatch-fill"></i>
+                      <span>15-20%</span>
+                    </div>
+                    <p>Pengurangan waktu perjalanan</p>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-value">
+                      <i class="bi bi-heart-fill"></i>
+                      <span>↑</span>
+                    </div>
+                    <p>Peningkatan kualitas hidup</p>
+                  </div>
+                </div>
+                <div class="quote-box mt-3">
+                  <i class="bi bi-quote"></i>
+                  <p>"Kota pintar berbasis IoT bukan sekadar tentang teknologi, tetapi tentang meningkatkan kualitas hidup warga"</p>
+                  <small>- World Economic Forum</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 11: Contoh Penelitian untuk Topik Tesis -->
+      <div class="slide" id="slide11">
+        <div class="slide-content">
+          <h2>Contoh Penelitian untuk Topik Tesis</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="research-item">
+                  <div class="research-header">
+                    <div class="research-icon">
+                      <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h4>Sistem Prediksi Banjir Berbasis IoT</h4>
+                  </div>
+                  <div class="research-content">
+                    <p>Pemanfaatan IoT dan AI, seperti Jaringan Saraf Tiruan, dalam sistem deteksi dan manajemen banjir untuk meningkatkan akurasi prediksi, pemantauan real-time, dan ketahanan perkotaan.</p>
+                    <p class="research-source">
+                      <strong>Sumber:</strong> Sengupta Srinjoy (2024). "IoT-Based Flood Detection and Management Systems in Urban Areas".<br>
+                      <strong>DOI:</strong> https://doi.org/10.48314/ramd.v1i2.53
+                    </p>
+                  </div>
+                </div>
+
+                <div class="research-item">
+                  <div class="research-header">
+                    <div class="research-icon">
+                      <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <h4>Optimasi Pencahayaan Jalan Cerdas</h4>
+                  </div>
+                  <div class="research-content">
+                    <p>Penelitian tentang pengembangan infrastruktur lampu jalan pintar berbasis IoT yang mengintegrasikan lampu LED, sensor pintar, dan jaringan komunikasi untuk menghemat energi, meningkatkan keamanan, dan mendukung keberlanjutan di kota pintar.</p>
+                    <p class="research-source">
+                      <strong>Sumber:</strong> Khemakhem Siwar & Krichen Lotfi (2024). " A comprehensive survey on an IoT-based smart public street lighting system application for smart cities".<br>
+                      <strong>DOI:</strong> https://doi.org/10.1016/j.fraope.2024.100142
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="research-item">
+                  <div class="research-header">
+                    <div class="research-icon">
+                      <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h4>Pengelolaan Layanan Publik Berbasis AI-IoT</h4>
+                  </div>
+                  <div class="research-content">
+                    <p>Integrasi IoT dan kecerdasan buatan untuk optimasi layanan publik seperti manajemen lalu lintas, pengelolaan sampah, distribusi energi, dan peningkatan keselamatan di kota pintar.</p>
+                    <p class="research-source">
+                      <strong>Sumber:</strong> Bhaduri Moitreyee (2025). "AI and IoT Solutions for Efficient Public Service Delivery in Smart Cities".<br>
+                      <strong>DOI:</strong> https://doi.org/10.22105/scfa.v2i1.41
+                    </p>
+                  </div>
+                </div>
+
+                <div class="research-item">
+                  <div class="research-header">
+                    <div class="research-icon">
+                      <i class="bi bi-shield-check"></i>
+                    </div>
+                    <h4>Framework Keamanan IoT untuk Smart City</h4>
+                  </div>
+                  <div class="research-content">
+                    <p>Pengembangan framework keamanan privasi untuk melindungi infrastruktur IoT kota pintar dari ancaman siber dengan skema dua tingkat, deteksi intrusi, dan integrasi blockchain.</p>
+                    <p class="research-source">
+                      <strong>Sumber:</strong> Kumar Prabhat, et al. (2021). "PPSF: A Privacy-Preserving and Secure Framework using Blockchain-based Machine-Learning for IoT-driven Smart Cities".<br>
+                      <strong>DOI:</strong> https://doi.org/10.1109/TNSE.2021.3089435
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="slide12">
+        <div class="slide-content">
+          <h2>Kesimpulan</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col-lg-7">
+                <div class="conclusion-points">
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>IoT menjadi tulang punggung transformasi kota konvensional menjadi kota pintar</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>Integrasi teknologi harus berpusat pada kebutuhan warga</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>Pendekatan holistik melibatkan aspek teknologi, sosial, dan kebijakan</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>Keberlanjutan menjadi faktor kunci keberhasilan jangka panjang</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>Indonesia memiliki potensi besar untuk adopsi IoT dalam pengembangan kota pintar</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="conclusion-visual-container">
+                  <!-- Smart City Illustration -->
+                  <div class="smart-city-illustration">
+                    <img src="assets/smart-city2.jpg" alt="Smart City IoT Illustration" class="smart-city-img">
+                    <div class="illustration-fallback">
+                      <div class="fallback-visual">
+                        <i class="bi bi-buildings"></i>
+                        <i class="bi bi-wifi"></i>
+                        <i class="bi bi-cpu"></i>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Conclusion Message -->
+                  <div class="conclusion-message">
+                    <div class="conclusion-icon">
+                      <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <h4>Smart Cities = Future Cities</h4>
+                    <p class="conclusion-tagline">Teknologi IoT mengubah cara kita hidup, bekerja, dan berinteraksi di lingkungan perkotaan</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 13: Referensi -->
+      <div class="slide" id="slide13">
+        <div class="slide-content">
+          <h2>Referensi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="references">
+              <ol>
+                <li>Zanella, A., et al. (2023). "Internet of Things for Smart Cities". <em>IEEE Internet of Things Journal</em>, 10(1), 22-32.</li>
+                <li>World Economic Forum. (2022). "IoT Guidelines for Sustainability: Smart City Applications".</li>
+                <li>Gartner Research. (2023). "Market Guide for Smart City IoT Platforms".</li>
+                <li>Kementerian Komunikasi dan Informatika RI. (2022). "Roadmap IoT Nasional Indonesia 2020-2024".</li>
+                <li>McKinsey Global Institute. (2024). "Smart Cities: Digital Solutions for a More Livable Future".</li>
+                <li>Gunawan, H., & Suroso, J. (2023). "Implementasi IoT untuk Smart City di Indonesia: Tantangan dan Peluang". <em>Jurnal Teknologi Informasi Indonesia</em>, 8(2), 67-79.</li>
+                <li>Cisco Annual Internet Report. (2023). "Edge Computing in Smart Cities Infrastructure".</li>
+                <li>IEEE Smart Cities Initiative. (2022). "Barcelona: A Global Leader in Smart City Implementation".</li>
+                <li>Jakarta Smart City. (2022). "Jakarta Smart City Blueprint 2022-2027".</li>
+                <li>Mukherjee, A., et al. (2023). "IoT-Based Real-Time Flood Forecasting and Warning System for Urban Areas". <em>IEEE Internet of Things Journal</em>.</li>
+                <li>Leccese, F., et al. (2024). "A Comprehensive Adaptive Smart Street Lighting System with Dynamic Energy Optimization". <em>Sustainable Cities and Society</em>.</li>
+                <li>Zhang, W., et al. (2023). "AI-Enhanced IoT Framework for Urban Crowd Management and Safety". <em>IEEE Access</em>.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 14: Terima Kasih -->
+      <div class="slide" id="slide14">
+        <div class="slide-content thank-you-slide">
+          <div class="container-fluid h-100">
+            <div class="row align-items-center justify-content-center h-100">
+              <div class="col-12 text-center">
+                <h2 class="display-3 fw-bold mb-4">Terima Kasih</h2>
+                <div class="thank-you-icon my-4">
+                  <i class="bi bi-cpu"></i>
+                  <i class="bi bi-buildings"></i>
+                  <i class="bi bi-wifi"></i>
+                </div>
+                <h4 class="mb-4">Pertanyaan & Diskusi?</h4>
+                <div class="contact-info">
+                  <p class="fs-4 mb-3">Kelompok 4</p>
+                  <p class="fs-5 mb-2">Mata Kuliah Kapita Selekta</p>
+                  <p class="fs-5">Ilmu Komputer S2 - UNDIKSHA - 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
