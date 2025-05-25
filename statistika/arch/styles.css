@@ -1,0 +1,864 @@
+/* ==================== ROOT VARIABLES ==================== */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --dark-color: #1a252f;
+    --light-color: #ecf0f1;
+    --bg-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
+    --border-radius: 15px;
+    --transition: all 0.3s ease;
+}
+
+/* ==================== GLOBAL STYLES ==================== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==================== SLIDE CONTROLS ==================== */
+.slide-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-light);
+    z-index: 1000;
+    transition: var(--transition);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.slide-controls button {
+    margin: 0 8px;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: var(--transition);
+    font-size: 1.1rem;
+    background: var(--primary-color);
+    color: white;
+}
+
+.slide-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+    background: var(--secondary-color);
+}
+
+.slide-controls button:disabled {
+    opacity: 0.5;
+    transform: none;
+}
+
+.slide-controls button#exportBtn {
+    border-radius: 25px;
+    width: auto;
+    padding: 0 20px;
+    height: 45px;
+    background: var(--accent-color);
+}
+
+#slideCounter {
+    margin: 0 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+/* ==================== SLIDE STYLES ==================== */
+.slide {
+    width: 100%;
+    height: 100vh;
+    min-height: 800px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+    display: none;
+    page-break-after: always;
+    position: relative;
+    margin-top: 80px;
+}
+
+.slide.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-content {
+    padding: 50px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+h4 {
+    color: var(--dark-color);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+hr {
+    border: none;
+    height: 4px;
+    background: var(--bg-gradient);
+    margin-bottom: 2rem;
+    border-radius: 2px;
+}
+
+/* ==================== COVER SLIDE ==================== */
+.cover-slide {
+    background: var(--bg-gradient);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+    opacity: 0.3;
+}
+
+.cover-slide .slide-content {
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+}
+
+.cover-slide h1 {
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 3rem;
+}
+
+.cover-icon {
+    font-size: 6rem;
+    margin: 3rem 0;
+    opacity: 0.9;
+}
+
+.cover-icon i {
+    margin: 0 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.cover-icon i:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.cover-icon i:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ==================== MEMBER CARDS ==================== */
+.member-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    height: 100%;
+    border: 1px solid rgba(52, 152, 219, 0.1);
+    cursor: pointer;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--secondary-color);
+}
+
+.member-avatar {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: var(--bg-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* ==================== CONTENT GRIDS ==================== */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.content-item {
+    background: white;
+    border: 2px solid rgba(52, 152, 219, 0.1);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+}
+
+.content-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+    border-color: var(--secondary-color);
+}
+
+.content-item i {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* ==================== DATA TABLE ==================== */
+.data-table {
+    margin: 20px 0;
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.data-table tr:hover {
+    background: rgba(52, 152, 219, 0.05);
+}
+
+/* ==================== FORMULA BOX ==================== */
+.formula-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin: 25px 0;
+    color: white;
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+}
+
+.formula-box .formula {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 15px 0;
+    font-family: 'Courier New', monospace;
+}
+
+/* ==================== STEP BOX ==================== */
+.step-box {
+    background: white;
+    border-left: 5px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: var(--shadow-light);
+}
+
+.step-number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+/* ==================== RESULT BOX ==================== */
+.result-box {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.1));
+    border: 2px solid var(--success-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.result-highlight {
+    background: var(--warning-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* ==================== CALCULATION STEPS ==================== */
+.calculation-steps {
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 20px 0;
+}
+
+.calculation-step {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+/* ==================== CHART CONTAINER ==================== */
+.chart-container {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-container canvas {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Chart wrapper to maintain aspect ratio */
+.chart-container .chart-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-container .chart-wrapper[style*="height: 250px"] {
+    height: 250px;
+}
+
+.chart-container .chart-wrapper canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Prevent chart jumping on hover */
+.chart-container .chart-wrapper::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: inherit;
+    visibility: hidden;
+}
+
+/* ==================== PROS CONS ==================== */
+.pros-cons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 25px 0;
+}
+
+.pros-box {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.1));
+    border: 2px solid var(--success-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+}
+
+.cons-box {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.1));
+    border: 2px solid var(--accent-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+@media (max-width: 768px) {
+    .slide-content {
+        padding: 30px 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pros-cons-container {
+        grid-template-columns: 1fr;
+    }
+
+    .cover-slide h1 {
+        font-size: 2rem;
+    }
+
+    .cover-icon {
+        font-size: 4rem;
+    }
+
+    .slide-controls {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .slide-controls button {
+        margin: 0 4px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .slide-controls button#exportBtn {
+        padding: 0 15px;
+        height: 40px;
+        font-size: 0.9rem;
+        min-width: 120px;
+    }
+
+    #slideCounter {
+        margin: 0 15px;
+        font-size: 1rem;
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    /* Mobile chart adjustments */
+    .chart-container {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .chart-container .chart-wrapper {
+        height: 250px;
+    }
+
+    .chart-container .chart-wrapper[style*="height: 250px"] {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-content {
+        padding: 20px 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .cover-slide h1 {
+        font-size: 1.8rem;
+    }
+
+    .cover-icon {
+        font-size: 3rem;
+    }
+
+    .slide-controls {
+        padding: 8px 10px;
+    }
+
+    .slide-controls button {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .slide-controls button#exportBtn {
+        padding: 0 12px;
+        height: 35px;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+
+    #slideCounter {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .member-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .formula-box .formula {
+        font-size: 1.2rem;
+    }
+
+    .step-number {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+
+    .slide-controls,
+    .slide-controls.pdf-export-hidden {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    .slide {
+        display: block !important;
+        page-break-after: always;
+        margin-top: 0;
+        height: auto;
+        min-height: 297mm;
+        box-shadow: none;
+    }
+
+    .slide-content {
+        padding: 20mm;
+        height: auto;
+        overflow: visible;
+    }
+
+    .cover-slide,
+    .cover-slide .slide-content {
+        height: 297mm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-bottom: 12pt;
+    }
+
+    h4 {
+        font-size: 14pt;
+        margin-bottom: 8pt;
+    }
+
+    p,
+    li {
+        font-size: 11pt;
+        line-height: 1.4;
+    }
+
+    .data-table,
+    .formula-box,
+    .step-box,
+    .result-box,
+    .calculation-steps,
+    .chart-container {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15pt;
+    }
+
+    .pros-cons-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15pt;
+    }
+}
+
+/* ==================== FULLSCREEN STYLES ==================== */
+body.is-fullscreen {
+    overflow: hidden;
+}
+
+/* Completely hide controls in fullscreen */
+body.is-fullscreen .slide-controls,
+.slide-controls.fullscreen-hidden {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Fullscreen presentation adjustments */
+body.is-fullscreen .slide {
+    margin-top: 0 !important;
+}
+
+/* Fullscreen keyboard hint */
+body.is-fullscreen::after {
+    content: 'ESC: Keluar Fullscreen | ←→: Navigasi | F: Toggle Fullscreen';
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Show hint on mouse movement in fullscreen */
+body.is-fullscreen.show-hint::after {
+    opacity: 1;
+}
+
+/* Auto-hide hint after some time */
+body.is-fullscreen.hide-hint::after {
+    opacity: 0;
+}
+
+#presentation:fullscreen,
+#presentation:-webkit-full-screen,
+#presentation:-moz-full-screen,
+#presentation:-ms-fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+#presentation:fullscreen .slide.active,
+#presentation:-webkit-full-screen .slide.active,
+#presentation:-moz-full-screen .slide.active,
+#presentation:-ms-fullscreen .slide.active {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+#presentation:fullscreen .slide-content,
+#presentation:-webkit-full-screen .slide-content,
+#presentation:-moz-full-screen .slide-content,
+#presentation:-ms-fullscreen .slide-content {
+    padding: 40px 60px !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--secondary-color) transparent !important;
+    scroll-behavior: smooth !important;
+}
+
+/* Custom scrollbar for fullscreen */
+#presentation:fullscreen .slide-content::-webkit-scrollbar,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#presentation:fullscreen .slide-content::-webkit-scrollbar-track,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar-track,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar-track,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-radius: 10px !important;
+}
+
+#presentation:fullscreen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar-thumb {
+    background: var(--secondary-color) !important;
+    border-radius: 10px !important;
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+.slide-controls button:focus {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+.member-card:focus,
+.content-item:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .cover-icon i {
+        animation: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .slide-controls button {
+        border: 2px solid currentColor;
+    }
+
+    .member-card,
+    .content-item,
+    .data-table {
+        border: 2px solid var(--dark-color);
+    }
+}
+
+/* ==================== CUSTOM UTILITIES ==================== */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.bg-gradient {
+    background: var(--bg-gradient) !important;
+}
+
+.shadow-light {
+    box-shadow: var(--shadow-light);
+}
+
+.shadow-medium {
+    box-shadow: var(--shadow-medium);
+}
+
+.shadow-heavy {
+    box-shadow: var(--shadow-heavy);
+}
+
+.border-radius {
+    border-radius: var(--border-radius);
+}
+
+.transition {
+    transition: var(--transition);
+}
