@@ -3,13 +3,28 @@ let currentSlide = 1;
 const totalSlides = document.querySelectorAll('.slide').length;
 let isFullscreen = false;
 let animationTimeout = null;
+let hasSwipedOnce = false;
+
+// ==================== DEVICE DETECTION ====================
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+function isTablet() {
+    return window.innerWidth > 768 && window.innerWidth <= 1024;
+}
+
+function isDesktop() {
+    return window.innerWidth > 1024;
+}
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
     initializePresentation();
     setupEventListeners();
-    setupMemberPhotoFallback(); // Add photo fallback handler
-    setupSmartCityImageFallback(); // Add smart city image fallback handler
+    setupMemberPhotoFallback();
+    setupSmartCityImageFallback();
+    initializeMobileFeatures();
     updateSlideCounter();
     showSlide(currentSlide);
 });
@@ -19,7 +34,6 @@ function setupMemberPhotoFallback() {
     const memberImages = document.querySelectorAll('.member-img');
     
     memberImages.forEach(img => {
-        // Handle image load error
         img.addEventListener('error', function() {
             this.style.display = 'none';
             const fallback = this.nextElementSibling;
@@ -28,7 +42,6 @@ function setupMemberPhotoFallback() {
             }
         });
         
-        // Handle successful image load
         img.addEventListener('load', function() {
             this.style.display = 'block';
             const fallback = this.nextElementSibling;
@@ -37,7 +50,6 @@ function setupMemberPhotoFallback() {
             }
         });
         
-        // Check if image source is empty or invalid
         if (!img.src || img.src === '' || img.src === window.location.href) {
             img.style.display = 'none';
             const fallback = img.nextElementSibling;
@@ -53,7 +65,6 @@ function setupSmartCityImageFallback() {
     const smartCityImage = document.querySelector('.smart-city-img');
     
     if (smartCityImage) {
-        // Handle image load error
         smartCityImage.addEventListener('error', function() {
             this.style.display = 'none';
             this.classList.add('error');
@@ -63,7 +74,6 @@ function setupSmartCityImageFallback() {
             }
         });
         
-        // Handle successful image load
         smartCityImage.addEventListener('load', function() {
             this.style.display = 'block';
             this.classList.remove('error');
@@ -73,7 +83,6 @@ function setupSmartCityImageFallback() {
             }
         });
         
-        // Check if image source is empty or invalid
         if (!smartCityImage.src || smartCityImage.src === '' || smartCityImage.src === window.location.href) {
             smartCityImage.style.display = 'none';
             smartCityImage.classList.add('error');
@@ -85,8 +94,8 @@ function setupSmartCityImageFallback() {
     }
 }
 
+// ==================== PRESENTATION INITIALIZATION ====================
 function initializePresentation() {
-    // Add tooltips to control buttons
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const fullscreenBtn = document.getElementById('fullscreenBtn');
@@ -97,44 +106,275 @@ function initializePresentation() {
     fullscreenBtn.setAttribute('title', 'Toggle Fullscreen (F key or click)');
     exportBtn.setAttribute('title', 'Export to PDF');
 
-    // Add loading animation
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
         document.body.style.opacity = '1';
     }, 100);
 
-    // Initialize slide numbering
     document.querySelectorAll('.slide').forEach((slide, index) => {
         slide.setAttribute('data-slide-number', index + 1);
     });
 }
 
+// ==================== EVENT LISTENERS SETUP ====================
 function setupEventListeners() {
-    // Navigation buttons
     document.getElementById('prevBtn').addEventListener('click', () => navigateSlide('prev'));
     document.getElementById('nextBtn').addEventListener('click', () => navigateSlide('next'));
-    
-    // Fullscreen button
     document.getElementById('fullscreenBtn').addEventListener('click', toggleFullscreen);
-    
-    // Export button
     document.getElementById('exportBtn').addEventListener('click', exportToPDF);
     
-    // Keyboard navigation
     document.addEventListener('keydown', handleKeyNavigation);
     
-    // Fullscreen change events
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
     document.addEventListener('mozfullscreenchange', handleFullscreenChange);
     document.addEventListener('MSFullscreenChange', handleFullscreenChange);
     
-    // Window resize handler
     window.addEventListener('resize', debounce(handleResize, 250));
+    window.addEventListener('orientationchange', handleOrientationChange);
     
-    // Touch/swipe support for mobile
-    setupTouchNavigation();
+    setupEnhancedTouchNavigation();
+}
+
+// ==================== MOBILE FEATURES INITIALIZATION ====================
+function initializeMobileFeatures() {
+    optimizeForMobile();
+    optimizeForTablet();
+    preventDoubleTargetZoom();
+    optimizeMobileExport();
+    
+    if (isMobile()) {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        
+        const mobileStyle = document.createElement('style');
+        mobileStyle.textContent = `
+            .mobile-device .slide {
+                min-height: calc(var(--vh, 1vh) * 100);
+            }
+            
+            .mobile-device .slide-content {
+                min-height: calc(var(--vh, 1vh) * 100 - 80px);
+            }
+        `;
+        document.head.appendChild(mobileStyle);
+        
+        // Add swipe indicator
+        const swipeIndicator = document.createElement('div');
+        swipeIndicator.className = 'swipe-indicator';
+        swipeIndicator.innerHTML = '← Geser untuk navigasi →';
+        document.body.appendChild(swipeIndicator);
+        
+        document.addEventListener('touchend', () => {
+            if (!hasSwipedOnce && swipeIndicator) {
+                hasSwipedOnce = true;
+                setTimeout(() => {
+                    if (swipeIndicator.parentNode) {
+                        swipeIndicator.style.opacity = '0';
+                        setTimeout(() => {
+                            swipeIndicator.parentNode.removeChild(swipeIndicator);
+                        }, 300);
+                    }
+                }, 2000);
+            }
+        });
+    }
+}
+
+// ==================== MOBILE DEVICE OPTIMIZATIONS ====================
+function optimizeForMobile() {
+    if (!isMobile()) return;
+    
+    const slideCounter = document.getElementById('slideCounter');
+    if (slideCounter) {
+        slideCounter.style.fontSize = '0.9rem';
+        slideCounter.style.marginBottom = '8px';
+    }
+    
+    document.body.classList.add('mobile-device');
+    
+    document.querySelectorAll('.slide-content').forEach(content => {
+        content.style.scrollBehavior = 'smooth';
+        content.style.overscrollBehavior = 'contain';
+    });
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+        
+        .mobile-device .slide-controls button {
+            -webkit-tap-highlight-color: rgba(52, 152, 219, 0.2);
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+function optimizeForTablet() {
+    if (!isTablet()) return;
+    
+    document.body.classList.add('tablet-device');
+    
+    const controls = document.querySelector('.slide-controls');
+    if (controls) {
+        controls.style.padding = '12px 20px';
+    }
+    
+    const style = document.createElement('style');
+    style.textContent = `
+        .tablet-device .penerapan-grid-2col {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .tablet-device .component-grid,
+        .tablet-device .smart-city-pillars {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// ==================== PREVENT DOUBLE TAP ZOOM ====================
+function preventDoubleTargetZoom() {
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (event) => {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+}
+
+// ==================== MOBILE EXPORT OPTIMIZATION ====================
+function optimizeMobileExport() {
+    if (!isMobile()) return;
+    
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', (e) => {
+            const proceed = confirm('Ekspor PDF di mobile mungkin memerlukan waktu lebih lama. Lanjutkan?');
+            if (!proceed) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+    }
+}
+
+// ==================== ENHANCED TOUCH NAVIGATION ====================
+function setupEnhancedTouchNavigation() {
+    let startX = 0;
+    let startY = 0;
+    let isSwipe = false;
+    let startTime = 0;
+    
+    const presentation = document.getElementById('presentation');
+    
+    presentation.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
+        isSwipe = true;
+        
+        if (isMobile()) {
+            document.body.style.userSelect = 'none';
+        }
+    }, { passive: true });
+    
+    presentation.addEventListener('touchmove', (e) => {
+        if (!isSwipe) return;
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+        
+        if (diffY > diffX && diffY > 30) {
+            isSwipe = false;
+        }
+        
+        if (diffX > diffY && diffX > 30) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    presentation.addEventListener('touchend', (e) => {
+        if (!isSwipe) return;
+        
+        const endX = e.changedTouches[0].clientX;
+        const endTime = Date.now();
+        const diffX = startX - endX;
+        const swipeTime = endTime - startTime;
+        const minSwipeDistance = isMobile() ? 30 : 50;
+        const maxSwipeTime = 500;
+        
+        document.body.style.userSelect = '';
+        
+        if (Math.abs(diffX) > minSwipeDistance && swipeTime < maxSwipeTime) {
+            if (diffX > 0) {
+                navigateSlide('next');
+                showSwipeFeedback('next');
+            } else {
+                navigateSlide('prev');
+                showSwipeFeedback('prev');
+            }
+        }
+        
+        isSwipe = false;
+    }, { passive: true });
+}
+
+// ==================== SWIPE FEEDBACK ====================
+function showSwipeFeedback(direction) {
+    if (!isMobile()) return;
+    
+    const feedback = document.createElement('div');
+    feedback.className = 'swipe-feedback';
+    feedback.innerHTML = direction === 'next' ? '→' : '←';
+    
+    feedback.style.cssText = `
+        position: fixed;
+        top: 50%;
+        ${direction === 'next' ? 'right: 20px;' : 'left: 20px;'}
+        transform: translateY(-50%);
+        background: var(--primary-color);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        z-index: 10000;
+        opacity: 0;
+        transition: all 0.3s ease;
+        pointer-events: none;
+    `;
+    
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.style.opacity = '1';
+        feedback.style.transform = 'translateY(-50%) scale(1.2)';
+    }, 50);
+    
+    setTimeout(() => {
+        feedback.style.opacity = '0';
+        feedback.style.transform = 'translateY(-50%) scale(0.8)';
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+        }, 300);
+    }, 300);
 }
 
 // ==================== SLIDE NAVIGATION ====================
@@ -149,25 +389,20 @@ function navigateSlide(direction) {
 }
 
 function showSlide(slideNumber) {
-    // Clear any existing animation timeout
     if (animationTimeout) {
         clearTimeout(animationTimeout);
     }
 
-    // Validate slide number
     if (slideNumber < 1 || slideNumber > totalSlides) {
         return;
     }
 
-    // Update current slide
     const previousSlide = currentSlide;
     currentSlide = slideNumber;
 
-    // Reset ALL slides styles first
     document.querySelectorAll('.slide').forEach((slide) => {
         slide.classList.remove('active');
         
-        // Reset positioning for all slides
         if (!isFullscreen) {
             slide.style.position = '';
             slide.style.top = '';
@@ -184,19 +419,16 @@ function showSlide(slideNumber) {
         }
     });
 
-    // Show target slide with animation
     const targetSlide = document.getElementById(`slide${slideNumber}`);
     if (targetSlide) {
         targetSlide.classList.add('active');
         
         if (isFullscreen) {
             targetSlide.style.display = 'flex';
-            // Ensure proper fullscreen layout
             setTimeout(() => {
                 optimizeForFullscreen(targetSlide);
             }, 50);
         } else {
-            // Reset any fullscreen-specific styles when not in fullscreen
             const slideContent = targetSlide.querySelector('.slide-content');
             if (slideContent) {
                 slideContent.style.position = '';
@@ -210,14 +442,12 @@ function showSlide(slideNumber) {
                 slideContent.style.padding = '';
             }
             
-            // Smooth scroll to slide for non-fullscreen view
             targetSlide.scrollIntoView({ 
                 behavior: 'smooth', 
                 block: 'start' 
             });
         }
 
-        // Add slide transition animation
         if (!isFullscreen || (slideNumber !== 1 && slideNumber !== 14)) {
             targetSlide.style.opacity = '0';
             targetSlide.style.transform = slideNumber > previousSlide 
@@ -229,23 +459,34 @@ function showSlide(slideNumber) {
                 targetSlide.style.opacity = '1';
                 targetSlide.style.transform = 'translateX(0)';
                 
-                // Clear transition after animation
                 setTimeout(() => {
                     targetSlide.style.transition = '';
                 }, 300);
             }, 50);
         } else {
-            // For fullscreen cover/thank you slides, ensure immediate visibility
             targetSlide.style.opacity = '1';
             targetSlide.style.transform = 'translateX(0)';
         }
+        
+        // Mobile-specific adjustments after slide change
+        if (isMobile()) {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                
+                const activeSlide = document.querySelector('.slide.active');
+                if (activeSlide) {
+                    const slideContent = activeSlide.querySelector('.slide-content');
+                    if (slideContent && slideContent.scrollHeight > window.innerHeight) {
+                        slideContent.style.overflowY = 'auto';
+                        slideContent.style.height = 'calc(100vh - 80px)';
+                    }
+                }
+            }, 100);
+        }
     }
 
-    // Update navigation buttons state
     updateNavigationButtons();
     updateSlideCounter();
-    
-    // Update URL hash without triggering scroll
     history.replaceState(null, null, `#slide${slideNumber}`);
 }
 
@@ -256,7 +497,6 @@ function updateNavigationButtons() {
     prevBtn.disabled = currentSlide === 1;
     nextBtn.disabled = currentSlide === totalSlides;
     
-    // Add visual feedback
     prevBtn.style.opacity = currentSlide === 1 ? '0.5' : '1';
     nextBtn.style.opacity = currentSlide === totalSlides ? '0.5' : '1';
 }
@@ -265,14 +505,12 @@ function updateSlideCounter() {
     const counter = document.getElementById('slideCounter');
     counter.textContent = `${currentSlide} / ${totalSlides}`;
     
-    // Add progress indicator
     const progress = (currentSlide / totalSlides) * 100;
     counter.style.background = `linear-gradient(90deg, var(--primary-color) ${progress}%, transparent ${progress}%)`;
     counter.style.backgroundClip = 'text';
     counter.style.webkitBackgroundClip = 'text';
     counter.style.fontWeight = 'bold';
     
-    // Fallback for browsers that don't support background-clip
     setTimeout(() => {
         if (getComputedStyle(counter).color === 'transparent') {
             counter.style.background = '';
@@ -283,7 +521,6 @@ function updateSlideCounter() {
 
 // ==================== KEYBOARD NAVIGATION ====================
 function handleKeyNavigation(event) {
-    // Prevent navigation when user is typing in an input
     if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') {
         return;
     }
@@ -299,7 +536,7 @@ function handleKeyNavigation(event) {
         case 'ArrowRight':
         case 'ArrowDown':
         case 'PageDown':
-        case ' ': // Spacebar
+        case ' ':
             event.preventDefault();
             navigateSlide('next');
             break;
@@ -329,7 +566,6 @@ function handleKeyNavigation(event) {
             }
             break;
             
-        // Number keys for direct slide navigation
         case '1': case '2': case '3': case '4': case '5':
         case '6': case '7': case '8': case '9':
             const slideNum = parseInt(event.key);
@@ -362,7 +598,13 @@ function enterFullscreen() {
         requestFullscreen.call(presentation).then(() => {
             isFullscreen = true;
             document.body.classList.add('is-fullscreen');
-            optimizeForFullscreen();
+            setTimeout(() => {
+                optimizeMobileFullscreen();
+                const activeSlide = document.querySelector('.slide.active');
+                if (activeSlide) {
+                    optimizeForFullscreen(activeSlide);
+                }
+            }, 100);
         }).catch((err) => {
             console.warn('Failed to enter fullscreen:', err);
         });
@@ -399,15 +641,19 @@ function handleFullscreenChange() {
     
     if (isFullscreen) {
         document.body.classList.add('is-fullscreen');
-        optimizeForFullscreen();
+        setTimeout(() => {
+            optimizeMobileFullscreen();
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) {
+                optimizeForFullscreen(activeSlide);
+            }
+        }, 100);
     } else {
         document.body.classList.remove('is-fullscreen');
         
-        // Add a small delay to ensure smooth transition out of fullscreen
         setTimeout(() => {
             restoreNormalView();
             
-            // Ensure slide controls are visible and properly positioned
             const controls = document.querySelector('.slide-controls');
             if (controls) {
                 controls.style.display = 'flex';
@@ -418,7 +664,6 @@ function handleFullscreenChange() {
                 controls.style.zIndex = '1000';
             }
             
-            // Force re-render of current slide
             showSlide(currentSlide);
         }, 100);
     }
@@ -437,13 +682,9 @@ function updateFullscreenButtonIcon() {
     }
 }
 
+// ==================== ENHANCED FULLSCREEN OPTIMIZATION ====================
 function optimizeForFullscreen(targetSlide = null) {
     if (!isFullscreen) return;
-    
-    // Hide all slides except active one
-    document.querySelectorAll('.slide').forEach(slide => {
-        slide.style.display = slide.classList.contains('active') ? 'flex' : 'none';
-    });
     
     const activeSlide = targetSlide || document.querySelector('.slide.active');
     if (!activeSlide) return;
@@ -451,44 +692,361 @@ function optimizeForFullscreen(targetSlide = null) {
     const slideContent = activeSlide.querySelector('.slide-content');
     if (!slideContent) return;
     
-    // Reset any previous transformations
-    slideContent.style.transform = '';
-    slideContent.style.overflow = 'auto';
+    resetSlideStyles(activeSlide);
+    applyResponsiveFullscreen(activeSlide);
     
-    // Check if content fits in viewport
     setTimeout(() => {
-        const contentHeight = slideContent.scrollHeight;
-        const viewportHeight = window.innerHeight;
-        const availableHeight = viewportHeight - 80; // Account for padding
+        handleContentOverflow(activeSlide);
+        optimizeSlideSpecifics(activeSlide);
+        addScrollIndicators(activeSlide);
+    }, 100);
+}
+
+function resetSlideStyles(slide) {
+    const slideContent = slide.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    slideContent.style.transform = '';
+    slideContent.style.transformOrigin = '';
+    slideContent.style.scale = '';
+    slideContent.style.overflowY = 'auto';
+    slideContent.style.overflowX = 'hidden';
+    slideContent.style.width = '100%';
+    slideContent.style.height = '100vh';
+    slideContent.style.boxSizing = 'border-box';
+}
+
+function applyResponsiveFullscreen(slide) {
+    const slideContent = slide.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+    
+    if (viewport.width >= 1920) {
+        slideContent.style.padding = '60px 120px';
+        slideContent.style.maxWidth = '1600px';
+        slideContent.style.margin = '0 auto';
+    } else if (viewport.width >= 1200) {
+        slideContent.style.padding = '50px 80px';
+        // slideContent.style.maxWidth = '1400px';
+        slideContent.style.margin = '0 auto';
+    } else if (viewport.width >= 1024) {
+        slideContent.style.padding = '40px 60px';
+    } else if (viewport.width >= 768) {
+        slideContent.style.padding = '30px 40px';
+    } else {
+        slideContent.style.padding = '20px 25px';
+    }
+    
+    applyResponsiveTypography(slide, viewport);
+    applyResponsiveGrids(slide, viewport);
+}
+
+function applyResponsiveTypography(slide, viewport) {
+    const headings = slide.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const paragraphs = slide.querySelectorAll('p, li');
+    
+    if (viewport.width <= 767) {
+        headings.forEach(heading => {
+            switch(heading.tagName.toLowerCase()) {
+                case 'h1':
+                    heading.style.fontSize = '1.75rem';
+                    break;
+                case 'h2':
+                    heading.style.fontSize = '1.5rem';
+                    break;
+                case 'h3':
+                    heading.style.fontSize = '1.3rem';
+                    break;
+                case 'h4':
+                    heading.style.fontSize = '1.2rem';
+                    break;
+                case 'h5':
+                    heading.style.fontSize = '1.1rem';
+                    break;
+            }
+            heading.style.lineHeight = '1.2';
+            heading.style.marginBottom = '0.8rem';
+        });
         
-        if (contentHeight > availableHeight) {
-            slideContent.style.transformOrigin = 'center center';
-            slideContent.style.overflow = 'hidden';
+        paragraphs.forEach(p => {
+            p.style.fontSize = '0.9rem';
+            p.style.lineHeight = '1.4';
+        });
+    } else if (viewport.width <= 1023) {
+        headings.forEach(heading => {
+            switch(heading.tagName.toLowerCase()) {
+                case 'h1':
+                    heading.style.fontSize = '2rem';
+                    break;
+                case 'h2':
+                    heading.style.fontSize = '1.8rem';
+                    break;
+                case 'h3':
+                    heading.style.fontSize = '1.5rem';
+                    break;
+                case 'h4':
+                    heading.style.fontSize = '1.3rem';
+                    break;
+            }
+        });
+        
+        paragraphs.forEach(p => {
+            p.style.fontSize = '1rem';
+        });
+    }
+    
+    if (viewport.height <= 600) {
+        headings.forEach(heading => {
+            if (heading.tagName.toLowerCase() === 'h2') {
+                heading.style.fontSize = '1.5rem';
+                heading.style.marginBottom = '0.8rem';
+            }
+        });
+    }
+}
+
+function applyResponsiveGrids(slide, viewport) {
+    const grids = slide.querySelectorAll('.component-grid, .smart-city-pillars, .penerapan-grid, .penerapan-grid-2col, .impact-metrics');
+    const rows = slide.querySelectorAll('.row');
+    
+    grids.forEach(grid => {
+        if (viewport.width <= 767) {
+            grid.style.gridTemplateColumns = '1fr';
+            grid.style.gap = '15px';
+        } else if (viewport.width <= 1023) {
+            if (grid.classList.contains('penerapan-grid-2col')) {
+                grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            } else {
+                grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))';
+            }
+            grid.style.gap = '20px';
+        } else {
+            if (grid.classList.contains('penerapan-grid-2col')) {
+                grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+                grid.style.gap = '25px';
+            }
+        }
+    });
+    
+    if (slide.id === 'slide2') {
+        optimizeMemberSlideGrid(slide, viewport);
+    }
+    
+    rows.forEach(row => {
+        if (slide.id !== 'slide2') {
+            if (viewport.width <= 767) {
+                row.style.display = 'block';
+                const cols = row.querySelectorAll('[class*="col-"]');
+                cols.forEach(col => {
+                    col.style.width = '100%';
+                    col.style.marginBottom = '20px';
+                });
+            } else {
+                row.style.display = 'flex';
+                row.style.flexWrap = 'wrap';
+            }
+        }
+    });
+}
+
+function optimizeMemberSlideGrid(slide, viewport) {
+    const memberRow = slide.querySelector('.row');
+    const memberCards = slide.querySelectorAll('.member-card');
+    
+    if (!memberRow || memberCards.length === 0) return;
+    
+    memberRow.style.display = 'grid';
+    memberRow.style.alignItems = 'stretch';
+    memberRow.style.width = '100%';
+    memberRow.style.margin = '0';
+    memberRow.style.padding = '0';
+    
+    if (viewport.width >= 1200) {
+        memberRow.style.gridTemplateColumns = 'repeat(4, 1fr)';
+        memberRow.style.gap = '25px';
+    } else if (viewport.width >= 768) {
+        memberRow.style.gridTemplateColumns = 'repeat(3, 1fr)';
+        memberRow.style.gap = '20px';
+    } else if (viewport.width >= 480) {
+        memberRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        memberRow.style.gap = '15px';
+    } else {
+        memberRow.style.gridTemplateColumns = '1fr';
+        memberRow.style.gap = '15px';
+    }
+    
+    memberCards.forEach(card => {
+        const cardParent = card.parentElement;
+        
+        cardParent.style.padding = '0';
+        cardParent.style.margin = '0';
+        cardParent.style.width = 'auto';
+        cardParent.style.flex = 'none';
+        
+        card.style.height = 'auto';
+        card.style.minHeight = viewport.width <= 767 ? '180px' : '200px';
+        card.style.width = '100%';
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+        card.style.justifyContent = 'space-between';
+        card.style.padding = viewport.width <= 767 ? '15px' : '20px';
+        card.style.margin = '0';
+        card.style.boxSizing = 'border-box';
+        
+        const photoPlaceholder = card.querySelector('.photo-placeholder');
+        if (photoPlaceholder) {
+            if (viewport.width <= 767) {
+                photoPlaceholder.style.width = '80px';
+                photoPlaceholder.style.height = '80px';
+                photoPlaceholder.style.fontSize = '2.5rem';
+            } else {
+                photoPlaceholder.style.width = '100px';
+                photoPlaceholder.style.height = '100px';
+                photoPlaceholder.style.fontSize = '3rem';
+            }
         }
         
-        // Optimize specific slide types
-        optimizeSlideSpecifics(activeSlide);
-    }, 100);
+        const memberImg = card.querySelector('.member-img');
+        if (memberImg) {
+            if (viewport.width <= 767) {
+                memberImg.style.width = '70px';
+                memberImg.style.height = '70px';
+            } else {
+                memberImg.style.width = '90px';
+                memberImg.style.height = '90px';
+            }
+        }
+    });
+}
+
+function handleContentOverflow(slide) {
+    const slideContent = slide.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const contentHeight = slideContent.scrollHeight;
+    const viewportHeight = window.innerHeight;
+    const availableHeight = viewportHeight - 40;
+    
+    if (contentHeight > availableHeight) {
+        slideContent.style.overflowY = 'auto';
+        slideContent.style.height = '100vh';
+        slideContent.style.scrollBehavior = 'smooth';
+        
+        if (isMobile()) {
+            slideContent.style.scrollSnapType = 'y mandatory';
+            const sections = slideContent.children;
+            Array.from(sections).forEach(section => {
+                section.style.scrollSnapAlign = 'start';
+            });
+        }
+    } else {
+        slideContent.style.overflowY = 'hidden';
+        slideContent.style.display = 'flex';
+        slideContent.style.flexDirection = 'column';
+        slideContent.style.justifyContent = 'center';
+    }
+}
+
+function addScrollIndicators(slide) {
+    const slideContent = slide.querySelector('.slide-content');
+    if (!slideContent) return;
+    
+    const existingIndicator = slide.querySelector('.scroll-indicator');
+    if (existingIndicator) {
+        existingIndicator.remove();
+    }
+    
+    const isScrollable = slideContent.scrollHeight > slideContent.clientHeight;
+    
+    if (isScrollable && isFullscreen) {
+        const indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator';
+        indicator.innerHTML = '↕';
+        indicator.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            z-index: 1000;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+        `;
+        
+        if (!document.querySelector('#scroll-indicator-keyframes')) {
+            const style = document.createElement('style');
+            style.id = 'scroll-indicator-keyframes';
+            style.textContent = `
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        slide.appendChild(indicator);
+        
+        let hasScrolled = false;
+        slideContent.addEventListener('scroll', () => {
+            if (!hasScrolled) {
+                hasScrolled = true;
+                indicator.style.opacity = '0.3';
+                setTimeout(() => {
+                    if (indicator.parentNode) {
+                        indicator.remove();
+                    }
+                }, 3000);
+            }
+        });
+    }
 }
 
 function optimizeSlideSpecifics(slide) {
     const slideId = slide.id;
+    const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
     
-    // Specific optimizations for different slide types
     switch (slideId) {
-        case 'slide1': // Cover slide
+        case 'slide1':
             optimizeCoverSlide(slide);
             break;
-        case 'slide14': // Thank you slide
+        case 'slide14':
             optimizeThankYouSlide(slide);
             break;
-        case 'slide2': // Member cards
-            optimizeMemberSlide(slide);
+        case 'slide2':
+            break; // Already handled in grid optimization
+        case 'slide7':
+            optimizeCaseStudySlide(slide, viewport);
             break;
-        case 'slide11': // Research slide
-            optimizeResearchSlide(slide);
+        case 'slide8':
+            optimizeTechPillarsSlide(slide, viewport);
             break;
-        case 'slide13': // References
+        case 'slide9':
+            optimizeChallengesSlide(slide, viewport);
+            break;
+        case 'slide10':
+            optimizeTrendsSlide(slide, viewport);
+            break;
+        case 'slide11':
+            optimizeResearchSlide(slide, viewport);
+            break;
+        case 'slide13':
             optimizeReferencesSlide(slide);
             break;
     }
@@ -497,7 +1055,6 @@ function optimizeSlideSpecifics(slide) {
 function optimizeCoverSlide(slide) {
     if (!isFullscreen) return;
     
-    // Force absolute positioning for true fullscreen
     slide.style.position = 'fixed';
     slide.style.top = '0';
     slide.style.left = '0';
@@ -534,7 +1091,6 @@ function optimizeCoverSlide(slide) {
 function optimizeThankYouSlide(slide) {
     if (!isFullscreen) return;
     
-    // Force absolute positioning for true fullscreen (same as cover slide)
     slide.style.position = 'fixed';
     slide.style.top = '0';
     slide.style.left = '0';
@@ -566,7 +1122,6 @@ function optimizeThankYouSlide(slide) {
         slideContent.style.overflow = 'hidden';
         slideContent.style.boxSizing = 'border-box';
         
-        // Ensure container fluid takes full space
         const containerFluid = slide.querySelector('.container-fluid');
         if (containerFluid) {
             containerFluid.style.width = '100%';
@@ -580,7 +1135,6 @@ function optimizeThankYouSlide(slide) {
             containerFluid.style.boxSizing = 'border-box';
         }
         
-        // Optimize Bootstrap row and col
         const row = slide.querySelector('.row');
         if (row) {
             row.style.width = '100%';
@@ -602,7 +1156,6 @@ function optimizeThankYouSlide(slide) {
             col.style.height = '100%';
         }
         
-        // Optimize text sizes for fullscreen
         const h2 = slide.querySelector('h2');
         const h4 = slide.querySelector('h4');
         const thankYouIcon = slide.querySelector('.thank-you-icon');
@@ -632,17 +1185,154 @@ function optimizeThankYouSlide(slide) {
     }
 }
 
-function optimizeMemberSlide(slide) {
-    const memberCards = slide.querySelectorAll('.member-card');
-    memberCards.forEach(card => {
-        card.style.minHeight = 'auto';
+function optimizeCaseStudySlide(slide, viewport) {
+    const caseStudyRow = slide.querySelector('.row');
+    if (!caseStudyRow) return;
+    
+    caseStudyRow.style.display = 'grid';
+    caseStudyRow.style.alignItems = 'stretch';
+    caseStudyRow.style.gap = '25px';
+    caseStudyRow.style.margin = '0';
+    
+    if (viewport.width <= 767) {
+        caseStudyRow.style.gridTemplateColumns = '1fr';
+        caseStudyRow.style.gap = '20px';
+    } else if (viewport.width <= 1023) {
+        caseStudyRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    } else {
+        caseStudyRow.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+    
+    const cards = slide.querySelectorAll('.case-study-card');
+    cards.forEach(card => {
+        card.style.height = '100%';
+        card.style.display = 'flex';
+        card.style.flexDirection = 'column';
+        
+        const cardBody = card.querySelector('.card-body');
+        if (cardBody) {
+            cardBody.style.flex = '1';
+        }
     });
 }
 
-function optimizeResearchSlide(slide) {
+function optimizeTechPillarsSlide(slide, viewport) {
+    const techRow = slide.querySelector('.row');
+    if (!techRow) return;
+    
+    techRow.style.display = 'grid';
+    techRow.style.alignItems = 'stretch';
+    techRow.style.gap = '25px';
+    techRow.style.margin = '0';
+    
+    if (viewport.width <= 767) {
+        techRow.style.gridTemplateColumns = '1fr';
+        techRow.style.gap = '20px';
+    } else if (viewport.width <= 1023) {
+        techRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    } else {
+        techRow.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    }
+    
+    const pillars = slide.querySelectorAll('.tech-pillar');
+    pillars.forEach(pillar => {
+        pillar.style.height = '100%';
+        pillar.style.display = 'flex';
+        pillar.style.flexDirection = 'column';
+        
+        const list = pillar.querySelector('ul');
+        if (list) {
+            list.style.flex = '1';
+        }
+    });
+}
+
+function optimizeChallengesSlide(slide, viewport) {
+    const challengeRow = slide.querySelector('.row');
+    if (!challengeRow) return;
+    
+    challengeRow.style.display = 'grid';
+    challengeRow.style.alignItems = 'start';
+    challengeRow.style.gap = '25px';
+    challengeRow.style.margin = '0';
+    
+    if (viewport.width <= 767) {
+        challengeRow.style.gridTemplateColumns = '1fr';
+        challengeRow.style.gap = '20px';
+    } else {
+        challengeRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    }
+    
+    const challengeBoxes = slide.querySelectorAll('.challenge-box');
+    challengeBoxes.forEach(box => {
+        if (viewport.width <= 767) {
+            box.style.flexDirection = 'column';
+            const icon = box.querySelector('.challenge-icon');
+            if (icon) {
+                icon.style.minWidth = 'auto';
+                icon.style.width = '100%';
+                icon.style.padding = '15px';
+            }
+        }
+    });
+}
+
+function optimizeTrendsSlide(slide, viewport) {
+    const trendsRow = slide.querySelector('.row');
+    if (!trendsRow) return;
+    
+    trendsRow.style.display = 'grid';
+    trendsRow.style.alignItems = 'start';
+    trendsRow.style.gap = '25px';
+    trendsRow.style.margin = '0';
+    
+    if (viewport.width <= 767) {
+        trendsRow.style.gridTemplateColumns = '1fr';
+        trendsRow.style.gap = '20px';
+    } else {
+        trendsRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    }
+    
+    const trendItems = slide.querySelectorAll('.trend-item');
+    trendItems.forEach(item => {
+        if (viewport.width <= 767) {
+            item.style.flexDirection = 'column';
+            item.style.textAlign = 'center';
+            const icon = item.querySelector('i');
+            if (icon) {
+                icon.style.marginRight = '0';
+                icon.style.marginBottom = '10px';
+            }
+        }
+    });
+}
+
+function optimizeResearchSlide(slide, viewport) {
+    const researchRow = slide.querySelector('.row');
+    if (!researchRow) return;
+    
+    researchRow.style.display = 'grid';
+    researchRow.style.alignItems = 'start';
+    researchRow.style.gap = '25px';
+    researchRow.style.margin = '0';
+    
+    if (viewport.width <= 767) {
+        researchRow.style.gridTemplateColumns = '1fr';
+        researchRow.style.gap = '20px';
+    } else {
+        researchRow.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    }
+    
     const researchItems = slide.querySelectorAll('.research-item');
     researchItems.forEach(item => {
-        item.style.marginBottom = '20px';
+        item.style.height = '100%';
+        item.style.display = 'flex';
+        item.style.flexDirection = 'column';
+        
+        const content = item.querySelector('.research-content');
+        if (content) {
+            content.style.flex = '1';
+        }
     });
 }
 
@@ -654,10 +1344,75 @@ function optimizeReferencesSlide(slide) {
     }
 }
 
+function optimizeMobileFullscreen() {
+    if (!isMobile() || !isFullscreen) return;
+    
+    const activeSlide = document.querySelector('.slide.active');
+    if (!activeSlide) return;
+    
+    if (window.innerHeight > window.innerWidth) {
+        showOrientationHint();
+    }
+    
+    const slideContent = activeSlide.querySelector('.slide-content');
+    if (slideContent) {
+        slideContent.style.webkitOverflowScrolling = 'touch';
+        slideContent.style.overscrollBehavior = 'contain';
+    }
+    
+    setTimeout(() => {
+        window.scrollTo(0, 1);
+    }, 100);
+}
+
+function showOrientationHint() {
+    const existing = document.querySelector('.orientation-hint');
+    if (existing) return;
+    
+    const hint = document.createElement('div');
+    hint.className = 'orientation-hint';
+    hint.innerHTML = `
+        <div style="text-align: center; color: white;">
+            <div style="font-size: 2rem; margin-bottom: 10px;">📱</div>
+            <div>Putar device untuk pengalaman yang lebih baik</div>
+        </div>
+    `;
+    hint.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        color: white;
+        text-align: center;
+        font-size: 1.2rem;
+    `;
+    
+    document.body.appendChild(hint);
+    
+    function checkOrientation() {
+        if (window.innerWidth > window.innerHeight && hint.parentNode) {
+            hint.remove();
+            window.removeEventListener('resize', checkOrientation);
+        }
+    }
+    
+    window.addEventListener('resize', checkOrientation);
+    
+    setTimeout(() => {
+        if (hint.parentNode) {
+            hint.remove();
+        }
+    }, 5000);
+}
+
 function restoreNormalView() {
-    // Reset all slide displays and positioning
     document.querySelectorAll('.slide').forEach(slide => {
-        // Reset slide positioning
         slide.style.position = '';
         slide.style.top = '';
         slide.style.left = '';
@@ -675,7 +1430,6 @@ function restoreNormalView() {
         
         const slideContent = slide.querySelector('.slide-content');
         if (slideContent) {
-            // Reset slide content positioning and sizing
             slideContent.style.position = '';
             slideContent.style.top = '';
             slideContent.style.left = '';
@@ -693,7 +1447,6 @@ function restoreNormalView() {
             slideContent.style.boxSizing = '';
         }
         
-        // Reset Bootstrap components
         const containerFluid = slide.querySelector('.container-fluid');
         if (containerFluid) {
             containerFluid.style.width = '';
@@ -728,7 +1481,6 @@ function restoreNormalView() {
             col.style.height = '';
         }
         
-        // Reset text elements sizing
         const h1 = slide.querySelector('h1');
         const h2 = slide.querySelector('h2');
         const h3 = slide.querySelector('h3');
@@ -776,12 +1528,10 @@ function restoreNormalView() {
         }
     });
     
-    // Show only active slide
     document.querySelectorAll('.slide').forEach(slide => {
         slide.style.display = slide.classList.contains('active') ? 'flex' : 'none';
     });
     
-    // Small delay to ensure proper rendering
     setTimeout(() => {
         document.querySelectorAll('.slide').forEach(slide => {
             slide.style.display = '';
@@ -793,24 +1543,55 @@ function restoreNormalView() {
     }, 100);
 }
 
-// ==================== PDF EXPORT (FIXED - FULLSCREEN CAPTURE) ====================
+// ==================== ORIENTATION CHANGE HANDLER ====================
+function handleOrientationChange() {
+    setTimeout(() => {
+        const activeSlide = document.querySelector('.slide.active');
+        if (activeSlide) {
+            activeSlide.style.display = 'none';
+            setTimeout(() => {
+                activeSlide.style.display = 'flex';
+                
+                if (isFullscreen) {
+                    optimizeForFullscreen(activeSlide);
+                }
+            }, 100);
+        }
+        
+        if (isMobile()) {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+    }, 500);
+}
+
+// ==================== RESIZE HANDLER ====================
+function handleResize() {
+    if (isFullscreen) {
+        clearTimeout(window.resizeTimeout);
+        window.resizeTimeout = setTimeout(() => {
+            const activeSlide = document.querySelector('.slide.active');
+            if (activeSlide) {
+                optimizeForFullscreen(activeSlide);
+            }
+        }, 250);
+    }
+}
+
+// ==================== PDF EXPORT FUNCTIONALITY ====================
 function exportToPDF() {
-    // Show loading state
     const exportBtn = document.getElementById('exportBtn');
     const originalHTML = exportBtn.innerHTML;
     exportBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Exporting...';
     exportBtn.disabled = true;
     
-    // Hide controls during export
     const controls = document.querySelector('.slide-controls');
     const originalControlsDisplay = controls.style.display;
     controls.style.display = 'none';
     
-    // Store current slide state
     const originalCurrentSlide = currentSlide;
     const slides = document.querySelectorAll('.slide');
     
-    // Create PDF using jsPDF
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF({
         unit: 'mm',
@@ -821,10 +1602,8 @@ function exportToPDF() {
     let currentSlideIndex = 0;
     let slideImages = [];
     
-    // Function to capture slides one by one
     function captureSlideSequentially() {
         if (currentSlideIndex >= slides.length) {
-            // All slides captured, create PDF
             createFinalPDF();
             return;
         }
@@ -832,21 +1611,17 @@ function exportToPDF() {
         const slide = slides[currentSlideIndex];
         const slideNumber = currentSlideIndex + 1;
         
-        // Update loading message
         exportBtn.innerHTML = `<i class="bi bi-hourglass-split"></i> Capturing slide ${slideNumber}/${slides.length}...`;
         
-        // Prepare slide for capture
         prepareSlideForCapture(slide, slideNumber)
             .then(() => captureSlideAsImage(slide, slideNumber))
             .then((imageData) => {
                 slideImages.push(imageData);
                 currentSlideIndex++;
-                // Small delay before next slide
                 setTimeout(captureSlideSequentially, 300);
             })
             .catch((error) => {
                 console.error(`Error capturing slide ${slideNumber}:`, error);
-                // Continue with next slide even if one fails
                 currentSlideIndex++;
                 setTimeout(captureSlideSequentially, 100);
             });
@@ -854,20 +1629,18 @@ function exportToPDF() {
     
     function prepareSlideForCapture(slide, slideNumber) {
         return new Promise((resolve) => {
-            // Hide all slides first
             slides.forEach(s => {
                 s.style.display = 'none';
                 s.classList.remove('active');
             });
             
-            // Show and style current slide for fullscreen capture
             slide.style.display = 'flex';
             slide.classList.add('active');
             slide.style.position = 'fixed';
             slide.style.top = '0';
             slide.style.left = '0';
-            slide.style.width = '1920px'; // Fixed width for consistent capture
-            slide.style.height = '1080px'; // Fixed height for consistent capture
+            slide.style.width = '1920px';
+            slide.style.height = '1080px';
             slide.style.margin = '0';
             slide.style.padding = '0';
             slide.style.zIndex = '9999';
@@ -876,7 +1649,6 @@ function exportToPDF() {
             slide.style.overflow = 'hidden';
             slide.style.transform = 'scale(1)';
             
-            // Set background based on slide type
             if (slide.classList.contains('cover-slide') || slide.classList.contains('thank-you-slide')) {
                 slide.style.background = 'linear-gradient(135deg, #3498db, #1abc9c)';
             } else {
@@ -893,7 +1665,6 @@ function exportToPDF() {
                 slideContent.style.flexDirection = 'column';
                 slideContent.style.overflow = 'visible';
                 
-                // Special styling for cover and thank you slides
                 if (slide.classList.contains('cover-slide') || slide.classList.contains('thank-you-slide')) {
                     slideContent.style.justifyContent = 'center';
                     slideContent.style.alignItems = 'center';
@@ -902,46 +1673,37 @@ function exportToPDF() {
                 }
             }
             
-            // Optimize layout for each slide
             optimizeSlideLayout(slide);
-            
-            // Wait for layout and fonts to load
             setTimeout(resolve, 500);
         });
     }
     
     function optimizeSlideLayout(slide) {
-        // Handle different slide layouts
         const slideId = slide.id;
         
-        // Member cards slide (slide2) - FIXED LAYOUT
         if (slideId === 'slide2') {
             const memberRow = slide.querySelector('.row');
             const memberCards = slide.querySelectorAll('.member-card');
             
             if (memberRow && memberCards.length > 0) {
-                // Remove Bootstrap classes and apply custom grid
                 memberRow.style.display = 'grid';
                 memberRow.style.gridTemplateColumns = 'repeat(4, 1fr)';
                 memberRow.style.gap = '25px';
                 memberRow.style.margin = '0';
                 memberRow.style.padding = '0';
                 memberRow.style.width = '100%';
-                memberRow.style.maxWidth = '1400px';
+                // memberRow.style.maxWidth = '1400px';
                 memberRow.style.marginLeft = 'auto';
                 memberRow.style.marginRight = 'auto';
                 
-                // Style each member card for consistent layout
                 memberCards.forEach((card, index) => {
                     const cardParent = card.parentElement;
                     
-                    // Remove Bootstrap column classes effect
                     cardParent.style.padding = '0';
                     cardParent.style.margin = '0';
                     cardParent.style.width = 'auto';
                     cardParent.style.flex = 'none';
                     
-                    // Style the card itself
                     card.style.height = '280px';
                     card.style.width = '100%';
                     card.style.display = 'flex';
@@ -955,7 +1717,6 @@ function exportToPDF() {
                     card.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
                     card.style.border = '1px solid rgba(52, 152, 219, 0.1)';
                     
-                    // Style photo placeholder
                     const photoPlaceholder = card.querySelector('.photo-placeholder');
                     if (photoPlaceholder) {
                         photoPlaceholder.style.width = '100px';
@@ -972,7 +1733,6 @@ function exportToPDF() {
                         photoPlaceholder.style.overflow = 'hidden';
                         photoPlaceholder.style.padding = '5px';
                         
-                        // Style member image if present
                         const memberImg = photoPlaceholder.querySelector('.member-img');
                         if (memberImg && memberImg.src && !memberImg.classList.contains('error')) {
                             memberImg.style.width = '90px';
@@ -985,7 +1745,6 @@ function exportToPDF() {
                             memberImg.style.position = 'relative';
                         }
                         
-                        // Style fallback icon
                         const fallback = photoPlaceholder.querySelector('.photo-fallback');
                         if (fallback) {
                             fallback.style.position = 'absolute';
@@ -996,7 +1755,6 @@ function exportToPDF() {
                             fallback.style.color = 'white';
                             fallback.style.zIndex = '1';
                             
-                            // Show fallback only if image is not available
                             const img = photoPlaceholder.querySelector('.member-img');
                             if (!img || !img.src || img.classList.contains('error')) {
                                 fallback.style.display = 'block';
@@ -1006,7 +1764,6 @@ function exportToPDF() {
                         }
                     }
                     
-                    // Style member info
                     const memberInfo = card.querySelector('.member-info');
                     if (memberInfo) {
                         memberInfo.style.textAlign = 'center';
@@ -1031,7 +1788,6 @@ function exportToPDF() {
                     }
                 });
                 
-                // Handle if we have 8 members (2 rows of 4)
                 if (memberCards.length === 8) {
                     memberRow.style.gridTemplateRows = 'repeat(2, 1fr)';
                     memberRow.style.height = 'auto';
@@ -1040,15 +1796,12 @@ function exportToPDF() {
             }
         }
         
-        // Handle other grids
         const grids = slide.querySelectorAll('.component-grid, .smart-city-pillars, .penerapan-grid, .penerapan-grid-2col, .impact-metrics');
         grids.forEach(grid => {
-            // Skip if this is the member row we already handled
             if (slide.id === 'slide2' && grid.closest('.row')) {
                 return;
             }
             
-            // Special handling for slide 6 (2-column layout)
             if (grid.classList.contains('penerapan-grid-2col')) {
                 grid.style.display = 'grid';
                 grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
@@ -1056,7 +1809,6 @@ function exportToPDF() {
                 grid.style.alignItems = 'start';
                 grid.style.marginTop = '20px';
                 
-                // Ensure each item has proper height
                 const items = grid.querySelectorAll('.penerapan-item');
                 items.forEach(item => {
                     item.style.height = 'auto';
@@ -1071,7 +1823,7 @@ function exportToPDF() {
                     }
                 });
                 
-                return; // Skip general grid handling for this specific grid
+                return;
             }
             
             const itemCount = grid.children.length;
@@ -1088,7 +1840,6 @@ function exportToPDF() {
             grid.style.alignItems = 'stretch';
         });
         
-        // References slide (slide13)
         if (slideId === 'slide13') {
             const references = slide.querySelector('.references');
             if (references) {
@@ -1099,7 +1850,6 @@ function exportToPDF() {
             }
         }
         
-        // Conclusion slide (slide12) with smart city image
         if (slideId === 'slide12') {
             const smartCityImg = slide.querySelector('.smart-city-img');
             const illustrationFallback = slide.querySelector('.illustration-fallback');
@@ -1123,7 +1873,6 @@ function exportToPDF() {
             }
         }
         
-        // Ensure all text is visible and properly sized
         const headings = slide.querySelectorAll('h1, h2, h3, h4, h5, h6');
         headings.forEach(heading => {
             heading.style.marginBottom = '20px';
@@ -1132,7 +1881,7 @@ function exportToPDF() {
         
         const paragraphs = slide.querySelectorAll('p, li');
         paragraphs.forEach(p => {
-            if (!p.closest('.member-info')) { // Skip member info paragraphs as they're already styled
+            if (!p.closest('.member-info')) {
                 p.style.fontSize = '16px';
                 p.style.lineHeight = '1.6';
             }
@@ -1141,7 +1890,6 @@ function exportToPDF() {
     
     function captureSlideAsImage(slide, slideNumber) {
         return new Promise((resolve, reject) => {
-            // Use html2canvas to capture the slide
             html2canvas(slide, {
                 width: 1920,
                 height: 1080,
@@ -1172,18 +1920,13 @@ function exportToPDF() {
             return;
         }
         
-        // Remove default blank page
         pdf.deletePage(1);
         
         slideImages.forEach((imageData, index) => {
-            // Add new page for each slide
             pdf.addPage('a4', 'landscape');
-            
-            // Add image to fill the entire page (297x210mm for A4 landscape)
             pdf.addImage(imageData, 'JPEG', 0, 0, 297, 210);
         });
         
-        // Download the PDF
         pdf.save('IoT_untuk_Kota_Pintar_Kelompok_4.pdf');
         
         restoreAfterExport();
@@ -1193,7 +1936,6 @@ function exportToPDF() {
     }
     
     function restoreAfterExport() {
-        // Restore all slides to normal state
         slides.forEach(slide => {
             slide.style.position = '';
             slide.style.top = '';
@@ -1234,7 +1976,6 @@ function exportToPDF() {
                 slideContent.style.margin = '';
             }
             
-            // Reset Bootstrap components
             const containerFluid = slide.querySelector('.container-fluid');
             if (containerFluid) {
                 containerFluid.style.width = '';
@@ -1269,7 +2010,6 @@ function exportToPDF() {
                 col.style.height = '';
             }
             
-            // Reset text elements
             const h1 = slide.querySelector('h1');
             const h2 = slide.querySelector('h2');
             const h3 = slide.querySelector('h3');
@@ -1316,7 +2056,6 @@ function exportToPDF() {
                 contactInfo.style.marginTop = '';
             }
             
-            // Reset grids
             const grids = slide.querySelectorAll('.component-grid, .smart-city-pillars, .penerapan-grid, .impact-metrics');
             grids.forEach(grid => {
                 grid.style.display = '';
@@ -1325,7 +2064,6 @@ function exportToPDF() {
                 grid.style.alignItems = '';
             });
             
-            // Reset member row
             const memberRow = slide.querySelector('.row');
             if (memberRow && slide.id === 'slide2') {
                 memberRow.style.display = '';
@@ -1335,64 +2073,11 @@ function exportToPDF() {
             }
         });
         
-        // Show controls
         controls.style.display = originalControlsDisplay || 'flex';
-        
-        // Restore original slide
         showSlide(originalCurrentSlide);
     }
     
-    // Start the capture process
     captureSlideSequentially();
-}
-
-// ==================== TOUCH/SWIPE NAVIGATION ====================
-function setupTouchNavigation() {
-    let startX = 0;
-    let startY = 0;
-    let isSwipe = false;
-    
-    const presentation = document.getElementById('presentation');
-    
-    presentation.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isSwipe = true;
-    }, { passive: true });
-    
-    presentation.addEventListener('touchmove', (e) => {
-        if (!isSwipe) return;
-        
-        const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
-        const diffX = Math.abs(currentX - startX);
-        const diffY = Math.abs(currentY - startY);
-        
-        // If vertical movement is greater, it's likely a scroll
-        if (diffY > diffX) {
-            isSwipe = false;
-        }
-    }, { passive: true });
-    
-    presentation.addEventListener('touchend', (e) => {
-        if (!isSwipe) return;
-        
-        const endX = e.changedTouches[0].clientX;
-        const diffX = startX - endX;
-        const minSwipeDistance = 50;
-        
-        if (Math.abs(diffX) > minSwipeDistance) {
-            if (diffX > 0) {
-                // Swipe left - next slide
-                navigateSlide('next');
-            } else {
-                // Swipe right - previous slide
-                navigateSlide('prev');
-            }
-        }
-        
-        isSwipe = false;
-    }, { passive: true });
 }
 
 // ==================== UTILITY FUNCTIONS ====================
@@ -1408,14 +2093,7 @@ function debounce(func, wait) {
     };
 }
 
-function handleResize() {
-    if (isFullscreen) {
-        optimizeForFullscreen();
-    }
-}
-
 function showNotification(message, type = 'info') {
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -1425,7 +2103,6 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add notification styles
     notification.style.cssText = `
         position: fixed;
         top: 100px;
@@ -1443,13 +2120,11 @@ function showNotification(message, type = 'info') {
     
     document.body.appendChild(notification);
     
-    // Animate in
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Remove after delay
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateX(100%)';
@@ -1473,7 +2148,6 @@ window.addEventListener('hashchange', () => {
     }
 });
 
-// Check for initial hash on load
 window.addEventListener('load', () => {
     const hash = window.location.hash;
     const slideMatch = hash.match(/slide(\d+)/);
@@ -1485,7 +2159,7 @@ window.addEventListener('load', () => {
     }
 });
 
-// ==================== PRESENTATION TIMER (OPTIONAL) ====================
+// ==================== PRESENTATION TIMER ====================
 let presentationStartTime = null;
 let timerInterval = null;
 
@@ -1501,7 +2175,6 @@ function updateTimer() {
     const minutes = Math.floor(elapsed / 60000);
     const seconds = Math.floor((elapsed % 60000) / 1000);
     
-    // You can display this timer somewhere if needed
     console.log(`Presentation time: ${minutes}:${seconds.toString().padStart(2, '0')}`);
 }
 
@@ -1512,7 +2185,6 @@ function stopPresentationTimer() {
     }
 }
 
-// Start timer when first slide is shown
 if (currentSlide === 1) {
     startPresentationTimer();
 }

@@ -16,6 +16,7 @@
     --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.2);
     --border-radius: 12px;
     --transition: all 0.3s ease;
+    --vh: 1vh;
 }
 
 /* ==================== GLOBAL STYLES ==================== */
@@ -33,7 +34,17 @@ body {
     overflow-x: hidden;
 }
 
-/* ==================== SLIDE CONTROLS ==================== */
+/* Mobile device class */
+.mobile-device * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+.mobile-device .slide-controls button {
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.2);
+}
+
+/* ==================== SLIDE CONTROLS RESPONSIVE ==================== */
 .slide-controls {
     display: flex;
     justify-content: center;
@@ -58,11 +69,18 @@ body {
     border: none;
     transition: var(--transition);
     font-size: 1.1rem;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .slide-controls button:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
+}
+
+.slide-controls button:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .slide-controls button#exportBtn {
@@ -98,6 +116,67 @@ body {
     margin: 0 3px;
 }
 
+/* Mobile slide controls */
+@media (max-width: 768px) {
+    .slide-controls {
+        padding: 10px 15px;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .slide-controls button {
+        margin: 0 4px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .slide-controls button#exportBtn {
+        padding: 0 15px;
+        height: 50px;
+        font-size: 0.9rem;
+        min-width: 120px;
+    }
+
+    #slideCounter {
+        margin: 0 15px;
+        font-size: 1rem;
+        order: -1;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .keyboard-hint {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-controls {
+        padding: 8px 10px;
+    }
+
+    .slide-controls button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .slide-controls button#exportBtn {
+        padding: 0 12px;
+        height: 45px;
+        font-size: 0.85rem;
+        min-width: 100px;
+    }
+
+    #slideCounter {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+}
+
 /* ==================== SLIDE BASE STYLES ==================== */
 .slide {
     width: 100%;
@@ -128,7 +207,50 @@ body {
     flex-direction: column;
 }
 
-/* ==================== TYPOGRAPHY ==================== */
+/* Mobile slide adjustments */
+.mobile-device .slide {
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+
+.mobile-device .slide-content {
+    min-height: calc(var(--vh, 1vh) * 100 - 80px);
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+/* ==================== RESPONSIVE SLIDE CONTENT ==================== */
+@media (max-width: 1024px) {
+    .slide {
+        min-height: 100vh;
+    }
+
+    .slide-content {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .slide {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .slide-content {
+        padding: 30px 20px;
+        min-height: calc(100vh - 80px);
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-content {
+        padding: 20px 15px;
+    }
+}
+
+/* ==================== TYPOGRAPHY RESPONSIVE ==================== */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     margin-bottom: 1rem;
@@ -159,6 +281,57 @@ hr {
     background: var(--bg-gradient);
     margin-bottom: 2rem;
     border-radius: 2px;
+}
+
+/* Typography scaling */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem !important;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.3rem;
+    }
+
+    h5 {
+        font-size: 1.1rem;
+    }
+
+    p, li {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.75rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    p, li {
+        font-size: 0.9rem;
+    }
 }
 
 /* ==================== CUSTOM LISTS ==================== */
@@ -197,7 +370,6 @@ hr {
     overflow: hidden;
 }
 
-/* Pastikan konten berada di atas semua layer dengan z-index tinggi */
 .cover-slide .slide-content {
     position: relative;
     z-index: 1;
@@ -244,7 +416,55 @@ hr {
     font-weight: 300;
 }
 
-/* ==================== MEMBER CARDS ==================== */
+/* Cover slide responsive */
+@media (max-width: 768px) {
+    .cover-slide h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .cover-slide h3 {
+        font-size: 1.3rem !important;
+        margin-bottom: 1.5rem;
+    }
+
+    .cover-icon {
+        font-size: 4rem;
+        margin: 2rem 0;
+    }
+
+    .cover-info p {
+        font-size: 1rem;
+        margin: 0.3rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .cover-slide h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.1;
+    }
+
+    .cover-slide h3 {
+        font-size: 1.1rem !important;
+    }
+
+    .cover-icon {
+        font-size: 3rem;
+        margin: 1.5rem 0;
+    }
+
+    .cover-icon i {
+        margin: 0 10px;
+    }
+
+    .cover-info p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== MEMBER CARDS RESPONSIVE ==================== */
 .member-card {
     background: white;
     border-radius: var(--border-radius);
@@ -254,6 +474,8 @@ hr {
     transition: var(--transition);
     height: 100%;
     border: 1px solid rgba(52, 152, 219, 0.1);
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.1);
 }
 
 .member-card:hover {
@@ -280,10 +502,9 @@ hr {
     box-shadow: var(--shadow-medium);
     position: relative;
     overflow: hidden;
-    padding: 5px; /* Space for gradient border */
+    padding: 5px;
 }
 
-/* Photo styling for real member images */
 .member-img {
     width: 110px;
     height: 110px;
@@ -296,7 +517,6 @@ hr {
     position: relative;
 }
 
-/* Fallback icon when image fails to load */
 .photo-fallback {
     position: absolute;
     top: 50%;
@@ -305,10 +525,9 @@ hr {
     font-size: 4rem;
     color: white;
     z-index: 1;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
-/* Show fallback when image fails */
 .member-img:not([src]), 
 .member-img[src=""], 
 .member-img:invalid {
@@ -321,7 +540,6 @@ hr {
     display: block;
 }
 
-/* Handle broken image with JavaScript fallback */
 .photo-placeholder .member-img {
     transition: opacity 0.3s ease;
 }
@@ -342,12 +560,69 @@ hr {
 }
 
 .member-info .nim {
-    color: var(--gray-color);
+    color: #666;
     font-weight: 500;
     margin: 0;
 }
 
-/* ==================== CONTENT LIST ==================== */
+/* Member cards responsive */
+@media (max-width: 768px) {
+    .member-card {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .member-card:hover {
+        transform: none;
+    }
+
+    .photo-placeholder {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+    }
+
+    .member-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .member-info h5 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .member-info .nim {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .member-card {
+        padding: 15px;
+    }
+
+    .photo-placeholder {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+
+    .member-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .member-info h5 {
+        font-size: 0.95rem;
+    }
+
+    .member-info .nim {
+        font-size: 0.85rem;
+    }
+}
+
+/* ==================== CONTENT LIST RESPONSIVE ==================== */
 .content-list {
     list-style-type: none;
     padding: 0;
@@ -386,7 +661,46 @@ hr {
     box-shadow: var(--shadow-light);
 }
 
-/* ==================== COMPONENT GRID ==================== */
+/* Content list responsive */
+@media (max-width: 768px) {
+    .content-list {
+        max-width: 100%;
+    }
+
+    .content-list li {
+        padding: 12px 0;
+        font-size: 1.1rem;
+        padding-left: 15px;
+    }
+
+    .content-list li:hover {
+        transform: none;
+        background: rgba(52, 152, 219, 0.1);
+    }
+
+    .list-number {
+        width: 30px;
+        height: 30px;
+        margin-right: 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-list li {
+        font-size: 1rem;
+        padding: 10px 0;
+    }
+
+    .list-number {
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ==================== COMPONENT GRID RESPONSIVE ==================== */
 .component-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -402,6 +716,8 @@ hr {
     text-align: center;
     transition: var(--transition);
     box-shadow: var(--shadow-light);
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.1);
 }
 
 .component-item:hover {
@@ -429,7 +745,49 @@ hr {
     line-height: 1.5;
 }
 
-/* ==================== QUOTE BOX ==================== */
+/* Component grid responsive */
+@media (max-width: 1024px) {
+    .component-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .component-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .component-item {
+        padding: 20px;
+    }
+
+    .component-item:hover {
+        transform: none;
+    }
+
+    .component-item i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .component-grid {
+        gap: 12px;
+    }
+
+    .component-item {
+        padding: 15px;
+    }
+
+    .component-item i {
+        font-size: 1.8rem;
+    }
+}
+
+/* ==================== QUOTE BOX RESPONSIVE ==================== */
 .quote-box {
     background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(26, 188, 156, 0.1));
     border-left: 5px solid var(--primary-color);
@@ -464,7 +822,46 @@ hr {
     margin-left: 30px;
 }
 
-/* ==================== SMART CITY PILLARS ==================== */
+/* Quote box responsive */
+@media (max-width: 768px) {
+    .quote-box {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .quote-box p {
+        margin-left: 25px;
+        font-size: 0.95rem;
+    }
+
+    .quote-box small {
+        margin-left: 25px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quote-box {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .quote-box i {
+        font-size: 1.2rem;
+    }
+
+    .quote-box p {
+        margin-left: 20px;
+        font-size: 0.9rem;
+    }
+
+    .quote-box small {
+        margin-left: 20px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ==================== SMART CITY PILLARS RESPONSIVE ==================== */
 .smart-city-pillars {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -480,6 +877,8 @@ hr {
     transition: var(--transition);
     box-shadow: var(--shadow-light);
     border: 2px solid transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.1);
 }
 
 .pillar-item:hover {
@@ -507,7 +906,49 @@ hr {
     font-size: 0.95rem;
 }
 
-/* ==================== PENERAPAN GRID ==================== */
+/* Smart city pillars responsive */
+@media (max-width: 1024px) {
+    .smart-city-pillars {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .smart-city-pillars {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .pillar-item {
+        padding: 20px;
+    }
+
+    .pillar-item:hover {
+        transform: none;
+    }
+
+    .pillar-item i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .smart-city-pillars {
+        gap: 12px;
+    }
+
+    .pillar-item {
+        padding: 15px;
+    }
+
+    .pillar-item i {
+        font-size: 1.8rem;
+    }
+}
+
+/* ==================== PENERAPAN GRID RESPONSIVE ==================== */
 .penerapan-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -515,7 +956,6 @@ hr {
     margin-top: 25px;
 }
 
-/* 2-column specific layout for slide 6 */
 .penerapan-grid-2col {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -591,7 +1031,43 @@ hr {
     margin-bottom: 0;
 }
 
-/* ==================== CASE STUDY CARDS ==================== */
+/* Penerapan grid responsive */
+@media (max-width: 1024px) {
+    .penerapan-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .penerapan-grid-2col {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .penerapan-grid,
+    .penerapan-grid-2col {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .penerapan-item {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .penerapan-grid,
+    .penerapan-grid-2col {
+        gap: 12px;
+    }
+
+    .penerapan-item {
+        padding: 15px;
+    }
+}
+
+/* ==================== CASE STUDY CARDS RESPONSIVE ==================== */
 .case-study-card {
     background: white;
     box-shadow: var(--shadow-medium);
@@ -639,7 +1115,7 @@ hr {
 }
 
 .source {
-    color: var(--gray-color);
+    color: #666;
     font-style: italic;
     font-size: 0.9rem;
     text-align: right;
@@ -648,7 +1124,63 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== TECH PILLARS ==================== */
+/* Case study responsive */
+@media (max-width: 768px) {
+    .case-study-card {
+        margin-bottom: 20px;
+    }
+
+    .card-header {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card-header i {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+
+    .card-header h4 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .source {
+        font-size: 0.8rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-header {
+        padding: 12px;
+    }
+
+    .card-header i {
+        font-size: 1.8rem;
+    }
+
+    .card-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .card-body {
+        padding: 12px;
+    }
+
+    .card-body li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+}
+
+/* ==================== TECH PILLARS RESPONSIVE ==================== */
 .tech-pillar {
     background: white;
     border-radius: var(--border-radius);
@@ -687,7 +1219,52 @@ hr {
     line-height: 1.6;
 }
 
-/* ==================== CHALLENGE BOXES ==================== */
+/* Tech pillars responsive */
+@media (max-width: 768px) {
+    .tech-pillar {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .tech-pillar:hover {
+        transform: none;
+    }
+
+    .tech-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .tech-pillar h4 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .tech-pillar li {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-pillar {
+        padding: 15px;
+    }
+
+    .tech-icon {
+        font-size: 2rem;
+    }
+
+    .tech-pillar h4 {
+        font-size: 1.1rem;
+    }
+
+    .tech-pillar li {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== CHALLENGE BOXES RESPONSIVE ==================== */
 .challenge-box {
     display: flex;
     background: white;
@@ -737,7 +1314,49 @@ hr {
     line-height: 1.5;
 }
 
-/* ==================== FUTURE TRENDS ==================== */
+/* Challenge boxes responsive */
+@media (max-width: 768px) {
+    .challenge-box {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .challenge-box:hover {
+        transform: none;
+    }
+
+    .challenge-icon {
+        padding: 20px;
+        min-width: auto;
+        text-align: center;
+        width: 100%;
+    }
+
+    .challenge-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .challenge-box {
+        margin-bottom: 15px;
+    }
+
+    .challenge-icon {
+        padding: 15px;
+        font-size: 1.5rem;
+    }
+
+    .challenge-content {
+        padding: 15px;
+    }
+
+    .challenge-content h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* ==================== FUTURE TRENDS RESPONSIVE ==================== */
 .future-trends {
     margin-bottom: 25px;
 }
@@ -752,6 +1371,8 @@ hr {
     box-shadow: var(--shadow-light);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: var(--transition);
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.1);
 }
 
 .trend-item:hover {
@@ -782,7 +1403,46 @@ hr {
     line-height: 1.4;
 }
 
-/* ==================== IMPACT METRICS ==================== */
+/* Trend items responsive */
+@media (max-width: 768px) {
+    .trend-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .trend-item:hover {
+        transform: none;
+    }
+
+    .trend-item i {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .trend-item {
+        padding: 12px;
+    }
+
+    .trend-item i {
+        font-size: 1.8rem;
+        padding: 12px;
+        min-width: 60px;
+    }
+
+    .trend-item h5 {
+        font-size: 1rem;
+    }
+
+    .trend-item p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== IMPACT METRICS RESPONSIVE ==================== */
 .impact-metrics {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -825,7 +1485,39 @@ hr {
     font-weight: 500;
 }
 
-/* ==================== RESEARCH ITEMS ==================== */
+/* Impact metrics responsive */
+@media (max-width: 1024px) {
+    .impact-metrics {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .impact-metrics {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .metric-card {
+        padding: 20px;
+    }
+
+    .metric-card:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .impact-metrics {
+        gap: 12px;
+    }
+
+    .metric-card {
+        padding: 15px;
+    }
+}
+
+/* ==================== RESEARCH ITEMS RESPONSIVE ==================== */
 .research-item {
     background: white;
     border-radius: var(--border-radius);
@@ -883,14 +1575,84 @@ hr {
 
 .research-source {
     font-size: 0.85rem;
-    color: var(--gray-color);
+    color: #666;
     border-top: 1px dashed rgba(0, 0, 0, 0.1);
     padding-top: 10px;
     margin: 0;
     line-height: 1.4;
 }
 
-/* ==================== CONCLUSION STYLES ==================== */
+/* Research items responsive */
+@media (max-width: 768px) {
+    .research-item {
+        margin-bottom: 20px;
+    }
+
+    .research-item:hover {
+        transform: none;
+    }
+
+    .research-header {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .research-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .research-header h4 {
+        font-size: 1.1rem;
+    }
+
+    .research-content {
+        padding: 15px;
+    }
+
+    .research-content p {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+
+    .research-source {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .research-header {
+        padding: 12px;
+    }
+
+    .research-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .research-header h4 {
+        font-size: 1rem;
+    }
+
+    .research-content {
+        padding: 12px;
+    }
+
+    .research-content p {
+        font-size: 0.9rem;
+    }
+
+    .research-source {
+        font-size: 0.75rem;
+    }
+}
+
+/* ==================== CONCLUSION STYLES RESPONSIVE ==================== */
 .conclusion-points {
     margin-bottom: 25px;
 }
@@ -924,7 +1686,6 @@ hr {
     font-weight: 500;
 }
 
-/* Smart City Illustration Container */
 .conclusion-visual-container {
     display: flex;
     flex-direction: column;
@@ -959,7 +1720,6 @@ hr {
     transform: scale(1.05);
 }
 
-/* Fallback when image is not available */
 .illustration-fallback {
     position: absolute;
     top: 0;
@@ -996,7 +1756,6 @@ hr {
     animation-delay: 1s;
 }
 
-/* Show fallback when image fails */
 .smart-city-img:not([src]), 
 .smart-city-img[src=""], 
 .smart-city-img.error {
@@ -1009,7 +1768,6 @@ hr {
     display: flex;
 }
 
-/* Conclusion Message */
 .conclusion-message {
     text-align: center;
     padding: 25px;
@@ -1042,7 +1800,6 @@ hr {
     font-weight: 300;
 }
 
-/* Legacy conclusion visual (kept for backward compatibility) */
 .conclusion-visual {
     text-align: center;
     padding: 30px;
@@ -1063,7 +1820,85 @@ hr {
     font-weight: 600;
 }
 
-/* ==================== REFERENCES ==================== */
+/* Conclusion responsive */
+@media (max-width: 768px) {
+    .conclusion-points {
+        margin-bottom: 20px;
+    }
+
+    .point-item {
+        padding: 12px;
+        margin-bottom: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .point-item:hover {
+        transform: none;
+    }
+
+    .point-item i {
+        margin-right: 0;
+        margin-bottom: 8px;
+        margin-top: 0;
+    }
+
+    .point-item p {
+        font-size: 0.95rem;
+    }
+
+    .smart-city-illustration {
+        max-width: 100%;
+        height: 200px;
+        margin-bottom: 15px;
+    }
+
+    .conclusion-message {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .conclusion-message h4 {
+        font-size: 1.2rem;
+    }
+
+    .conclusion-tagline {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .point-item {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .point-item p {
+        font-size: 0.9rem;
+    }
+
+    .smart-city-illustration {
+        height: 150px;
+    }
+
+    .conclusion-message {
+        padding: 15px;
+    }
+
+    .conclusion-message h4 {
+        font-size: 1.1rem;
+    }
+
+    .conclusion-tagline {
+        font-size: 0.85rem;
+    }
+
+    .conclusion-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* ==================== REFERENCES RESPONSIVE ==================== */
 .references {
     max-height: 70vh;
     overflow-y: auto;
@@ -1098,7 +1933,42 @@ hr {
     border-radius: 10px;
 }
 
-/* ==================== THANK YOU SLIDE ==================== */
+/* References responsive */
+@media (max-width: 768px) {
+    .references {
+        max-height: 60vh;
+        padding-right: 10px;
+    }
+
+    .references ol {
+        padding-left: 20px;
+    }
+
+    .references li {
+        margin-bottom: 12px;
+        padding: 8px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .references {
+        max-height: 50vh;
+    }
+
+    .references ol {
+        padding-left: 15px;
+    }
+
+    .references li {
+        margin-bottom: 10px;
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ==================== THANK YOU SLIDE RESPONSIVE ==================== */
 .thank-you-slide {
     background: 
         linear-gradient(135deg, rgba(52, 152, 219, 0.85), rgba(26, 188, 156, 0.85)),
@@ -1170,7 +2040,50 @@ hr {
     opacity: 0.9;
 }
 
-/* ==================== FULLSCREEN OPTIMIZATIONS ==================== */
+/* Thank you slide responsive */
+@media (max-width: 768px) {
+    .thank-you-slide h2 {
+        font-size: 2.5rem !important;
+    }
+
+    .thank-you-slide h4 {
+        font-size: 1.3rem !important;
+    }
+
+    .thank-you-icon {
+        font-size: 3rem;
+        margin: 2rem 0;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .thank-you-slide h2 {
+        font-size: 2rem !important;
+    }
+
+    .thank-you-slide h4 {
+        font-size: 1.1rem !important;
+    }
+
+    .thank-you-icon {
+        font-size: 2.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .thank-you-icon i {
+        margin: 0 10px;
+    }
+
+    .contact-info p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==================== ENHANCED FULLSCREEN RESPONSIVE ==================== */
 body.is-fullscreen {
     overflow: hidden;
 }
@@ -1179,45 +2092,419 @@ body.is-fullscreen {
 #presentation:-webkit-full-screen,
 #presentation:-moz-full-screen,
 #presentation:-ms-fullscreen {
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
 }
 
 #presentation:fullscreen .slide.active,
 #presentation:-webkit-full-screen .slide.active,
 #presentation:-moz-full-screen .slide.active,
 #presentation:-ms-fullscreen .slide.active {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    position: relative !important;
 }
 
 #presentation:fullscreen .slide-content,
 #presentation:-webkit-full-screen .slide-content,
 #presentation:-moz-full-screen .slide-content,
 #presentation:-ms-fullscreen .slide-content {
-    padding: 40px 60px;
-    height: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
+    padding: 40px 60px !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--primary-color) transparent !important;
+    scroll-behavior: smooth !important;
+}
+
+/* Custom scrollbar for fullscreen */
+#presentation:fullscreen .slide-content::-webkit-scrollbar,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar {
+    width: 8px !important;
+}
+
+#presentation:fullscreen .slide-content::-webkit-scrollbar-track,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar-track,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar-track,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-radius: 10px !important;
+}
+
+#presentation:fullscreen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-webkit-full-screen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-moz-full-screen .slide-content::-webkit-scrollbar-thumb,
+#presentation:-ms-fullscreen .slide-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color) !important;
+    border-radius: 10px !important;
+}
+
+/* ==================== FULLSCREEN RESPONSIVE BREAKPOINTS ==================== */
+
+/* Large Desktop Fullscreen (1920px+) */
+@media (min-width: 1920px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 60px 120px !important;
+        max-width: 1600px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Desktop Fullscreen (1200px - 1919px) */
+@media (min-width: 1200px) and (max-width: 1919px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 50px 80px !important;
+        /* max-width: 1400px !important; */
+        margin: 0 auto !important;
+    }
+}
+
+/* Laptop Fullscreen (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 40px 60px !important;
+    }
+}
+
+/* Tablet Fullscreen (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 30px 40px !important;
+    }
+
+    #presentation:fullscreen .component-grid,
+    #presentation:-webkit-full-screen .component-grid,
+    #presentation:-moz-full-screen .component-grid,
+    #presentation:-ms-fullscreen .component-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 20px !important;
+    }
+
+    #presentation:fullscreen .penerapan-grid-2col,
+    #presentation:-webkit-full-screen .penerapan-grid-2col,
+    #presentation:-moz-full-screen .penerapan-grid-2col,
+    #presentation:-ms-fullscreen .penerapan-grid-2col {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+/* Mobile Fullscreen (320px - 767px) */
+@media (max-width: 767px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 20px 25px !important;
+    }
+
+    #presentation:fullscreen .component-grid,
+    #presentation:-webkit-full-screen .component-grid,
+    #presentation:-moz-full-screen .component-grid,
+    #presentation:-ms-fullscreen .component-grid,
+    #presentation:fullscreen .smart-city-pillars,
+    #presentation:-webkit-full-screen .smart-city-pillars,
+    #presentation:-moz-full-screen .smart-city-pillars,
+    #presentation:-ms-fullscreen .smart-city-pillars,
+    #presentation:fullscreen .penerapan-grid,
+    #presentation:-webkit-full-screen .penerapan-grid,
+    #presentation:-moz-full-screen .penerapan-grid,
+    #presentation:-ms-fullscreen .penerapan-grid,
+    #presentation:fullscreen .penerapan-grid-2col,
+    #presentation:-webkit-full-screen .penerapan-grid-2col,
+    #presentation:-moz-full-screen .penerapan-grid-2col,
+    #presentation:-ms-fullscreen .penerapan-grid-2col,
+    #presentation:fullscreen .impact-metrics,
+    #presentation:-webkit-full-screen .impact-metrics,
+    #presentation:-moz-full-screen .impact-metrics,
+    #presentation:-ms-fullscreen .impact-metrics {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+
+    #presentation:fullscreen h2,
+    #presentation:-webkit-full-screen h2,
+    #presentation:-moz-full-screen h2,
+    #presentation:-ms-fullscreen h2 {
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    #presentation:fullscreen h4,
+    #presentation:-webkit-full-screen h4,
+    #presentation:-moz-full-screen h4,
+    #presentation:-ms-fullscreen h4 {
+        font-size: 1.2rem !important;
+    }
+}
+
+/* ==================== MEMBER SLIDE FULLSCREEN IMPROVEMENTS ==================== */
+#presentation:fullscreen #slide2.slide.active,
+#presentation:-webkit-full-screen #slide2.slide.active,
+#presentation:-moz-full-screen #slide2.slide.active,
+#presentation:-ms-fullscreen #slide2.slide.active {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: auto !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+#presentation:fullscreen #slide2 .slide-content,
+#presentation:-webkit-full-screen #slide2 .slide-content,
+#presentation:-moz-full-screen #slide2 .slide-content,
+#presentation:-ms-fullscreen #slide2 .slide-content {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    padding: 40px 60px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+}
+
+#presentation:fullscreen #slide2 .row,
+#presentation:-webkit-full-screen #slide2 .row,
+#presentation:-moz-full-screen #slide2 .row,
+#presentation:-ms-fullscreen #slide2 .row {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 20px !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+}
+
+/* Responsive member grid for different screen sizes in fullscreen */
+@media (min-width: 1200px) {
+    #presentation:fullscreen #slide2 .row,
+    #presentation:-webkit-full-screen #slide2 .row,
+    #presentation:-moz-full-screen #slide2 .row,
+    #presentation:-ms-fullscreen #slide2 .row {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 25px !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    #presentation:fullscreen #slide2 .row,
+    #presentation:-webkit-full-screen #slide2 .row,
+    #presentation:-moz-full-screen #slide2 .row,
+    #presentation:-ms-fullscreen #slide2 .row {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    #presentation:fullscreen #slide2 .row,
+    #presentation:-webkit-full-screen #slide2 .row,
+    #presentation:-moz-full-screen #slide2 .row,
+    #presentation:-ms-fullscreen #slide2 .row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+}
+
+@media (max-width: 479px) {
+    #presentation:fullscreen #slide2 .row,
+    #presentation:-webkit-full-screen #slide2 .row,
+    #presentation:-moz-full-screen #slide2 .row,
+    #presentation:-ms-fullscreen #slide2 .row {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+}
+
+#presentation:fullscreen #slide2 .col-lg-3,
+#presentation:-webkit-full-screen #slide2 .col-lg-3,
+#presentation:-moz-full-screen #slide2 .col-lg-3,
+#presentation:-ms-fullscreen #slide2 .col-lg-3 {
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: none !important;
+}
+
+#presentation:fullscreen #slide2 .member-card,
+#presentation:-webkit-full-screen #slide2 .member-card,
+#presentation:-moz-full-screen #slide2 .member-card,
+#presentation:-ms-fullscreen #slide2 .member-card {
+    height: auto !important;
+    min-height: 200px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ==================== FULLSCREEN BOOTSTRAP GRID RESET ==================== */
+#presentation:fullscreen .container-fluid,
+#presentation:-webkit-full-screen .container-fluid,
+#presentation:-moz-full-screen .container-fluid,
+#presentation:-ms-fullscreen .container-fluid {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    height: auto !important;
+}
+
+#presentation:fullscreen .row,
+#presentation:-webkit-full-screen .row,
+#presentation:-moz-full-screen .row,
+#presentation:-ms-fullscreen .row {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#presentation:fullscreen .col-lg-3,
+#presentation:-webkit-full-screen .col-lg-3,
+#presentation:-moz-full-screen .col-lg-3,
+#presentation:-ms-fullscreen .col-lg-3,
+#presentation:fullscreen .col-lg-4,
+#presentation:-webkit-full-screen .col-lg-4,
+#presentation:-moz-full-screen .col-lg-4,
+#presentation:-ms-fullscreen .col-lg-4,
+#presentation:fullscreen .col-lg-5,
+#presentation:-webkit-full-screen .col-lg-5,
+#presentation:-moz-full-screen .col-lg-5,
+#presentation:-ms-fullscreen .col-lg-5,
+#presentation:fullscreen .col-lg-6,
+#presentation:-webkit-full-screen .col-lg-6,
+#presentation:-moz-full-screen .col-lg-6,
+#presentation:-ms-fullscreen .col-lg-6,
+#presentation:fullscreen .col-lg-7,
+#presentation:-webkit-full-screen .col-lg-7,
+#presentation:-moz-full-screen .col-lg-7,
+#presentation:-ms-fullscreen .col-lg-7,
+#presentation:fullscreen .col-lg-8,
+#presentation:-webkit-full-screen .col-lg-8,
+#presentation:-moz-full-screen .col-lg-8,
+#presentation:-ms-fullscreen .col-lg-8,
+#presentation:fullscreen .col-md-6,
+#presentation:-webkit-full-screen .col-md-6,
+#presentation:-moz-full-screen .col-md-6,
+#presentation:-ms-fullscreen .col-md-6,
+#presentation:fullscreen .col-12,
+#presentation:-webkit-full-screen .col-12,
+#presentation:-moz-full-screen .col-12,
+#presentation:-ms-fullscreen .col-12 {
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: none !important;
+    max-width: none !important;
+}
+
+/* ==================== FULLSCREEN CONTENT SCALING ==================== */
+@media (max-height: 600px) {
+    #presentation:fullscreen .slide-content,
+    #presentation:-webkit-full-screen .slide-content,
+    #presentation:-moz-full-screen .slide-content,
+    #presentation:-ms-fullscreen .slide-content {
+        padding: 20px 40px !important;
+    }
+
+    #presentation:fullscreen h2,
+    #presentation:-webkit-full-screen h2,
+    #presentation:-moz-full-screen h2,
+    #presentation:-ms-fullscreen h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    #presentation:fullscreen .member-card,
+    #presentation:-webkit-full-screen .member-card,
+    #presentation:-moz-full-screen .member-card,
+    #presentation:-ms-fullscreen .member-card {
+        padding: 15px !important;
+        min-height: 150px !important;
+    }
+}
+
+/* ==================== FULLSCREEN KEYBOARD NAVIGATION INDICATOR ==================== */
+#presentation:fullscreen::before,
+#presentation:-webkit-full-screen::before,
+#presentation:-moz-full-screen::before,
+#presentation:-ms-fullscreen::before {
+    content: 'ESC untuk keluar fullscreen • ← → untuk navigasi';
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+#presentation:fullscreen:hover::before,
+#presentation:-webkit-full-screen:hover::before,
+#presentation:-moz-full-screen:hover::before,
+#presentation:-ms-fullscreen:hover::before {
+    opacity: 1;
 }
 
 /* Hide controls in fullscreen but show on hover */
@@ -1238,7 +2525,7 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
     pointer-events: all;
 }
 
-/* Specific optimizations for cover and thank you slides in fullscreen */
+/* ==================== COVER AND THANK YOU SLIDE FULLSCREEN ==================== */
 #presentation:fullscreen #slide1.slide.active,
 #presentation:-webkit-full-screen #slide1.slide.active,
 #presentation:-moz-full-screen #slide1.slide.active,
@@ -1408,21 +2695,48 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
     margin-top: 1.5rem !important;
 }
 
-/* ==================== RESPONSIVE DESIGN FOR COVER WITH BACKGROUND ==================== */
+/* ==================== SWIPE FEEDBACK ==================== */
+.swipe-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* ==================== TOUCH IMPROVEMENTS ==================== */
 @media (max-width: 768px) {
-    .cover-slide::before {
-        opacity: 0.1; /* Kurangi opacity di mobile untuk readability yang lebih baik */
-        background-size: contain; /* Ubah ke contain di mobile jika perlu */
+    .member-card,
+    .component-item,
+    .pillar-item,
+    .trend-item {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(52, 152, 219, 0.1);
     }
 }
 
-/* ==================== FULLSCREEN OPTIMIZATIONS FOR BACKGROUND ==================== */
-#presentation:fullscreen .cover-slide::before,
-#presentation:-webkit-full-screen .cover-slide::before,
-#presentation:-moz-full-screen .cover-slide::before,
-#presentation:-ms-fullscreen .cover-slide::before {
-    background-size: cover;
-    background-position: center center;
+/* ==================== HIGH DPI DISPLAYS ==================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .slide-controls button {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .member-card,
+    .component-item,
+    .pillar-item {
+        border: 1px solid rgba(52, 152, 219, 0.15);
+    }
+}
+
+/* ==================== ACCESSIBILITY IMPROVEMENTS ==================== */
+.member-info .nim,
+.research-source,
+.source {
+    color: #666;
 }
 
 /* ==================== PDF PRINT STYLES ==================== */
@@ -1497,7 +2811,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         background: white !important;
     }
 
-    /* Special handling for cover and thank you slides */
     .cover-slide, .thank-you-slide {
         display: flex !important;
         align-items: center !important;
@@ -1522,21 +2835,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         justify-content: center !important;
     }
 
-    /* Print optimizations for cover background */
-    .cover-slide::before {
-        -webkit-print-color-adjust: exact !important;
-        color-adjust: exact !important;
-        print-color-adjust: exact !important;
-        opacity: 0.1 !important; /* Kurangi opacity untuk print agar tinta tidak terlalu boros */
-    }
-    
-    .cover-slide::after {
-        -webkit-print-color-adjust: exact !important;
-        color-adjust: exact !important;
-        print-color-adjust: exact !important;
-    }
-
-    /* Typography for print */
     h1 { font-size: 24pt !important; }
     h2 { font-size: 20pt !important; }
     h3 { font-size: 18pt !important; }
@@ -1544,7 +2842,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
     h5 { font-size: 14pt !important; }
     p, li { font-size: 12pt !important; }
 
-    /* Ensure content doesn't break across pages */
     .member-card,
     .component-item,
     .pillar-item,
@@ -1561,7 +2858,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         margin-bottom: 5mm !important;
     }
 
-    /* Fix references overflow */
     .references {
         max-height: none !important;
         overflow: visible !important;
@@ -1574,7 +2870,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         margin-bottom: 5mm !important;
     }
 
-    /* Ensure grids don't break poorly */
     .component-grid,
     .smart-city-pillars,
     .penerapan-grid,
@@ -1586,7 +2881,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         gap: 5mm !important;
     }
 
-    /* Special handling for 2-column layout in print */
     .penerapan-grid-2col {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 8mm !important;
@@ -1601,7 +2895,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         min-height: 60mm !important;
     }
 
-    /* Hide animations and transitions for print */
     *, *::before, *::after {
         animation: none !important;
         transition: none !important;
@@ -1611,7 +2904,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         transition-delay: 0s !important;
     }
 
-    /* Ensure backgrounds print */
     .cover-slide,
     .thank-you-slide,
     .quote-box,
@@ -1630,7 +2922,6 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
         print-color-adjust: exact !important;
     }
 
-    /* Adjust spacing for print */
     .row { margin: 0 !important; }
     .col-lg-3, .col-lg-4, .col-lg-6, .col-lg-8, .col-md-6 {
         width: 50% !important;
@@ -1640,128 +2931,21 @@ body:hover #presentation:-ms-fullscreen ~ .slide-controls {
     .col-12 { width: 100% !important; }
 }
 
-/* ==================== RESPONSIVE DESIGN ==================== */
-@media (max-width: 1200px) {
+/* ==================== LANDSCAPE ORIENTATION ==================== */
+@media (max-width: 1024px) and (orientation: landscape) {
     .slide-content {
-        padding: 40px;
+        padding: 25px 30px;
     }
 
-    h2 {
-        font-size: 2.2rem;
+    .cover-slide h1 {
+        font-size: 2.5rem !important;
     }
 
-    .component-grid,
-    .smart-city-pillars,
-    .penerapan-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .cover-slide h3 {
+        font-size: 1.5rem !important;
     }
 
-    /* Keep 2-column layout on tablet for slide 6 */
-    .penerapan-grid-2col {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-    }
-}
-
-@media (max-width: 992px) {
-    .penerapan-grid-2col {
-        gap: 20px;
-    }
-    
-    .penerapan-header h4 {
-        font-size: 1.1rem;
-    }
-    
-    .penerapan-body {
-        padding: 20px;
-    }
-    
-    .penerapan-body li {
-        font-size: 0.9rem;
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 768px) {
-    .slide {
-        width: 100%;
-        height: auto;
-        min-height: 100vh;
-        margin: 10px 0;
-    }
-
-    .slide-content {
-        padding: 30px 20px;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    .component-grid,
-    .smart-city-pillars,
-    .penerapan-grid,
-    .penerapan-grid-2col,
-    .impact-metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .cover-icon {
-        font-size: 4rem;
-    }
-
-    .thank-you-icon {
-        font-size: 3rem;
-    }
-
-    .challenge-box {
-        flex-direction: column;
-    }
-
-    .challenge-icon {
-        padding: 20px;
-        min-width: auto;
-    }
-
-    .trend-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .trend-item i {
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
-
-    .slide-controls {
-        padding: 10px 15px;
-    }
-
-    .keyboard-hint {
-        display: none !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .slide-content {
-        padding: 20px 15px;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .content-list li {
-        font-size: 1.1rem;
-    }
-
-    .member-card {
-        padding: 20px;
-    }
-
-    .photo-placeholder {
-        width: 80px;
-        height: 80px;
-        font-size: 2.5rem;
+    .thank-you-slide h2 {
+        font-size: 3rem !important;
     }
 }
