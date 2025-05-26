@@ -512,6 +512,9 @@ function createAPSChart() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 0 // Disable animation for faster PDF rendering
+                },
                 layout: {
                     padding: {
                         top: 10,
@@ -525,23 +528,7 @@ function createAPSChart() {
                         display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(44, 62, 80, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#3498db',
-                        borderWidth: 1,
-                        cornerRadius: 8,
-                        mode: 'index',
-                        intersect: false,
-                        position: 'nearest',
-                        callbacks: {
-                            title: function (context) {
-                                return `Tahun ${context[0].label}`;
-                            },
-                            label: function (context) {
-                                return `APS: ${context.parsed.y}%`;
-                            }
-                        }
+                        enabled: false // Disable for PDF
                     }
                 },
                 scales: {
@@ -589,19 +576,7 @@ function createAPSChart() {
                     }
                 },
                 interaction: {
-                    mode: 'index',
                     intersect: false
-                },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeInOutQuart',
-                    resize: {
-                        duration: 0
-                    }
-                },
-                onResize: function (chart, size) {
-                    // Prevent chart jumping on resize
-                    chart.options.animation.resize.duration = 0;
                 }
             }
         });
@@ -651,6 +626,9 @@ function createVarianceChart() {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 0 // Disable animation for faster PDF rendering
+                },
                 layout: {
                     padding: {
                         top: 10,
@@ -664,24 +642,7 @@ function createVarianceChart() {
                         display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(192, 57, 43, 0.9)',
-                        titleColor: '#fff',
-                        bodyColor: '#fff',
-                        borderColor: '#e74c3c',
-                        borderWidth: 1,
-                        cornerRadius: 8,
-                        mode: 'index',
-                        intersect: false,
-                        position: 'nearest',
-                        callbacks: {
-                            title: function (context) {
-                                return `Tahun ${context[0].label}`;
-                            },
-                            label: function (context) {
-                                const value = context.parsed.y;
-                                return value !== null ? `Variansi: ${value.toFixed(3)}` : 'Tidak ada data';
-                            }
-                        }
+                        enabled: false // Disable for PDF
                     }
                 },
                 scales: {
@@ -728,19 +689,7 @@ function createVarianceChart() {
                     }
                 },
                 interaction: {
-                    mode: 'index',
                     intersect: false
-                },
-                animation: {
-                    duration: 1000,
-                    easing: 'easeInOutQuart',
-                    resize: {
-                        duration: 0
-                    }
-                },
-                onResize: function (chart, size) {
-                    // Prevent chart jumping on resize
-                    chart.options.animation.resize.duration = 0;
                 }
             }
         });
@@ -772,17 +721,34 @@ function exportToPDF() {
     const {
         jsPDF
     } = window.jspdf;
+    
+    // Use A4 landscape with fullscreen dimensions
     const pdf = new jsPDF({
         unit: 'mm',
         format: 'a4',
         orientation: 'landscape'
     });
 
-    // Hide controls completely for PDF export
+    // Store original states
+    const originalCurrentSlide = currentSlide;
+    const body = document.body;
+    const presentation = document.getElementById('presentation');
     const controls = document.querySelector('.slide-controls');
-    const originalControlsDisplay = controls ? getComputedStyle(controls).display : '';
-    const originalControlsVisibility = controls ? getComputedStyle(controls).visibility : '';
+    
+    // Store original styles
+    const originalBodyStyle = {
+        overflow: body.style.overflow,
+        margin: body.style.margin,
+        padding: body.style.padding
+    };
+    
+    const originalPresentationStyle = {
+        marginTop: presentation.style.marginTop,
+        width: presentation.style.width,
+        height: presentation.style.height
+    };
 
+    // Hide controls completely for PDF export
     if (controls) {
         controls.style.display = 'none !important';
         controls.style.visibility = 'hidden !important';
@@ -790,27 +756,109 @@ function exportToPDF() {
         controls.classList.add('pdf-export-hidden');
     }
 
-    // Process slides sequentially
-    processSlideForPDF(1, pdf, () => {
-        pdf.save('ARCH_Model_Kelompok_4.pdf');
+    // Set body and presentation to fullscreen mode for PDF export
+    body.style.overflow = 'hidden';
+    body.style.margin = '0';
+    body.style.padding = '0';
+    body.classList.add('pdf-export-mode');
+    
+    presentation.style.marginTop = '0';
+    presentation.style.width = '100vw';
+    presentation.style.height = '100vh';
 
-        // Restore controls after PDF export
+    // Ensure charts are ready before starting PDF export
+    ensureChartsReady().then(() => {
+        // Process slides sequentially
+        processSlideForPDF(1, pdf, () => {
+            // Remove the first empty page
+            if (pdf.internal.getNumberOfPages() > totalSlides) {
+                pdf.deletePage(1);
+            }
+            
+            pdf.save('ARCH_Model_Kelompok_4.pdf');
+
+            // Restore original states
+            body.style.overflow = originalBodyStyle.overflow;
+            body.style.margin = originalBodyStyle.margin;
+            body.style.padding = originalBodyStyle.padding;
+            body.classList.remove('pdf-export-mode');
+            
+            presentation.style.marginTop = originalPresentationStyle.marginTop;
+            presentation.style.width = originalPresentationStyle.width;
+            presentation.style.height = originalPresentationStyle.height;
+
+            // Restore controls
+            if (controls) {
+                controls.style.display = 'flex';
+                controls.style.visibility = 'visible';
+                controls.style.opacity = '1';
+                controls.classList.remove('pdf-export-hidden');
+            }
+            
+            restoreExportButton(exportBtn, originalHTML);
+            showSlide(originalCurrentSlide);
+            showNotification('PDF exported successfully!', 'success');
+            console.log('PDF export completed');
+        });
+    }).catch((error) => {
+        console.error('Error preparing charts for PDF export:', error);
+        showNotification('Error preparing charts for export', 'error');
+        restoreExportButton(exportBtn, originalHTML);
+        
+        // Restore states on error
+        body.style.overflow = originalBodyStyle.overflow;
+        body.style.margin = originalBodyStyle.margin;
+        body.style.padding = originalBodyStyle.padding;
+        body.classList.remove('pdf-export-mode');
+        
         if (controls) {
-            controls.style.display = originalControlsDisplay || 'flex';
-            controls.style.visibility = originalControlsVisibility || 'visible';
+            controls.style.display = 'flex';
+            controls.style.visibility = 'visible';
             controls.style.opacity = '1';
             controls.classList.remove('pdf-export-hidden');
         }
-        restoreExportButton(exportBtn, originalHTML);
-        showSlide(currentSlide);
-        showNotification('PDF exported successfully!', 'success');
-        console.log('PDF export completed');
+    });
+}
+
+function ensureChartsReady() {
+    return new Promise((resolve) => {
+        // Check if charts exist and are ready
+        let chartsReady = true;
+        
+        if (document.getElementById('apsChart') && !apsChart) {
+            chartsReady = false;
+        }
+        
+        if (document.getElementById('varianceChart') && !varianceChart) {
+            chartsReady = false;
+        }
+        
+        if (chartsReady && apsChart && varianceChart) {
+            // Charts are ready
+            resolve();
+        } else {
+            // Recreate charts if needed
+            console.log('Recreating charts for PDF export...');
+            createCharts();
+            
+            // Wait for charts to be created
+            setTimeout(() => {
+                if (apsChart && varianceChart) {
+                    resolve();
+                } else {
+                    // Try one more time
+                    setTimeout(() => {
+                        createCharts();
+                        setTimeout(resolve, 1000);
+                    }, 500);
+                }
+            }, 1000);
+        }
     });
 }
 
 function processSlideForPDF(slideIndex, pdf, callback) {
     if (slideIndex > totalSlides) {
-        pdf.deletePage(1); // Remove empty first page
         callback();
         return;
     }
@@ -823,40 +871,341 @@ function processSlideForPDF(slideIndex, pdf, callback) {
 
     console.log(`Processing slide ${slideIndex} for PDF...`);
 
-    // Show only current slide
-    document.querySelectorAll('.slide').forEach(s => s.style.display = 'none');
-    slide.style.display = 'flex';
-    slide.style.margin = '0';
-    slide.style.marginTop = '0';
+    // Hide all slides first
+    document.querySelectorAll('.slide').forEach(s => {
+        s.style.display = 'none';
+        s.classList.remove('active');
+    });
 
-    // Check if html2canvas is available
-    if (typeof html2canvas === 'undefined') {
-        console.error('html2canvas library not loaded');
-        showNotification('Error: Canvas library not loaded', 'error');
-        return;
+    // Show and configure current slide for fullscreen capture
+    slide.style.display = 'flex';
+    slide.style.position = 'fixed';
+    slide.style.top = '0';
+    slide.style.left = '0';
+    slide.style.width = '100vw';
+    slide.style.height = '100vh';
+    slide.style.margin = '0';
+    slide.style.padding = '0';
+    slide.style.zIndex = '9999';
+    slide.style.boxShadow = 'none';
+    slide.style.borderRadius = '0';
+    slide.classList.add('active');
+
+    // Configure slide content for fullscreen
+    const slideContent = slide.querySelector('.slide-content');
+    if (slideContent) {
+        slideContent.style.width = '100vw';
+        slideContent.style.height = '100vh';
+        slideContent.style.padding = slide.classList.contains('cover-slide') ? '60px' : '30px 50px';
+        slideContent.style.boxSizing = 'border-box';
+        slideContent.style.overflow = 'hidden';
+        slideContent.style.display = 'flex';
+        slideContent.style.flexDirection = 'column';
+        
+        // Special handling for cover slides
+        if (slide.classList.contains('cover-slide')) {
+            slideContent.style.justifyContent = 'center';
+            slideContent.style.alignItems = 'center';
+            slideContent.style.textAlign = 'center';
+        }
     }
 
-    // Capture slide
-    html2canvas(slide, {
-        width: 1920,
-        height: 1080,
-        scale: 0.5,
-        useCORS: true,
-        logging: false,
-        backgroundColor: slide.classList.contains('cover-slide') ? null : '#ffffff'
-    }).then(canvas => {
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        pdf.addPage('a4', 'landscape');
-        pdf.addImage(imgData, 'JPEG', 0, 0, 297, 210);
+    // Optimize content for PDF
+    optimizeContentForPDF(slide);
 
-        // Process next slide
-        setTimeout(() => {
-            processSlideForPDF(slideIndex + 1, pdf, callback);
-        }, 100);
-    }).catch(error => {
-        console.error(`Error capturing slide ${slideIndex}:`, error);
-        // Continue with next slide
-        processSlideForPDF(slideIndex + 1, pdf, callback);
+    // Force chart recreation if needed
+    recreateChartsForPDF(slide);
+
+    // Force reflow
+    slide.offsetHeight;
+
+    // Wait longer for content to render properly
+    setTimeout(() => {
+        // Check if html2canvas is available
+        if (typeof html2canvas === 'undefined') {
+            console.error('html2canvas library not loaded');
+            showNotification('Error: Canvas library not loaded', 'error');
+            return;
+        }
+
+        // Ensure all images and icons are loaded
+        const images = slide.querySelectorAll('img');
+        let imageLoadPromises = Array.from(images).map(img => {
+            return new Promise((resolve) => {
+                if (img.complete) {
+                    resolve();
+                } else {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                }
+            });
+        });
+
+        Promise.all(imageLoadPromises).then(() => {
+            // Capture slide with high quality settings for fullscreen
+            html2canvas(slide, {
+                width: 1920,
+                height: 1080,
+                scale: 1.2,
+                useCORS: true,
+                allowTaint: true,
+                logging: false,
+                letterRendering: true,
+                foreignObjectRendering: true,
+                backgroundColor: slide.classList.contains('cover-slide') ? null : '#ffffff',
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: 1920,
+                windowHeight: 1080,
+                x: 0,
+                y: 0,
+                onclone: function(clonedDoc) {
+                    // Ensure styles are applied to cloned document
+                    const clonedSlide = clonedDoc.querySelector('.slide.active');
+                    if (clonedSlide) {
+                        clonedSlide.style.display = 'flex';
+                        clonedSlide.style.width = '1920px';
+                        clonedSlide.style.height = '1080px';
+                        clonedSlide.style.position = 'relative';
+                        clonedSlide.style.overflow = 'hidden';
+                    }
+                    
+                    // Ensure FontAwesome icons are rendered
+                    const icons = clonedDoc.querySelectorAll('i[class*="fa"], i[class*="bi"]');
+                    icons.forEach(icon => {
+                        icon.style.fontFamily = 'FontAwesome, "Font Awesome 6 Free", "Bootstrap Icons"';
+                        icon.style.fontWeight = '900';
+                        icon.style.display = 'inline-block';
+                    });
+                    
+                    // Ensure charts are rendered properly in clone
+                    const clonedCharts = clonedDoc.querySelectorAll('canvas');
+                    clonedCharts.forEach((clonedCanvas, index) => {
+                        const originalCanvas = slide.querySelectorAll('canvas')[index];
+                        if (originalCanvas && clonedCanvas) {
+                            clonedCanvas.width = originalCanvas.width;
+                            clonedCanvas.height = originalCanvas.height;
+                            const clonedCtx = clonedCanvas.getContext('2d');
+                            try {
+                                clonedCtx.drawImage(originalCanvas, 0, 0);
+                            } catch (e) {
+                                console.warn('Could not clone canvas:', e);
+                            }
+                        }
+                    });
+                }
+            }).then(canvas => {
+                // Convert to high quality image
+                const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                
+                // Add new page (except for first slide)
+                if (slideIndex > 1) {
+                    pdf.addPage('a4', 'landscape');
+                }
+                
+                // Add image to PDF with fullscreen dimensions
+                // A4 landscape: 297mm x 210mm
+                pdf.addImage(imgData, 'JPEG', 0, 0, 297, 210);
+
+                // Reset slide styles
+                resetSlideStyles(slide);
+
+                // Process next slide
+                setTimeout(() => {
+                    processSlideForPDF(slideIndex + 1, pdf, callback);
+                }, 200);
+            }).catch(error => {
+                console.error(`Error capturing slide ${slideIndex}:`, error);
+                
+                // Reset slide styles on error
+                resetSlideStyles(slide);
+                
+                // Continue with next slide
+                processSlideForPDF(slideIndex + 1, pdf, callback);
+            });
+        });
+    }, 800);
+}
+
+function optimizeContentForPDF(slide) {
+
+    // Fix FontAwesome icons for PDF rendering
+    const icons = slide.querySelectorAll('i[class*="fas"], i[class*="fa-"]');
+    icons.forEach(icon => {
+        // Replace FontAwesome icons with Unicode equivalents for better PDF rendering
+        if (icon.classList.contains('fa-chart-line')) {
+            icon.innerHTML = '📈';
+            icon.style.fontFamily = 'serif';
+            icon.style.fontSize = '4rem';
+        } else if (icon.classList.contains('fa-calculator')) {
+            icon.innerHTML = '🧮';
+            icon.style.fontFamily = 'serif';
+            icon.style.fontSize = '4rem';
+        } else if (icon.classList.contains('fa-graduation-cap')) {
+            icon.innerHTML = '🎓';
+            icon.style.fontFamily = 'serif';
+            icon.style.fontSize = '4rem';
+        } else if (icon.classList.contains('fa-book')) {
+            icon.innerHTML = '📚';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-question-circle')) {
+            icon.innerHTML = '❓';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-bullseye')) {
+            icon.innerHTML = '🎯';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-thumbs-up')) {
+            icon.innerHTML = '👍';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-thumbs-down')) {
+            icon.innerHTML = '👎';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-line-chart')) {
+            icon.innerHTML = '📊';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-calculator') || icon.classList.contains('fa-calculator')) {
+            icon.innerHTML = '🔢';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-search')) {
+            icon.innerHTML = '🔍';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-cogs')) {
+            icon.innerHTML = '⚙️';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-chart-bar')) {
+            icon.innerHTML = '📊';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-chart-area')) {
+            icon.innerHTML = '📈';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-step-forward')) {
+            icon.innerHTML = '➡️';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-hypothesis')) {
+            icon.innerHTML = '🧪';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-formula')) {
+            icon.innerHTML = '📐';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-analysis')) {
+            icon.innerHTML = '🔬';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-check-circle')) {
+            icon.innerHTML = '✅';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-info-circle')) {
+            icon.innerHTML = 'ℹ️';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-lightbulb')) {
+            icon.innerHTML = '💡';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-implications')) {
+            icon.innerHTML = '🔗';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-policy')) {
+            icon.innerHTML = '📋';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-forecast')) {
+            icon.innerHTML = '🔮';
+            icon.style.fontFamily = 'serif';
+        } else if (icon.classList.contains('fa-development')) {
+            icon.innerHTML = '🚀';
+            icon.style.fontFamily = 'serif';
+        }
+        
+        // Remove FontAwesome classes and ensure proper rendering
+        icon.className = '';
+        icon.style.fontStyle = 'normal';
+        icon.style.fontVariant = 'normal';
+        icon.style.fontWeight = 'normal';
+        icon.style.display = 'inline-block';
+        icon.style.textRendering = 'auto';
+        icon.style.webkitFontSmoothing = 'antialiased';
+    });
+
+    // Fix scrollable content
+    const scrollableElements = slide.querySelectorAll('[style*="overflow"], .slide-content');
+    scrollableElements.forEach(element => {
+        element.style.overflow = 'visible';
+        element.style.height = 'auto';
+        element.style.maxHeight = 'none';
+    });
+}
+
+function recreateChartsForPDF(slide) {
+    const chartContainers = slide.querySelectorAll('.chart-container');
+    chartContainers.forEach(container => {
+        const canvas = container.querySelector('canvas');
+        if (canvas) {
+            const chartId = canvas.id;
+            
+            // Force recreate charts for PDF
+            if (chartId === 'apsChart' && apsChart) {
+                try {
+                    apsChart.update('none');
+                    apsChart.resize();
+                } catch (e) {
+                    console.warn('Could not update APS chart:', e);
+                }
+            } else if (chartId === 'varianceChart' && varianceChart) {
+                try {
+                    varianceChart.update('none');
+                    varianceChart.resize();
+                } catch (e) {
+                    console.warn('Could not update variance chart:', e);
+                }
+            }
+            
+            // Ensure canvas is properly sized
+            canvas.style.width = '100%';
+            canvas.style.height = 'auto';
+            canvas.style.maxWidth = '100%';
+            canvas.style.display = 'block';
+        }
+    });
+}
+
+function resetSlideStyles(slide) {
+    if (!slide) return;
+    
+    slide.style.position = '';
+    slide.style.top = '';
+    slide.style.left = '';
+    slide.style.width = '';
+    slide.style.height = '';
+    slide.style.margin = '';
+    slide.style.padding = '';
+    slide.style.zIndex = '';
+    slide.style.boxShadow = '';
+    slide.style.borderRadius = '';
+
+    const slideContent = slide.querySelector('.slide-content');
+    if (slideContent) {
+        slideContent.style.width = '';
+        slideContent.style.height = '';
+        slideContent.style.padding = '';
+        slideContent.style.boxSizing = '';
+        slideContent.style.overflow = '';
+        slideContent.style.display = '';
+        slideContent.style.flexDirection = '';
+        slideContent.style.justifyContent = '';
+        slideContent.style.alignItems = '';
+        slideContent.style.textAlign = '';
+    }
+
+    // Reset optimized elements
+    const optimizedElements = slide.querySelectorAll('[style]');
+    optimizedElements.forEach(element => {
+        // Remove PDF-specific inline styles
+        if (element.style.fontSize && (element.style.fontSize === '11px' || element.style.fontSize === '10px' || element.style.fontSize === '0.9rem')) {
+            element.style.fontSize = '';
+        }
+        if (element.style.padding && element.style.padding.includes('8px')) {
+            element.style.padding = '';
+        }
+        if (element.style.lineHeight === '1.2' || element.style.lineHeight === '1.4') {
+            element.style.lineHeight = '';
+        }
     });
 }
 
@@ -906,12 +1255,27 @@ function handleOrientationChange() {
     }, 500);
 }
 
-function showNotification(message, type = 'info') {
+function showNotification(message, type = 'info', duration = 3000) {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    
+    const iconMap = {
+        success: 'check-circle-fill',
+        error: 'exclamation-triangle-fill',
+        warning: 'exclamation-circle-fill',
+        info: 'info-circle-fill'
+    };
+    
+    const colorMap = {
+        success: '#27ae60',
+        error: '#e74c3c',
+        warning: '#f39c12',
+        info: '#3498db'
+    };
+    
     notification.innerHTML = `
     <div class="notification-content">
-      <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'}"></i>
+      <i class="bi bi-${iconMap[type] || iconMap.info}"></i>
       <span>${message}</span>
     </div>
   `;
@@ -920,7 +1284,7 @@ function showNotification(message, type = 'info') {
     position: fixed;
     top: 100px;
     right: 20px;
-    background: ${type === 'success' ? '#27ae60' : '#e74c3c'};
+    background: ${colorMap[type] || colorMap.info};
     color: white;
     padding: 15px 20px;
     border-radius: 8px;
@@ -930,6 +1294,8 @@ function showNotification(message, type = 'info') {
     transform: translateX(100%);
     transition: all 0.3s ease;
     font-family: inherit;
+    max-width: 300px;
+    word-wrap: break-word;
   `;
 
     document.body.appendChild(notification);
@@ -947,7 +1313,7 @@ function showNotification(message, type = 'info') {
                 notification.parentNode.removeChild(notification);
             }
         }, 300);
-    }, 3000);
+    }, duration);
 }
 
 // ==================== URL HASH NAVIGATION ====================
@@ -1042,13 +1408,15 @@ document.addEventListener('keydown', (event) => {
 console.log(`
 %c🎓 ARCH Model Presentation - Kelompok 4 🎓
 %cNavigation: Arrow keys, Space, or swipe
-%cFullscreen: F key
-%cExport PDF: Click export button
+%cFullscreen: F key or fullscreen button
+%cExport PDF: High-quality fullscreen slides
+%cFeatures: Interactive charts, responsive design
 %cDeveloped for Magister Ilmu Komputer UNDIKSHA
 `,
     'color: #3498db; font-size: 16px; font-weight: bold;',
     'color: #2c3e50; font-size: 12px;',
     'color: #2c3e50; font-size: 12px;',
-    'color: #2c3e50; font-size: 12px;',
+    'color: #e74c3c; font-size: 12px; font-weight: bold;',
+    'color: #f39c12; font-size: 12px;',
     'color: #27ae60; font-size: 12px; font-style: italic;'
 );

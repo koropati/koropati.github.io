@@ -92,7 +92,7 @@ body {
 /* ==================== SLIDE STYLES ==================== */
 .slide {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     min-height: 800px;
     margin: 0 auto;
     background: white;
@@ -107,6 +107,8 @@ body {
 .slide.active {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .slide-content {
@@ -146,12 +148,13 @@ hr {
     border: none;
     height: 4px;
     background: var(--bg-gradient);
-    margin-bottom: 2rem;
     border-radius: 2px;
 }
 
 /* ==================== COVER SLIDE ==================== */
 .cover-slide {
+    width: 100vw !important;
+    height: 100vh !important;
     background: var(--bg-gradient);
     color: white;
     text-align: center;
@@ -168,12 +171,16 @@ hr {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
     opacity: 0.3;
+    width: 100vw !important;
+    height: 100vh !important;
 }
 
 .cover-slide .slide-content {
     position: relative;
     z-index: 1;
     justify-content: center;
+    width: 100vw !important;
+    height: 100vh !important;
 }
 
 .cover-slide h1 {
@@ -313,8 +320,8 @@ hr {
 .formula-box {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: var(--border-radius);
-    padding: 30px;
-    margin: 25px 0;
+    padding: 10px;
+    margin: 5px 0;
     color: white;
     text-align: center;
     box-shadow: var(--shadow-medium);
@@ -323,7 +330,7 @@ hr {
 .formula-box .formula {
     font-size: 1.5rem;
     font-weight: bold;
-    margin: 15px 0;
+    margin: 5px 0;
     font-family: 'Courier New', monospace;
 }
 
@@ -369,16 +376,14 @@ hr {
 
 /* ==================== CALCULATION STEPS ==================== */
 .calculation-steps {
-    background: #f8f9fa;
     border-radius: var(--border-radius);
-    padding: 25px;
-    margin: 20px 0;
 }
 
 .calculation-step {
-    margin: 15px 0;
+    margin: 10px 0;
     padding: 15px;
     background: white;
+    box-shadow: var(--shadow-light);
     border-radius: 8px;
     border-left: 4px solid var(--secondary-color);
 }
@@ -450,6 +455,135 @@ hr {
     border: 2px solid var(--accent-color);
     border-radius: var(--border-radius);
     padding: 25px;
+}
+
+/* ==================== PDF EXPORT STYLES ==================== */
+body.pdf-export-mode {
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+body.pdf-export-mode #presentation {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+body.pdf-export-mode .slide {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    min-height: 100vh !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+}
+
+body.pdf-export-mode .slide-content {
+    width: 100vw !important;
+    height: 100vh !important;
+    padding: 40px 60px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+body.pdf-export-mode .cover-slide .slide-content {
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+/* Ensure all elements are visible in PDF export */
+body.pdf-export-mode * {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Hide controls in PDF export mode */
+body.pdf-export-mode .slide-controls,
+body.pdf-export-mode .slide-controls.pdf-export-hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+/* Adjust chart containers for PDF */
+body.pdf-export-mode .chart-container {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+body.pdf-export-mode .chart-container .chart-wrapper {
+    height: 300px !important;
+    width: 100% !important;
+}
+
+/* Ensure proper text rendering in PDF */
+body.pdf-export-mode h1,
+body.pdf-export-mode h2,
+body.pdf-export-mode h3,
+body.pdf-export-mode h4,
+body.pdf-export-mode h5,
+body.pdf-export-mode h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+}
+
+/* Prevent content from being cut off */
+body.pdf-export-mode .data-table,
+body.pdf-export-mode .formula-box,
+body.pdf-export-mode .step-box,
+body.pdf-export-mode .result-box,
+body.pdf-export-mode .calculation-steps {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* Adjust grid layouts for PDF */
+body.pdf-export-mode .content-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+    gap: 20px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+body.pdf-export-mode .pros-cons-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* Ensure proper image rendering */
+body.pdf-export-mode img,
+body.pdf-export-mode canvas {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 /* ==================== RESPONSIVE STYLES ==================== */
@@ -580,7 +714,6 @@ hr {
     }
 }
 
-/* ==================== PRINT STYLES ==================== */
 @media print {
 
     .slide-controls,
@@ -594,20 +727,21 @@ hr {
         display: block !important;
         page-break-after: always;
         margin-top: 0;
-        height: auto;
+        height: 100%;
         min-height: 297mm;
         box-shadow: none;
     }
 
     .slide-content {
         padding: 20mm;
-        height: auto;
+        height: 100%;
         overflow: visible;
     }
 
     .cover-slide,
     .cover-slide .slide-content {
-        height: 297mm;
+        width: 100vw !important;
+        height: 100vh !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -621,12 +755,12 @@ hr {
 
     h2 {
         font-size: 18pt;
-        margin-bottom: 12pt;
+        margin-bottom: 6pt;
     }
 
     h4 {
         font-size: 14pt;
-        margin-bottom: 8pt;
+        margin-bottom: 6pt;
     }
 
     p,
