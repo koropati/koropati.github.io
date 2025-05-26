@@ -1,0 +1,309 @@
+{
+    "personal": {
+        "name": "Dewa Ketut Satriawan Suditresnajaya",
+        "title": "Software Engineer",
+        "tagline": "Software Engineer specializing in Full Stack Development, AI Systems & Modern Web Technologies",
+        "description": "Experienced Software Engineer with 5+ years of expertise in full-stack development, AI systems, and modern web technologies. Currently contributing to innovative solutions at PT Bima Sakti Alterra, with proven experience in building SHRIS, AI ChatBot systems with LLM RAG, and enterprise applications using cutting-edge technologies like Golang, FastAPI, and Nuxt.js 3.",
+        "contact": {
+            "email": "windowsdewa@gmail.com",
+            "phone": "+62 823 4080 3646",
+            "location": "Jl. Sawo, Gianyar, Bali, Indonesia",
+            "birthdate": "June 21, 1997",
+            "languages": ["Indonesian", "English"]
+        }
+    },
+    "statistics": {
+        "projects": "20+",
+        "experience": "5+",
+        "gpa": "3.93"
+    },
+    "skills": {
+        "programmingLanguages": [{
+                "name": "Python",
+                "level": 95
+            },
+            {
+                "name": "PHP",
+                "level": 90
+            },
+            {
+                "name": "JavaScript",
+                "level": 85
+            },
+            {
+                "name": "Golang",
+                "level": 80
+            },
+            {
+                "name": "C++",
+                "level": 75
+            }
+        ],
+        "frameworks": [{
+                "name": "FastAPI",
+                "level": 90
+            },
+            {
+                "name": "Django",
+                "level": 95
+            },
+            {
+                "name": "Laravel",
+                "level": 90
+            },
+            {
+                "name": "Gin Fiber",
+                "level": 80
+            },
+            {
+                "name": "Node.js",
+                "level": 85
+            },
+            {
+                "name": "Nuxt.js 3",
+                "level": 85
+            },
+            {
+                "name": "Vue.js",
+                "level": 85
+            },
+            {
+                "name": "Symfony",
+                "level": 75
+            },
+            {
+                "name": "Arduino",
+                "level": 85
+            }
+        ],
+        "databases": [{
+                "name": "MongoDB",
+                "level": 85
+            },
+            {
+                "name": "MySQL",
+                "level": 85
+            },
+            {
+                "name": "PostgreSQL",
+                "level": 80
+            },
+            {
+                "name": "Tailwind CSS",
+                "level": 90
+            }
+        ]
+    },
+    "experience": [{
+            "title": "Software Engineer",
+            "company": "PT Bima Sakti Alterra",
+            "location": "",
+            "startDate": "Feb 2022",
+            "endDate": "Present",
+            "description": "Developing scalable applications using modern technologies including Golang, FastAPI, and Nuxt.js 3. Built enterprise systems like SHRIS and AI ChatBot with hybrid RAG LLM architecture. Implementing best practices in software development and collaborating with cross-functional teams to deliver high-quality software solutions.",
+            "current": true
+        },
+        {
+            "title": "Leader Team Research and Development",
+            "company": "PT. Bangun Inovasi Teknologi",
+            "location": "Denpasar",
+            "startDate": "Sep 2021",
+            "endDate": "Jan 2022",
+            "description": "Leading the R&D team, making projects in the field of Artificial Intelligence & Internet of Things. Designing and handling company products in the AI and IoT fields, as well as researching the needs of tools and software for the development team.",
+            "current": false
+        },
+        {
+            "title": "Backend Programmer",
+            "company": "PT. Bangun Inovasi Teknologi",
+            "location": "Denpasar",
+            "startDate": "Dec 2020",
+            "endDate": "Aug 2021",
+            "description": "Developed Internet of Things prototype hardware and handled Frontend projects as a Backend Programmer.",
+            "current": false
+        },
+        {
+            "title": "Robotics Specialist",
+            "company": "(R)Akademi",
+            "location": "Singaraja",
+            "startDate": "Dec 2019",
+            "endDate": "Feb 2020",
+            "description": "Served as a lecturer in the field of robotics at (R)Akademi, which is a robotics lesson located in Sambangan - Singaraja.",
+            "current": false
+        },
+        {
+            "title": "Full Stack Developer Intern",
+            "company": "PT. Bangun Inovasi Teknologi",
+            "location": "Denpasar",
+            "startDate": "Jul 2019",
+            "endDate": "Sep 2019",
+            "description": "Field Work Practice as a Full Stack Developer Programmer, working on WEB-based projects using the Django framework.",
+            "current": false
+        }
+    ],
+    "projects": [{
+            "title": "SHRIS (Strategic Human Resource Information System)",
+            "icon": "fas fa-users-cog",
+            "description": "Developed comprehensive HR management system for strategic workforce planning and management. Built with modern full-stack architecture featuring advanced analytics and reporting capabilities.",
+            "technologies": ["Golang", "Gin Fiber", "Nuxt.js 3", "Vue.js", "Tailwind CSS"],
+            "category": "Enterprise",
+            "featured": true
+        },
+        {
+            "title": "AI ChatBot with Hybrid RAG LLM",
+            "icon": "fas fa-robot",
+            "description": "Built intelligent chatbot system using hybrid RAG (Retrieval-Augmented Generation) with LLM. Features FastAPI backend with MongoDB for vector storage and Nuxt.js 3 frontend for seamless user interaction.",
+            "technologies": ["Python", "FastAPI", "MongoDB", "LLM", "RAG", "Nuxt.js 3", "Vue.js", "Tailwind CSS"],
+            "category": "AI/ML",
+            "featured": true
+        },
+        {
+            "title": "Face Recognition Attendance System",
+            "icon": "fas fa-brain",
+            "description": "Developed an attendance system using Face Recognition with conventional methods (KNN with K-Means using Haar and HoG features) and CNN. Built with Python and PHP Laravel.",
+            "technologies": ["Python", "PHP Laravel", "CNN", "OpenCV"],
+            "category": "AI/ML",
+            "featured": true
+        },
+        {
+            "title": "OCR for KTP and BPJS Cards",
+            "icon": "fas fa-id-card",
+            "description": "Developed an OCR system for Identity Card and BPJS Card documents as an API for online registration systems such as patient registration at hospitals.",
+            "technologies": ["Python", "OCR", "API", "Healthcare"],
+            "category": "AI/ML",
+            "featured": true
+        },
+        {
+            "title": "Smart Infusion Monitoring System",
+            "icon": "fas fa-heartbeat",
+            "description": "Built an IoT system for monitoring Infusion in patients using prototype hardware specifically designed for infusion monitoring.",
+            "technologies": ["IoT", "C++", "PHP Laravel", "Healthcare"],
+            "category": "IoT",
+            "featured": true
+        },
+        {
+            "title": "Human Detection & Counting",
+            "icon": "fas fa-users",
+            "description": "Created a human detection system for monitoring the number of people in a room with capacity limitations, including heatmap visualization for crowd analysis.",
+            "technologies": ["Python", "Computer Vision", "IoT", "Analytics"],
+            "category": "AI/ML",
+            "featured": true
+        }
+    ],
+    "education": [{
+            "degree": "Informatics Engineering",
+            "institution": "Universitas Pendidikan Ganesha",
+            "location": "Singaraja",
+            "startDate": "Sep 2016",
+            "endDate": "Nov 2020",
+            "gpa": "3.93",
+            "description": "Majoring in Informatics Engineering, with the Informatics Engineering Education Study Program. Graduated with a very satisfactory predicate."
+        },
+        {
+            "degree": "Computer and Network Engineering",
+            "institution": "SMK N 1 Tanjung",
+            "location": "Lombok Utara",
+            "startDate": "2013",
+            "endDate": "2016",
+            "gpa": null,
+            "description": "Vocational high school specializing in computer and network engineering."
+        }
+    ],
+    "certifications": [{
+            "name": "Software Development",
+            "issuer": "National Professional Certification Agency (BNSP)",
+            "date": "Sep 2019",
+            "description": "Obtaining a Software Development Competency Certificate with qualifications as a Programmer."
+        },
+        {
+            "name": "Java Fundamental",
+            "issuer": "Oracle Academy",
+            "date": "Jan 2018",
+            "description": "Obtaining training on Java Fundamentals online."
+        }
+    ],
+    "achievements": [{
+            "title": "Indonesian Fire Extinguisher Robot Contest Finalists",
+            "organization": "RISTEKDIKTI",
+            "date": "4 - 6 May 2017",
+            "description": "Received a certificate of appreciation as a finalist in the Indonesian Fire Extinguisher Robot Contest organized by RISTEKDIKTI at Brawijaya University in 2017 Regional IV."
+        },
+        {
+            "title": "E-Vote System Development Team",
+            "organization": "PEMIRA PTI",
+            "date": "Mar 2019",
+            "description": "Received a certificate of appreciation as an E-Vote system development team for the general election of the Informatics Engineering Education Student Association."
+        }
+    ],
+    "additionalProjects": [{
+            "title": "Internet of Things-Based Digital Pin Development",
+            "date": "Sept 2019",
+            "category": "Internship Project",
+            "description": "Develop Internet of Things Hardware Prototype to detect people who are using it in a fallen state, get the location of the person who experienced the accident in real time. This project was developed using Sensors and Microcontrollers with the C++ programming language."
+        },
+        {
+            "title": "Development of Internet of Things-based Smart Lockers",
+            "date": "Jun 2021",
+            "category": "IoT Project",
+            "description": "Develop an Internet of Things based locker with a lock system using QRCode. This project was built using Python, PHP Laravel, VueJS and uses a mini computer embedded in a locker."
+        },
+        {
+            "title": "Expedition system development",
+            "date": "Dec 2020",
+            "category": "Django Project",
+            "description": "Creating an expedition system for one of the local expedition couriers in the Bali area. This system was developed in the Python programming language with the Django framework."
+        },
+        {
+            "title": "Marketplace system development team",
+            "date": "Feb 2021",
+            "category": "PHP - Symfony Project",
+            "description": "Become one of the leading marketplace system development teams in Bali. This project was developed using the PHP programming language using the Symfony framework."
+        },
+        {
+            "title": "Laundry system front end development team",
+            "date": "Apr 2021",
+            "category": "VueJS Project",
+            "description": "Become a frontend programmer team on a laundry system. This project was developed with the VueJS framework."
+        },
+        {
+            "title": "Medical record system development",
+            "date": "Nov 2021",
+            "category": "Django Project",
+            "description": "Develop a medical record system with a modular method to simplify management and detect system bugs. This project is built in the Python programming language using the Django framework."
+        },
+        {
+            "title": "Crowd Human heatmap visualization",
+            "date": "Dec 2021",
+            "category": "AI Project",
+            "description": "Creating a program to detect the location of gatherings of people by displaying output in the form of a heatmap visualization. This function is used for supermarket areas when they want to see which product shelves are frequently visited by buyers. This project is developed in Python."
+        },
+        {
+            "title": "Develop a bot system to answer questions about the health of pregnant women",
+            "date": "Sept 2021",
+            "category": "AI Project",
+            "description": "Developed a bot to answer questions about pregnancy, thereby helping pregnant women get answers to the complaints they were experiencing. This project was created using a convolutional neural network method, using the Python language."
+        },
+        {
+            "title": "Develop a sentiment analysis system",
+            "date": "Aug 2021",
+            "category": "KOMINFO BANGLI",
+            "description": "Develop a system to detect sentiment in the public's tweets and Instagram posts towards tourism in the Bali region. Project Using Python framework - Django."
+        }
+    ],
+    "socialLinks": {
+        "github": "",
+        "linkedin": "",
+        "twitter": "",
+        "instagram": ""
+    },
+    "theme": {
+        "primaryColor": "#2563eb",
+        "secondaryColor": "#3b82f6",
+        "accentColor": "#1d4ed8"
+    },
+    "seo": {
+        "title": "Dewa Ketut Satriawan - Software Engineer",
+        "description": "Dewa Ketut Satriawan Suditresnajaya - Software Engineer specializing in AI, IoT, and Full Stack Development",
+        "keywords": "Software Engineer, AI Developer, IoT Specialist, Full Stack Developer, Python, Golang, FastAPI, Nuxt.js, RAG LLM",
+        "author": "Dewa Ketut Satriawan Suditresnajaya"
+    }
+}
