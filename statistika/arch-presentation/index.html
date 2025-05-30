@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model ARCH: Analisis Angka Partisipasi Sekolah Indonesia</title>
+
+  <!-- External CSS Libraries -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Slide Controls -->
+  <div class="slide-controls">
+    <button id="prevBtn" aria-label="Previous slide">
+      <i class="bi bi-chevron-left"></i>
+    </button>
+    <span id="slideCounter">1 / 14</span>
+    <button id="nextBtn" aria-label="Next slide">
+      <i class="bi bi-chevron-right"></i>
+    </button>
+    <button id="fullscreenBtn" aria-label="Toggle fullscreen">
+      <i class="bi bi-fullscreen"></i>
+    </button>
+    <button id="exportBtn" aria-label="Export to PDF">
+      <i class="bi bi-file-earmark-pdf"></i> Export PDF
+    </button>
+  </div>
+
+  <div id="presentation">
+    <!-- Slide 1: Cover -->
+    <div class="slide active" id="slide1">
+      <div class="slide-content cover-slide">
+        <div class="container-fluid h-100">
+          <div class="row align-items-center justify-content-center h-100">
+            <div class="col-12 text-center">
+              <h1 class="display-3 fw-bold mb-4">Model ARCH</h1>
+              <h3 class="mb-4">(Autoregressive Conditional Heteroskedasticity)</h3>
+              <div class="cover-icon my-4">
+                <i class="fas fa-chart-line"></i>
+                <i class="fas fa-calculator"></i>
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="cover-info">
+                <p class="fs-4 mb-3">Analisis Angka Partisipasi Sekolah Indonesia 2003-2023</p>
+                <p class="fs-5 mb-2">Kelompok 4 - Mata Kuliah Statistika</p>
+                <p class="fs-5">Magister Ilmu Komputer - UNDIKSHA - 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Anggota Kelompok -->
+    <div class="slide" id="slide2">
+      <div class="slide-content">
+        <h2 class="text-center mb-4">Anggota Kelompok 4</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">PA</div>
+                <h5>I Putu Agra Arimbawa</h5>
+                <p class="text-muted">2429101033</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">FS</div>
+                <h5>Ni Putu Fina Silviantari</h5>
+                <p class="text-muted">2429101034</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">AA</div>
+                <h5>I Nyoman Ari Arthasusila</h5>
+                <p class="text-muted">2429101035</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">DS</div>
+                <h5>Dewa Ketut Satriawan S.</h5>
+                <p class="text-muted">2429101036</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">AM</div>
+                <h5>I Gusti Putu Ananta Mahanata</h5>
+                <p class="text-muted">2429101039</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">AP</div>
+                <h5>I Putu Andika Putra</h5>
+                <p class="text-muted">2429101040</p>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="member-card">
+                <div class="member-avatar">KA</div>
+                <h5>Komang Agus Agastia</h5>
+                <p class="text-muted">2429101002</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Pengenalan Masalah -->
+    <div class="slide" id="slide3">
+      <div class="slide-content">
+        <h2>Latar Belakang Masalah</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4><i class="fas fa-graduation-cap me-2"></i>Angka Partisipasi Sekolah (APS)</h4>
+              <p>Angka Partisipasi Sekolah (APS) menunjukkan persentase penduduk yang sedang bersekolah menurut kelompok usia.</p>
+
+              <div class="step-box">
+                <span class="step-number">1</span>
+                <strong>Indikator Penting:</strong> APS merupakan indikator kunci dalam evaluasi perkembangan pendidikan nasional
+              </div>
+
+              <div class="step-box">
+                <span class="step-number">2</span>
+                <strong>Tren Meningkat:</strong> Secara umum APS meningkat dari tahun 2003-2023
+              </div>
+
+              <div class="step-box">
+                <span class="step-number">3</span>
+                <strong>Fluktuasi Tahunan:</strong> Meski meningkat, masih terdapat fluktuasi yang perlu dianalisis
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <h4><i class="fas fa-question-circle me-2"></i>Pertanyaan Penelitian</h4>
+              <div class="result-box">
+                <p><strong>Bagaimana menganalisis pola volatilitas dalam data APS menggunakan model ARCH?</strong></p>
+                <ul>
+                  <li>Apakah terdapat heteroskedastisitas bersyarat dalam data APS?</li>
+                  <li>Bagaimana variansi error masa lalu mempengaruhi variansi error saat ini?</li>
+                  <li>Apakah fluktuasi APS bersifat acak atau terstruktur?</li>
+                </ul>
+              </div>
+
+              <h4><i class="fas fa-bullseye me-2"></i>Tujuan Analisis</h4>
+              <p>Menggunakan model ARCH untuk mengidentifikasi dan mengukur efek heteroskedastisitas bersyarat pada data APS dengan model ARCH(1).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Data APS -->
+    <div class="slide" id="slide4">
+      <div class="slide-content">
+        <h2>Data Angka Partisipasi Sekolah (APS) 2003-2023</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="data-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Tahun</th>
+                      <th>APS (%)</th>
+                      <th>Tahun</th>
+                      <th>APS (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2003</td>
+                      <td>10.11</td>
+                      <td>2013</td>
+                      <td>20.05</td>
+                    </tr>
+                    <tr>
+                      <td>2004</td>
+                      <td>10.75</td>
+                      <td>2014</td>
+                      <td>21.55</td>
+                    </tr>
+                    <tr>
+                      <td>2005</td>
+                      <td>11.22</td>
+                      <td>2015</td>
+                      <td>23.28</td>
+                    </tr>
+                    <tr>
+                      <td>2006</td>
+                      <td>11.98</td>
+                      <td>2016</td>
+                      <td>24.80</td>
+                    </tr>
+                    <tr>
+                      <td>2007</td>
+                      <td>12.82</td>
+                      <td>2017</td>
+                      <td>26.56</td>
+                    </tr>
+                    <tr>
+                      <td>2008</td>
+                      <td>13.64</td>
+                      <td>2018</td>
+                      <td>27.24</td>
+                    </tr>
+                    <tr>
+                      <td>2009</td>
+                      <td>14.84</td>
+                      <td>2019</td>
+                      <td>27.86</td>
+                    </tr>
+                    <tr>
+                      <td>2010</td>
+                      <td>16.06</td>
+                      <td>2020</td>
+                      <td>29.15</td>
+                    </tr>
+                    <tr>
+                      <td>2011</td>
+                      <td>17.18</td>
+                      <td>2021</td>
+                      <td>29.68</td>
+                    </tr>
+                    <tr>
+                      <td>2012</td>
+                      <td>18.99</td>
+                      <td>2022</td>
+                      <td>30.17</td>
+                    </tr>
+                    <tr>
+                      <td>2013</td>
+                      <td>20.05</td>
+                      <td>2023</td>
+                      <td>30.92</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="chart-container">
+                <h5><i class="fas fa-chart-line me-2"></i>Tren APS 2003-2023</h5>
+                <div class="chart-wrapper">
+                  <canvas id="apsChart"></canvas>
+                </div>
+              </div>
+
+              <div class="result-box mt-3">
+                <h6><i class="fas fa-info-circle me-2"></i>Ringkasan Data</h6>
+                <ul class="list-unstyled">
+                  <li><strong>Periode:</strong> 2003-2023 (21 tahun)</li>
+                  <li><strong>APS Awal:</strong> 10.11% (2003)</li>
+                  <li><strong>APS Akhir:</strong> 30.92% (2023)</li>
+                  <li><strong>Peningkatan:</strong> 205.2%</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Konsep Model ARCH -->
+    <div class="slide" id="slide5">
+      <div class="slide-content">
+        <h2>Konsep Model ARCH</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4><i class="fas fa-book me-2"></i>Definisi ARCH</h4>
+              <p><strong>Autoregressive Conditional Heteroskedasticity (ARCH)</strong> adalah metode analisis deret waktu yang dirancang untuk mengatasi heteroskedastisitas, khususnya pada data yang menunjukkan variansi residual berubah dari waktu ke waktu.</p>
+
+              <div class="formula-box">
+                <h5>Model Mean (Proses Utama)</h5>
+                <div class="formula">y<sub>t</sub> = μ + ε<sub>t</sub>, &nbsp;&nbsp; ε<sub>t</sub> ~ N(0, σ<sub>t</sub>²)</div>
+              </div>
+
+              <br>
+
+              <div class="formula-box">
+                <h5>Model Variansi Bersyarat ARCH(1)</h5>
+                <div class="formula">σ<sub>t</sub>² = α<sub>0</sub> + α<sub>1</sub>ε<sub>t-1</sub>²</div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="pros-cons-container">
+                <div class="pros-box">
+                  <h5><i class="fas fa-thumbs-up me-2"></i>Kelebihan ARCH</h5>
+                  <ul>
+                    <li>Mendeteksi volatilitas waktu ke waktu</li>
+                    <li>Lebih realistis dibanding model variansi konstan</li>
+                    <li>Mudah diperluas ke GARCH</li>
+                    <li>Deteksi risiko dan ketidakpastian</li>
+                    <li>Dasar untuk model lanjutan</li>
+                  </ul>
+                </div>
+                <div class="cons-box">
+                  <h5><i class="fas fa-thumbs-down me-2"></i>Kekurangan ARCH</h5>
+                  <ul>
+                    <li>Sensitif terhadap asumsi normalitas</li>
+                    <li>Kebutuhan data yang cukup besar</li>
+                    <li>Overfitting jika order terlalu tinggi</li>
+                    <li>Kurang efisien jika volatilitas persisten</li>
+                    <li>Tidak menangani asimetri</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Langkah Analisis -->
+    <div class="slide" id="slide6">
+      <div class="slide-content">
+        <h2>Langkah-langkah Analisis ARCH</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="content-grid">
+            <div class="content-item">
+              <i class="fas fa-chart-line"></i>
+              <h5>Langkah 1</h5>
+              <h6>Plot Data Time Series</h6>
+              <p>Visualisasi data APS dari 2003–2023 untuk memahami tren dan pola</p>
+            </div>
+
+            <div class="content-item">
+              <i class="fas fa-calculator"></i>
+              <h5>Langkah 2</h5>
+              <h6>Regresi Linear</h6>
+              <p>Hitung residual dari model regresi linear sederhana</p>
+            </div>
+
+            <div class="content-item">
+              <i class="fas fa-search"></i>
+              <h5>Langkah 3</h5>
+              <h6>Uji ARCH LM</h6>
+              <p>Uji keberadaan heteroskedastisitas menggunakan uji Lagrange Multiplier</p>
+            </div>
+
+            <div class="content-item">
+              <i class="fas fa-cogs"></i>
+              <h5>Langkah 4</h5>
+              <h6>Estimasi Model ARCH(1)</h6>
+              <p>Jika uji signifikan, estimasi model ARCH(1)</p>
+            </div>
+
+            <div class="content-item">
+              <i class="fas fa-chart-bar"></i>
+              <h5>Langkah 5</h5>
+              <h6>Interpretasi Hasil</h6>
+              <p>Analisis dan interpretasi parameter model ARCH</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Regresi Linear dan Residual -->
+    <div class="slide" id="slide7">
+      <div class="slide-content">
+        <h2>Langkah 1: Regresi Linear dan Residual</h2>
+        <hr>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <h4><i class="fas fa-line-chart me-2"></i>Model Regresi Linear</h4>
+              <div class="calculation-steps">
+                <div class="calculation-step">
+                  <strong>Model:</strong> APS<sub>t</sub> = β<sub>0</sub> + β<sub>1</sub> × Waktu<sub>t</sub> + ε<sub>t</sub>
+                </div>
+                <div class="calculation-step">
+                  <strong>Hasil Estimasi:</strong><br>
+                  APS<sub>t</sub> = 8.7955 + 1.1647 × (Tahun - 2003)
+                </div>
+                <div class="calculation-step">
+                  <strong>R²:</strong> 0.9877 (98.77% variasi dijelaskan)
+                </div>
+                <div class="calculation-step">
+                  <strong>F-statistik:</strong> 1529.88 (p-value
+
+                  < 0.001) </div>
+                </div>
+
+                <div class="result-box">
+                  <h6><i class="fas fa-check-circle me-2"></i>Interpretasi</h6>
+                  <p>Model regresi linear menunjukkan tren meningkat yang sangat signifikan dalam APS, dengan peningkatan rata-rata 1.1647% per tahun.</p>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4><i class="fas fa-calculator me-2"></i>Perhitungan Residual</h4>
+                <p>Residual (ε<sub>t</sub>) = APS<sub>aktual</sub> - APS<sub>prediksi</sub></p>
+
+                <div class="data-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Tahun</th>
+                        <th>APS Aktual</th>
+                        <th>APS Prediksi</th>
+                        <th>Residual</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2003</td>
+                        <td>10.11</td>
+                        <td>8.796</td>
+                        <td>1.314</td>
+                      </tr>
+                      <tr>
+                        <td>2004</td>
+                        <td>10.75</td>
+                        <td>9.960</td>
+                        <td>0.790</td>
+                      </tr>
+                      <tr>
+                        <td>2005</td>
+                        <td>11.22</td>
+                        <td>11.125</td>
+                        <td>0.095</td>
+                      </tr>
+                      <tr>
+                        <td>2006</td>
+                        <td>11.98</td>
+                        <td>12.290</td>
+                        <td>-0.310</td>
+                      </tr>
+                      <tr>
+                        <td>2007</td>
+                        <td>12.82</td>
+                        <td>13.454</td>
+                        <td>-0.634</td>
+                      </tr>
+                      <tr>
+                        <td>2008</td>
+                        <td>13.64</td>
+                        <td>14.619</td>
+                        <td>-0.979</td>
+                      </tr>
+                      <tr>
+                        <td>2009</td>
+                        <td>14.84</td>
+                        <td>15.784</td>
+                        <td>-0.944</td>
+                      </tr>
+                      <tr>
+                        <td>2010</td>
+                        <td>16.06</td>
+                        <td>16.949</td>
+                        <td>-0.889</td>
+                      </tr>
+                      <tr>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                        <td>...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Uji ARCH LM -->
+      <div class="slide" id="slide8">
+        <div class="slide-content">
+          <h2>Langkah 2: Uji Heteroskedastisitas (ARCH LM Test)</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4><i class="fas fa-hypothesis me-2"></i>Hipotesis</h4>
+                <div class="step-box">
+                  <span class="step-number">H₀</span>
+                  <strong>Tidak ada heteroskedastisitas bersyarat</strong><br>
+                  (Tidak ada efek ARCH)
+                </div>
+                <div class="step-box">
+                  <span class="step-number">H₁</span>
+                  <strong>Ada heteroskedastisitas bersyarat</strong><br>
+                  (Ada efek ARCH)
+                </div>
+
+                <h4><i class="fas fa-cogs me-2"></i>Prosedur Uji</h4>
+                <div class="calculation-steps">
+                  <div class="calculation-step">
+                    <strong>1. Hitung residual kuadrat:</strong> ε<sub>t</sub>²
+                  </div>
+                  <div class="calculation-step">
+                    <strong>2. Regresi:</strong> ε<sub>t</sub>² = α<sub>0</sub> + α<sub>1</sub>ε<sub>t-1</sub>² + u<sub>t</sub>
+                  </div>
+                  <div class="calculation-step">
+                    <strong>3. Hitung statistik LM:</strong> LM = n × R²
+                  </div>
+                  <div class="calculation-step">
+                    <strong>4. Bandingkan dengan χ²<sub>(1,0.05)</sub> = 3.841</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4><i class="fas fa-calculator me-2"></i>Perhitungan Manual</h4>
+
+                <div class="formula-box">
+                  <h6>Data yang Digunakan</h6>
+                  <div class="formula">n = 20 observasi (setelah lag)</div>
+                  <div class="formula">R² = 0.121864167</div>
+                </div>
+
+                <div class="calculation-steps">
+                  <div class="calculation-step">
+                    <strong>Statistik LM:</strong><br>
+                    LM = n × R²<br>
+                    LM = 20 × 0.121864167<br>
+                    <span class="result-highlight">LM = 2.437</span>
+                  </div>
+                  <div class="calculation-step">
+                    <strong>Nilai Kritis:</strong><br>
+                    χ²<sub>(1,0.05)</sub> = 3.841
+                  </div>
+                  <div class="calculation-step">
+                    <strong>Keputusan:</strong><br>
+                    2.437
+
+                    < 3.841<br>
+                      <span class="result-highlight">Gagal tolak H₀</span>
+                  </div>
+                </div>
+
+                <div class="result-box">
+                  <h6><i class="fas fa-conclusion me-2"></i>Kesimpulan</h6>
+                  <p><strong>Tidak terdapat efek ARCH</strong> yang signifikan dalam data APS. Tidak ada heteroskedastisitas bersyarat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Hasil Regresi ARCH -->
+      <div class="slide" id="slide9">
+        <div class="slide-content">
+          <h2>Hasil Regresi untuk Uji ARCH LM</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-8">
+                <h4><i class="fas fa-table me-2"></i>Output Regresi: ε<sub>t</sub>² = α<sub>0</sub> + α<sub>1</sub>ε<sub>t-1</sub>² + u<sub>t</sub></h4>
+
+                <div class="data-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Statistik</th>
+                        <th>Nilai</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Multiple R</td>
+                        <td>0.349090485</td>
+                      </tr>
+                      <tr>
+                        <td>R Square</td>
+                        <td><strong>0.121864167</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Adjusted R Square</td>
+                        <td>0.073078843</td>
+                      </tr>
+                      <tr>
+                        <td>Standard Error</td>
+                        <td>0.527770386</td>
+                      </tr>
+                      <tr>
+                        <td>Observations</td>
+                        <td>20</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="data-table mt-3">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Koefisien</th>
+                        <th>Estimate</th>
+                        <th>Std Error</th>
+                        <th>t-stat</th>
+                        <th>P-value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Intercept (α₀)</td>
+                        <td>0.371112681</td>
+                        <td>0.168976636</td>
+                        <td>2.196</td>
+                        <td><strong>0.041</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Lag Residual² (α₁)</td>
+                        <td>0.329452745</td>
+                        <td>0.208448952</td>
+                        <td>1.580</td>
+                        <td><strong>0.131</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <h4><i class="fas fa-analysis me-2"></i>Interpretasi</h4>
+
+                <div class="step-box">
+                  <span class="step-number">1</span>
+                  <strong>R² = 0.1219</strong><br>
+                  Hanya 12.19% variasi dalam residual kuadrat dijelaskan oleh lag-nya
+                </div>
+
+                <div class="step-box">
+                  <span class="step-number">2</span>
+                  <strong>α₁ = 0.3295</strong><br>
+                  P-value = 0.131 > 0.05<br>
+                  Tidak signifikan
+                </div>
+
+                <div class="step-box">
+                  <span class="step-number">3</span>
+                  <strong>LM Test</strong><br>
+                  LM = 20 × 0.1219 = 2.437<br>
+
+                  < χ²₍₁,₀.₀₅₎=3.841 </div>
+
+                    <div class="result-box">
+                      <h6><i class="fas fa-exclamation-triangle me-2"></i>Kesimpulan</h6>
+                      <p>Koefisien lag residual² <strong>tidak signifikan</strong> (p-value = 0.131 > 0.05). Dengan demikian, <strong>tidak ada heteroskedastisitas bersyarat</strong> dalam model ini.</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 10: Model ARCH(1) -->
+        <div class="slide" id="slide10">
+          <div class="slide-content">
+            <h2>Model ARCH(1) dan Prediksi Variansi</h2>
+            <hr>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-formula me-2"></i>Model ARCH(1)</h4>
+                  <p>Meskipun hasil uji tidak signifikan, kita tetap dapat mengestimasi model ARCH(1) untuk tujuan pembelajaran:</p>
+
+                  <div class="formula-box">
+                    <h6>Model Variansi Bersyarat</h6>
+                    <div class="formula">σ<sub>t</sub>² = 0.371 + 0.329 × ε<sub>t-1</sub>²</div>
+                  </div>
+
+                  <div class="calculation-steps">
+                    <h6>Interpretasi Parameter:</h6>
+                    <div class="calculation-step">
+                      <strong>α₀ = 0.371:</strong> Baseline variansi (variansi minimum)
+                    </div>
+                    <div class="calculation-step">
+                      <strong>α₁ = 0.329:</strong> Efek lag residual kuadrat terhadap variansi saat ini
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-chart-area me-2"></i>Prediksi Variansi</h4>
+
+                  <div class="chart-container">
+                    <h6>Variansi Bersyarat dari Model ARCH(1)</h6>
+                    <div class="chart-wrapper" style="height: 250px;">
+                      <canvas id="varianceChart"></canvas>
+                    </div>
+                  </div>
+
+                  <div class="result-box">
+                    <p><strong>Catatan:</strong> Variansi berubah dari waktu ke waktu tergantung pada ε<sub>t-1</sub>², menunjukkan adanya volatilitas yang bergantung pada masa lalu jika ARCH signifikan.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 11: Step by Step Calculation -->
+        <div class="slide" id="slide11">
+          <div class="slide-content">
+            <h2>Perhitungan Step-by-Step ARCH LM Test</h2>
+            <hr>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="calculation-steps">
+                    <h4><i class="fas fa-step-forward me-2"></i>Langkah Detil Perhitungan</h4>
+
+                    <div class="calculation-step">
+                      <strong>Step 1: Persiapan Data</strong>
+                      <ul>
+                        <li>Data asli: 21 observasi (2003-2023)</li>
+                        <li>Setelah lag: 20 observasi (2004-2023)</li>
+                        <li>Variabel dependen: ε<sub>t</sub>² (residual kuadrat)</li>
+                        <li>Variabel independen: ε<sub>t-1</sub>² (lag residual kuadrat)</li>
+                      </ul>
+                    </div>
+
+                    <div class="calculation-step">
+                      <strong>Step 2: Regresi Auxiliary</strong>
+                      <div class="formula-box">
+                        <div class="formula">ε<sub>t</sub>² = 0.371 + 0.329 × ε<sub>t-1</sub>² + u<sub>t</sub></div>
+                      </div>
+                      <p>Dari regresi ini, diperoleh R² = 0.121864167</p>
+                    </div>
+
+                    <div class="calculation-step">
+                      <strong>Step 3: Hitung Statistik LM</strong>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p><strong>Formula:</strong> LM = n × R²</p>
+                          <p><strong>Substitusi:</strong></p>
+                          <ul>
+                            <li>n = 20</li>
+                            <li>R² = 0.121864167</li>
+                          </ul>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Perhitungan:</strong></p>
+                          <p>LM = 20 × 0.121864167</p>
+                          <p><span class="result-highlight">LM = 2.437283341</span></p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="calculation-step">
+                      <strong>Step 4: Bandingkan dengan Nilai Kritis</strong>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <p><strong>Distribusi:</strong> χ²(df=1)</p>
+                          <p><strong>α = 0.05</strong></p>
+                          <p><strong>Nilai kritis:</strong> χ²<sub>0.05,1</sub> = 3.841</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p><strong>Perbandingan:</strong></p>
+                          <p>LM = 2.437
+
+                            < 3.841</p>
+                              <p><span class="result-highlight">Gagal tolak H₀</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 12: Interpretasi dan Kesimpulan -->
+        <div class="slide" id="slide12">
+          <div class="slide-content">
+            <h2>Interpretasi dan Kesimpulan</h2>
+            <hr>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-search me-2"></i>Hasil Uji ARCH LM</h4>
+
+                  <div class="result-box">
+                    <h6>Statistik Uji:</h6>
+                    <ul>
+                      <li><strong>LM Statistik:</strong> 2.437283341</li>
+                      <li><strong>Nilai Kritis χ²<sub>(1,0.05)</sub>:</strong> 3.841</li>
+                      <li><strong>P-value:</strong> > 0.05</li>
+                      <li><strong>Keputusan:</strong> Gagal tolak H₀</li>
+                    </ul>
+                  </div>
+
+                  <h4><i class="fas fa-info-circle me-2"></i>Interpretasi</h4>
+                  <div class="step-box">
+                    <span class="step-number">✗</span>
+                    <strong>Tidak terdapat efek ARCH yang signifikan</strong>
+                  </div>
+                  <div class="step-box">
+                    <span class="step-number">✗</span>
+                    <strong>Tidak ada heteroskedastisitas bersyarat</strong>
+                  </div>
+                  <div class="step-box">
+                    <span class="step-number">✗</span>
+                    <strong>Variansi residual relatif konstan</strong>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-graduation-cap me-2"></i>Karakteristik Data APS</h4>
+
+                  <div class="result-box">
+                    <h6>Temuan Utama:</h6>
+                    <ul>
+                      <li><strong>Trend:</strong> Meningkat konsisten dari 10.11% ke 30.92%</li>
+                      <li><strong>Volatilitas:</strong> Relatif stabil</li>
+                      <li><strong>R² Model Linear:</strong> 98.77% (sangat baik)</li>
+                      <li><strong>Pola Fluktuasi:</strong> Bersifat acak, bukan terstruktur</li>
+                    </ul>
+                  </div>
+
+                  <h4><i class="fas fa-lightbulb me-2"></i>Rekomendasi</h4>
+                  <div class="step-box">
+                    <span class="step-number">1</span>
+                    <strong>Model regresi linear sederhana sudah cukup baik</strong> untuk memodelkan data APS
+                  </div>
+                  <div class="step-box">
+                    <span class="step-number">2</span>
+                    <strong>Tidak perlu menggunakan model ARCH/GARCH</strong> karena tidak ada efek volatilitas bersyarat
+                  </div>
+                  <div class="step-box">
+                    <span class="step-number">3</span>
+                    <strong>Fokus pada faktor fundamental</strong> yang mempengaruhi APS lebih penting
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 13: Implikasi dan Pengembangan -->
+        <div class="slide" id="slide13">
+          <div class="slide-content">
+            <h2>Implikasi dan Pengembangan Selanjutnya</h2>
+            <hr>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-implications me-2"></i>Implikasi Hasil</h4>
+
+                  <div class="content-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h6>Stabilitas APS</h6>
+                    <p>Data APS Indonesia menunjukkan tren yang stabil dan dapat diprediksi dengan model linear sederhana</p>
+                  </div>
+
+                  <br>
+
+                  <div class="content-item">
+                    <i class="fas fa-policy"></i>
+                    <h6>Implikasi Kebijakan</h6>
+                    <p>Konsistensi peningkatan APS menunjukkan efektivitas kebijakan pendidikan nasional</p>
+                  </div>
+
+                  <br>
+
+                  <div class="content-item">
+                    <i class="fas fa-forecast"></i>
+                    <h6>Prediktabilitas</h6>
+                    <p>APS dapat diprediksi dengan akurat menggunakan model trend linear</p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <h4><i class="fas fa-development me-2"></i>Pengembangan Selanjutnya</h4>
+
+                  <div class="step-box">
+                    <span class="step-number">1</span>
+                    <strong>Data Lebih Panjang:</strong> Gunakan data dengan periode yang lebih panjang untuk meningkatkan power test
+                  </div>
+
+                  <div class="step-box">
+                    <span class="step-number">2</span>
+                    <strong>Model GARCH:</strong> Coba model GARCH untuk volatilitas yang lebih persisten
+                  </div>
+
+                  <div class="step-box">
+                    <span class="step-number">3</span>
+                    <strong>Uji Normalitas:</strong> Periksa asumsi normalitas residual
+                  </div>
+
+                  <div class="step-box">
+                    <span class="step-number">4</span>
+                    <strong>Variabel Eksternal:</strong> Tambahkan variabel eksternal (ekonomi, sosial) yang mungkin mempengaruhi volatilitas
+                  </div>
+
+                  <div class="step-box">
+                    <span class="step-number">5</span>
+                    <strong>Analisis Regional:</strong> Bandingkan dengan data APS regional atau provinsi
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 14: Thank You -->
+        <div class="slide" id="slide14">
+          <div class="slide-content cover-slide">
+            <div class="container-fluid h-100">
+              <div class="row align-items-center justify-content-center h-100">
+                <div class="col-12 text-center">
+                  <h1 class="display-3 fw-bold mb-4">Terima Kasih</h1>
+                  <div class="cover-icon my-4">
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-calculator"></i>
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <h4 class="mb-4">Pertanyaan & Diskusi?</h4>
+                  <div class="cover-info">
+                    <p class="fs-4 mb-3">Model ARCH: Analisis APS Indonesia</p>
+                    <p class="fs-5 mb-2">Kelompok 4 - Mata Kuliah Statistika</p>
+                    <p class="fs-5">Magister Ilmu Komputer - UNDIKSHA - 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- External JavaScript Libraries -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <!-- Custom JavaScript -->
+      <script src="script.js"></script>
+</body>
+
+</html>
