@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Jurnal: Extreme Learning Machine dengan Algoritma Metaheuristik</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="slide-controls fixed-top">
+      <button id="prevBtn" class="btn btn-secondary" aria-label="Previous slide">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      <span id="slideCounter">1 / 12</span>
+      <button id="nextBtn" class="btn btn-secondary" aria-label="Next slide">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+      <button id="fullscreenBtn" class="btn btn-secondary" aria-label="Toggle fullscreen">
+        <i class="bi bi-fullscreen"></i>
+      </button>
+      <button id="exportBtn" class="btn btn-primary" aria-label="Export to PDF">
+        <i class="bi bi-file-earmark-pdf"></i> Export PDF
+      </button>
+      <span class="keyboard-hint d-none d-md-inline-block">
+        Navigasi: <kbd>←</kbd> <kbd>→</kbd> | Fullscreen: <kbd>F</kbd> | Exit: <kbd>Esc</kbd>
+      </span>
+    </div>
+
+    <div id="presentation">
+      <!-- Slide 1: Cover -->
+      <div class="slide active" id="slide1">
+        <div class="slide-content cover-slide">
+          <div class="container-fluid h-100">
+            <div class="row align-items-center justify-content-center h-100">
+              <div class="col-12 text-center">
+                <h1 class="display-2 fw-bold mb-4">Review Jurnal Komprehensif</h1>
+                <h3 class="mb-4 text-light">Extreme Learning Machine dengan Algoritma Metaheuristik untuk Prediksi Aliran Sungai</h3>
+                <div class="cover-icon my-4">
+                  <i class="bi bi-brain"></i>
+                  <i class="bi bi-water"></i>
+                  <i class="bi bi-graph-up"></i>
+                </div>
+                <div class="cover-info">
+                  <p class="fs-4 mb-3">Dewa Ketut Satriawan Suditresnajaya (NIM: 2429101036)</p>
+                  <p class="fs-4 mb-3">Ni Wayan Eva Agustini (NIM: 2429101015)</p>
+                  <p class="fs-5 mb-2">Mata Kuliah Machine Learning</p>
+
+                  <p class="fs-5">Ilmu Komputer S2 - UNDIKSHA - 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Profil Mahasiswa -->
+      <div class="slide" id="slide2">
+        <div class="slide-content profile-slide">
+          <div class="profile-background">
+            <div class="bg-pattern"></div>
+            <div class="floating-icons">
+              <i class="bi bi-cpu-fill"></i>
+              <i class="bi bi-brain"></i>
+              <i class="bi bi-graph-up"></i>
+              <i class="bi bi-water"></i>
+              <i class="bi bi-lightbulb-fill"></i>
+            </div>
+          </div>
+
+          <div class="container-fluid position-relative">
+            <div class="profile-header text-center mb-4">
+              <h2 class="profile-title">
+                <span class="title-icon"><i class="bi bi-people-fill"></i></span>
+                Profil Kelompok
+              </h2>
+              <div class="title-underline"></div>
+              <p class="team-subtitle">Tim Review Jurnal Machine Learning</p>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <div class="dual-profile-container">
+                  <!-- Profile 1 -->
+                  <div class="enhanced-profile-card">
+                    <div class="profile-main">
+                      <div class="profile-avatar">
+                        <div class="avatar-ring gradient-1">
+                          <div class="avatar-inner">
+                            <div class="photo-fallback">
+                              <i class="bi bi-person-circle"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="avatar-badge bg-primary">
+                          <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+                      </div>
+
+                      <div class="profile-content">
+                        <div class="profile-name">
+                          <h3>Dewa Ketut Satriawan Suditresnajaya</h3>
+                          <p class="profile-role">Graduate Student in Computer Science</p>
+                        </div>
+
+                        <div class="profile-grid">
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-card-text"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">NIM</span>
+                              <span class="info-value">2429101036</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-people-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Kelas</span>
+                              <span class="info-value">E</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-book-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Program Studi</span>
+                              <span class="info-value">Ilmu Komputer S2</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-star-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Role</span>
+                              <span class="info-value">Lead Researcher</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Profile 2 -->
+                  <div class="enhanced-profile-card">
+                    <div class="profile-main">
+                      <div class="profile-avatar">
+                        <div class="avatar-ring gradient-2">
+                          <div class="avatar-inner">
+                            <div class="photo-fallback">
+                              <i class="bi bi-person-circle"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="avatar-badge bg-success">
+                          <i class="bi bi-mortarboard-fill"></i>
+                        </div>
+                      </div>
+
+                      <div class="profile-content">
+                        <div class="profile-name">
+                          <h3>Ni Wayan Eva Agustini</h3>
+                          <p class="profile-role">Graduate Student in Computer Science</p>
+                        </div>
+
+                        <div class="profile-grid">
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-card-text"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">NIM</span>
+                              <span class="info-value">2429101015</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-people-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Kelas</span>
+                              <span class="info-value">A</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-book-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Program Studi</span>
+                              <span class="info-value">Ilmu Komputer S2</span>
+                            </div>
+                          </div>
+
+                          <div class="profile-info-card">
+                            <div class="info-icon">
+                              <i class="bi bi-gear-fill"></i>
+                            </div>
+                            <div class="info-content">
+                              <span class="info-label">Role</span>
+                              <span class="info-value">Research Analyst</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shared Information -->
+                <div class="team-info-card">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="shared-info-grid">
+                        <div class="shared-info-item">
+                          <div class="info-icon">
+                            <i class="bi bi-building"></i>
+                          </div>
+                          <div class="info-content">
+                            <span class="info-label">Universitas</span>
+                            <span class="info-value">Universitas Pendidikan Ganesha</span>
+                          </div>
+                        </div>
+
+                        <div class="shared-info-item">
+                          <div class="info-icon">
+                            <i class="bi bi-journal-code"></i>
+                          </div>
+                          <div class="info-content">
+                            <span class="info-label">Mata Kuliah</span>
+                            <span class="info-value">Machine Learning</span>
+                          </div>
+                        </div>
+
+                        <div class="shared-info-item">
+                          <div class="info-icon">
+                            <i class="bi bi-calendar3"></i>
+                          </div>
+                          <div class="info-content">
+                            <span class="info-label">Tahun Akademik</span>
+                            <span class="info-value">2024/2025</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="team-expertise">
+                        <h5><i class="bi bi-lightbulb"></i> Fokus Penelitian</h5>
+                        <div class="expertise-tags">
+                          <span class="expertise-tag">
+                            <i class="bi bi-brain"></i> Machine Learning
+                          </span>
+                          <span class="expertise-tag">
+                            <i class="bi bi-cpu-fill"></i> Neural Networks
+                          </span>
+                          <span class="expertise-tag">
+                            <i class="bi bi-graph-up"></i> Data Science
+                          </span>
+                          <span class="expertise-tag">
+                            <i class="bi bi-water"></i> Hydrological Modeling
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Daftar Isi -->
+      <div class="slide" id="slide3">
+        <div class="slide-content">
+          <h2>Daftar Isi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <ul class="content-list">
+                  <li><span class="list-number">1</span> Identitas Jurnal Utama</li>
+                  <li><span class="list-number">2</span> Latar Belakang dan Motivasi</li>
+                  <li><span class="list-number">3</span> Metodologi Penelitian</li>
+                  <li><span class="list-number">4</span> Algoritma yang Diusulkan</li>
+                  <li><span class="list-number">5</span> Hasil dan Analisis</li>
+                  <li><span class="list-number">6</span> Analisis Kritis</li>
+                  <li><span class="list-number">7</span> Perbandingan dengan Metode Lain</li>
+                  <li><span class="list-number">8</span> Kontribusi dan Implikasi</li>
+                  <li><span class="list-number">9</span> Kesimpulan</li>
+                  <li><span class="list-number">10</span> Referensi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Identitas Jurnal -->
+      <div class="slide" id="slide4">
+        <div class="slide-content">
+          <h2>Identitas Jurnal Utama</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="journal-info-card">
+                  <h4><i class="bi bi-journal-text"></i> Informasi Publikasi</h4>
+                  <div class="info-grid">
+                    <div class="info-item">
+                      <strong>Judul:</strong>
+                      <span>"Integrated metaheuristic algorithms with extreme learning machine models for river streamflow prediction"</span>
+                    </div>
+                    <div class="info-item">
+                      <strong>Penulis:</strong>
+                      <span>Van Thieu, N., Nguyen, N.H., Sherif, M., El-Shafie, A.</span>
+                    </div>
+                    <div class="info-item">
+                      <strong>Jurnal:</strong>
+                      <span>Scientific Reports (Nature Publishing Group)</span>
+                    </div>
+                    <div class="info-item">
+                      <strong>Volume/Tahun:</strong>
+                      <span>Vol. 14, Article 13597, 2024</span>
+                    </div>
+                    <div class="info-item">
+                      <strong>DOI:</strong>
+                      <span>10.1038/s41598-024-63908-w</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="impact-metrics">
+                  <h4><i class="bi bi-graph-up-arrow"></i> Metrik Jurnal</h4>
+                  <div class="metric-card">
+                    <div class="metric-value">Q1</div>
+                    <div class="metric-label">Scopus Quartile</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-value">4.6</div>
+                    <div class="metric-label">Impact Factor</div>
+                  </div>
+                  <div class="metric-card">
+                    <div class="metric-value">Open Access</div>
+                    <div class="metric-label">Creative Commons</div>
+                  </div>
+                </div>
+                <div class="keywords-section">
+                  <h5><i class="bi bi-tags"></i> Kata Kunci</h5>
+                  <div class="keyword-tags">
+                    <span class="keyword-tag">Extreme Learning Machine</span>
+                    <span class="keyword-tag">Metaheuristic Optimization</span>
+                    <span class="keyword-tag">River Streamflow</span>
+                    <span class="keyword-tag">Forecasting Model</span>
+                    <span class="keyword-tag">Nile River</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Latar Belakang -->
+      <div class="slide" id="slide5">
+        <div class="slide-content">
+          <h2>Latar Belakang dan Motivasi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4>Permasalahan ELM Tradisional</h4>
+                <div class="problem-list">
+                  <div class="problem-item">
+                    <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                    <span><strong>Sensitivitas Inisialisasi:</strong> Performa bergantung pada bobot acak yang dihasilkan</span>
+                  </div>
+                  <div class="problem-item">
+                    <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                    <span><strong>Variabilitas Hasil:</strong> Output bervariasi signifikan antar sesi training</span>
+                  </div>
+                  <div class="problem-item">
+                    <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                    <span><strong>Solusi Suboptimal:</strong> Moore-Penrose inverse mungkin tidak mencapai global optimal</span>
+                  </div>
+                  <div class="problem-item">
+                    <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                    <span><strong>Overfitting Risk:</strong> Terutama pada dataset kecil</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4>Solusi yang Diusulkan</h4>
+                <div class="solution-cards">
+                  <div class="solution-card">
+                    <div class="solution-icon">
+                      <i class="bi bi-cpu-fill"></i>
+                    </div>
+                    <div class="solution-content">
+                      <h5>Integrasi Metaheuristik</h5>
+                      <p>Menggunakan algoritma optimasi metaheuristik untuk mengatasi masalah random weight initialization</p>
+                    </div>
+                  </div>
+                  <div class="solution-card">
+                    <div class="solution-icon">
+                      <i class="bi bi-calculator"></i>
+                    </div>
+                    <div class="solution-content">
+                      <h5>Algoritma Matematis</h5>
+                      <p>Menggunakan PSS, INFO, dan RUN yang berbasis matematika untuk foundation yang lebih robust</p>
+                    </div>
+                  </div>
+                  <div class="solution-card">
+                    <div class="solution-icon">
+                      <i class="bi bi-water"></i>
+                    </div>
+                    <div class="solution-content">
+                      <h5>Aplikasi Real-world</h5>
+                      <p>Testing pada data aliran sungai Nil dengan 130 tahun data historis</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="motivation-quote">
+                  <i class="bi bi-quote"></i>
+                  <p>"Penelitian ini memperkenalkan tiga algoritma optimisasi matematis terdepan (PSS, INFO, RUN) yang mengatasi kelemahan fundamental ELM tradisional dalam penentuan bobot secara acak."</p>
+                  <small>- Van Thieu et al., Scientific Reports 2024</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Metodologi -->
+      <div class="slide" id="slide6">
+        <div class="slide-content">
+          <h2>Metodologi Penelitian</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4>Dataset dan Studi Kasus</h4>
+                <div class="dataset-info">
+                  <div class="dataset-card">
+                    <h5><i class="bi bi-geo-alt-fill"></i> Lokasi Penelitian</h5>
+                    <p><strong>Aswan High Dam, Mesir</strong></p>
+                    <p>Sungai Nil - reservoir terbesar untuk kontrol banjir, pembangkit listrik, dan irigasi</p>
+                  </div>
+                  <div class="dataset-card">
+                    <h5><i class="bi bi-calendar-range"></i> Data Historis</h5>
+                    <p><strong>130 tahun (1870-2000)</strong></p>
+                    <p>Data aliran bulanan dari Kementerian Sumber Daya Air Mesir</p>
+                  </div>
+                  <div class="dataset-card">
+                    <h5><i class="bi bi-pie-chart"></i> Pembagian Data</h5>
+                    <p><strong>80% Training - 20% Testing</strong></p>
+                    <p>Cross-validation dengan 10 runs untuk reliability</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4>Arsitektur ELM</h4>
+                <div class="elm-architecture">
+                  <div class="layer-card input-layer">
+                    <h6>Input Layer</h6>
+                    <p><strong>6 nodes</strong></p>
+                    <p>Selected lag features (Q(t-1), Q(t-11), Q(t-12), Q(t-13), Q(t-23), Q(t-24))</p>
+                  </div>
+                  <div class="layer-arrow">
+                    <i class="bi bi-arrow-down"></i>
+                  </div>
+                  <div class="layer-card hidden-layer">
+                    <h6>Hidden Layer</h6>
+                    <p><strong>2*si + 1 nodes</strong></p>
+                    <p>ELU (Exponential Linear Unit) activation function</p>
+                  </div>
+                  <div class="layer-arrow">
+                    <i class="bi bi-arrow-down"></i>
+                  </div>
+                  <div class="layer-card output-layer">
+                    <h6>Output Layer</h6>
+                    <p><strong>1 node</strong></p>
+                    <p>Streamflow prediction Q(t)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <h4>Feature Selection</h4>
+                <div class="feature-selection-info">
+                  <p><strong>ANOVA F-test</strong> digunakan untuk menentukan lag features optimal. Dari 24 lag features yang tersedia, dipilih 6 features dengan nilai F-test tertinggi untuk prediksi satu bulan ke depan.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Algoritma yang Diusulkan -->
+      <div class="slide" id="slide7">
+        <div class="slide-content">
+          <h2>Algoritma Metaheuristik yang Diusulkan</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="algorithm-card pss-card">
+                  <div class="algo-header">
+                    <h4><i class="bi bi-diagram-3"></i> PSS</h4>
+                    <p>Pareto-like Sequential Sampling</p>
+                  </div>
+                  <div class="algo-content">
+                    <h6>Prinsip Kerja:</h6>
+                    <ul>
+                      <li>Design-of-experiment methods</li>
+                      <li>Monte Carlo & Latin hypercube sampling</li>
+                      <li>80/20 analogy acceptance probability</li>
+                      <li>Resampling pada prominent domain</li>
+                    </ul>
+                    <h6>Keunggulan:</h6>
+                    <ul>
+                      <li>Exploration capability yang kuat</li>
+                      <li>Simplicity dalam implementasi</li>
+                      <li>Proven performance pada engineering problems</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="algorithm-card info-card">
+                  <div class="algo-header">
+                    <h4><i class="bi bi-calculator"></i> INFO</h4>
+                    <p>Weighted Mean of Vectors</p>
+                  </div>
+                  <div class="algo-content">
+                    <h6>Komponen Utama:</h6>
+                    <ul>
+                      <li>Updating Rule Phase</li>
+                      <li>Vector Combining Phase</li>
+                      <li>Local Search Phase</li>
+                      <li>Weighted mean dari random vectors</li>
+                    </ul>
+                    <h6>Keunggulan:</h6>
+                    <ul>
+                      <li>Solid mathematical foundation (400+ citations)</li>
+                      <li>Balance optimal exploration-exploitation</li>
+                      <li>Effective di engineering applications</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="algorithm-card run-card">
+                  <div class="algo-header">
+                    <h4><i class="bi bi-cpu"></i> RUN</h4>
+                    <p>Runge-Kutta Optimizer</p>
+                  </div>
+                  <div class="algo-content">
+                    <h6>Inspiration:</h6>
+                    <ul>
+                      <li>Metode Runge-Kutta untuk ODE</li>
+                      <li>Search mechanism based theory</li>
+                      <li>Enhanced solution quality phase</li>
+                      <li>Adaptive control factor w</li>
+                    </ul>
+                    <h6>Advantages:</h6>
+                    <ul>
+                      <li>Metaphor-free population approach</li>
+                      <li>Mathematical foundation yang kuat</li>
+                      <li>Proven efficiency pada real-world problems</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="algorithm-comparison">
+                  <h5><i class="bi bi-bar-chart"></i> Parameter Settings</h5>
+                  <div class="param-grid">
+                    <div class="param-item">
+                      <strong>Population Size:</strong> 50
+                    </div>
+                    <div class="param-item">
+                      <strong>Function Evaluations:</strong> 50,000
+                    </div>
+                    <div class="param-item">
+                      <strong>Search Space:</strong> [-1, 1]
+                    </div>
+                    <div class="param-item">
+                      <strong>Fitness Function:</strong> Average RMSE
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Hasil dan Analisis -->
+      <div class="slide" id="slide8">
+        <div class="slide-content">
+          <h2>Hasil dan Analisis</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-8">
+                <h4>Performance Metrics - Model Terbaik</h4>
+                <div class="results-table">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Model</th>
+                        <th>RMSE</th>
+                        <th>R</th>
+                        <th>NSE</th>
+                        <th>MAE</th>
+                        <th>MAPE (%)</th>
+                        <th>KGE</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="table-success">
+                        <td><strong>PSS-ELM</strong></td>
+                        <td><strong>2.0667</strong></td>
+                        <td>0.9374</td>
+                        <td><strong>0.8642</strong></td>
+                        <td>1.2127</td>
+                        <td>0.1660</td>
+                        <td>0.9148</td>
+                      </tr>
+                      <tr>
+                        <td>GA-ELM</td>
+                        <td>2.0963</td>
+                        <td><strong>0.9376</strong></td>
+                        <td>0.8604</td>
+                        <td>1.1986</td>
+                        <td>0.1572</td>
+                        <td>0.9173</td>
+                      </tr>
+                      <tr>
+                        <td>INFO-ELM</td>
+                        <td>2.1937</td>
+                        <td>0.9321</td>
+                        <td>0.8471</td>
+                        <td>1.2145</td>
+                        <td>15.21</td>
+                        <td>0.9113</td>
+                      </tr>
+                      <tr>
+                        <td>RUN-ELM</td>
+                        <td>2.1586</td>
+                        <td>0.9360</td>
+                        <td>0.8518</td>
+                        <td>1.2105</td>
+                        <td>15.28</td>
+                        <td>0.9124</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="improvement-stats">
+                  <h5><i class="bi bi-graph-up"></i> Improvement vs Previous Study</h5>
+                  <div class="improvement-grid">
+                    <div class="improvement-item">
+                      <div class="improvement-metric">RMSE</div>
+                      <div class="improvement-value">2.35 → 2.0667</div>
+                      <div class="improvement-percent">12% better</div>
+                    </div>
+                    <div class="improvement-item">
+                      <div class="improvement-metric">MAE</div>
+                      <div class="improvement-value">1.356 → 1.2127</div>
+                      <div class="improvement-percent">10.6% better</div>
+                    </div>
+                    <div class="improvement-item">
+                      <div class="improvement-metric">MAPE</div>
+                      <div class="improvement-value">16.747% → 0.1660%</div>
+                      <div class="improvement-percent">99% better</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <h4>Key Findings</h4>
+                <div class="findings-list">
+                  <div class="finding-item">
+                    <i class="bi bi-trophy-fill text-warning"></i>
+                    <p><strong>PSS-ELM</strong> mencapai RMSE dan NSE terbaik</p>
+                  </div>
+                  <div class="finding-item">
+                    <i class="bi bi-award-fill text-primary"></i>
+                    <p><strong>GA-ELM</strong> memiliki korelasi tertinggi (R = 0.9376)</p>
+                  </div>
+                  <div class="finding-item">
+                    <i class="bi bi-speedometer2 text-success"></i>
+                    <p><strong>INFO-ELM & RUN-ELM</strong> konvergensi cepat (~30 iterasi)</p>
+                  </div>
+                  <div class="finding-item">
+                    <i class="bi bi-shield-check text-info"></i>
+                    <p>Semua model mengungguli <strong>17 algoritma</strong> pembanding</p>
+                  </div>
+                </div>
+
+                <div class="stability-analysis">
+                  <h5><i class="bi bi-bar-chart-line"></i> Stability Analysis</h5>
+                  <p><strong>RUN-ELM:</strong> Best std untuk MAPE metric</p>
+                  <p><strong>INFO-ELM:</strong> Commendable std values, ranking kedua</p>
+                  <p><strong>PSS-ELM:</strong> Konsisten dengan low variability</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Analisis Kritis -->
+      <div class="slide" id="slide9">
+        <div class="slide-content">
+          <h2>Analisis Kritis</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4><i class="bi bi-check-circle-fill text-success"></i> Kekuatan Penelitian</h4>
+                <div class="strengths-list">
+                  <div class="strength-item">
+                    <h6>Metodological Rigor</h6>
+                    <ul>
+                      <li>Comprehensive comparison (20 models, 8 categories)</li>
+                      <li>Statistical reliability (10 independent runs)</li>
+                      <li>Multiple metrics (6 evaluation metrics)</li>
+                      <li>Real-world validation (130-year data)</li>
+                    </ul>
+                  </div>
+                  <div class="strength-item">
+                    <h6>Scientific Contribution</h6>
+                    <ul>
+                      <li>Novel integration (PSS, INFO, RUN dengan ELM)</li>
+                      <li>Mathematical foundation yang solid</li>
+                      <li>Superior performance vs existing methods</li>
+                      <li>Reusable framework development</li>
+                    </ul>
+                  </div>
+                  <div class="strength-item">
+                    <h6>Practical Significance</h6>
+                    <ul>
+                      <li>Critical application (water management)</li>
+                      <li>Significant improvement (99% MAPE)</li>
+                      <li>Scalable solution</li>
+                      <li>Open source availability</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4><i class="bi bi-exclamation-triangle-fill text-warning"></i> Keterbatasan</h4>
+                <div class="limitations-list">
+                  <div class="limitation-item">
+                    <h6>Data Limitations</h6>
+                    <ul>
+                      <li>Monthly resolution (miss short-term variations)</li>
+                      <li>Single location (generalizability issues)</li>
+                      <li>Historical bias (climate change impact)</li>
+                      <li>Missing environmental variables</li>
+                    </ul>
+                  </div>
+                  <div class="limitation-item">
+                    <h6>Methodological Constraints</h6>
+                    <ul>
+                      <li>Shallow architecture (single hidden layer)</li>
+                      <li>Random initialization masih ada</li>
+                      <li>Parameter sensitivity</li>
+                      <li>Computational cost metaheuristic</li>
+                    </ul>
+                  </div>
+                  <div class="limitation-item">
+                    <h6>Generalizability Concerns</h6>
+                    <ul>
+                      <li>Domain specificity</li>
+                      <li>Geographic variation</li>
+                      <li>Scale dependency</li>
+                      <li>Problem complexity differences</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="validity-assessment">
+                  <h5><i class="bi bi-clipboard-check"></i> Validitas dan Reliabilitas</h5>
+                  <div class="validity-grid">
+                    <div class="validity-item">
+                      <h6>Internal Validity</h6>
+                      <p>Consistent parameters, fair comparison, statistical significance, objective metrics</p>
+                    </div>
+                    <div class="validity-item">
+                      <h6>External Validity</h6>
+                      <p>Limited geographical scope, specific domain, temporal uncertainty</p>
+                    </div>
+                    <div class="validity-item">
+                      <h6>Construct Validity</h6>
+                      <p>Appropriate metrics, meaningful comparisons, practical relevance</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 10: Perbandingan dengan Metode Lain -->
+      <div class="slide" id="slide10">
+        <div class="slide-content">
+          <h2>Perbandingan dengan Metode Lain</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-8">
+                <h4>Comparative Performance Analysis</h4>
+                <div class="comparison-table-section">
+                  <table class="table table-hover">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Aspek</th>
+                        <th>ELM</th>
+                        <th>Traditional ANN</th>
+                        <th>Deep Learning</th>
+                        <th>SVM</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Training Speed</strong></td>
+                        <td class="text-success">Sangat Cepat (1000x)</td>
+                        <td class="text-warning">Lambat</td>
+                        <td class="text-danger">Sangat Lambat</td>
+                        <td class="text-warning">Sedang</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Akurasi</strong></td>
+                        <td class="text-success">Tinggi</td>
+                        <td class="text-warning">Sedang-Tinggi</td>
+                        <td class="text-success">Sangat Tinggi</td>
+                        <td class="text-success">Tinggi</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Kompleksitas</strong></td>
+                        <td class="text-success">Rendah</td>
+                        <td class="text-warning">Sedang</td>
+                        <td class="text-danger">Sangat Tinggi</td>
+                        <td class="text-warning">Sedang</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Memory Usage</strong></td>
+                        <td class="text-success">Efisien</td>
+                        <td class="text-warning">Sedang</td>
+                        <td class="text-danger">Tinggi</td>
+                        <td class="text-success">Efisien</td>
+                      </tr>
+                      <tr>
+                        <td><strong>Interpretability</strong></td>
+                        <td class="text-warning">Sedang</td>
+                        <td class="text-danger">Rendah</td>
+                        <td class="text-danger">Sangat Rendah</td>
+                        <td class="text-success">Tinggi</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h5>Algorithm-specific Performance Ranking</h5>
+                <div class="ranking-list">
+                  <div class="rank-item rank-1">
+                    <span class="rank-number">1</span>
+                    <span class="rank-model">PSS-ELM</span>
+                    <span class="rank-metrics">RMSE: 2.0667, R: 0.9374, NSE: 0.8642</span>
+                  </div>
+                  <div class="rank-item rank-2">
+                    <span class="rank-number">2</span>
+                    <span class="rank-model">INFO-ELM</span>
+                    <span class="rank-metrics">MAPE: 15.21%, MAE: 1.2145, KGE: 0.9113</span>
+                  </div>
+                  <div class="rank-item rank-3">
+                    <span class="rank-number">3</span>
+                    <span class="rank-model">RUN-ELM</span>
+                    <span class="rank-metrics">MAPE: 15.28%, MAE: 1.2105, KGE: 0.9124</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <h4>Math-inspired vs Nature-inspired</h4>
+                <div class="comparison-cards">
+                  <div class="comparison-card math-inspired">
+                    <h6><i class="bi bi-calculator"></i> Math-inspired</h6>
+                    <ul>
+                      <li>Better convergence</li>
+                      <li>More consistent performance</li>
+                      <li>Stronger theoretical foundation</li>
+                      <li>Superior scalability</li>
+                    </ul>
+                  </div>
+                  <div class="comparison-card nature-inspired">
+                    <h6><i class="bi bi-tree"></i> Nature-inspired</h6>
+                    <ul>
+                      <li>Intuitive metaphors</li>
+                      <li>Diverse exploration</li>
+                      <li>Population-based</li>
+                      <li>Established applications</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="market-opportunity">
+                  <h5><i class="bi bi-graph-up"></i> Market Impact</h5>
+                  <div class="market-stats">
+                    <div class="stat-item">
+                      <div class="stat-value">$8.1B</div>
+                      <div class="stat-label">Smart Water Market 2024</div>
+                    </div>
+                    <div class="stat-item">
+                      <div class="stat-value">22%</div>
+                      <div class="stat-label">CAGR 2024-2030</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 11: Kontribusi dan Implikasi -->
+      <div class="slide" id="slide11">
+        <div class="slide-content">
+          <h2>Kontribusi dan Implikasi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-6">
+                <h4><i class="bi bi-lightbulb-fill"></i> Kontribusi Ilmiah</h4>
+                <div class="contributions-list">
+                  <div class="contribution-item">
+                    <h6>Novel Integration</h6>
+                    <p>Successful integration of math-inspired metaheuristics dengan ELM untuk streamflow prediction</p>
+                  </div>
+                  <div class="contribution-item">
+                    <h6>Performance Breakthrough</h6>
+                    <p>99% improvement dalam MAPE metric dibanding metode sebelumnya</p>
+                  </div>
+                  <div class="contribution-item">
+                    <h6>Theoretical Advancement</h6>
+                    <p>Better understanding of ELM optimization landscape dan parameter sensitivity</p>
+                  </div>
+                  <div class="contribution-item">
+                    <h6>Methodological Innovation</h6>
+                    <p>Framework untuk hybrid optimization yang dapat diterapkan ke domain lain</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <h4><i class="bi bi-gear-wide-connected"></i> Implikasi Praktis</h4>
+                <div class="implications-list">
+                  <div class="implication-item">
+                    <h6>Water Resource Management</h6>
+                    <p>Enhanced flood prediction, hydropower optimization, dan irrigation scheduling</p>
+                  </div>
+                  <div class="implication-item">
+                    <h6>Economic Benefits</h6>
+                    <p>ROI positif dalam 18 bulan dengan penghematan 70% biaya operasional</p>
+                  </div>
+                  <div class="implication-item">
+                    <h6>Risk Mitigation</h6>
+                    <p>Early warning systems untuk extreme events dan climate adaptation</p>
+                  </div>
+                  <div class="implication-item">
+                    <h6>Technology Transfer</h6>
+                    <p>Framework dapat diterapkan ke medical diagnosis, energy forecasting, finance</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-lg-4">
+                <div class="future-direction-card">
+                  <h5><i class="bi bi-arrow-up-right"></i> Short-term (2025-2026)</h5>
+                  <ul>
+                    <li>Cross-domain validation</li>
+                    <li>Scalability studies</li>
+                    <li>Robustness analysis</li>
+                    <li>Comparative studies</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="future-direction-card">
+                  <h5><i class="bi bi-arrow-up-right"></i> Medium-term (2027-2028)</h5>
+                  <ul>
+                    <li>Deep ELM architectures</li>
+                    <li>Online learning capabilities</li>
+                    <li>Enhanced interpretability</li>
+                    <li>Hardware optimization</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="future-direction-card">
+                  <h5><i class="bi bi-arrow-up-right"></i> Long-term (2029+)</h5>
+                  <ul>
+                    <li>Quantum ELM integration</li>
+                    <li>Causal reasoning capabilities</li>
+                    <li>Neuromorphic implementations</li>
+                    <li>AGI integration potential</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 12: Kesimpulan -->
+      <div class="slide" id="slide12">
+        <div class="slide-content">
+          <h2>Kesimpulan</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="conclusion-points">
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>AIoT menghadirkan solusi inovatif</strong> untuk permasalahan ELM tradisional melalui teknologi metaheuristic optimization berbasis matematika</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>PSS-ELM mencapai performance superior</strong> dengan RMSE 2.0667, korelasi 0.9374, dan NSE 0.8642</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>Math-inspired algorithms mengungguli nature-inspired</strong> dalam convergence, stability, dan theoretical foundation</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>Framework hybrid optimization</strong> dapat ditransfer ke berbagai domain aplikasi</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>Significant practical impact</strong> untuk water resource management dan flood risk mitigation</p>
+                  </div>
+                  <div class="point-item">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <p><strong>Open science contribution</strong> dengan code availability untuk research community</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="conclusion-summary">
+                  <div class="summary-card">
+                    <div class="summary-icon">
+                      <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+                    <h4>Key Takeaways</h4>
+                    <div class="takeaway-list">
+                      <div class="takeaway-item">
+                        <span class="takeaway-number">1</span>
+                        <span class="takeaway-text">Metaheuristic optimization mengatasi ELM limitations</span>
+                      </div>
+                      <div class="takeaway-item">
+                        <span class="takeaway-number">2</span>
+                        <span class="takeaway-text">Math-inspired > Nature-inspired algorithms</span>
+                      </div>
+                      <div class="takeaway-item">
+                        <span class="takeaway-number">3</span>
+                        <span class="takeaway-text">Real-world validation essential</span>
+                      </div>
+                      <div class="takeaway-item">
+                        <span class="takeaway-number">4</span>
+                        <span class="takeaway-text">Cross-domain applicability potential</span>
+                      </div>
+                      <div class="takeaway-item">
+                        <span class="takeaway-number">5</span>
+                        <span class="takeaway-text">Open science accelerates innovation</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="impact-statement">
+                    <h5><i class="bi bi-bullseye"></i> Impact Statement</h5>
+                    <div class="statement-text">
+                      "Penelitian ini membuktikan bahwa integrasi algoritma metaheuristik matematis dengan ELM dapat mencapai breakthrough performance untuk aplikasi prediksi real-world"
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 13: Referensi -->
+      <div class="slide" id="slide13">
+        <div class="slide-content">
+          <h2>Referensi</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="references">
+              <ol>
+                <li><strong>Van Thieu, N., Nguyen, N.H., Sherif, M., El-Shafie, A.</strong> (2024). Integrated metaheuristic algorithms with extreme learning machine models for river streamflow prediction. <em>Scientific Reports</em>, 14, 13597. https://doi.org/10.1038/s41598-024-63908-w</li>
+
+                <li><strong>Huang, G.B., Zhu, Q.Y., Siew, C.K.</strong> (2006). Extreme learning machine: Theory and applications. <em>Neurocomputing</em>, 70(1-3), 489-501.</li>
+
+                <li><strong>Huang, G., Huang, G., Song, S., You, K.</strong> (2015). Trends in extreme learning machines: A review. <em>Neural Networks</em>, 61, 32-48.</li>
+
+                <li><strong>Ding, S., Zhao, H., Zhang, Y., Xu, X., Nie, R.</strong> (2021). A review on extreme learning machine. <em>Multimedia Tools and Applications</em>, 80(29), 35819-35865.</li>
+
+                <li><strong>Ahmadianfar, I., Heidari, A.A., Gandomi, A.H., Chu, X., Chen, H.</strong> (2021). RUN beyond the metaphor: An efficient optimization algorithm based on Runge Kutta method. <em>Expert Systems with Applications</em>, 181, 115079.</li>
+
+                <li><strong>Ahmadianfar, I., Heidari, A.A., Noshadian, S., Chen, H., Gandomi, A.H.</strong> (2022). INFO: An efficient optimization algorithm based on weighted mean of vectors. <em>Expert Systems with Applications</em>, 195, 116516.</li>
+
+                <li><strong>Shaqfa, M. & Beyer, K.</strong> (2021). Pareto-like sequential sampling heuristic for global optimisation. <em>Soft Computing</em>, 25, 9077–9096.</li>
+
+                <li><strong>Atiquzzaman, M. & Kandasamy, J.</strong> (2016). Prediction of hydrological time-series using extreme learning machine. <em>Journal of Hydroinformatics</em>, 18, 345–353.</li>
+
+                <li><strong>Yaseen, Z. M., Sulaiman, S. O., Deo, R. C. & Chau, K.-W.</strong> (2019). An enhanced extreme learning machine model for river flow forecasting. <em>Journal of Hydrology</em>, 569, 387–408.</li>
+
+                <li><strong>Wang, W. et al.</strong> (2023). An enhanced monthly runoff time series prediction using extreme learning machine optimized by salp swarm algorithm. <em>Journal of Hydrology</em>, 620, 129460.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 14: Terima Kasih -->
+      <div class="slide" id="slide14">
+        <div class="slide-content thank-you-slide">
+          <div class="container-fluid h-100">
+            <div class="row align-items-center justify-content-center h-100">
+              <div class="col-12 text-center">
+                <h2 class="display-3 fw-bold mb-4">Terima Kasih</h2>
+                <div class="thank-you-icon my-4">
+                  <i class="bi bi-brain"></i>
+                  <i class="bi bi-water"></i>
+                  <i class="bi bi-graph-up"></i>
+                </div>
+                <h4 class="mb-4">Pertanyaan & Diskusi?</h4>
+                <div class="contact-info">
+                  <p class="fs-4 mb-3">Dewa Ketut Satriawan Suditresnajaya (NIM: 2429101036)</p>
+                  <p class="fs-4 mb-3">Ni Wayan Eva Agustini (NIM: 2429101015)</p>
+                  <p class="fs-5 mb-2">Mata Kuliah Machine Learning</p>
+                  <p class="fs-5">Ilmu Komputer S2 - UNDIKSHA - 2025</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
