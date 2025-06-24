@@ -105,12 +105,108 @@ body {
     font-family: 'Inter', sans-serif !important;
 }
 
-.export-mode * {
+/* RESET SEMUA SHADOW DAN VISUAL EFFECTS */
+.export-mode *,
+.export-mode *::before,
+.export-mode *::after {
     box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
     border-radius: 8px !important;
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
     print-color-adjust: exact !important;
+}
+
+/* KHUSUS UNTUK CARD ELEMENTS */
+.export-mode .card,
+.export-mode .modern-profile-card,
+.export-mode .algorithm-card,
+.export-mode .journal-info-card,
+.export-mode .dataset-card,
+.export-mode .layer-card,
+.export-mode .solution-card,
+.export-mode .feature-card,
+.export-mode .demo-preview,
+.export-mode .university-card,
+.export-mode .improvement-stats,
+.export-mode .impact-metrics,
+.export-mode .keywords-section,
+.export-mode .motivation-quote,
+.export-mode .validity-assessment,
+.export-mode .comparison-table-section table,
+.export-mode .results-table table,
+.export-mode .algorithm-comparison,
+.export-mode .finding-item,
+.export-mode .rank-item,
+.export-mode .comparison-card,
+.export-mode .market-opportunity,
+.export-mode .contribution-item,
+.export-mode .implication-item,
+.export-mode .future-direction-card,
+.export-mode .summary-card,
+.export-mode .strength-item,
+.export-mode .limitation-item {
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    /* background: white !important; */
+}
+
+
+/* KHUSUS UNTUK ICONS DAN BUTTONS */
+.export-mode .avatar-ring,
+.export-mode .info-icon,
+.export-mode .feature-icon,
+.export-mode .solution-icon,
+.export-mode .university-logo,
+.export-mode .list-number,
+.export-mode .rank-number,
+.export-mode .takeaway-number,
+.export-mode .status-indicator {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ==================== FIX H2 GRADIENT UNTUK EXPORT ==================== */
+.export-mode h2 {
+    /* Reset gradient properties untuk export */
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    
+    /* Pastikan typography tetap sama */
+    font-size: 2.5rem !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 700 !important;
+}
+
+/* Override untuk semua heading di export mode */
+.export-mode h1, 
+.export-mode h2, 
+.export-mode h3, 
+.export-mode h4, 
+.export-mode h5, 
+.export-mode h6 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    
+    /* Reset semua gradient effects */
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+}
+
+/* Khusus untuk profile title yang menggunakan gradient */
+.export-mode .profile-main-title {
+    background: none !important;
+    background-clip: initial !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
 }
 
 .export-mode .slide {
@@ -435,11 +531,26 @@ h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     font-weight: 700;
+    
+    /* Gradient effect dengan fallback */
     background: var(--bg-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    
+    /* Fallback untuk browser yang tidak support */
+    background-color: var(--primary-color);
 }
+
+/* Fallback untuk browser yang tidak support background-clip */
+@supports not (background-clip: text) {
+    h2 {
+        background: none;
+        color: var(--primary-color);
+        -webkit-text-fill-color: var(--primary-color);
+    }
+}
+
 
 h4 {
     color: var(--dark-color);
@@ -625,7 +736,6 @@ hr {
     font-weight: 700;
     margin-bottom: 1rem;
     background: var(--bg-gradient);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
@@ -696,6 +806,24 @@ hr {
 
 .export-mode .card-glow {
     opacity: 1 !important;
+}
+
+/* RESET GRADIENT BACKGROUNDS YANG BERMASALAH */
+.export-mode .card-glow,
+.export-mode .floating-icons {
+    display: none !important;
+}
+
+
+/* PASTIKAN SEMUA TABEL TIDAK ADA SHADOW */
+.export-mode table,
+.export-mode thead,
+.export-mode tbody,
+.export-mode tr,
+.export-mode td,
+.export-mode th {
+    box-shadow: none !important;
+    border-collapse: collapse !important;
 }
 
 .modern-profile-card:hover .card-glow {
@@ -924,7 +1052,7 @@ hr {
 }
 
 .export-mode .university-card {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .university-header {
@@ -1416,7 +1544,7 @@ hr {
 }
 
 .export-mode .motivation-quote {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .motivation-quote i {
@@ -1641,7 +1769,7 @@ hr {
 }
 
 .export-mode .algorithm-comparison {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .algorithm-comparison h5 {
@@ -1867,7 +1995,7 @@ hr {
 }
 
 .export-mode .validity-assessment {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    box-shadow: none !important;
 }
 
 .validity-assessment h5 {
@@ -2431,6 +2559,58 @@ hr {
 
 .thank-you-icon i:nth-child(3) {
     animation-delay: 0.6s;
+}
+
+.avatar-inner {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    transition: var(--transition);
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+.export-mode .profile-img:hover {
+    transform: none !important;
+}
+
+.photo-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+}
+
+.photo-fallback i {
+    font-size: 4rem;
+    color: var(--primary-color);
+}
+
+/* Jika foto gagal dimuat, tampilkan fallback */
+.profile-img[style*="display: none"] + .photo-fallback {
+    display: flex !important;
 }
 
 @keyframes bounce {

@@ -89,6 +89,41 @@ function initializePresentation() {
     addModernAnimations();
 }
 
+// ==================== IMAGE FALLBACK SETUP ====================
+function setupImageFallbacks() {
+    const profileImages = document.querySelectorAll('.profile-img');
+
+    profileImages.forEach(img => {
+        img.addEventListener('error', function () {
+            console.log('Image failed to load:', this.src);
+            this.style.display = 'none';
+            const fallback = this.nextElementSibling;
+            if (fallback && fallback.classList.contains('photo-fallback')) {
+                fallback.style.display = 'flex';
+            }
+        });
+
+        img.addEventListener('load', function () {
+            console.log('Image loaded successfully:', this.src);
+            this.style.display = 'block';
+            const fallback = this.nextElementSibling;
+            if (fallback && fallback.classList.contains('photo-fallback')) {
+                fallback.style.display = 'none';
+            }
+        });
+
+        // Check if image source is valid
+        if (!img.src || img.src === '' || img.src === window.location.href || img.src.includes('undefined')) {
+            console.log('Invalid image source:', img.src);
+            img.style.display = 'none';
+            const fallback = img.nextElementSibling;
+            if (fallback && fallback.classList.contains('photo-fallback')) {
+                fallback.style.display = 'flex';
+            }
+        }
+    });
+}
+
 // ==================== MODERN ANIMATIONS ====================
 function addModernAnimations() {
     // Animate profile cards on load
@@ -559,7 +594,6 @@ function updateSlideCounter() {
     const progress = (currentSlide / totalSlides) * 100;
     counter.style.background = `linear-gradient(90deg, var(--primary-color) ${progress}%, transparent ${progress}%)`;
     counter.style.backgroundClip = 'text';
-    counter.style.webkitBackgroundClip = 'text';
     counter.style.fontWeight = 'bold';
 
     setTimeout(() => {
@@ -1110,7 +1144,7 @@ function handleResize() {
 // ==================== DEMO SYSTEM FUNCTIONS ====================
 function openGoogleColab() {
     // Replace with your actual Google Colab notebook URL
-    const colabUrl = 'https://colab.research.google.com/drive/1YourNotebookIdHere';
+    const colabUrl = 'https://colab.research.google.com/drive/1Ks2-RAYMWRxbvAlN23sAHedl7Vf47l8a?usp=sharing';
 
     // Show loading notification
     showNotification('Membuka Google Colab...', 'info');
@@ -1619,6 +1653,7 @@ function exportToPDF() {
                         col.style.justifyContent = 'center';
                         col.style.textAlign = 'center';
                         col.style.padding = '0';
+                        col.style.boxShadow = 'none';
                     }
 
                     // Typography untuk cover slides
@@ -1642,6 +1677,7 @@ function exportToPDF() {
                         h2.style.marginBottom = '2rem';
                         h2.style.background = 'linear-gradient(135deg, #6366f1, #06b6d4)';
                         h2.style.webkitTextFillColor = 'transparent';
+                        h2.style.backgroundClip = 'text';
                     }
 
                     const h3 = slide.querySelector('h3');
@@ -1829,6 +1865,9 @@ function exportToPDF() {
             sectionBadge.style.display = 'inline-flex';
             sectionBadge.style.alignItems = 'center';
             sectionBadge.style.gap = '8px';
+            sectionBadge.style.fontSize = '0.9rem';
+            sectionBadge.style.fontWeight = '600';
+            sectionBadge.style.marginBottom = '1rem';
         }
 
         // Preserve title underline
