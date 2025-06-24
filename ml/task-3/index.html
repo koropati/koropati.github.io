@@ -7,6 +7,9 @@
   <title>Review Jurnal: Extreme Learning Machine dengan Algoritma Metaheuristik</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,7 +19,7 @@
       <button id="prevBtn" class="btn btn-secondary" aria-label="Previous slide">
         <i class="bi bi-chevron-left"></i>
       </button>
-      <span id="slideCounter">1 / 12</span>
+      <span id="slideCounter">1 / 13</span>
       <button id="nextBtn" class="btn btn-secondary" aria-label="Next slide">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -29,6 +32,18 @@
       <span class="keyboard-hint d-none d-md-inline-block">
         Navigasi: <kbd>←</kbd> <kbd>→</kbd> | Fullscreen: <kbd>F</kbd> | Exit: <kbd>Esc</kbd>
       </span>
+    </div>
+
+    <!-- Loading overlay untuk export -->
+    <div id="export-loading" class="export-loading-overlay" style="display: none;">
+      <div class="export-loading-content">
+        <div class="spinner"></div>
+        <h4>Mengekspor PDF...</h4>
+        <p id="export-progress">Mempersiapkan slides...</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="export-progress-fill"></div>
+        </div>
+      </div>
     </div>
 
     <div id="presentation">
@@ -49,7 +64,6 @@
                   <p class="fs-4 mb-3">Dewa Ketut Satriawan Suditresnajaya (NIM: 2429101036)</p>
                   <p class="fs-4 mb-3">Ni Wayan Eva Agustini (NIM: 2429101015)</p>
                   <p class="fs-5 mb-2">Mata Kuliah Machine Learning</p>
-
                   <p class="fs-5">Ilmu Komputer S2 - UNDIKSHA - 2025</p>
                 </div>
               </div>
@@ -58,7 +72,7 @@
         </div>
       </div>
 
-      <!-- Slide 2: Profil Mahasiswa -->
+      <!-- Slide 2: Profil Mahasiswa - IMPROVED -->
       <div class="slide" id="slide2">
         <div class="slide-content profile-slide">
           <div class="profile-background">
@@ -73,206 +87,185 @@
           </div>
 
           <div class="container-fluid position-relative">
-            <div class="profile-header text-center mb-4">
-              <h2 class="profile-title">
-                <span class="title-icon"><i class="bi bi-people-fill"></i></span>
+            <div class="profile-header text-center mb-5">
+              <div class="section-badge">
+                <i class="bi bi-people-fill"></i>
+                <span>Tim Peneliti</span>
+              </div>
+              <h2 class="profile-main-title">
                 Profil Kelompok
               </h2>
               <div class="title-underline"></div>
-              <p class="team-subtitle">Tim Review Jurnal Machine Learning</p>
+              <p class="team-subtitle">Kolaborasi Mahasiswa S2 Ilmu Komputer dalam Review Jurnal Machine Learning</p>
             </div>
 
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <div class="dual-profile-container">
-                  <!-- Profile 1 -->
-                  <div class="enhanced-profile-card">
-                    <div class="profile-main">
-                      <div class="profile-avatar">
-                        <div class="avatar-ring gradient-1">
-                          <div class="avatar-inner">
-                            <div class="photo-fallback">
-                              <i class="bi bi-person-circle"></i>
-                            </div>
+            <!-- Team Grid Layout -->
+            <div class="team-grid">
+              <!-- Profile Card 1 -->
+              <div class="modern-profile-card">
+                <div class="card-glow"></div>
+                <div class="profile-card-header">
+                  <div class="avatar-container">
+                    <div class="avatar-wrapper">
+                      <div class="avatar-ring gradient-blue">
+                        <div class="avatar-inner">
+                          <div class="avatar-fallback">
+                            <i class="bi bi-person-circle"></i>
                           </div>
-                        </div>
-                        <div class="avatar-badge bg-primary">
-                          <i class="bi bi-mortarboard-fill"></i>
                         </div>
                       </div>
-
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <h3>Dewa Ketut Satriawan Suditresnajaya</h3>
-                          <p class="profile-role">Graduate Student in Computer Science</p>
-                        </div>
-
-                        <div class="profile-grid">
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-card-text"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">NIM</span>
-                              <span class="info-value">2429101036</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-people-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Kelas</span>
-                              <span class="info-value">E</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-book-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Program Studi</span>
-                              <span class="info-value">Ilmu Komputer S2</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-star-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Role</span>
-                              <span class="info-value">Lead Researcher</span>
-                            </div>
-                          </div>
-                        </div>
+                      <div class="status-indicator online"></div>
+                    </div>
+                  </div>
+                  <div class="profile-meta">
+                    <h3 class="profile-name">Dewa Ketut Satriawan</h3>
+                    <p class="profile-title">Lead Researcher</p>
+                    <div class="profile-tags">
+                      <span class="tag primary">Machine Learning</span>
+                      <span class="tag secondary">Data Science</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="profile-card-body">
+                  <div class="info-row">
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-card-text"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">NIM</span>
+                        <span class="info-value">2429101036</span>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-people-fill"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">Kelas</span>
+                        <span class="info-value">E</span>
                       </div>
                     </div>
                   </div>
-
-                  <!-- Profile 2 -->
-                  <div class="enhanced-profile-card">
-                    <div class="profile-main">
-                      <div class="profile-avatar">
-                        <div class="avatar-ring gradient-2">
-                          <div class="avatar-inner">
-                            <div class="photo-fallback">
-                              <i class="bi bi-person-circle"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="avatar-badge bg-success">
-                          <i class="bi bi-mortarboard-fill"></i>
-                        </div>
+                  
+                  <div class="info-row">
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-mortarboard-fill"></i>
                       </div>
-
-                      <div class="profile-content">
-                        <div class="profile-name">
-                          <h3>Ni Wayan Eva Agustini</h3>
-                          <p class="profile-role">Graduate Student in Computer Science</p>
-                        </div>
-
-                        <div class="profile-grid">
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-card-text"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">NIM</span>
-                              <span class="info-value">2429101015</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-people-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Kelas</span>
-                              <span class="info-value">A</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-book-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Program Studi</span>
-                              <span class="info-value">Ilmu Komputer S2</span>
-                            </div>
-                          </div>
-
-                          <div class="profile-info-card">
-                            <div class="info-icon">
-                              <i class="bi bi-gear-fill"></i>
-                            </div>
-                            <div class="info-content">
-                              <span class="info-label">Role</span>
-                              <span class="info-value">Research Analyst</span>
-                            </div>
-                          </div>
-                        </div>
+                      <div class="info-content">
+                        <span class="info-label">Program</span>
+                        <span class="info-value">S2 Ilmu Komputer</span>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-star-fill"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">Role</span>
+                        <span class="info-value">Lead Researcher</span>
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Shared Information -->
-                <div class="team-info-card">
-                  <div class="row">
-                    <div class="col-md-8">
-                      <div class="shared-info-grid">
-                        <div class="shared-info-item">
-                          <div class="info-icon">
-                            <i class="bi bi-building"></i>
-                          </div>
-                          <div class="info-content">
-                            <span class="info-label">Universitas</span>
-                            <span class="info-value">Universitas Pendidikan Ganesha</span>
-                          </div>
-                        </div>
-
-                        <div class="shared-info-item">
-                          <div class="info-icon">
-                            <i class="bi bi-journal-code"></i>
-                          </div>
-                          <div class="info-content">
-                            <span class="info-label">Mata Kuliah</span>
-                            <span class="info-value">Machine Learning</span>
-                          </div>
-                        </div>
-
-                        <div class="shared-info-item">
-                          <div class="info-icon">
-                            <i class="bi bi-calendar3"></i>
-                          </div>
-                          <div class="info-content">
-                            <span class="info-label">Tahun Akademik</span>
-                            <span class="info-value">2024/2025</span>
+              <!-- Profile Card 2 -->
+              <div class="modern-profile-card">
+                <div class="card-glow"></div>
+                <div class="profile-card-header">
+                  <div class="avatar-container">
+                    <div class="avatar-wrapper">
+                      <div class="avatar-ring gradient-purple">
+                        <div class="avatar-inner">
+                          <div class="avatar-fallback">
+                            <i class="bi bi-person-circle"></i>
                           </div>
                         </div>
                       </div>
+                      <div class="status-indicator online"></div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="team-expertise">
-                        <h5><i class="bi bi-lightbulb"></i> Fokus Penelitian</h5>
-                        <div class="expertise-tags">
-                          <span class="expertise-tag">
-                            <i class="bi bi-brain"></i> Machine Learning
-                          </span>
-                          <span class="expertise-tag">
-                            <i class="bi bi-cpu-fill"></i> Neural Networks
-                          </span>
-                          <span class="expertise-tag">
-                            <i class="bi bi-graph-up"></i> Data Science
-                          </span>
-                          <span class="expertise-tag">
-                            <i class="bi bi-water"></i> Hydrological Modeling
-                          </span>
-                        </div>
+                  </div>
+                  <div class="profile-meta">
+                    <h3 class="profile-name">Ni Wayan Eva Agustini</h3>
+                    <p class="profile-title">Research Analyst</p>
+                    <div class="profile-tags">
+                      <span class="tag success">Data Analysis</span>
+                      <span class="tag warning">Optimization</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="profile-card-body">
+                  <div class="info-row">
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-card-text"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">NIM</span>
+                        <span class="info-value">2429101015</span>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-people-fill"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">Kelas</span>
+                        <span class="info-value">A</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="info-row">
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-mortarboard-fill"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">Program</span>
+                        <span class="info-value">S2 Ilmu Komputer</span>
+                      </div>
+                    </div>
+                    <div class="info-item">
+                      <div class="info-icon">
+                        <i class="bi bi-gear-fill"></i>
+                      </div>
+                      <div class="info-content">
+                        <span class="info-label">Role</span>
+                        <span class="info-value">Research Analyst</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Team Info Section -->
+            <div class="team-info-section">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="university-card text-center">
+                    <div class="university-header justify-content-center">
+                      <div class="university-logo">
+                        <i class="bi bi-building"></i>
+                      </div>
+                      <div class="university-info">
+                        <h4>Universitas Pendidikan Ganesha</h4>
+                        <p>Pascasarjana Ilmu Komputer</p>
+                      </div>
+                    </div>
+                    <div class="course-details justify-content-center">
+                      <div class="course-item">
+                        <i class="bi bi-journal-code"></i>
+                        <span>Machine Learning</span>
+                      </div>
+                      <div class="course-item">
+                        <i class="bi bi-calendar3"></i>
+                        <span>Semester Gasal 2024/2025</span>
                       </div>
                     </div>
                   </div>
@@ -300,8 +293,9 @@
                   <li><span class="list-number">6</span> Analisis Kritis</li>
                   <li><span class="list-number">7</span> Perbandingan dengan Metode Lain</li>
                   <li><span class="list-number">8</span> Kontribusi dan Implikasi</li>
-                  <li><span class="list-number">9</span> Kesimpulan</li>
-                  <li><span class="list-number">10</span> Referensi</li>
+                  <li><span class="list-number">9</span> Demo Sistem</li>
+                  <li><span class="list-number">10</span> Kesimpulan</li>
+                  <li><span class="list-number">11</span> Referensi</li>
                 </ul>
               </div>
             </div>
@@ -744,7 +738,7 @@
                 <h4><i class="bi bi-check-circle-fill text-success"></i> Kekuatan Penelitian</h4>
                 <div class="strengths-list">
                   <div class="strength-item">
-                    <h6>Metodological Rigor</h6>
+                    <h6>Methodological Rigor</h6>
                     <ul>
                       <li>Comprehensive comparison (20 models, 8 categories)</li>
                       <li>Statistical reliability (10 independent runs)</li>
@@ -1040,8 +1034,114 @@
         </div>
       </div>
 
-      <!-- Slide 12: Kesimpulan -->
+      <!-- Slide 12: Demo Sistem - NEW SLIDE -->
       <div class="slide" id="slide12">
+        <div class="slide-content">
+          <h2>Demo Sistem</h2>
+          <hr>
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <div class="col-lg-10">
+                <div class="demo-hero-section">
+                  <div class="demo-icon">
+                    <i class="bi bi-play-circle-fill"></i>
+                  </div>
+                  <h3 class="demo-title">Implementasi ELM dengan Algoritma Metaheuristik</h3>
+                  <p class="demo-description">
+                    Demonstrasi interaktif implementasi PSS-ELM, INFO-ELM, dan RUN-ELM untuk prediksi aliran sungai
+                  </p>
+                </div>
+
+                <div class="demo-features">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="feature-card">
+                        <div class="feature-icon">
+                          <i class="bi bi-cpu-fill"></i>
+                        </div>
+                        <h5>Real-time Training</h5>
+                        <p>Lihat proses training ELM dengan optimasi metaheuristik secara real-time</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="feature-card">
+                        <div class="feature-icon">
+                          <i class="bi bi-graph-up"></i>
+                        </div>
+                        <h5>Interactive Visualization</h5>
+                        <p>Visualisasi interaktif hasil prediksi dan perbandingan algoritma</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="feature-card">
+                        <div class="feature-icon">
+                          <i class="bi bi-download"></i>
+                        </div>
+                        <h5>Export Results</h5>
+                        <p>Download hasil prediksi dan analisis dalam format CSV/JSON</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="demo-actions">
+                  <div class="demo-button-container">
+                    <button class="demo-button primary" onclick="openGoogleColab()">
+                      <i class="bi bi-play-fill"></i>
+                      <span>Buka Demo di Google Colab</span>
+                      <i class="bi bi-box-arrow-up-right"></i>
+                    </button>
+                    <button class="demo-button secondary" onclick="downloadNotebook()">
+                      <i class="bi bi-download"></i>
+                      <span>Download Notebook</span>
+                    </button>
+                  </div>
+                  
+                  <div class="demo-info">
+                    <div class="info-item">
+                      <i class="bi bi-clock"></i>
+                      <span>Estimasi waktu: 15-20 menit</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-shield-check"></i>
+                      <span>Tidak perlu instalasi tambahan</span>
+                    </div>
+                    <div class="info-item">
+                      <i class="bi bi-journal-code"></i>
+                      <span>Kode dapat dimodifikasi</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="demo-preview">
+                  <h5><i class="bi bi-eye"></i> Preview Fitur Demo</h5>
+                  <div class="preview-grid">
+                    <div class="preview-card">
+                      <h6>1. Data Loading & Preprocessing</h6>
+                      <p>Import dataset Nile River dan preprocessing dengan feature selection</p>
+                    </div>
+                    <div class="preview-card">
+                      <h6>2. Algorithm Comparison</h6>
+                      <p>Jalankan dan bandingkan PSS-ELM, INFO-ELM, dan RUN-ELM</p>
+                    </div>
+                    <div class="preview-card">
+                      <h6>3. Results Visualization</h6>
+                      <p>Visualisasi performance metrics dan convergence plots</p>
+                    </div>
+                    <div class="preview-card">
+                      <h6>4. Custom Testing</h6>
+                      <p>Test model dengan data custom atau parameter berbeda</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 13: Kesimpulan -->
+      <div class="slide" id="slide13">
         <div class="slide-content">
           <h2>Kesimpulan</h2>
           <hr>
@@ -1119,8 +1219,8 @@
         </div>
       </div>
 
-      <!-- Slide 13: Referensi -->
-      <div class="slide" id="slide13">
+      <!-- Slide 14: Referensi -->
+      <div class="slide" id="slide14">
         <div class="slide-content">
           <h2>Referensi</h2>
           <hr>
@@ -1152,8 +1252,8 @@
         </div>
       </div>
 
-      <!-- Slide 14: Terima Kasih -->
-      <div class="slide" id="slide14">
+      <!-- Slide 15: Terima Kasih -->
+      <div class="slide" id="slide15">
         <div class="slide-content thank-you-slide">
           <div class="container-fluid h-100">
             <div class="row align-items-center justify-content-center h-100">
