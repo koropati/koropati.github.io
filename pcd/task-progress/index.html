@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Water Meter - Pengolahan Citra Digital</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <span class="slide-counter">1 / 5</span>
+                <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-file-pdf"></i> Export PDF
+                </button>
+            </div>
+        </nav>
+
+        <!-- Image Modal -->
+        <div class="image-modal" id="imageModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Image Viewer</h3>
+                    <div class="modal-controls">
+                        <button class="modal-btn" id="zoomOutBtn" title="Zoom Out">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <span class="zoom-level" id="zoomLevel">100%</span>
+                        <button class="modal-btn" id="zoomInBtn" title="Zoom In">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button class="modal-btn" id="resetZoomBtn" title="Reset Zoom">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button class="modal-btn" id="closeModalBtn" title="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="image-container">
+                        <img id="modalImage" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active" id="slide1" data-slide="1">
+            <div class="slide-content title-slide">
+                <div class="university-logo">
+                    <div class="logo-placeholder">
+                        <i class="fas fa-university"></i>
+                    </div>
+                </div>
+                <h1 class="main-title"><span class="gradient-text">OCR Water Meter</span></h1>
+                <h2 class="subtitle">Optical Character Recognition untuk Pembacaan Meteran Air Menggunakan Computer Vision</h2>
+                
+                <div class="overview-section">
+                    <h3><i class="fas fa-bullseye"></i> Project Overview</h3>
+                    <p>Implementasi sistem OCR untuk otomatisasi pembacaan digit meteran air menggunakan teknik pengolahan citra digital. 
+                    Sistem menggunakan YOLOv8 untuk deteksi area meter, multiple segmentation methods, dan machine learning models 
+                    untuk pengenalan karakter dengan akurasi tinggi.</p>
+                </div>
+                
+                <div class="student-info">
+                    <div class="info-card">
+                        <h3 style="text-align:center; font-size:2em; margin-bottom:0.3em;">Pengolahan Citra Digital</h3>
+                        <p>Program Pascasarjana</p>
+                    </div>
+                    <div class="info-card identity-card">
+                        <p><strong>Dewa Ketut Satriawan Suditresanajaya</strong></p>
+                        <p>NIM: 2429101036 | Kelas: E</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Problem & Objective -->
+        <div class="slide" id="slide2" data-slide="2">
+            <div class="slide-content">
+                <h1 class="slide-title">Problem Statement & Research Objective</h1>
+                
+                <div class="two-column">
+                    <div class="column">
+                        <div class="problem-section">
+                            <h2><i class="fas fa-exclamation-triangle"></i> Challenges in Manual Meter Reading</h2>
+                            <ul class="problem-list">
+                                <li><strong>Human Error:</strong> Kesalahan pembacaan manual hingga 15-20%</li>
+                                <li><strong>Labor Intensive:</strong> Memerlukan petugas lapangan untuk setiap meter</li>
+                                <li><strong>Time Consuming:</strong> Proses pembacaan memakan waktu lama</li>
+                                <li><strong>Accessibility Issues:</strong> Meter di lokasi sulit dijangkau</li>
+                                <li><strong>Data Inconsistency:</strong> Format pencatatan yang beragam</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="objective-section">
+                            <h2><i class="fas fa-target"></i> Research Objectives</h2>
+                            <ul class="objective-list">
+                                <li><strong>Computer Vision Pipeline:</strong> Implementasi sistem deteksi dan segmentasi otomatis</li>
+                                <li><strong>Multiple Segmentation Methods:</strong> Perbandingan fixed_grid, histogram_projection, contour_based</li>
+                                <li><strong>Feature Engineering:</strong> Ekstraksi HOG, LBP, moments untuk classification</li>
+                                <li><strong>ML Model Comparison:</strong> Evaluasi SVM, MLP, CNN, Random Forest</li>
+                                <li><strong>High Accuracy System:</strong> Target akurasi >92% untuk pengenalan digit</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tech-specs">
+                            <h2><i class="fas fa-microchip"></i> Technical Specifications</h2>
+                            <ul class="spec-list">
+                                <li><strong>Input:</strong> Water meter images (various resolutions)</li>
+                                <li><strong>Processing:</strong> 32×32 character normalization</li>
+                                <li><strong>Features:</strong> Multi-dimensional feature vectors</li>
+                                <li><strong>Output:</strong> 6-digit sequence with confidence scores</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="column">
+                        <div class="image-placeholder clickable-image" id="problem-image" data-title="Water Meter Sample">
+                            <img src="assets/water_meter_samples.png" alt="Water Meter Sample" id="img-problem">
+                            <div class="image-fallback">
+                                <i class="fas fa-image"></i>
+                                <p>Sample Water Meter Image</p>
+                                <small>Original meter photo with reading challenges</small>
+                            </div>
+                        </div>
+                        
+                        <div class="image-placeholder clickable-image" id="pipeline-overview" data-title="Pipeline Overview">
+                            <img src="assets/water-meter-itron_0022_chars.jpg" alt="Pipeline Overview" id="img-pipeline-overview">
+                            <div class="image-fallback">
+                                <i class="fas fa-project-diagram"></i>
+                                <p>Result</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: System Architecture -->
+        <div class="slide" id="slide3" data-slide="3">
+            <div class="slide-content">
+                <h1 class="slide-title">Computer Vision Pipeline & Technical Architecture</h1>
+                
+                <div class="pipeline-container">
+                    <div class="pipeline-step">
+                        <div class="step-icon"><i class="fas fa-search"></i></div>
+                        <h3>Meter Detection</h3>
+                        <p><strong>YOLOv8/v11</strong><br>
+                        Confidence: 0.5<br>
+                        Image Size: 320×320</p>
+                    </div>
+                    
+                    <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon"><i class="fas fa-crop"></i></div>
+                        <h3>Deskewing</h3>
+                        <p><strong>Variance Method</strong><br>
+                        Angle Limit: ±30°<br>
+                        Rotation Matrix</p>
+                    </div>
+                    
+                    <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon"><i class="fas fa-cut"></i></div>
+                        <h3>Character Segmentation</h3>
+                        <p><strong>Multi-Method</strong><br>
+                        Fixed Grid | Histogram<br>
+                        Output: 32×32 pixels</p>
+                    </div>
+                    
+                    <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Feature Extraction</h3>
+                        <p><strong>Multi-Features</strong><br>
+                        HOG: 288 dims<br>
+                        LBP: 10 dims</p>
+                    </div>
+                    
+                    <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+                    
+                    <div class="pipeline-step">
+                        <div class="step-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Classification</h3>
+                        <p><strong>ML Models</strong><br>
+                        SVM | MLP | CNN<br>
+                        Classes: 0-9</p>
+                    </div>
+                </div>
+                
+                <div class="technical-details-container">
+                    <div class="technical-column">
+                        <h2><i class="fas fa-rotate"></i> Deskewing Methods Comparison</h2>
+                        <div class="detail-card technical">
+                            <div class="method-comparison">
+                                <div class="method-item selected">
+                                    <strong>Variance Method</strong>
+                                    <p>✓ Best for digit clarity<br>✓ Robust to noise</p>
+                                </div>
+                                <div class="method-item">
+                                    <strong>Moments Method</strong>
+                                    <p>○ Good for simple skew<br>○ Fast processing</p>
+                                </div>
+                                <div class="method-item">
+                                    <strong>Hough Method</strong>
+                                    <p>○ Line-based detection<br>○ Works with edges</p>
+                                </div>
+                            </div>
+                            <div class="image-placeholder clickable-image deskew-comparison" id="deskew-comparison" data-title="Deskewing Comparison">
+                                <img src="assets/deskew_comparison.png" alt="Deskewing Comparison" id="img-deskew-comparison">
+                                <div class="image-fallback">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <p>Deskewing Methods Comparison</p>
+                                    <small>Variance vs Moments vs Hough results</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="technical-column">
+                        <h2><i class="fas fa-cut"></i> Segmentation Methods</h2>
+                        <div class="detail-card segmentation">
+                            <div class="segmentation-grid">
+                                <div class="seg-method">
+                                    <strong>Fixed Grid</strong><br>
+                                    <small>6 equal divisions<br>Border removal: 8px</small>
+                                </div>
+                                <div class="seg-method">
+                                    <strong>Histogram Projection</strong><br>
+                                    <small>Valley detection<br>Threshold: 0.1</small>
+                                </div>
+                                <div class="seg-method">
+                                    <strong>Contour Based</strong><br>
+                                    <small>Min area: 200px<br>Aspect ratio: 0.1-1.0</small>
+                                </div>
+                            </div>
+                            
+                            <div class="segmentation-viz">
+                                <div class="image-placeholder clickable-image" id="histogram-projection-viz" data-title="Histogram Projection Analysis">
+                                    <img src="assets/test1_meter_histogram_analysis.jpg" alt="Histogram Projection" id="img-histogram-projection">
+                                    <div class="image-fallback">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <p>Histogram Projection</p>
+                                        <small>Valley detection and boundaries</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="image-placeholder clickable-image" id="fixed-grid-viz" data-title="Fixed Grid Segmentation">
+                                    <img src="assets/test1_meter_character_grid.jpg" alt="Fixed Grid Segmentation" id="img-fixed-grid">
+                                    <div class="image-fallback">
+                                        <i class="fas fa-th"></i>
+                                        <p>Fixed Grid Segmentation</p>
+                                        <small>Equal divisions with borders</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Implementation & Features -->
+        <div class="slide" id="slide4" data-slide="4">
+            <div class="slide-content">
+                <h1 class="slide-title">Implementation & Key Features</h1>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-cog"></i></div>
+                        <h3>Unified Configuration</h3>
+                        <p>Central config.yaml untuk semua proses</p>
+                        <ul>
+                            <li>Global settings</li>
+                            <li>Model configurations</li>
+                            <li>Pipeline parameters</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                        <h3>Advanced Detection</h3>
+                        <p>Enhanced detector dengan auto-save</p>
+                        <ul>
+                            <li>YOLOv8/v11 support</li>
+                            <li>Checkpoint system</li>
+                            <li>Progress tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Multi-Segmentation</h3>
+                        <p>Multiple character segmentation methods</p>
+                        <ul>
+                            <li>Histogram projection</li>
+                            <li>Fixed grid</li>
+                            <li>Contour-based</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Feature Engineering</h3>
+                        <p>Comprehensive feature extraction</p>
+                        <ul>
+                            <li>HOG features</li>
+                            <li>LBP patterns</li>
+                            <li>Statistical moments</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="implementation-showcase">
+                    <div class="showcase-item">
+                        <div class="image-placeholder clickable-image" id="detection-result" data-title="YOLO Detection Result">
+                            <img src="assets/val_batch2_pred.jpg" alt="Detection Result" id="img-detection">
+                            <div class="image-fallback">
+                                <i class="fas fa-crosshairs"></i>
+                                <p>Meter Detection Result</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-item">
+                        <div class="image-placeholder clickable-image" id="segmentation-result" data-title="Preprocessing Result">
+                            <img src="assets/test1_meter_preprocessing.jpg" alt="Segmentation Result" id="img-segmentation">
+                            <div class="image-fallback">
+                                <i class="fas fa-th"></i>
+                                <p>Character Segmentation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-item">
+                        <div class="image-placeholder clickable-image" id="pipeline-result" data-title="Complete Pipeline">
+                            <img src="assets/test1_meter_segmentation.jpg" alt="Pipeline Result" id="img-pipeline">
+                            <div class="image-fallback">
+                                <i class="fas fa-project-diagram"></i>
+                                <p>Complete Pipeline Result</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Results & Conclusion -->
+        <div class="slide" id="slide5" data-slide="5">
+            <div class="slide-content">
+                <h1 class="slide-title">SVM Model Results & Analysis</h1>
+                
+                <div class="results-overview">
+                    <div class="model-info-section">
+                        <h2><i class="fas fa-info-circle"></i> Model Information</h2>
+                        <div class="model-details">
+                            <div class="detail-item">
+                                <span class="label">Model Type:</span>
+                                <span class="value">Support Vector Machine (SVM)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Kernel:</span>
+                                <span class="value">RBF (Radial Basis Function)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Training Date:</span>
+                                <span class="value">June 25, 2025</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label">Feature Dimensions:</span>
+                                <span class="value">334 features</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="performance-metrics">
+                        <h2><i class="fas fa-chart-bar"></i> Performance Metrics</h2>
+                        <div class="metrics-grid">
+                            <div class="metric-card train">
+                                <div class="metric-number">96.14%</div>
+                                <div class="metric-label">Training Accuracy</div>
+                                <div class="metric-samples">11,198 samples</div>
+                            </div>
+                            <div class="metric-card test">
+                                <div class="metric-number">89.43%</div>
+                                <div class="metric-label">Test Accuracy</div>
+                                <div class="metric-samples">2,800 samples</div>
+                            </div>
+                            <div class="metric-card cv">
+                                <div class="metric-number">88.75%</div>
+                                <div class="metric-label">Cross Validation</div>
+                                <div class="metric-samples">5-fold CV</div>
+                            </div>
+                            <div class="metric-card time">
+                                <div class="metric-number">192.6s</div>
+                                <div class="metric-label">Training Time</div>
+                                <div class="metric-samples">13,998 total samples</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="confusion-matrix-section">
+                    <h2><i class="fas fa-table"></i> Confusion Matrix Analysis</h2>
+                    <div class="matrix-container">
+                        <div class="matrix-column">
+                            <h3>Confusion Matrix Heatmap</h3>
+                            <div class="image-placeholder clickable-image" id="confusion-heatmap" data-title="SVM Confusion Matrix Heatmap">
+                                <img src="assets/ocr/classification_report_svm.png" alt="Confusion Matrix Heatmap" id="img-confusion-heatmap">
+                                <div class="image-fallback">
+                                    <i class="fas fa-chart-area"></i>
+                                    <p>Confusion Matrix Heatmap</p>
+                                    <small>Normalized confusion matrix visualization</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="matrix-column">
+                            <h3>Classification Report</h3>
+                            <div class="image-placeholder clickable-image" id="classification-report" data-title="SVM Classification Report">
+                                <img src="assets/ocr/confusion_matrix_svm.png" alt="Classification Report" id="img-classification-report">
+                                <div class="image-fallback">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <p>Classification Report</p>
+                                    <small>Precision, Recall, F1-Score per class</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="matrix-column">
+                            <h3>Yolo Report</h3>
+                            <div class="image-placeholder clickable-image" id="model-comparison" data-title="Model Performance Comparison">
+                                <img src="assets/results.png" alt="Model Comparison" id="img-model-comparison">
+                                <div class="image-fallback">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <p>Yolov8n Report</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="class-performance">
+                    <h2><i class="fas fa-trophy"></i> Best Performing Classes</h2>
+                    <div class="class-stats">
+                        <div class="class-item best">
+                            <div class="class-digit">2</div>
+                            <div class="class-metrics">
+                                <div class="precision">Precision: 95.3%</div>
+                                <div class="recall">Recall: 96.5%</div>
+                                <div class="f1">F1-Score: 95.9%</div>
+                            </div>
+                        </div>
+                        <div class="class-item good">
+                            <div class="class-digit">0</div>
+                            <div class="class-metrics">
+                                <div class="precision">Precision: 92.4%</div>
+                                <div class="recall">Recall: 94.7%</div>
+                                <div class="f1">F1-Score: 93.5%</div>
+                            </div>
+                        </div>
+                        <div class="class-item challenging">
+                            <div class="class-digit">5</div>
+                            <div class="class-metrics">
+                                <div class="precision">Precision: 81.5%</div>
+                                <div class="recall">Recall: 87.2%</div>
+                                <div class="f1">F1-Score: 84.3%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="conclusion">
+                    <h2><i class="fas fa-lightbulb"></i> Conclusion & Future Work</h2>
+                    <div class="conclusion-content">
+                        <div class="conclusion-item">
+                            <h3>Key Achievements</h3>
+                            <ul>
+                                <li>✅ SVM model achieved 89.43% test accuracy</li>
+                                <li>✅ Robust performance across 10-digit classes</li>
+                                <li>✅ Effective feature engineering (334 dimensions)</li>
+                                <li>✅ Low training time (3.2 minutes)</li>
+                            </ul>
+                        </div>
+                        <div class="conclusion-item">
+                            <h3>Future Improvements</h3>
+                            <ul>
+                                <li>🔄 Data augmentation for challenging classes</li>
+                                <li>🔄 Ensemble methods for higher accuracy</li>
+                                <li>🔄 Real-time optimization</li>
+                                <li>🔄 Mobile deployment considerations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="thank-you">
+                    <h2>Terima Kasih</h2>
+                    <p><i class="fas fa-envelope"></i> satriawan.suditresnajaya@student.undiksha.ac.id</p>
+                    <p><i class="fas fa-graduation-cap"></i> S2 Ilmu Komputer - Universitas Pendidikan Ganesha</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay for PDF export -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Generating PDF...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
