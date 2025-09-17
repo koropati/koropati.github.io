@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Class Corrosion Segmentation - Research Progress</title>
+    <link rel="stylesheet" href="presentation-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-controls">
+                <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                <span class="slide-counter">1 / 8</span>
+                <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="nav-indicators">
+                <div class="indicator active" data-slide="1"></div>
+                <div class="indicator" data-slide="2"></div>
+                <div class="indicator" data-slide="3"></div>
+                <div class="indicator" data-slide="4"></div>
+                <div class="indicator" data-slide="5"></div>
+                <div class="indicator" data-slide="6"></div>
+                <div class="indicator" data-slide="7"></div>
+                <div class="indicator" data-slide="8"></div>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn" id="fullscreenBtn" title="Toggle Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
+                <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-file-pdf"></i> Export PDF
+                </button>
+            </div>
+        </nav>
+
+        <!-- Media Modal -->
+        <div class="media-modal" id="mediaModal">
+            <div class="modal-overlay" id="modalOverlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Media Viewer</h3>
+                    <div class="modal-controls">
+                        <button class="modal-btn" id="zoomOutBtn" title="Zoom Out">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <span class="zoom-level" id="zoomLevel">100%</span>
+                        <button class="modal-btn" id="zoomInBtn" title="Zoom In">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <button class="modal-btn" id="resetZoomBtn" title="Reset Zoom">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button class="modal-btn" id="closeModalBtn" title="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="media-container">
+                        <img id="modalImage" src="" alt="" style="display: none;">
+                        <video id="modalVideo" controls preload="metadata" style="display: none; width: 100%; max-width: 800px; height: auto;">
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active" id="slide1" data-slide="1">
+            <div class="slide-content title-slide">
+                <div class="university-info">
+                    <div class="logos-container">
+                        <div class="logo-slot university-logo-slot has-image">
+                            <img src="assets/img/undiksha.png" alt="Logo Universitas" class="logo-image loaded" id="universityLogo">
+                            <div class="logo-placeholder">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Logo Universitas</span>
+                            </div>
+                        </div>
+                        <div class="logo-slot pt-dago-logo-slot has-image">
+                            <img src="assets/img/dago.jpg" alt="Logo PT DAgo" class="logo-image loaded" id="ptDagoLogo">
+                            <div class="logo-placeholder">
+                                <i class="fas fa-building"></i>
+                                <span>Logo PT DAgo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="main-title">
+                    <span class="gradient-text">Segmentasi Korosi Multi-Class</span>
+                </h1>
+                <h2 class="subtitle">
+                    Analisis Tingkat Keparahan pada Video Drone Inspeksi Industri Minyak dan Gas Berbasis Web
+                </h2>
+                
+                <div class="research-highlights">
+                    <div class="highlight-item">
+                        <i class="fas fa-robot"></i>
+                        <span>YOLOv8n-seg + U-Net + SegFormer</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>Multi-Class Segmentation</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Web-Based System</span>
+                    </div>
+                </div>
+
+                <div class="author-info">
+                    <div class="author-card">
+                        <h4>Peneliti</h4>
+                        <p><strong>Dewa Ketut Satriawan Suditresanajaya</strong></p>
+                        <p>NIM: 2429101036</p>
+                    </div>
+                    <div class="progress-badge">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Research Progress Report</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Research Background -->
+        <div class="slide" id="slide2" data-slide="2">
+            <div class="slide-content">
+                <h1 class="slide-title">Research Background & Objectives</h1>
+                
+                <div class="content-grid">
+                    <div class="content-section">
+                        <h2><i class="fas fa-exclamation-triangle"></i> Industry Challenge</h2>
+                        <div class="challenge-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">$2.5T</div>
+                                <div class="stat-label">Annual Global Corrosion Cost</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3.4%</div>
+                                <div class="stat-label">of Global GDP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="problem-list">
+                            <div class="problem-item">
+                                <i class="fas fa-user"></i>
+                                <div>
+                                    <h4>Manual Inspection Issues</h4>
+                                    <p>Subjektivitas hasil analisis, inkonsistensi interpretasi, waktu analisis lama</p>
+                                </div>
+                            </div>
+                            <div class="problem-item">
+                                <i class="fas fa-eye"></i>
+                                <div>
+                                    <h4>Detection Challenges</h4>
+                                    <p>Variasi pencahayaan, sudut pandang drone, resolusi video</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2><i class="fas fa-bullseye"></i> Research Objectives</h2>
+                        <div class="objectives-list">
+                            <div class="objective-item">
+                                <span class="objective-number">1</span>
+                                <div>
+                                    <h4>Multi-Class Segmentation</h4>
+                                    <p>Mengoptimalkan YOLOv8n-seg untuk segmentasi korosi dengan 3 tingkat keparahan (fair, poor, severe)</p>
+                                </div>
+                            </div>
+                            <div class="objective-item">
+                                <span class="objective-number">2</span>
+                                <div>
+                                    <h4>Model Comparison</h4>
+                                    <p>Evaluasi performa YOLOv8n-seg, U-Net, dan SegFormer untuk deteksi korosi</p>
+                                </div>
+                            </div>
+                            <div class="objective-item">
+                                <span class="objective-number">3</span>
+                                <div>
+                                    <h4>Web-Based System</h4>
+                                    <p>Implementasi sistem berbasis web dengan FastAPI dan Vue.js untuk batch processing video drone</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-scope">
+                    <h2><i class="fas fa-target"></i> Technical Scope</h2>
+                    <div class="scope-grid">
+                        <div class="scope-item">
+                            <i class="fas fa-database"></i>
+                            <h4>Dataset</h4>
+                            <p>1,846 images with balanced multi-class annotations</p>
+                        </div>
+                        <div class="scope-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>Models</h4>
+                            <p>YOLOv8n-seg, U-Net, SegFormer comparison</p>
+                        </div>
+                        <div class="scope-item">
+                            <i class="fas fa-video"></i>
+                            <h4>Input</h4>
+                            <p>Drone inspection videos (MP4, AVI, MOV)</p>
+                        </div>
+                        <div class="scope-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <h4>Output</h4>
+                            <p>Pixel-wise segmentation with severity classification</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Dataset Analysis -->
+        <div class="slide" id="slide3" data-slide="3">
+            <div class="slide-content">
+                <h1 class="slide-title">Dataset Analysis & Preparation</h1>
+                
+                <div class="dataset-overview">
+                    <div class="dataset-card">
+                        <h2><i class="fas fa-layer-group"></i> Merged Corrosion Dataset</h2>
+                        <div class="dataset-stats">
+                            <div class="stat-box primary">
+                                <div class="stat-value">1,846</div>
+                                <div class="stat-label">Total Images</div>
+                            </div>
+                            <div class="stat-box secondary">
+                                <div class="stat-value">923</div>
+                                <div class="stat-label">Total Masks</div>
+                            </div>
+                            <div class="stat-box accent">
+                                <div class="stat-value">3,199×2,428</div>
+                                <div class="stat-label">Avg Resolution</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="content-section">
+                        <h2><i class="fas fa-chart-pie"></i> Class Distribution</h2>
+                        <div class="class-distribution">
+                            <div class="class-item class-0">
+                                <div class="class-header">
+                                    <span class="class-color"></span>
+                                    <h4>Class 0 - Fair Corrosion</h4>
+                                </div>
+                                <div class="class-stats">
+                                    <div class="percentage">69.7%</div>
+                                    <div class="instances">3,733 instances</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 69.7%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="class-item class-1">
+                                <div class="class-header">
+                                    <span class="class-color"></span>
+                                    <h4>Class 1 - Poor Corrosion</h4>
+                                </div>
+                                <div class="class-stats">
+                                    <div class="percentage">26.7%</div>
+                                    <div class="instances">1,432 instances</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 26.7%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="class-item class-2">
+                                <div class="class-header">
+                                    <span class="class-color"></span>
+                                    <h4>Class 2 - Severe Corrosion</h4>
+                                </div>
+                                <div class="class-stats">
+                                    <div class="percentage">3.6%</div>
+                                    <div class="instances">192 instances</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 3.6%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2><i class="fas fa-cog"></i> Data Preparation</h2>
+                        <div class="preparation-steps">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>Dataset Merging</h4>
+                                    <p>Combined corrosion_yolo (880 images) + steel_bridge_yolo (1,028 images)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>Format Standardization</h4>
+                                    <p>YOLOv8n-seg segmentation format with 3-class annotations</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>Data Split</h4>
+                                    <p>Training (70%) | Validation (20%) | Test (10%)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>Augmentation</h4>
+                                    <p>Class-aware augmentation preserving corrosion characteristics</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="dataset-preview clickable-image" data-title="Dataset Samples">
+                            <img src="assets/img/sample_images_with_segmentation.png" 
+                                 alt="Multi-class corrosion dataset samples with segmentation" 
+                                 style="width: 100%; height: auto; border-radius: 10px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Model Architecture -->
+        <div class="slide" id="slide4" data-slide="4">
+            <div class="slide-content">
+                <h1 class="slide-title">Model Architecture Comparison</h1>
+                
+                <div class="models-overview">
+                    <div class="model-card yolov8">
+                        <div class="model-header">
+                            <i class="fas fa-bullseye"></i>
+                            <h3>YOLOv8n-seg Segmentation</h3>
+                        </div>
+                        <div class="model-features">
+                            <span class="feature-tag">Real-time</span>
+                            <span class="feature-tag">Instance Segmentation</span>
+                            <span class="feature-tag">End-to-end</span>
+                        </div>
+                        <div class="model-description">
+                            <p>Unified detection and segmentation framework dengan anchor-free head optimization untuk multi-class corrosion detection.</p>
+                        </div>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <strong>Input:</strong> 640×640
+                            </div>
+                            <div class="spec-item">
+                                <strong>Output:</strong> Masks + Boxes + Classes
+                            </div>
+                            <div class="spec-item">
+                                <strong>Architecture:</strong> CSP + PAN + Detection Head
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card unet">
+                        <div class="model-header">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3>U-Net</h3>
+                        </div>
+                        <div class="model-features">
+                            <span class="feature-tag">Encoder-Decoder</span>
+                            <span class="feature-tag">Skip Connections</span>
+                            <span class="feature-tag">Pixel-wise</span>
+                        </div>
+                        <div class="model-description">
+                            <p>Enhanced U-Net architecture dengan attention mechanism untuk precise boundary detection dan semantic segmentation.</p>
+                        </div>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <strong>Input:</strong> 256×256
+                            </div>
+                            <div class="spec-item">
+                                <strong>Output:</strong> Segmentation Masks
+                            </div>
+                            <div class="spec-item">
+                                <strong>Architecture:</strong> Encoder + Decoder + Skip
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-card segformer">
+                        <div class="model-header">
+                            <i class="fas fa-brain"></i>
+                            <h3>SegFormer</h3>
+                        </div>
+                        <div class="model-features">
+                            <span class="feature-tag">Transformer</span>
+                            <span class="feature-tag">Multi-scale</span>
+                            <span class="feature-tag">Lightweight</span>
+                        </div>
+                        <div class="model-description">
+                            <p>Transformer-based semantic segmentation dengan hierarchical encoder dan MLP decoder untuk complex pattern recognition.</p>
+                        </div>
+                        <div class="model-specs">
+                            <div class="spec-item">
+                                <strong>Input:</strong> 512×512
+                            </div>
+                            <div class="spec-item">
+                                <strong>Output:</strong> Semantic Masks
+                            </div>
+                            <div class="spec-item">
+                                <strong>Architecture:</strong> Transformer + MLP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-details">
+                    <h2><i class="fas fa-cogs"></i> Training Configuration</h2>
+                    <div class="config-grid">
+                        <div class="config-section">
+                            <h4>YOLOv8n-seg Settings</h4>
+                            <ul>
+                                <li>Model: yolov8n-seg.pt</li>
+                                <li>Epochs: 100</li>
+                                <li>Batch size: 16</li>
+                                <li>Learning rate: 0.01</li>
+                                <li>Loss: Class-weighted BCE + IoU</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="config-section">
+                            <h4>U-Net Settings</h4>
+                            <ul>
+                                <li>Backbone: ResNet34</li>
+                                <li>Epochs: 50</li>
+                                <li>Batch size: 8</li>
+                                <li>Learning rate: 0.001</li>
+                                <li>Loss: Dice + Cross-entropy</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="config-section">
+                            <h4>SegFormer Settings</h4>
+                            <ul>
+                                <li>Model: SegFormer-B2</li>
+                                <li>Epochs: 30</li>
+                                <li>Batch size: 4</li>
+                                <li>Learning rate: 0.0001</li>
+                                <li>Loss: Cross-entropy + Focal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Model Results Comparison -->
+        <div class="slide" id="slide5" data-slide="5">
+            <div class="slide-content">
+                <h1 class="slide-title">Model Performance Analysis</h1>
+                
+                <div class="results-summary">
+                    <div class="summary-cards">
+                        <div class="result-card yolov8-result">
+                            <div class="card-header">
+                                <i class="fas fa-bullseye"></i>
+                                <h3>YOLOv8n-seg</h3>
+                            </div>
+                            <div class="main-metric">
+                                <div class="metric-value">32.6%</div>
+                                <div class="metric-label">mAP@50</div>
+                            </div>
+                            <div class="secondary-metrics">
+                                <div class="metric-item">
+                                    <span class="label">mIoU:</span>
+                                    <span class="value">17.7%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Precision:</span>
+                                    <span class="value">41.5%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Recall:</span>
+                                    <span class="value">24.3%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card unet-result">
+                            <div class="card-header">
+                                <i class="fas fa-project-diagram"></i>
+                                <h3>U-Net</h3>
+                            </div>
+                            <div class="main-metric">
+                                <div class="metric-value">84.9%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="secondary-metrics">
+                                <div class="metric-item">
+                                    <span class="label">mIoU:</span>
+                                    <span class="value">43.7%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Precision:</span>
+                                    <span class="value">84.5%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Recall:</span>
+                                    <span class="value">84.9%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card segformer-result">
+                            <div class="card-header">
+                                <i class="fas fa-brain"></i>
+                                <h3>SegFormer</h3>
+                            </div>
+                            <div class="main-metric">
+                                <div class="metric-value">55.7%</div>
+                                <div class="metric-label">Accuracy</div>
+                            </div>
+                            <div class="secondary-metrics">
+                                <div class="metric-item">
+                                    <span class="label">mIoU:</span>
+                                    <span class="value">17.9%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Precision:</span>
+                                    <span class="value">64.6%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="label">Recall:</span>
+                                    <span class="value">55.7%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detailed-results">
+                    <div class="results-section">
+                        <h2><i class="fas fa-chart-radar"></i> Performance Comparison</h2>
+                        <div class="chart-container">
+                            <canvas id="performanceRadarChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="results-section">
+                        <h2><i class="fas fa-layer-group"></i> Class-wise IoU Performance</h2>
+                        <div class="class-performance-grid">
+                            <div class="performance-model">
+                                <h4>YOLOv8n-seg</h4>
+                                <div class="class-metrics">
+                                    <div class="class-metric">
+                                        <span class="class-name">Class 0:</span>
+                                        <span class="iou-value">12.2%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Class 1:</span>
+                                        <span class="iou-value">18.1%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Class 2:</span>
+                                        <span class="iou-value">22.6%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-model">
+                                <h4>U-Net</h4>
+                                <div class="class-metrics">
+                                    <div class="class-metric">
+                                        <span class="class-name">Background:</span>
+                                        <span class="iou-value">87.9%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Light:</span>
+                                        <span class="iou-value">43.1%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Medium:</span>
+                                        <span class="iou-value">38.6%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Heavy:</span>
+                                        <span class="iou-value">5.1%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="performance-model">
+                                <h4>SegFormer</h4>
+                                <div class="class-metrics">
+                                    <div class="class-metric">
+                                        <span class="class-name">Background:</span>
+                                        <span class="iou-value">58.2%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Light:</span>
+                                        <span class="iou-value">1.0%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Medium:</span>
+                                        <span class="iou-value">10.4%</span>
+                                    </div>
+                                    <div class="class-metric">
+                                        <span class="class-name">Heavy:</span>
+                                        <span class="iou-value">2.2%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Visual Results -->
+        <div class="slide" id="slide6" data-slide="6">
+            <div class="slide-content">
+                <h1 class="slide-title">Visual Results & Inference Examples</h1>
+                
+                <div class="visual-results">
+                    <div class="results-grid">
+                        <div class="result-showcase">
+                            <h3><i class="fas fa-bullseye"></i> YOLOv8n-seg Results</h3>
+                            <div class="showcase-layout">
+                                <div class="image-preview">
+                                    <div class="showcase-item clickable-image" data-title="YOLOv8n-seg Inference Results">
+                                        <img src="assets/img/yolov8_test_results_with_gt_composite.png" alt="YOLOv8n-seg Inference Results">
+                                    </div>
+                                </div>
+                                <div class="video-grid-2x2">
+                                    <div class="showcase-item clickable-video" data-title="YOLOv8n-seg Video Inference">
+                                        <video controls preload="metadata" poster="" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1J4yJdlTWDwi12IV8rk2sqEeWni99s6Vb/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="YOLOv8n-seg Additional Results 1">
+                                        <video controls preload="metadata" poster="" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1v8r5mS2LlDbkTyjJgEcdDHPgwpVQ8CIE/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="YOLOv8n-seg Additional Results 2">
+                                        <video controls preload="metadata" poster="" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1M9QM9u2uJyrdB8cEHNCx9AOVPmYClhaD/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="YOLOv8n-seg Additional Results 3">
+                                        <video controls preload="metadata" poster="" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1VERdH1j6MHieQYBAfZcyaKQH5ppxM54f/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-showcase">
+                            <h3><i class="fas fa-project-diagram"></i> U-Net Results</h3>
+                            <div class="showcase-layout">
+                                <div class="image-preview">
+                                    <div class="showcase-item clickable-image" data-title="U-Net Segmentation Results">
+                                        <img src="assets/img/unet_test_results_with_gt_composite.png" alt="U-Net Segmentation Results">
+                                    </div>
+                                </div>
+                                <div class="video-grid-2x2">
+                                    <div class="showcase-item clickable-video" data-title="U-Net Video Processing">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1q5R0KKkeP8qjNpmlNolttVyx7wIGfc-O/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="U-Net Additional Results 1">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1cUg8Rz2BEJNUhYQghfycU4p6HhRf73zo/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="U-Net Additional Results 2">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1QFJughLVcwyoe-z3yVCVR_alfKHZKURz/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="U-Net Additional Results 3">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/10-Syz-wRqKjobn8-qEHShPFYctw9EcqN/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="result-showcase">
+                            <h3><i class="fas fa-brain"></i> SegFormer Results</h3>
+                            <div class="showcase-layout">
+                                <div class="image-preview">
+                                    <div class="showcase-item clickable-image" data-title="SegFormer Semantic Segmentation">
+                                        <img src="assets/img/segformer_test_results_with_gt_composite.png" alt="SegFormer Semantic Segmentation">
+                                    </div>
+                                </div>
+                                <div class="video-grid-2x2">
+                                    <div class="showcase-item clickable-video" data-title="SegFormer Video Results">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1e3WWBClqUqRzGara8RVCGvMz97ZnnIvz/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="SegFormer Additional Results 1">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1Gp5-g1_Bu9o60L5Xdfuc054SSizR6j_5/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="SegFormer Additional Results 2">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1dKIfhF4BXyn04x0GYrFaaS_aFRnutG_F/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    <div class="showcase-item clickable-video" data-title="SegFormer Additional Results 3">
+                                        <video controls preload="metadata" style="width: 100%; height: 120px; background: #000;">
+                                            <source src="https://drive.google.com/file/d/1qNayLO6OB9zt-90jOxVM7mOoJfsUeNsq/preview" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-section">
+                    <h2><i class="fas fa-microscope"></i> Key Findings</h2>
+                    <div class="findings-grid">
+                        <div class="finding-item success">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>U-Net Performance</h4>
+                                <p>Highest overall accuracy (84.9%) and mIoU (43.7%) for pixel-wise segmentation</p>
+                            </div>
+                        </div>
+                        
+                        <div class="finding-item warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <h4>Class Imbalance Impact</h4>
+                                <p>Severe corrosion class (3.6% instances) shows poor detection across all models</p>
+                            </div>
+                        </div>
+                        
+                        <div class="finding-item info">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <h4>YOLOv8n-seg Potential</h4>
+                                <p>Best for Class 2 detection but requires data augmentation for balanced performance</p>
+                            </div>
+                        </div>
+                        
+                        <div class="finding-item error">
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <h4>SegFormer Challenges</h4>
+                                <p>Poor performance on corrosion classes, likely due to insufficient training data</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: System Architecture -->
+        <div class="slide" id="slide7" data-slide="7">
+            <div class="slide-content">
+                <h1 class="slide-title">Microservices Backend Architecture</h1>
+                
+                <div class="architecture-overview">
+                    <div class="system-diagram">
+                        <div class="tier client-tier">
+                            <h3><i class="fas fa-desktop"></i> Client Application</h3>
+                            <div class="client-content">
+                                <div class="client-info">
+                                    <span>Vue.js Frontend</span>
+                                </div>
+                                
+                                <div class="frontend-previews">
+                                    <div class="preview-slot clickable-image" data-title="Dashboard Preview" data-src="assets/ss/screencapture-localhost-5173-dashboard-2025-09-17-14_31_05.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-dashboard-2025-09-17-14_31_05.png" 
+                                             alt="Dashboard interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">Dashboard</div>
+                                    </div>
+                                    
+                                    <div class="preview-slot clickable-image" data-title="Login Interface" data-src="assets/ss/screencapture-localhost-5173-login-2025-09-17-14_30_32.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-login-2025-09-17-14_30_32.png" 
+                                             alt="Login/Upload interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">Login Page</div>
+                                    </div>
+                                    
+                                    <div class="preview-slot clickable-image" data-title="Analytics View" data-src="assets/ss/screencapture-localhost-5173-dashboard-analytics-2025-09-17-14_32_02.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-dashboard-analytics-2025-09-17-14_32_02.png" 
+                                             alt="Analytics/Results interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">Analytics</div>
+                                    </div>
+                                    
+                                    <div class="preview-slot clickable-image" data-title="Inspections View" data-src="assets/ss/screencapture-localhost-5173-dashboard-inspections-2025-09-17-14_31_37.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-dashboard-inspections-2025-09-17-14_31_37.png" 
+                                             alt="Inspections interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">Inspections</div>
+                                    </div>
+                                    
+                                    <div class="preview-slot clickable-image" data-title="Notifications View" data-src="assets/ss/screencapture-localhost-5173-dashboard-notifications-2025-09-17-14_32_21.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-dashboard-notifications-2025-09-17-14_32_21.png" 
+                                             alt="Notifications interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">Notifications</div>
+                                    </div>
+
+                                    <div class="preview-slot clickable-image" data-title="AI Model View" data-src="assets/ss/screencapture-localhost-5173-dashboard-models-2025-09-17-14_37_09.png">
+                                        <img src="assets/ss/screencapture-localhost-5173-dashboard-models-2025-09-17-14_37_09.png" 
+                                             alt="AI Model interface screenshot"
+                                             style="width: 100%; height: 120px; object-fit: cover; border-radius: 10px;">
+                                        <div class="preview-label">AI Model</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>HTTP/WebSocket</span>
+                        </div>
+                        
+                        <div class="tier gateway-tier">
+                            <h3><i class="fas fa-gateway"></i> API Gateway (Port: 8000)</h3>
+                            <div class="gateway-features">
+                                <div class="feature-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Authentication & Authorization</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Rate Limiting & Circuit Breaker</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-balance-scale"></i>
+                                    <span>Load Balancing & Health Monitoring</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-route"></i>
+                                    <span>Request Routing & WebSocket Support</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow">
+                            <i class="fas fa-sitemap"></i>
+                            <span>Service Mesh</span>
+                        </div>
+                        
+                        <div class="tier microservices-tier">
+                            <h3><i class="fas fa-server"></i> Microservices Layer</h3>
+                            <div class="microservices-grid">
+                                <div class="service-box auth-service">
+                                    <div class="service-header">
+                                        <i class="fas fa-user-shield"></i>
+                                        <div class="service-info">
+                                            <h4>Auth Service</h4>
+                                            <span class="service-port">Port: 8001</span>
+                                        </div>
+                                    </div>
+                                    <div class="service-features">
+                                        <ul>
+                                            <li>User Registration & Login</li>
+                                            <li>JWT Token Management</li>
+                                            <li>Role-Based Access Control</li>
+                                            <li>Session Management</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-box upload-service">
+                                    <div class="service-header">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <div class="service-info">
+                                            <h4>Upload Service</h4>
+                                            <span class="service-port">Port: 8002</span>
+                                        </div>
+                                    </div>
+                                    <div class="service-features">
+                                        <ul>
+                                            <li>Video Upload (500MB max)</li>
+                                            <li>File Format Validation</li>
+                                            <li>Metadata Extraction</li>
+                                            <li>Storage Management</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-box queue-service">
+                                    <div class="service-header">
+                                        <i class="fas fa-tasks"></i>
+                                        <div class="service-info">
+                                            <h4>Queue Service</h4>
+                                            <span class="service-port">Port: 8003</span>
+                                        </div>
+                                    </div>
+                                    <div class="service-features">
+                                        <ul>
+                                            <li>Job Queue Management</li>
+                                            <li>Task Scheduling</li>
+                                            <li>Progress Tracking</li>
+                                            <li>Redis Integration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-box processing-service">
+                                    <div class="service-header">
+                                        <i class="fas fa-video"></i>
+                                        <div class="service-info">
+                                            <h4>Processing Service</h4>
+                                            <span class="service-port">Port: 8004</span>
+                                        </div>
+                                    </div>
+                                    <div class="service-features">
+                                        <ul>
+                                            <li>Video Preprocessing</li>
+                                            <li>Frame Extraction</li>
+                                            <li>FFmpeg Integration</li>
+                                            <li>Quality Optimization</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-box inference-service">
+                                    <div class="service-header">
+                                        <i class="fas fa-robot"></i>
+                                        <div class="service-info">
+                                            <h4>Inference Service</h4>
+                                            <span class="service-port">Port: 8005</span>
+                                        </div>
+                                    </div>
+                                    <div class="service-features">
+                                        <ul>
+                                            <li>YOLOv8 Multi-Class Detection</li>
+                                            <li>Batch Processing</li>
+                                            <li>Severity Assessment</li>
+                                            <li>Real-time Inference</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="connection-arrow">
+                            <i class="fas fa-database"></i>
+                            <span>Data Layer</span>
+                        </div>
+                        
+                        <div class="tier data-tier">
+                            <h3><i class="fas fa-storage"></i> Data & Infrastructure</h3>
+                            <div class="data-components">
+                                <div class="data-item">
+                                    <i class="fas fa-leaf"></i>
+                                    <span>MongoDB</span>
+                                    <small>Multiple Instances per Service</small>
+                                </div>
+                                <div class="data-item">
+                                    <i class="fab fa-redhat"></i>
+                                    <span>Redis</span>
+                                    <small>Cache & Queue Management</small>
+                                </div>
+                                <div class="data-item">
+                                    <i class="fas fa-hdd"></i>
+                                    <span>File System</span>
+                                    <small>Video & Frame Storage</small>
+                                </div>
+                                <div class="data-item">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Docker</span>
+                                    <small>Containerization</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="processing-flow">
+                    <h2><i class="fas fa-flow-chart"></i> Processing Flow</h2>
+                    <div class="flow-diagram">
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Video Upload</h4>
+                                <p>Client → API Gateway → Upload Service</p>
+                                <small>File validation & metadata extraction</small>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Job Creation</h4>
+                                <p>Upload Service → Queue Service</p>
+                                <small>Processing job scheduling</small>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Video Processing</h4>
+                                <p>Queue → Processing Service</p>
+                                <small>Frame extraction & preprocessing</small>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>AI Inference</h4>
+                                <p>Processing → Inference Service</p>
+                                <small>YOLOv8 corrosion detection</small>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h4>Real-time Updates</h4>
+                                <p>Services → Client (WebSocket)</p>
+                                <small>Live progress notifications</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="implementation-progress">
+                    <h2><i class="fas fa-clipboard-check"></i> Implementation Status</h2>
+                    <div class="progress-grid">
+                        <div class="progress-section">
+                            <h4>Backend Microservices</h4>
+                            <div class="progress-items">
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>API Gateway & Routing</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>Auth Service (JWT + RBAC)</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>Upload Service (Multi-part)</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item in-progress">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Queue Service (Redis)</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 85%"></div></div>
+                                </div>
+                                <div class="progress-item in-progress">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Processing Service (FFmpeg)</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 75%"></div></div>
+                                </div>
+                                <div class="progress-item in-progress">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Inference Service (YOLOv8)</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 70%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-section">
+                            <h4>Infrastructure & DevOps</h4>
+                            <div class="progress-items">
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>Docker Containerization</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>MongoDB Multi-Instance</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item completed">
+                                    <i class="fas fa-check"></i>
+                                    <span>Redis Cache & Queue</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 100%"></div></div>
+                                </div>
+                                <div class="progress-item in-progress">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Health Monitoring</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 60%"></div></div>
+                                </div>
+                                <div class="progress-item pending">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <span>Load Balancing</span>
+                                    <div class="progress-bar"><div class="fill" style="width: 30%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="system-features">
+                    <h2><i class="fas fa-star"></i> Key Architecture Features</h2>
+                    <div class="features-showcase">
+                        <div class="feature-box">
+                            <i class="fas fa-cubes"></i>
+                            <h4>Microservices Design</h4>
+                            <p>6 independent services dengan separation of concerns yang jelas untuk scalability dan maintainability</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-sync"></i>
+                            <h4>Real-time Processing</h4>
+                            <p>WebSocket notifications dan Redis queue untuk live updates status processing video</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Security & Authentication</h4>
+                            <p>JWT-based auth, RBAC, rate limiting, dan circuit breaker untuk comprehensive security</p>
+                        </div>
+                        <div class="feature-box">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            <h4>Horizontal Scalability</h4>
+                            <p>Stateless design dengan load balancing dan database sharding untuk high-volume processing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Conclusion & Future Work -->
+        <div class="slide" id="slide8" data-slide="8">
+            <div class="slide-content">
+                <h1 class="slide-title">Conclusion & Future Research</h1>
+                
+                <div class="conclusion-overview">
+                    <div class="achievements-section">
+                        <h2><i class="fas fa-trophy"></i> Key Achievements</h2>
+                        <div class="achievements-grid">
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>Dataset Integration</h4>
+                                    <p>Successfully merged and prepared 1,846 images dataset dengan balanced multi-class annotations untuk corrosion segmentation</p>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>Model Comparison</h4>
+                                    <p>Comprehensive evaluation dari 3 deep learning approaches: YOLOv8n-seg, U-Net, dan SegFormer untuk corrosion detection</p>
+                                </div>
+                            </div>
+                            
+                            <div class="achievement-item">
+                                <div class="achievement-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="achievement-content">
+                                    <h4>System Architecture</h4>
+                                    <p>Developed scalable web-based system architecture menggunakan FastAPI microservices dan Vue.js frontend</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="findings-section">
+                        <h2><i class="fas fa-microscope"></i> Research Findings</h2>
+                        <div class="findings-summary">
+                            <div class="finding-card best">
+                                <h4>Best Performer: U-Net</h4>
+                                <div class="performance-stats">
+                                    <span>Accuracy: 84.9%</span>
+                                    <span>mIoU: 43.7%</span>
+                                </div>
+                                <p>Optimal untuk pixel-wise segmentation dengan consistent performance across corrosion classes</p>
+                            </div>
+                            
+                            <div class="finding-card challenge">
+                                <h4>Main Challenge: Class Imbalance</h4>
+                                <div class="challenge-stats">
+                                    <span>Severe Class: 3.6%</span>
+                                    <span>Detection: Poor</span>
+                                </div>
+                                <p>Severe corrosion class memerlukan data augmentation dan specialized training strategies</p>
+                            </div>
+                            
+                            <div class="finding-card potential">
+                                <h4>YOLOv8n-seg Potential</h4>
+                                <div class="potential-stats">
+                                    <span>Real-time: ✓</span>
+                                    <span>End-to-end: ✓</span>
+                                </div>
+                                <p>Promising untuk industrial applications dengan optimizations dan balanced dataset</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="future-work">
+                    <h2><i class="fas fa-rocket"></i> Future Research Directions</h2>
+                    <div class="future-timeline">
+                        <div class="timeline-item immediate">
+                            <div class="timeline-marker">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Immediate (1-2 months)</h4>
+                                <ul>
+                                    <li>Complete model integration dalam web system</li>
+                                    <li>Implement class-balanced data augmentation</li>
+                                    <li>Deploy and test full pipeline</li>
+                                    <li>User acceptance testing dengan domain experts</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item short-term">
+                            <div class="timeline-marker">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Short-term (3-6 months)</h4>
+                                <ul>
+                                    <li>Ensemble methods untuk improved accuracy</li>
+                                    <li>Temporal consistency enhancement untuk video processing</li>
+                                    <li>Real-time optimization untuk mobile deployment</li>
+                                    <li>Integration dengan existing industrial systems</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item long-term">
+                            <div class="timeline-marker">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Long-term (6+ months)</h4>
+                                <ul>
+                                    <li>3D point cloud integration dari drone LiDAR</li>
+                                    <li>Predictive maintenance recommendations</li>
+                                    <li>Multi-modal fusion (visual + thermal imaging)</li>
+                                    <li>Automated reporting dan regulatory compliance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <h2><i class="fas fa-bullseye"></i> Expected Impact</h2>
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <h4>Cost Reduction</h4>
+                            <p>Estimated 40-60% reduction dalam inspection costs melalui automated video analysis</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-clock"></i>
+                            <h4>Time Efficiency</h4>
+                            <p>Analysis time dari jam menjadi menit dengan batch processing capabilities</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Safety Improvement</h4>
+                            <p>Reduced human exposure ke hazardous inspection environments</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Accuracy Enhancement</h4>
+                            <p>Consistent dan objective corrosion assessment across different inspectors</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="closing-section">
+                    <div class="contact-info">
+                        <h3>Research Contact</h3>
+                        <p><i class="fas fa-envelope"></i> satriawan.suditresnajaya@student.undiksha.ac.id</p>
+                        <p><i class="fas fa-university"></i> Program Pascasarjana Ilmu Komputer - Universitas Pendidikan Ganesha</p>
+                    </div>
+                    
+                    <div class="acknowledgment">
+                        <h3>Terima Kasih</h3>
+                        <p>Atas perhatian dan masukan untuk pengembangan penelitian selanjutnya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Generating PDF...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="presentation-script.js"></script>
+</body>
+</html>
