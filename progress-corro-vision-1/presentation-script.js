@@ -15,6 +15,8 @@ class CorrosionPresentationController {
         this.isFullscreen = false;
         this.isTransitioning = false;
         this.performanceChart = null;
+        this.navigationHideTimer = null;
+        this.navigation = null;
         
         this.init();
     }
@@ -37,6 +39,7 @@ class CorrosionPresentationController {
             this.exportBtn = document.getElementById('exportBtn');
             this.fullscreenBtn = document.getElementById('fullscreenBtn');
             this.loadingOverlay = document.getElementById('loadingOverlay');
+            this.navigation = document.querySelector('.navigation');
             
             if (!this.slides || this.slides.length === 0) {
                 throw new Error('No slides found');
@@ -53,6 +56,7 @@ class CorrosionPresentationController {
             this.setupMediaModal();
             this.renderPerformanceChart();
             this.setupLogoUpload();
+            this.setupFullscreenNavigation();
             
             console.log(`✅ Presentation initialized with ${this.totalSlides} slides`);
             
@@ -147,16 +151,29 @@ class CorrosionPresentationController {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const video = item.querySelector('video');
-                const source = video ? video.querySelector('source') : null;
-                const title = item.getAttribute('data-title') || 'Video Player';
+                const img = item.querySelector('img');
+                const title = item.getAttribute('data-title') || 'Media Viewer';
                 
-                if (source && source.src) {
-                    console.log(`🎥 Opening video modal with: ${source.src}`);
-                    this.mediaModal.openVideo(source.src, title);
+                // Check if it's a video element
+                if (video) {
+                    const source = video.querySelector('source');
+                    if (source && source.src) {
+                        console.log(`🎥 Opening video modal with: ${source.src}`);
+                        this.mediaModal.openVideo(source.src, title);
+                    } else {
+                        console.error('❌ Video source not found in clickable item');
+                        console.log('Video element:', video);
+                        console.log('Source element:', source);
+                    }
+                }
+                // Check if it's an image element (for GIFs)
+                else if (img && img.src) {
+                    console.log(`🖼️ Opening image modal with GIF: ${img.src}`);
+                    this.mediaModal.openImage(img.src, title);
                 } else {
-                    console.error('❌ Video source not found in clickable item');
+                    console.error('❌ No video or image source found in clickable item');
                     console.log('Video element:', video);
-                    console.log('Source element:', source);
+                    console.log('Image element:', img);
                 }
             });
         });
@@ -562,9 +579,19 @@ class CorrosionPresentationController {
         if (isCurrentlyFullscreen) {
             document.body.classList.add('fullscreen-active');
             this.showNotification('Fullscreen mode activated', 'success');
+            // Hide navigation initially in fullscreen
+            if (this.navigation) {
+                this.navigation.classList.remove('show');
+            }
         } else {
             document.body.classList.remove('fullscreen-active');
             this.showNotification('Fullscreen mode deactivated', 'info');
+            // Show navigation when exiting fullscreen
+            if (this.navigation) {
+                this.navigation.classList.add('show');
+            }
+            // Clear any pending hide timer
+            this.clearNavigationTimer();
         }
     }
     
@@ -580,6 +607,68 @@ class CorrosionPresentationController {
                     this.fullscreenBtn.title = 'Enter Fullscreen';
                 }
             }
+        }
+    }
+    
+    setupFullscreenNavigation() {
+        // Mouse move event untuk mendeteksi posisi mouse
+        document.addEventListener('mousemove', (e) => {
+            if (this.isFullscreen) {
+                // Jika mouse di area atas (80px dari top), tampilkan navigasi
+                if (e.clientY <= 80) {
+                    this.showNavigation();
+                } else {
+                    this.hideNavigationWithDelay();
+                }
+            }
+        });
+        
+        // Mouse leave event untuk menyembunyikan navigasi ketika mouse keluar dari window
+        document.addEventListener('mouseleave', () => {
+            if (this.isFullscreen) {
+                this.hideNavigationWithDelay();
+            }
+        });
+        
+        // Hover events untuk navigasi itu sendiri
+        if (this.navigation) {
+            this.navigation.addEventListener('mouseenter', () => {
+                if (this.isFullscreen) {
+                    this.clearNavigationTimer();
+                    this.showNavigation();
+                }
+            });
+            
+            this.navigation.addEventListener('mouseleave', () => {
+                if (this.isFullscreen) {
+                    this.hideNavigationWithDelay();
+                }
+            });
+        }
+    }
+    
+    showNavigation() {
+        if (this.navigation && this.isFullscreen) {
+            this.clearNavigationTimer();
+            this.navigation.classList.add('show');
+        }
+    }
+    
+    hideNavigationWithDelay() {
+        if (this.isFullscreen) {
+            this.clearNavigationTimer();
+            this.navigationHideTimer = setTimeout(() => {
+                if (this.navigation) {
+                    this.navigation.classList.remove('show');
+                }
+            }, 2000); // Hide after 2 seconds
+        }
+    }
+    
+    clearNavigationTimer() {
+        if (this.navigationHideTimer) {
+            clearTimeout(this.navigationHideTimer);
+            this.navigationHideTimer = null;
         }
     }
     
@@ -939,6 +1028,14 @@ class MediaModal {
         if (url.includes('drive.google.com/file/d/')) {
             const fileId = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
             if (fileId) {
+                // Warning for GitHub Pages deployment
+                console.warn('⚠️ Google Drive videos may not work on GitHub Pages due to CORS and embedding restrictions');
+                console.warn('💡 Recommended solutions:');
+                console.warn('   1. Upload videos directly to your GitHub repository');
+                console.warn('   2. Use YouTube (unlisted videos)');
+                console.warn('   3. Use Vimeo or other video hosting services');
+                console.warn('   4. Use GitHub LFS for large video files');
+                
                 // Try the embed format first (better for videos)
                 return `https://drive.google.com/file/d/${fileId[1]}/preview`;
             }
@@ -1005,15 +1102,49 @@ class MediaModal {
             console.error('Video source:', processedVideoSrc);
             console.error('Error details:', this.modalVideo.error);
             
+            // Specific error handling for different error codes
+            let errorMessage = 'Video tidak dapat dimuat.';
+            let suggestions = '';
+            
+            if (this.modalVideo.error) {
+                switch (this.modalVideo.error.code) {
+                    case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                        errorMessage = 'Format video tidak didukung atau URL tidak dapat diakses.';
+                        if (processedVideoSrc.includes('drive.google.com')) {
+                            suggestions = `
+                                <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px; color: #856404;">
+                                    <strong>⚠️ Google Drive Issue:</strong><br>
+                                    Google Drive videos tidak dapat diputar di GitHub Pages karena kebijakan CORS.<br><br>
+                                    <strong>Solusi yang disarankan:</strong><br>
+                                    • Upload video langsung ke repository GitHub<br>
+                                    • Gunakan YouTube (video unlisted)<br>
+                                    • Gunakan Vimeo atau layanan hosting video lainnya<br>
+                                    • Gunakan GitHub LFS untuk file video besar
+                                </div>
+                            `;
+                        }
+                        break;
+                    case MediaError.MEDIA_ERR_NETWORK:
+                        errorMessage = 'Gagal memuat video karena masalah jaringan.';
+                        break;
+                    case MediaError.MEDIA_ERR_DECODE:
+                        errorMessage = 'Video rusak atau format tidak dapat didecode.';
+                        break;
+                    case MediaError.MEDIA_ERR_ABORTED:
+                        errorMessage = 'Pemuatan video dibatalkan.';
+                        break;
+                }
+            }
+            
             // Show user-friendly error message
             this.modalTitle.textContent = `${title} - Error Loading Video`;
             const errorMsg = document.createElement('div');
-            errorMsg.style.cssText = 'color: #ff6b6b; text-align: center; padding: 20px; font-size: 16px;';
+            errorMsg.style.cssText = 'color: #dc3545; text-align: center; padding: 20px; font-size: 16px; line-height: 1.5;';
             errorMsg.innerHTML = `
-                <i class="fas fa-exclamation-triangle"></i><br>
-                Video tidak dapat dimuat.<br>
-                <small>URL: ${processedVideoSrc}</small><br>
-                <small style="color: #666;">Pastikan URL video dapat diakses secara publik</small>
+                <i class="fas fa-exclamation-triangle" style="font-size: 24px; margin-bottom: 10px;"></i><br>
+                <strong>${errorMessage}</strong><br>
+                <small style="color: #666; word-break: break-all;">URL: ${processedVideoSrc}</small>
+                ${suggestions}
             `;
             this.modalVideo.style.display = 'none';
             const mediaContainer = this.modalVideo.parentElement;
