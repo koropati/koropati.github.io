@@ -1,0 +1,2876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementasi Sistem Absensi IoT Berbasis RFID - Presentasi SMK</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Prism.js for Syntax Highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    
+    <!-- jsPDF for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Mermaid.js for Diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2E86AB',
+                        secondary: '#A23B72',
+                        accent: '#F18F01',
+                        background: '#F5F5F5',
+                        textDark: '#333333'
+                    },
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'opensans': ['Open Sans', 'sans-serif'],
+                        'firacode': ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-opensans bg-background text-textDark overflow-hidden">
+    
+    <!-- Navigation Controls -->
+    <div id="navigation" class="fixed top-4 right-4 z-50 flex gap-2">
+        <button id="prevBtn" class="bg-primary text-white p-2 rounded-full hover:bg-blue-700 transition-colors">
+            <i data-feather="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <button id="nextBtn" class="bg-primary text-white p-2 rounded-full hover:bg-blue-700 transition-colors">
+            <i data-feather="chevron-right" class="w-5 h-5"></i>
+        </button>
+        <button id="fullscreenBtn" class="bg-secondary text-white p-2 rounded-full hover:bg-purple-700 transition-colors">
+            <i data-feather="maximize" class="w-5 h-5"></i>
+        </button>
+        <button id="exportBtn" class="bg-accent text-white p-2 rounded-full hover:bg-orange-600 transition-colors">
+            <i data-feather="download" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <!-- Slide Counter -->
+    <div id="slideCounter" class="fixed bottom-4 right-4 z-50 bg-white px-4 py-2 rounded-full shadow-lg">
+        <span id="currentSlide">1</span> / <span id="totalSlides">25</span>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progressBar" class="fixed top-0 left-0 w-full h-1 bg-gray-200 z-50">
+        <div id="progress" class="h-full bg-primary transition-all duration-300" style="width: 4%"></div>
+    </div>
+
+    <!-- Modal for Image/Code Preview -->
+    <div id="previewModal" class="modal-overlay hidden">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle" class="modal-title">Preview</h3>
+                <button id="closeModal" class="modal-close">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <div id="modalBody" class="modal-body">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="copyModalContent" class="modal-copy-btn">
+                    <i data-feather="copy" class="w-4 h-4 mr-2"></i>
+                    Copy Content
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Presentation Container -->
+    <div id="presentation" class="w-full h-screen">
+        
+        <!-- Slide 1: Title Slide - Webinar Style -->
+        <div class="slide active webinar-slide bg-gradient-to-br from-primary via-primary to-secondary text-white relative overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <!-- Curved Lines -->
+                <svg class="absolute top-20 right-0 w-96 h-96 opacity-20" viewBox="0 0 400 400">
+                    <path d="M50,200 Q200,50 350,200 Q200,350 50,200" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+                <svg class="absolute bottom-0 left-0 w-80 h-80 opacity-10" viewBox="0 0 400 400">
+                    <path d="M0,300 Q150,150 300,300 Q150,450 0,300" stroke="white" stroke-width="3" fill="none"/>
+                </svg>
+                
+                <!-- Decorative Dots -->
+                <div class="absolute top-16 right-20 w-4 h-4 bg-accent rounded-full"></div>
+                <div class="absolute top-40 right-32 w-3 h-3 bg-white rounded-full opacity-60"></div>
+                <div class="absolute bottom-32 right-16 w-5 h-5 bg-accent rounded-full opacity-80"></div>
+                <div class="absolute bottom-20 left-20 w-3 h-3 bg-white rounded-full opacity-40"></div>
+                
+                <!-- Abstract Pattern -->
+                <div class="absolute top-32 left-16 opacity-10">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <path d="M10,10 L90,10 L90,90 L10,90 Z" stroke="white" stroke-width="1" fill="none"/>
+                        <path d="M20,20 L80,20 L80,80 L20,80 Z" stroke="white" stroke-width="1" fill="none"/>
+                        <circle cx="50" cy="50" r="15" stroke="white" stroke-width="1" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Logo Placeholder -->
+            <div class="absolute top-8 left-8 text-white">
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center overflow-hidden">
+                        <img src="assets/bsa.png" alt="Bima Sakti Alterra Logo" class="w-full h-full object-contain" style="display: none;" onload="this.style.display='block'; this.parentElement.style.background='transparent';" onerror="this.style.display='none'; this.parentElement.innerHTML='<i data-feather=\'cpu\' class=\'w-6 h-6\'></i>';">
+                        <i data-feather="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-sm font-semibold">Bima Sakti Alterra</div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="relative z-10 flex flex-col justify-center h-full px-16 py-12">
+                <!-- Main Title Section -->
+                <div class="text-center mb-12">
+                    <h1 class="font-montserrat font-bold text-6xl mb-6 leading-tight">
+                        IMPLEMENTASI SISTEM<br>
+                        <span class="text-accent">ABSENSI BERBASIS IOT-RFID</span><br>
+                    </h1>
+                    
+                    <div class="mb-8">
+                        <h2 class="text-2xl text-primary-200 mb-3">Workshop Pembelajaran</h2>
+                        <p class="text-lg text-primary-300">
+                            Sistem absensi modern dengan teknologi RFID dan IoT<br>
+                            dilengkapi dashboard web dan manajemen saldo siswa
+                        </p>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <div class="flex justify-center items-center">
+                        <div class="bg-accent hover:bg-accent/90 transition-colors px-8 py-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                            <div class="bg-white/20 p-2 rounded">
+                                <i data-feather="calendar" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-sm font-semibold">Sesi Webinar</div>
+                                <div class="text-xs opacity-90">18 - 19 Sep 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom - Profile Section -->
+                <div class="flex justify-center items-center mt-8">
+                    <div class="flex items-center space-x-6">
+                        <!-- Profile Image -->
+                        <div class="relative">
+                            <div class="w-24 h-24 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full flex items-center justify-center overflow-hidden border-4 border-white/30">
+                                <img src="assets/DewokSatria.jpg" alt="Dewa Ketut Satriawan Suditresnajaya S.Pd." class="w-full h-full object-cover" style="display: none;" onload="this.style.display='block'; this.parentElement.style.background='transparent';" onerror="this.style.display='none';">
+                                <i data-feather="user" class="w-12 h-12 text-gray-600"></i>
+                            </div>
+                            <!-- Decorative circle -->
+                            <div class="absolute -top-1 -right-1 w-6 h-6 bg-accent rounded-full"></div>
+                        </div>
+                        
+                        <!-- Profile Info -->
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold mb-1 text-white">Dewa Ketut Satriawan Suditresnajaya S.Pd.</h3>
+                            <p class="text-base text-primary-200 mb-1">Software Engineer</p>
+                            <p class="text-sm text-primary-300">PT. Bima Sakti Alterra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Agenda Pembelajaran -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-12 text-center">
+                    <i data-feather="calendar" class="w-10 h-10 inline-block mr-4"></i>
+                    Agenda Pembelajaran
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Sesi Pertama -->
+                    <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                <span class="font-bold text-xl">1</span>
+                            </div>
+                            <h2 class="font-montserrat font-bold text-2xl text-primary">Sesi Pertama</h2>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="cpu" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Arduino & ESP32</h3>
+                                    <p class="text-sm text-gray-600">Setup & GPIO Programming</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i data-feather="link" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Komunikasi I2C</h3>
+                                    <p class="text-sm text-gray-600">LCD Display & RFID Integration</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i data-feather="globe" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">IoT & RFID Concepts</h3>
+                                    <p class="text-sm text-gray-600">Fundamental Understanding</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sesi Kedua -->
+                    <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-secondary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                <span class="font-bold text-xl">2</span>
+                            </div>
+                            <h2 class="font-montserrat font-bold text-2xl text-secondary">Sesi Kedua</h2>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="layers" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Arsitektur Sistem</h3>
+                                    <p class="text-sm text-gray-600">System Design Overview</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i data-feather="hard-drive" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Hardware Implementation</h3>
+                                    <p class="text-sm text-gray-600">Component Wiring & Setup</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i data-feather="server" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Backend Development</h3>
+                                    <p class="text-sm text-gray-600">Node.js & Database</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i data-feather="play" class="w-6 h-6 text-accent mr-3"></i>
+                                <div>
+                                    <h3 class="font-semibold">Testing & Deployment</h3>
+                                    <p class="text-sm text-gray-600">System Integration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Timeline -->
+                <div class="mt-12 text-center">
+                    <div class="flex justify-center items-center space-x-4">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-primary rounded-full mr-2"></div>
+                            <span class="text-sm">Teori & Konsep</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-accent rounded-full mr-2"></div>
+                            <span class="text-sm">Praktikum</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-secondary rounded-full mr-2"></div>
+                            <span class="text-sm">Implementasi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Tujuan Pembelajaran -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-12 text-center">
+                    <i data-feather="target" class="w-10 h-10 inline-block mr-4"></i>
+                    Tujuan Pembelajaran
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">1</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Dasar Arduino & ESP32</h3>
+                                <p class="text-gray-600">Memahami dasar-dasar Arduino dan pemrograman mikrokontroler ESP32</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">2</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Input/Output Digital</h3>
+                                <p class="text-gray-600">Menguasai konsep input/output digital dan komunikasi I2C</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">3</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Konsep IoT</h3>
+                                <p class="text-gray-600">Memahami konsep Internet of Things (IoT) dan implementasinya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">4</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Teknologi RFID</h3>
+                                <p class="text-gray-600">Menguasai teknologi RFID dan komunikasi I2C</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">5</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Backend Development</h3>
+                                <p class="text-gray-600">Mampu mengembangkan sistem backend dengan Node.js dan Express</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">6</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Komunikasi MQTT</h3>
+                                <p class="text-gray-600">Memahami komunikasi MQTT untuk IoT</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">7</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Dashboard Web</h3>
+                                <p class="text-gray-600">Mampu membuat dashboard web responsif</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-secondary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                <span class="font-bold text-sm">8</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-2">Integrasi Sistem</h3>
+                                <p class="text-gray-600">Memahami integrasi hardware dan software dalam sistem IoT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <div class="bg-gradient-to-r from-primary to-secondary text-white rounded-xl p-6">
+                        <h3 class="font-montserrat font-bold text-xl mb-2">Kompetensi Akhir</h3>
+                        <p class="text-lg">Mampu merancang dan mengimplementasikan sistem absensi IoT berbasis RFID yang terintegrasi dengan dashboard web untuk manajemen data siswa dan transaksi saldo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Pengenalan Arduino & ESP32 -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Pengenalan Arduino & ESP32</h1>
+                    <p class="text-xl text-gray-600">Arduino & ESP32 Fundamentals</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Perbandingan Arduino vs ESP32</h2>
+                        
+                        <div class="overflow-hidden rounded-lg shadow-lg">
+                            <table class="w-full">
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left">Fitur</th>
+                                        <th class="px-4 py-3 text-left">Arduino Uno</th>
+                                        <th class="px-4 py-3 text-left">ESP32</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3 font-semibold">Processor</td>
+                                        <td class="px-4 py-3">ATmega328P<br><span class="text-sm text-gray-600">16MHz</span></td>
+                                        <td class="px-4 py-3">Dual-core Xtensa<br><span class="text-sm text-gray-600">240MHz</span></td>
+                                    </tr>
+                                    <tr class="border-b bg-gray-50">
+                                        <td class="px-4 py-3 font-semibold">Memory</td>
+                                        <td class="px-4 py-3">32KB Flash<br>2KB RAM</td>
+                                        <td class="px-4 py-3">4MB Flash<br>520KB RAM</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3 font-semibold">GPIO</td>
+                                        <td class="px-4 py-3">14 digital<br>6 analog</td>
+                                        <td class="px-4 py-3">34 GPIO<br>18 ADC</td>
+                                    </tr>
+                                    <tr class="border-b bg-gray-50">
+                                        <td class="px-4 py-3 font-semibold">Connectivity</td>
+                                        <td class="px-4 py-3">-</td>
+                                        <td class="px-4 py-3">WiFi, Bluetooth</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3 font-semibold">Voltage</td>
+                                        <td class="px-4 py-3">5V</td>
+                                        <td class="px-4 py-3">3.3V</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-accent/10 rounded-lg">
+                            <h4 class="font-semibold text-accent mb-2">Keunggulan untuk IoT:</h4>
+                            <ul class="text-sm space-y-1">
+                                <li>• Built-in WiFi untuk koneksi internet</li>
+                                <li>• Low power consumption</li>
+                                <li>• Banyak GPIO untuk sensor</li>
+                                <li>• Harga terjangkau</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Spesifikasi ESP32</h2>
+                        
+                        <!-- ESP32 Image Placeholder -->
+                        <div class="image-container medium">
+                            <div class="image-placeholder">
+                                <!-- <div class="placeholder-content">
+                                    <i data-feather="cpu" class="placeholder-icon"></i>
+                                    <div class="placeholder-title">ESP32 DEVKIT V1</div>
+                                    <div class="placeholder-subtitle">Gambar board ESP32 dengan pin layout</div>
+                                </div> -->
+                                <!-- Uncomment and add src when image is available -->
+                                <img src="assets/esp32-devkitC-v4-pinout.png" alt="ESP32 DEVKIT V1 Board" />
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i data-feather="zap" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>Dual-core:</strong> 240MHz Xtensa LX6</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="wifi" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>WiFi:</strong> 802.11 b/g/n</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="bluetooth" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>Bluetooth:</strong> v4.2 BR/EDR dan BLE</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="hard-drive" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>Memory:</strong> 4MB Flash, 520KB RAM</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="grid" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>GPIO:</strong> 34 pins (18 ADC, 2 DAC)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i data-feather="link-2" class="w-5 h-5 text-accent mr-3"></i>
+                                <span><strong>Interface:</strong> I2C, SPI, UART, PWM</span>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Setup Arduino IDE -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto py-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-8 text-center">
+                    <i data-feather="download" class="w-10 h-10 inline-block mr-4"></i>
+                    Setup Arduino IDE
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6">
+                            <h2 class="font-montserrat font-bold text-2xl mb-4 text-primary">Langkah Instalasi</h2>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <span class="font-bold text-sm">1</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-1">Download Arduino IDE</h3>
+                                        <p class="text-sm text-gray-600">Kunjungi:</p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <code class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded font-mono">https://www.arduino.cc/en/software</code>
+                                            <button onclick="copyToClipboard('https://www.arduino.cc/en/software')" class="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs transition-colors">
+                                                <i data-feather="copy" class="w-3 h-3"></i>
+                                            </button>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">Download versi terbaru untuk Windows</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <span class="font-bold text-sm">2</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-1">Tambahkan ESP32 Board Manager</h3>
+                                        <p class="text-sm text-gray-600">File → Preferences → Additional Board Manager URLs</p>
+                                        <div class="flex items-center gap-2 mt-1">
+                                            <code class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded font-mono">https://dl.espressif.com/dl/package_esp32_index.json</code>
+                                            <button onclick="copyToClipboard('https://dl.espressif.com/dl/package_esp32_index.json')" class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs transition-colors">
+                                                <i data-feather="copy" class="w-3 h-3"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <span class="font-bold text-sm">3</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-1">Install ESP32 Board</h3>
+                                        <p class="text-sm text-gray-600">Tools → Board → Boards Manager</p>
+                                        <p class="text-sm text-gray-600">Cari "ESP32" → Install "ESP32 by Espressif Systems"</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 flex-shrink-0">
+                                        <span class="font-bold text-sm">4</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-semibold mb-1">Pilih Board ESP32</h3>
+                                        <p class="text-sm text-gray-600">Tools → Board → ESP32 Arduino → ESP32 Dev Module</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-accent">Konfigurasi ESP32</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Board:</span>
+                                    <span>ESP32 Dev Module</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Upload Speed:</span>
+                                    <span>921600</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">CPU Frequency:</span>
+                                    <span>240MHz (WiFi/BT)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Flash Size:</span>
+                                    <span>4MB (32Mb)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="font-semibold">Port:</span>
+                                    <span>COM3 (sesuai device)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <!-- Arduino IDE Interface Image Placeholder -->
+                        <div class="image-container large">
+                            <div class="image-placeholder">
+                                <!-- <div class="placeholder-content">
+                                    <i data-feather="monitor" class="placeholder-icon"></i>
+                                    <div class="placeholder-title">Arduino IDE Interface</div>
+                                    <div class="placeholder-subtitle">Screenshot Arduino IDE dengan ESP32 board selected</div>
+                                </div> -->
+                                <!-- Uncomment and add src when image is available -->
+                                <img src="assets/arduino-ide.png" alt="Arduino IDE Interface" />
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-100 rounded-xl p-6 mb-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-center">Arduino IDE Interface</h3>
+                            <div class="bg-white rounded-lg p-4 shadow-inner">
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-green-500 rounded mr-3"></div>
+                                        <span class="text-sm">Menu Bar & Toolbar</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-blue-500 rounded mr-3"></div>
+                                        <span class="text-sm">Code Editor</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-orange-500 rounded mr-3"></div>
+                                        <span class="text-sm">Serial Monitor</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 bg-purple-500 rounded mr-3"></div>
+                                        <span class="text-sm">Output Console</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Konsep Input/Output Digital -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-7xl mx-auto px-6">
+                <h1 class="font-montserrat font-bold text-3xl text-primary mb-6 text-center">
+                    <i data-feather="toggle-left" class="w-8 h-8 inline-block mr-3"></i>
+                    Konsep Input/Output Digital
+                </h1>
+                
+                <!-- Top Section: GPIO and Concepts in 3 columns -->
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8 mb-8">
+                    <!-- GPIO Pins -->
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-6">
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-primary text-center">GPIO ESP32</h3>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <h4 class="font-semibold text-primary mb-3">Input Pins</h4>
+                                <div class="space-y-2">
+                                    <div>0, 2, 4, 5</div>
+                                    <div>12, 13, 14, 15</div>
+                                    <div>16, 17, 18, 19</div>
+                                    <div>21, 22, 23</div>
+                                    <div>25, 26, 27</div>
+                                    <div>32, 33, 34, 35</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-secondary mb-3">Output Pins</h4>
+                                <div class="space-y-2">
+                                    <div>0, 2, 4, 5</div>
+                                    <div>12, 13, 14, 15</div>
+                                    <div>16, 17, 18, 19</div>
+                                    <div>21, 22, 23</div>
+                                    <div>25, 26, 27</div>
+                                    <div>32, 33</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Konsep Dasar -->
+                    <div class="bg-accent/10 rounded-xl p-6">
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-accent text-center">Konsep Dasar</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-green-500 rounded mr-3"></div>
+                                <span><strong>HIGH:</strong> 3.3V</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-red-500 rounded mr-3"></div>
+                                <span><strong>LOW:</strong> 0V</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-blue-500 rounded mr-3"></div>
+                                <span><strong>INPUT:</strong> Baca sinyal</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-4 h-4 bg-purple-500 rounded mr-3"></div>
+                                <span><strong>OUTPUT:</strong> Kirim sinyal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mode Options -->
+                    <div class="bg-primary/10 rounded-xl p-6">
+                        <h3 class="font-montserrat font-bold text-xl mb-4 text-primary text-center">Mode Options</h3>
+                        <div class="space-y-3 text-sm">
+                            <div><code class="bg-gray-800 text-green-400 px-3 py-2 rounded text-xs font-mono">INPUT</code> - Pin sebagai input</div>
+                            <div><code class="bg-gray-800 text-green-400 px-3 py-2 rounded text-xs font-mono">OUTPUT</code> - Pin sebagai output</div>
+                            <div><code class="bg-gray-800 text-green-400 px-3 py-2 rounded text-xs font-mono">INPUT_PULLUP</code> - Input + pull-up</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Section: Code Examples in 2 columns -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Fungsi Dasar -->
+                    <div>
+                        <h2 class="font-montserrat font-bold text-xl mb-4 text-secondary">Fungsi Dasar Arduino</h2>
+                        <div class="bg-gray-900 text-green-400 rounded-xl p-5 font-firacode text-sm">
+                            <pre><code class="language-c arduino-code">// Setup pin mode
+pinMode(pin, mode);
+
+// Digital Write (Output)
+digitalWrite(pin, value);
+// value: HIGH atau LOW
+
+// Digital Read (Input)  
+int state = digitalRead(pin);
+// return: HIGH atau LOW
+
+// Delay function
+delay(milliseconds);
+
+// Serial Communication
+Serial.begin(115200);
+Serial.println("Hello World");</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- Contoh Penggunaan -->
+                    <div>
+                        <h2 class="font-montserrat font-bold text-xl mb-4 text-secondary">Contoh Penggunaan</h2>
+                        <div class="bg-gray-900 text-green-400 rounded-xl p-5 font-firacode text-sm">
+                            <pre><code class="language-c arduino-code">void setup() {
+  pinMode(2, OUTPUT);    // LED
+  pinMode(4, INPUT_PULLUP); // Button
+  Serial.begin(115200);
+}
+
+void loop() {
+  if (digitalRead(4) == LOW) {
+    digitalWrite(2, HIGH); // LED ON
+    Serial.println("Button Pressed");
+  } else {
+    digitalWrite(2, LOW);  // LED OFF
+  }
+  delay(100);
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Praktikum 1 - LED Blink -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto pt-40">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-8 text-center">
+                    <i data-feather="zap" class="w-10 h-10 inline-block mr-4"></i>
+                    Praktikum 1: LED Blink
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Wiring Diagram</h2>
+                        
+                        <!-- Wiring Diagram Image Placeholder -->
+                        <div class="image-container medium">
+                            <div class="image-placeholder">
+                                <!-- <div class="placeholder-content">
+                                    <i data-feather="zap" class="placeholder-icon"></i>
+                                    <div class="placeholder-title">ESP32 + LED Wiring</div>
+                                    <div class="placeholder-subtitle">Diagram rangkaian ESP32 dengan LED dan resistor</div>
+                                </div> -->
+                                <!-- Uncomment and add src when image is available -->
+                                <img src="assets/esp32-led.png" alt="ESP32 LED Wiring Diagram" />
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-6 mb-6">
+                            <div class="text-center">
+                                <i data-feather="cpu" class="w-16 h-16 text-primary mx-auto mb-4"></i>
+                                <h3 class="font-bold text-lg mb-4">ESP32 + LED</h3>
+                                
+                                <div class="space-y-3 text-left">
+                                    <div class="flex items-center justify-between bg-white p-3 rounded">
+                                        <span class="font-semibold">ESP32 Pin 2</span>
+                                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                                        <span>Resistor 220Ω</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-white p-3 rounded">
+                                        <span class="font-semibold">Resistor</span>
+                                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                                        <span>LED Anode (+)</span>
+                                    </div>
+                                    <div class="flex items-center justify-between bg-white p-3 rounded">
+                                        <span class="font-semibold">LED Cathode (-)</span>
+                                        <i data-feather="arrow-right" class="w-4 h-4"></i>
+                                        <span>ESP32 GND</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-accent">Komponen yang Dibutuhkan</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    ESP32 Dev Module
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    LED (5mm)
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Resistor 220Ω
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Breadboard
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Kabel Jumper
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Code Program</h2>
+                        
+                        <div class="bg-gray-900 text-green-400 rounded-xl p-6 font-firacode text-sm">
+                            <pre><code class="language-c">// Praktikum 1: LED Blink
+// Pin LED built-in ESP32
+#define LED_PIN 2
+
+void setup() {
+  // Inisialisasi komunikasi serial
+  Serial.begin(115200);
+  Serial.println("Praktikum 1: LED Blink");
+  
+  // Set pin LED sebagai output
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  // Nyalakan LED
+  digitalWrite(LED_PIN, HIGH);
+  Serial.println("LED ON");
+  delay(1000); // Tunggu 1 detik
+  
+  // Matikan LED
+  digitalWrite(LED_PIN, LOW);
+  Serial.println("LED OFF");
+  delay(1000); // Tunggu 1 detik
+}</code></pre>
+                        </div>
+                        
+                        <div class="mt-6 bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-primary">Penjelasan Code</h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="bg-white p-3 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-1 rounded font-mono text-xs">#define LED_PIN 2</code>
+                                    <p class="mt-2 text-gray-700">Mendefinisikan pin 2 sebagai pin LED</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-1 rounded font-mono text-xs">Serial.begin(115200)</code>
+                                    <p class="mt-2 text-gray-700">Memulai komunikasi serial dengan baud rate 115200</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-1 rounded font-mono text-xs">pinMode(LED_PIN, OUTPUT)</code>
+                                    <p class="mt-2 text-gray-700">Set pin LED sebagai output</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-1 rounded font-mono text-xs">digitalWrite(LED_PIN, HIGH/LOW)</code>
+                                    <p class="mt-2 text-gray-700">Nyalakan/matikan LED (3.3V/0V)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Praktikum 2 - Push Button -->
+        <div class="slide bg-white flex flex-col">
+            <div class="max-w-6xl mx-auto px-4 pt-80">
+                <h1 class="font-montserrat font-bold text-3xl text-primary mb-6 text-center">
+                    <i data-feather="square" class="w-8 h-8 inline-block mr-3"></i>
+                    Praktikum 2: Push Button
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8 flex-1">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-4 text-secondary">Wiring & Konsep</h2>
+                        
+                        <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl p-4 mb-4">
+                            <h3 class="font-bold text-xl mb-6 text-center">Push Button + LED</h3>
+                            
+                            <!-- Slot Image untuk Skematik Rangkaian -->
+                            <div class="mb-6 flex justify-center">
+                                <div class="image-container bg-white rounded-lg p-4 border-2 border-dashed border-gray-300 max-w-md w-full">
+                                    <img src="assets/esp32-push-button.png" alt="Skematik Rangkaian Push Button + LED" class="w-full h-auto rounded-lg" style="display: none; min-height: 200px;" onload="this.style.display='block'; this.parentElement.classList.remove('border-dashed'); this.parentElement.classList.add('border-solid', 'border-primary');" onerror="this.style.display='none';">
+                                    <!-- <div class="text-center py-8 text-gray-500">
+                                        <i data-feather="image" class="w-12 h-12 mx-auto mb-3 text-gray-400"></i>
+                                        <p class="text-sm font-medium">Skematik Rangkaian</p>
+                                        <p class="text-xs">Push Button + LED</p>
+                                    </div> -->
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2 text-base">
+                                <div class="bg-white p-2 rounded-lg">
+                                    <h4 class="font-semibold text-primary mb-3">Push Button:</h4>
+                                    <div class="space-y-2">
+                                        <div>• Pin 1 → ESP32 Pin 4</div>
+                                        <div>• Pin 1 → Resistor 10kΩ → 3.3V (pull-up)</div>
+                                        <div>• Pin 2 → GND</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white p-2 rounded-lg">
+                                    <h4 class="font-semibold text-secondary mb-3">LED:</h4>
+                                    <div class="space-y-2">
+                                        <div>• ESP32 Pin 2 → Resistor 220Ω → LED Anode</div>
+                                        <div>• LED Cathode → GND</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-4 mb-4">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-accent">Konsep Pull-up Resistor</h3>
+                            <div class="space-y-2 text-base">
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 bg-green-500 rounded mr-4"></div>
+                                    <span><strong>Tidak ditekan:</strong> Pin = HIGH (3.3V)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 bg-red-500 rounded mr-4"></div>
+                                    <span><strong>Ditekan:</strong> Pin = LOW (0V)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 bg-blue-500 rounded mr-4"></div>
+                                    <span><strong>Pull-up:</strong> Mencegah floating input</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 bg-purple-500 rounded mr-4"></div>
+                                    <span><strong>Debouncing:</strong> Delay untuk stabilitas</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-4">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-primary">Key Points</h3>
+                            <div class="space-y-3 text-base">
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-2 rounded font-mono text-sm">INPUT_PULLUP</code>
+                                    <p class="mt-3 text-gray-700">Menggunakan resistor pull-up internal ESP32</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-2 rounded font-mono text-sm">!digitalRead(BUTTON_PIN)</code>
+                                    <p class="mt-3 text-gray-700">Membalik logika karena pull-up (LOW = pressed)</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-primary">
+                                    <code class="bg-gray-800 text-green-400 px-3 py-2 rounded font-mono text-sm">delay(50)</code>
+                                    <p class="mt-3 text-gray-700">Debouncing untuk menghindari pembacaan ganda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-4 text-secondary">Code Program</h2>
+                        
+                        <div class="bg-gray-900 text-green-400 rounded-xl p-4 font-firacode text-sm overflow-y-auto" style="min-height: 500px;">
+                            <pre><code class="language-c">// Praktikum 2: Push Button Input
+#define BUTTON_PIN 4
+#define LED_PIN 2
+
+// Variabel untuk menyimpan status button
+bool buttonState = false;
+bool lastButtonState = false;
+bool ledState = false;
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Praktikum 2: Push Button");
+  
+  // Set pin modes
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(LED_PIN, OUTPUT);
+  
+  // Matikan LED di awal
+  digitalWrite(LED_PIN, LOW);
+}
+
+void loop() {
+  // Baca status button (LOW = pressed)
+  buttonState = !digitalRead(BUTTON_PIN);
+  
+  // Deteksi perubahan dari tidak ditekan ke ditekan
+  if (buttonState && !lastButtonState) {
+    // Toggle LED state
+    ledState = !ledState;
+    digitalWrite(LED_PIN, ledState);
+    
+    Serial.print("Button pressed! LED: ");
+    Serial.println(ledState ? "ON" : "OFF");
+  }
+  
+  // Simpan status button
+  lastButtonState = buttonState;
+  
+  // Delay untuk debouncing
+  delay(50);
+}
+
+// Fungsi tambahan untuk debouncing yang lebih baik
+bool debounceButton(int pin, int delayTime = 50) {
+  static bool lastState = HIGH;
+  static unsigned long lastDebounceTime = 0;
+  
+  bool reading = digitalRead(pin);
+  
+  if (reading != lastState) {
+    lastDebounceTime = millis();
+  }
+  
+  if ((millis() - lastDebounceTime) > delayTime) {
+    if (reading != buttonState) {
+      buttonState = reading;
+      return true; // State changed
+    }
+  }
+  
+  lastState = reading;
+  return false; // No change
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue with remaining slides... I'll add a few more key slides -->
+        
+        <!-- Slide 9: Komunikasi I2C -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Komunikasi I2C</h1>
+                    <p class="text-xl text-gray-600">I2C Communication & RFID</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Konsep I2C Protocol</h2>
+                        
+                        <!-- I2C Diagram Image Placeholder -->
+                        <div class="image-container medium">
+                            <div class="image-placeholder">
+                                <!-- <div class="placeholder-content">
+                                    <i data-feather="link" class="placeholder-icon"></i>
+                                    <div class="placeholder-title">I2C Communication Diagram</div>
+                                    <div class="placeholder-subtitle">Diagram komunikasi I2C dengan master dan slave devices</div>
+                                </div> -->
+                                <!-- Uncomment and add src when image is available -->
+                                <img src="assets/i2c.jpg" alt="I2C Communication Protocol Diagram" />
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-8 mb-8">
+                            <h3 class="font-bold text-xl mb-6">Karakteristik I2C</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <i data-feather="link" class="w-6 h-6 text-accent mr-4"></i>
+                                    <span><strong>SDA:</strong> Serial Data (bidirectional)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="clock" class="w-6 h-6 text-accent mr-4"></i>
+                                    <span><strong>SCL:</strong> Serial Clock (master controlled)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="users" class="w-6 h-6 text-accent mr-4"></i>
+                                    <span><strong>Multi-device:</strong> Hingga 127 device</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="hash" class="w-6 h-6 text-accent mr-4"></i>
+                                    <span><strong>Addressing:</strong> 7-bit address unik</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="zap" class="w-6 h-6 text-accent mr-4"></i>
+                                    <span><strong>Speed:</strong> 100kHz - 1MHz</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-8">
+                            <h3 class="font-montserrat font-bold text-xl mb-6 text-primary">Pin I2C ESP32</h3>
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center bg-white p-4 rounded-lg">
+                                    <span class="font-semibold text-lg">SDA (Data)</span>
+                                    <span class="bg-primary text-white px-4 py-2 rounded-lg">Pin 21</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-4 rounded-lg">
+                                    <span class="font-semibold text-lg">SCL (Clock)</span>
+                                    <span class="bg-primary text-white px-4 py-2 rounded-lg">Pin 22</span>
+                                </div>
+                                <p class="text-sm text-gray-600 mt-4">*Pin dapat dikonfigurasi ke pin lain jika diperlukan</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Common I2C Addresses</h2>
+                        
+                        <div class="overflow-hidden rounded-lg shadow-lg mb-6">
+                            <table class="w-full">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left">Device</th>
+                                        <th class="px-4 py-3 text-left">Address (Hex)</th>
+                                        <th class="px-4 py-3 text-left">Address (Dec)</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3">LCD 16x2</td>
+                                        <td class="px-4 py-3">0x27 / 0x3F</td>
+                                        <td class="px-4 py-3">39 / 63</td>
+                                    </tr>
+                                    <tr class="border-b bg-gray-50">
+                                        <td class="px-4 py-3">PN532 NFC</td>
+                                        <td class="px-4 py-3">0x24</td>
+                                        <td class="px-4 py-3">36</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3">OLED Display</td>
+                                        <td class="px-4 py-3">0x3C / 0x3D</td>
+                                        <td class="px-4 py-3">60 / 61</td>
+                                    </tr>
+                                    <tr class="border-b bg-gray-50">
+                                        <td class="px-4 py-3">RTC DS3231</td>
+                                        <td class="px-4 py-3">0x68</td>
+                                        <td class="px-4 py-3">104</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-3">BME280</td>
+                                        <td class="px-4 py-3">0x76 / 0x77</td>
+                                        <td class="px-4 py-3">118 / 119</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-accent">Keunggulan I2C</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Hanya butuh 2 kabel (SDA, SCL)
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Dapat menghubungkan banyak device
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Built-in addressing system
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Acknowledgment untuk error detection
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    Mudah di-debug dengan logic analyzer
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: I2C Scanner & Troubleshooting -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-8 text-center">
+                    <i data-feather="search" class="w-10 h-10 inline-block mr-4"></i>
+                    I2C Scanner & Troubleshooting
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">I2C Scanner Code</h2>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">i2c_scanner.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;Wire.h&gt;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(115200);
+  Serial.println("I2C Scanner");
+}
+
+void loop() {
+  byte error, address;
+  int nDevices;
+  
+  Serial.println("Scanning...");
+  nDevices = 0;
+  
+  for(address = 1; address < 127; address++) {
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+    
+    if (error == 0) {
+      Serial.print("I2C device found at address 0x");
+      if (address < 16) Serial.print("0");
+      Serial.print(address, HEX);
+      Serial.println(" !");
+      nDevices++;
+    }
+  }
+  
+  if (nDevices == 0)
+    Serial.println("No I2C devices found");
+  else
+    Serial.println("done");
+    
+  delay(5000);
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Common Issues & Solutions</h2>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                                <h3 class="font-bold text-red-800 mb-2">Problem: Device Not Found</h3>
+                                <ul class="text-red-700 text-sm space-y-1">
+                                    <li>• Check wiring connections</li>
+                                    <li>• Verify power supply (3.3V/5V)</li>
+                                    <li>• Check pull-up resistors (4.7kΩ)</li>
+                                    <li>• Confirm device address</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                                <h3 class="font-bold text-yellow-800 mb-2">Problem: Communication Error</h3>
+                                <ul class="text-yellow-700 text-sm space-y-1">
+                                    <li>• Check cable length (max 1m)</li>
+                                    <li>• Reduce I2C speed</li>
+                                    <li>• Check for noise interference</li>
+                                    <li>• Verify ground connections</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                                <h3 class="font-bold text-green-800 mb-2">Best Practices</h3>
+                                <ul class="text-green-700 text-sm space-y-1">
+                                    <li>• Use proper pull-up resistors</li>
+                                    <li>• Keep wires short and twisted</li>
+                                    <li>• Use common ground</li>
+                                    <li>• Test one device at a time</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-primary">Pull-up Resistor Calculation</h3>
+                            <div class="bg-white p-4 rounded-lg">
+                                <p class="text-sm mb-2"><strong>Formula:</strong> R = (Vcc - 0.4V) / (3mA × n_devices)</p>
+                                <p class="text-sm mb-2"><strong>Typical values:</strong></p>
+                                <ul class="text-sm space-y-1">
+                                    <li>• 1-2 devices: 4.7kΩ</li>
+                                    <li>• 3-5 devices: 2.2kΩ</li>
+                                    <li>• 6+ devices: 1kΩ</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: LCD I2C Praktikum -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-8 text-center">
+                    <i data-feather="monitor" class="w-10 h-10 inline-block mr-4"></i>
+                    Praktikum: LCD I2C Display
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Wiring Diagram</h2>
+                        
+                        <div class="bg-gray-100 rounded-xl p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4">Koneksi LCD 16x2 I2C ke ESP32</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">VCC (LCD)</span>
+                                    <span class="text-red-600">→ 5V (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">GND (LCD)</span>
+                                    <span class="text-black">→ GND (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">SDA (LCD)</span>
+                                    <span class="text-blue-600">→ Pin 21 (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">SCL (LCD)</span>
+                                    <span class="text-green-600">→ Pin 22 (ESP32)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-accent">Library yang Dibutuhkan</h3>
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded font-mono text-sm">
+                                    #include &lt;LiquidCrystal_I2C.h&gt;
+                                </div>
+                                <div class="bg-white p-3 rounded font-mono text-sm">
+                                    #include &lt;Wire.h&gt;
+                                </div>
+                            </div>
+                            <p class="text-sm mt-4 text-gray-600">Install library "LiquidCrystal I2C" by Frank de Brabander</p>
+                        </div>
+
+                        <div class="mt-6 bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-primary">Key Functions</h3>
+                            <div class="space-y-2 text-sm">
+                                <div><code class="bg-white px-2 py-1 rounded">lcd.init()</code> - Initialize LCD</div>
+                                <div><code class="bg-white px-2 py-1 rounded">lcd.backlight()</code> - Turn on backlight</div>
+                                <div><code class="bg-white px-2 py-1 rounded">lcd.setCursor(col, row)</code> - Set cursor position</div>
+                                <div><code class="bg-white px-2 py-1 rounded">lcd.print(text)</code> - Display text</div>
+                                <div><code class="bg-white px-2 py-1 rounded">lcd.clear()</code> - Clear display</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Code Implementation</h2>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">lcd_i2c_demo.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;LiquidCrystal_I2C.h&gt;
+#include &lt;Wire.h&gt;
+
+// Set LCD address (0x27 or 0x3F)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Initialize LCD
+  lcd.init();
+  lcd.backlight();
+  
+  // Display welcome message
+  lcd.setCursor(0, 0);
+  lcd.print("RFID Attendance");
+  lcd.setCursor(0, 1);
+  lcd.print("System Ready!");
+  
+  Serial.println("LCD initialized");
+}
+
+void loop() {
+  // Update time display
+  lcd.setCursor(0, 0);
+  lcd.print("Time: ");
+  lcd.print(millis() / 1000);
+  lcd.print("s   ");
+  
+  // Simulate status updates
+  lcd.setCursor(0, 1);
+  if ((millis() / 2000) % 2 == 0) {
+    lcd.print("Waiting for card");
+  } else {
+    lcd.print("Scan your RFID ");
+  }
+  
+  delay(500);
+}</code></pre>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Pengenalan IoT -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Pengenalan Internet of Things (IoT)</h1>
+                    <p class="text-xl text-gray-600">IoT Concepts & RFID Technology</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Apa itu IoT?</h2>
+                        
+                        <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 mb-6">
+                            <p class="text-lg mb-4 leading-relaxed">
+                                <strong>Internet of Things (IoT)</strong> adalah konsep di mana objek fisik dapat terhubung ke internet dan saling berkomunikasi untuk mengumpulkan dan bertukar data.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <i data-feather="wifi" class="w-6 h-6 text-primary mr-4"></i>
+                                    <span><strong>Connectivity:</strong> Terhubung ke internet</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="database" class="w-6 h-6 text-primary mr-4"></i>
+                                    <span><strong>Data Collection:</strong> Mengumpulkan data sensor</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="cpu" class="w-6 h-6 text-primary mr-4"></i>
+                                    <span><strong>Processing:</strong> Memproses data secara otomatis</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="zap" class="w-6 h-6 text-primary mr-4"></i>
+                                    <span><strong>Automation:</strong> Kontrol otomatis perangkat</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-secondary/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-secondary">Komponen Utama IoT</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <i data-feather="thermometer" class="w-8 h-8 mx-auto mb-2 text-accent"></i>
+                                    <p class="font-semibold">Sensors</p>
+                                    <p class="text-sm text-gray-600">Data Input</p>
+                                </div>
+                                <div class="text-center">
+                                    <i data-feather="wifi" class="w-8 h-8 mx-auto mb-2 text-accent"></i>
+                                    <p class="font-semibold">Connectivity</p>
+                                    <p class="text-sm text-gray-600">Communication</p>
+                                </div>
+                                <div class="text-center">
+                                    <i data-feather="server" class="w-8 h-8 mx-auto mb-2 text-accent"></i>
+                                    <p class="font-semibold">Processing</p>
+                                    <p class="text-sm text-gray-600">Data Analysis</p>
+                                </div>
+                                <div class="text-center">
+                                    <i data-feather="monitor" class="w-8 h-8 mx-auto mb-2 text-accent"></i>
+                                    <p class="font-semibold">Interface</p>
+                                    <p class="text-sm text-gray-600">User Control</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-accent">Contoh Aplikasi IoT</h3>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div>• Smart Home</div>
+                                <div>• Industrial IoT</div>
+                                <div>• Smart City</div>
+                                <div>• Healthcare IoT</div>
+                                <div>• Agriculture IoT</div>
+                                <div>• Transportation</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Arsitektur IoT</h2>
+                        
+                        <!-- IoT Architecture Diagram -->
+                        <div class="mb-6">
+                            <div class="mermaid bg-white p-4 rounded-lg shadow-lg">
+graph TD
+    subgraph "4. Application Layer"
+        A1[Web Dashboard]
+        A2[Mobile Apps]
+        A3[Analytics Platform]
+        A4[User Interface]
+    end
+    
+    subgraph "3. Processing Layer"
+        P1[Cloud Computing]
+        P2[Edge Computing]
+        P3[Data Analytics]
+        P4[Machine Learning]
+    end
+    
+    subgraph "2. Network Layer"
+        N1[WiFi]
+        N2[Bluetooth]
+        N3[Cellular/4G/5G]
+        N4[LoRaWAN]
+        N5[MQTT Protocol]
+    end
+    
+    subgraph "1. Perception Layer"
+        S1[Temperature Sensors]
+        S2[RFID Readers]
+        S3[Cameras]
+        S4[Motion Sensors]
+        S5[GPS Modules]
+    end
+    
+    S1 --> N1
+    S2 --> N2
+    S3 --> N3
+    S4 --> N4
+    S5 --> N5
+    
+    N1 --> P1
+    N2 --> P2
+    N3 --> P3
+    N4 --> P4
+    N5 --> P1
+    
+    P1 --> A1
+    P2 --> A2
+    P3 --> A3
+    P4 --> A4
+    
+    classDef layer1 fill:#e8f5e8,stroke:#4ade80,stroke-width:2px
+    classDef layer2 fill:#e0f2fe,stroke:#0ea5e9,stroke-width:2px
+    classDef layer3 fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    classDef layer4 fill:#fff7ed,stroke:#f97316,stroke-width:2px
+    
+    class S1,S2,S3,S4,S5 layer1
+    class N1,N2,N3,N4,N5 layer2
+    class P1,P2,P3,P4 layer3
+    class A1,A2,A3,A4 layer4
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white border-l-4 border-green-400 p-4 rounded shadow">
+                                <h3 class="font-bold text-green-800">1. Perception Layer</h3>
+                                <p class="text-sm text-green-700">Sensors, RFID, cameras - mengumpulkan data</p>
+                            </div>
+                            
+                            <div class="bg-white border-l-4 border-blue-400 p-4 rounded shadow">
+                                <h3 class="font-bold text-blue-800">2. Network Layer</h3>
+                                <p class="text-sm text-blue-700">WiFi, Bluetooth, cellular - transmisi data</p>
+                            </div>
+                            
+                            <div class="bg-white border-l-4 border-purple-400 p-4 rounded shadow">
+                                <h3 class="font-bold text-purple-800">3. Processing Layer</h3>
+                                <p class="text-sm text-purple-700">Cloud computing, edge computing - analisis data</p>
+                            </div>
+                            
+                            <div class="bg-white border-l-4 border-orange-400 p-4 rounded shadow">
+                                <h3 class="font-bold text-orange-800">4. Application Layer</h3>
+                                <p class="text-sm text-orange-700">Web dashboard, mobile apps - interface pengguna</p>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: Teknologi RFID -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8">
+                <h1 class="font-montserrat font-bold text-4xl text-primary mb-8 text-center">
+                    <i data-feather="credit-card" class="w-10 h-10 inline-block mr-4"></i>
+                    Teknologi RFID (Radio Frequency Identification)
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Konsep Dasar RFID</h2>
+                        
+                        <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-8 mb-6">
+                            <p class="text-lg mb-4 leading-relaxed">
+                                <strong>RFID</strong> adalah teknologi identifikasi otomatis yang menggunakan gelombang radio untuk mengidentifikasi objek, hewan, atau manusia yang memiliki tag RFID.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <i data-feather="radio" class="w-6 h-6 text-secondary mr-4"></i>
+                                    <span><strong>Contactless:</strong> Tidak perlu kontak fisik</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="zap" class="w-6 h-6 text-secondary mr-4"></i>
+                                    <span><strong>Fast:</strong> Pembacaan dalam milidetik</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="shield" class="w-6 h-6 text-secondary mr-4"></i>
+                                    <span><strong>Secure:</strong> Enkripsi dan autentikasi</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="repeat" class="w-6 h-6 text-secondary mr-4"></i>
+                                    <span><strong>Reusable:</strong> Dapat digunakan berulang</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-montserrat font-bold text-xl mb-4 text-primary">Komponen RFID System</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-primary rounded-full mr-3"></div>
+                                    <div>
+                                        <p class="font-semibold">RFID Tag/Card</p>
+                                        <p class="text-sm text-gray-600">Menyimpan data identifikasi</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-secondary rounded-full mr-3"></div>
+                                    <div>
+                                        <p class="font-semibold">RFID Reader</p>
+                                        <p class="text-sm text-gray-600">Membaca data dari tag</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-accent rounded-full mr-3"></div>
+                                    <div>
+                                        <p class="font-semibold">Antenna</p>
+                                        <p class="text-sm text-gray-600">Mengirim/menerima sinyal RF</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                                    <div>
+                                        <p class="font-semibold">Backend System</p>
+                                        <p class="text-sm text-gray-600">Memproses dan menyimpan data</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Frekuensi RFID</h2>
+                        
+                        <div class="overflow-hidden rounded-lg shadow-lg mb-6">
+                            <table class="w-full">
+                                <thead class="bg-secondary text-white">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left">Frequency</th>
+                                        <th class="px-4 py-3 text-left">Range</th>
+                                        <th class="px-4 py-3 text-left">Application</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3">LF<br><span class="text-sm text-gray-600">125-134 kHz</span></td>
+                                        <td class="px-4 py-3">10 cm</td>
+                                        <td class="px-4 py-3">Animal tracking<br>Access control</td>
+                                    </tr>
+                                    <tr class="border-b bg-gray-50">
+                                        <td class="px-4 py-3">HF<br><span class="text-sm text-gray-600">13.56 MHz</span></td>
+                                        <td class="px-4 py-3">1 m</td>
+                                        <td class="px-4 py-3">Payment cards<br>Library books</td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="px-4 py-3">UHF<br><span class="text-sm text-gray-600">860-960 MHz</span></td>
+                                        <td class="px-4 py-3">12 m</td>
+                                        <td class="px-4 py-3">Supply chain<br>Inventory</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4 text-accent">PN532 NFC Module</h3>
+                            <p class="text-sm mb-4">Module yang kita gunakan dalam project ini</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Frequency:</span>
+                                    <span class="font-semibold">13.56 MHz (HF)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Range:</span>
+                                    <span class="font-semibold">0-5 cm</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Interface:</span>
+                                    <span class="font-semibold">I2C, SPI, UART</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Supported Cards:</span>
+                                    <span class="font-semibold">Mifare, NTAG</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                            <h3 class="font-bold text-green-800 mb-2">Keunggulan RFID vs Barcode</h3>
+                            <ul class="text-green-700 text-sm space-y-1">
+                                <li>✓ Tidak perlu line-of-sight</li>
+                                <li>✓ Tahan terhadap kotoran dan kerusakan</li>
+                                <li>✓ Dapat menyimpan lebih banyak data</li>
+                                <li>✓ Pembacaan simultan multiple tags</li>
+                                <li>✓ Data dapat diupdate</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: Arsitektur Sistem Absensi RFID -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 pt-80">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Arsitektur Sistem Absensi RFID</h1>
+                    <p class="text-xl text-gray-600">System Architecture & Design</p>
+                </div>
+                
+                <!-- System Architecture Diagram -->
+                <div class="mb-8">
+                    <div class="mermaid bg-white p-4 rounded-lg shadow-lg">
+graph TB
+    subgraph "User Interface Layer"
+        UI1[Web Dashboard]
+        UI2[LCD Display]
+        UI3[Buzzer Feedback]
+        UI4[Push Buttons]
+    end
+    
+    subgraph "Application Layer"
+        APP1[Node.js Backend]
+        APP2[MQTT Broker]
+        APP3[REST API]
+        APP4[Real-time Updates]
+    end
+    
+    subgraph "Communication Layer"
+        COM1[WiFi Network]
+        COM2[MQTT Protocol]
+        COM3[HTTP/HTTPS]
+        COM4[I2C Bus]
+    end
+    
+    subgraph "Hardware Layer"
+        HW1[ESP32 DevKit V4]
+        HW2[PN532 NFC Module]
+        HW3[LCD 16x2 I2C]
+        HW4[Push Buttons]
+        HW5[Buzzer]
+    end
+    
+    subgraph "Data Layer"
+        DB1[SQLite Database]
+        DB2[Attendance Records]
+        DB3[User Management]
+        DB4[System Logs]
+    end
+    
+    subgraph "RFID Cards"
+        RFID1[Student Cards]
+        RFID2[Teacher Cards]
+        RFID3[Staff Cards]
+    end
+    
+    %% RFID to Hardware
+    RFID1 --> HW2
+    RFID2 --> HW2
+    RFID3 --> HW2
+    
+    %% Hardware connections
+    HW2 --> HW1
+    HW3 --> HW1
+    HW4 --> HW1
+    HW5 --> HW1
+    
+    %% Hardware to Communication
+    HW1 --> COM4
+    HW1 --> COM1
+    
+    %% Communication to Application
+    COM1 --> COM2
+    COM1 --> COM3
+    COM2 --> APP2
+    COM3 --> APP3
+    
+    %% Application processing
+    APP2 --> APP1
+    APP3 --> APP1
+    APP1 --> APP4
+    
+    %% Data storage
+    APP1 --> DB1
+    DB1 --> DB2
+    DB1 --> DB3
+    DB1 --> DB4
+    
+    %% User Interface
+    APP4 --> UI1
+    HW1 --> UI2
+    HW1 --> UI3
+    UI4 --> HW1
+    
+    classDef hardware fill:#e8f5e8,stroke:#4ade80,stroke-width:2px
+    classDef communication fill:#e0f2fe,stroke:#0ea5e9,stroke-width:2px
+    classDef application fill:#f3e8ff,stroke:#a855f7,stroke-width:2px
+    classDef data fill:#fff7ed,stroke:#f97316,stroke-width:2px
+    classDef ui fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
+    classDef rfid fill:#fce7f3,stroke:#ec4899,stroke-width:2px
+    
+    class HW1,HW2,HW3,HW4,HW5 hardware
+    class COM1,COM2,COM3,COM4 communication
+    class APP1,APP2,APP3,APP4 application
+    class DB1,DB2,DB3,DB4 data
+    class UI1,UI2,UI3,UI4 ui
+    class RFID1,RFID2,RFID3 rfid
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Hardware Layer -->
+                    <div class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <i data-feather="cpu" class="w-12 h-12 text-primary mx-auto mb-2"></i>
+                            <h2 class="font-montserrat font-bold text-xl text-primary">Hardware Layer</h2>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">ESP32 DEVKITC V4</h3>
+                                <p class="text-xs text-gray-600">Main microcontroller</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">PN532 NFC Module</h3>
+                                <p class="text-xs text-gray-600">RFID reader (I2C)</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">LCD 16x2 I2C</h3>
+                                <p class="text-xs text-gray-600">Display interface</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">Push Buttons</h3>
+                                <p class="text-xs text-gray-600">User input controls</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">Buzzer</h3>
+                                <p class="text-xs text-gray-600">Audio feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Communication Layer -->
+                    <div class="bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <i data-feather="wifi" class="w-12 h-12 text-secondary mx-auto mb-2"></i>
+                            <h2 class="font-montserrat font-bold text-xl text-secondary">Communication</h2>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">WiFi Connection</h3>
+                                <p class="text-xs text-gray-600">Internet connectivity</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">MQTT Protocol</h3>
+                                <p class="text-xs text-gray-600">Real-time messaging</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">HTTP API</h3>
+                                <p class="text-xs text-gray-600">REST endpoints</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">I2C Bus</h3>
+                                <p class="text-xs text-gray-600">Local device communication</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Software Layer -->
+                    <div class="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6">
+                        <div class="text-center mb-4">
+                            <i data-feather="server" class="w-12 h-12 text-accent mx-auto mb-2"></i>
+                            <h2 class="font-montserrat font-bold text-xl text-accent">Software Layer</h2>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">Node.js Backend</h3>
+                                <p class="text-xs text-gray-600">Server application</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">SQLite Database</h3>
+                                <p class="text-xs text-gray-600">Data storage</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">Web Dashboard</h3>
+                                <p class="text-xs text-gray-600">User interface</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <h3 class="font-semibold text-sm">MQTT Broker</h3>
+                                <p class="text-xs text-gray-600">Message routing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-gray-100 rounded-xl p-6">
+                    <h2 class="font-montserrat font-bold text-2xl mb-4 text-center">Data Flow Process</h2>
+                    <div class="flex justify-center items-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div>
+                            <p>RFID Scan</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-2">2</div>
+                            <p>ESP32 Process</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                            <p>MQTT Send</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">4</div>
+                            <p>Database Save</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">5</div>
+                            <p>Web Update</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Setup PN532 RFID Module -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 pt-80">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Setup PN532 RFID Module</h1>
+                    <p class="text-xl text-gray-600">RFID Hardware Implementation</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Wiring Diagram</h2>
+                        
+                        <div class="bg-gray-100 rounded-xl p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4">Koneksi PN532 ke ESP32 (I2C Mode)</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">VCC (PN532)</span>
+                                    <span class="text-red-600">→ 3.3V (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">GND (PN532)</span>
+                                    <span class="text-black">→ GND (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">SDA (PN532)</span>
+                                    <span class="text-blue-600">→ Pin 21 (ESP32)</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-white p-3 rounded">
+                                    <span class="font-semibold">SCL (PN532)</span>
+                                    <span class="text-green-600">→ Pin 22 (ESP32)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded mb-6">
+                            <h3 class="font-bold text-yellow-800 mb-2">DIP Switch Configuration</h3>
+                            <p class="text-yellow-700 text-sm mb-2">Untuk mode I2C, set DIP switch pada PN532:</p>
+                            <div class="grid grid-cols-2 gap-2 text-sm">
+                                <div class="bg-white p-2 rounded">SW1: OFF</div>
+                                <div class="bg-white p-2 rounded">SW2: ON</div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-primary">Library Installation</h3>
+                            <div class="space-y-2">
+                                <div class="bg-white p-3 rounded font-mono text-sm">
+                                    #include &lt;Adafruit_PN532.h&gt;
+                                </div>
+                                <div class="bg-white p-3 rounded font-mono text-sm">
+                                    #include &lt;Wire.h&gt;
+                                </div>
+                            </div>
+                            <p class="text-sm mt-4 text-gray-600">Install library "Adafruit PN532" dari Library Manager</p>
+                        </div>
+
+                        <div class="mt-6 bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                            <h3 class="font-bold text-green-800 mb-2">Testing Steps</h3>
+                            <ol class="text-green-700 text-sm space-y-1">
+                                <li>1. Upload code to ESP32</li>
+                                <li>2. Open Serial Monitor (115200 baud)</li>
+                                <li>3. Check for "Found chip PN5xx" message</li>
+                                <li>4. Place RFID card near reader</li>
+                                <li>5. Verify UID is displayed</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Basic RFID Reader Code</h2>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">rfid_basic_reader.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;Wire.h&gt;
+#include &lt;Adafruit_PN532.h&gt;
+
+// PN532 I2C pins
+#define PN532_SDA 21
+#define PN532_SCL 22
+
+Adafruit_PN532 nfc(PN532_SDA, PN532_SCL);
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("PN532 RFID Reader Test");
+  
+  nfc.begin();
+  
+  uint32_t versiondata = nfc.getFirmwareVersion();
+  if (!versiondata) {
+    Serial.print("Didn't find PN532 board");
+    while (1); // halt
+  }
+  
+  Serial.print("Found chip PN5"); 
+  Serial.println((versiondata>>24) & 0xFF, HEX);
+  Serial.print("Firmware ver. "); 
+  Serial.print((versiondata>>16) & 0xFF, DEC);
+  Serial.print('.'); 
+  Serial.println((versiondata>>8) & 0xFF, DEC);
+  
+  // Configure board to read RFID tags
+  nfc.SAMConfig();
+  
+  Serial.println("Waiting for an ISO14443A Card ...");
+}
+
+void loop() {
+  uint8_t success;
+  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };
+  uint8_t uidLength;
+  
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, 
+                                    uid, &uidLength);
+  
+  if (success) {
+    Serial.println("Found an ISO14443A card");
+    Serial.print("  UID Length: ");
+    Serial.print(uidLength, DEC);
+    Serial.println(" bytes");
+    Serial.print("  UID Value: ");
+    
+    for (uint8_t i=0; i < uidLength; i++) {
+      Serial.print(" 0x");
+      Serial.print(uid[i], HEX);
+    }
+    Serial.println("");
+    
+    delay(1000);
+  }
+}</code></pre>
+                        </div>
+                        
+                        <div class="mt-6 bg-accent/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-accent">Key Functions</h3>
+                            <div class="space-y-2 text-sm">
+                                <div><code class="bg-white px-2 py-1 rounded">nfc.begin()</code> - Initialize PN532</div>
+                                <div><code class="bg-white px-2 py-1 rounded">nfc.getFirmwareVersion()</code> - Check connection</div>
+                                <div><code class="bg-white px-2 py-1 rounded">nfc.SAMConfig()</code> - Configure for RFID</div>
+                                <div><code class="bg-white px-2 py-1 rounded">nfc.readPassiveTargetID()</code> - Read card UID</div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: WiFi & MQTT Integration -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 pt-80">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">WiFi & MQTT Integration</h1>
+                    <p class="text-xl text-gray-600">IoT Communication Protocols</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">WiFi Connection Setup</h2>
+                        
+                        <div class="code-container mb-6">
+                            <div class="code-header">
+                                <span class="code-title">wifi_setup.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Connect to WiFi
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  
+  Serial.println();
+  Serial.println("WiFi connected!");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  // Check WiFi connection
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("WiFi disconnected. Reconnecting...");
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+    Serial.println("Reconnected!");
+  }
+  
+  delay(10000); // Check every 10 seconds
+}</code></pre>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-primary">MQTT Topics Structure</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="bg-white p-2 rounded"><code>rfid/attendance</code> - Attendance data</div>
+                                <div class="bg-white p-2 rounded"><code>rfid/commands</code> - System commands</div>
+                                <div class="bg-white p-2 rounded"><code>rfid/status</code> - Device status</div>
+                                <div class="bg-white p-2 rounded"><code>rfid/config</code> - Configuration updates</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">MQTT Implementation</h2>
+                        
+                        <div class="code-container mb-6">
+                            <div class="code-header">
+                                <span class="code-title">mqtt_client.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+#include &lt;PubSubClient.h&gt;
+
+const char* mqtt_server = "broker.hivemq.com";
+const int mqtt_port = 1883;
+const char* mqtt_topic = "rfid/attendance";
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Setup WiFi (previous code)
+  setupWiFi();
+  
+  // Setup MQTT
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callback);
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  Serial.print("Message arrived [");
+  Serial.print(topic);
+  Serial.print("] ");
+  
+  String message;
+  for (int i = 0; i < length; i++) {
+    message += (char)payload[i];
+  }
+  Serial.println(message);
+}
+
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("Attempting MQTT connection...");
+    
+    if (client.connect("ESP32Client")) {
+      Serial.println("connected");
+      client.subscribe("rfid/commands");
+    } else {
+      Serial.print("failed, rc=");
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      delay(5000);
+    }
+  }
+}
+
+void publishAttendance(String uid, String name) {
+  String payload = "{\"uid\":\"" + uid + 
+                   "\",\"name\":\"" + name + 
+                   "\",\"timestamp\":" + String(millis()) + "}";
+  
+  client.publish(mqtt_topic, payload.c_str());
+  Serial.println("Published: " + payload);
+}</code></pre>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-gray-100 rounded-xl p-6">
+                    <h2 class="font-montserrat font-bold text-2xl mb-4 text-center">MQTT Message Flow</h2>
+                    <div class="flex justify-center items-center space-x-4 text-sm">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div>
+                            <p>ESP32 Publish</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-2">2</div>
+                            <p>MQTT Broker</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center mx-auto mb-2">3</div>
+                            <p>Server Subscribe</p>
+                        </div>
+                        <i data-feather="arrow-right" class="w-6 h-6 text-gray-400"></i>
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-2">4</div>
+                            <p>Database Update</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Complete Attendance System -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 pt-80">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Complete Attendance System</h1>
+                    <p class="text-xl text-gray-600">Full System Integration</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Main System Code</h2>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-title">attendance_system.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">#include &lt;WiFi.h&gt;
+#include &lt;PubSubClient.h&gt;
+#include &lt;Adafruit_PN532.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+// Pin definitions
+#define PN532_SDA 21
+#define PN532_SCL 22
+#define BUZZER_PIN 25
+#define BUTTON_PIN 26
+
+// Initialize components
+Adafruit_PN532 nfc(PN532_SDA, PN532_SCL);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// WiFi credentials
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASSWORD";
+
+// MQTT settings
+const char* mqtt_server = "broker.hivemq.com";
+const char* mqtt_topic = "rfid/attendance";
+
+// User database (simplified)
+struct User {
+  String uid;
+  String name;
+};
+
+User users[] = {
+  {"04:52:C6:2A", "John Doe"},
+  {"04:A3:B7:1C", "Jane Smith"},
+  {"04:F1:E8:3D", "Bob Wilson"}
+};
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Initialize components
+  pinMode(BUZZER_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("RFID Attendance");
+  lcd.setCursor(0, 1);
+  lcd.print("Initializing...");
+  
+  // Initialize NFC
+  nfc.begin();
+  nfc.SAMConfig();
+  
+  // Connect to WiFi
+  setupWiFi();
+  
+  // Setup MQTT
+  client.setServer(mqtt_server, 1883);
+  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("System Ready");
+  lcd.setCursor(0, 1);
+  lcd.print("Scan your card");
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnectMQTT();
+  }
+  client.loop();
+  
+  // Read RFID card
+  uint8_t success;
+  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };
+  uint8_t uidLength;
+  
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, 
+                                    uid, &uidLength);
+  
+  if (success) {
+    String cardUID = "";
+    for (uint8_t i = 0; i < uidLength; i++) {
+      if (i > 0) cardUID += ":";
+      if (uid[i] < 0x10) cardUID += "0";
+      cardUID += String(uid[i], HEX);
+    }
+    cardUID.toUpperCase();
+    
+    processAttendance(cardUID);
+    delay(2000); // Prevent multiple reads
+  }
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">System Functions</h2>
+                        
+                        <div class="code-container mb-6">
+                            <div class="code-header">
+                                <span class="code-title">system_functions.ino</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-cpp">void processAttendance(String cardUID) {
+  String userName = findUser(cardUID);
+  
+  if (userName != "") {
+    // Valid user found
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Welcome!");
+    lcd.setCursor(0, 1);
+    lcd.print(userName);
+    
+    // Success beep
+    digitalWrite(BUZZER_PIN, HIGH);
+    delay(200);
+    digitalWrite(BUZZER_PIN, LOW);
+    
+    // Send to MQTT
+    publishAttendance(cardUID, userName);
+    
+    Serial.println("Attendance recorded: " + userName);
+  } else {
+    // Unknown card
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Access Denied");
+    lcd.setCursor(0, 1);
+    lcd.print("Unknown Card");
+    
+    // Error beep
+    for (int i = 0; i < 3; i++) {
+      digitalWrite(BUZZER_PIN, HIGH);
+      delay(100);
+      digitalWrite(BUZZER_PIN, LOW);
+      delay(100);
+    }
+    
+    Serial.println("Unknown card: " + cardUID);
+  }
+  
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("System Ready");
+  lcd.setCursor(0, 1);
+  lcd.print("Scan your card");
+}
+
+String findUser(String uid) {
+  for (int i = 0; i < sizeof(users)/sizeof(users[0]); i++) {
+    if (users[i].uid == uid) {
+      return users[i].name;
+    }
+  }
+  return "";
+}
+
+void publishAttendance(String uid, String name) {
+  String payload = "{";
+  payload += "\"uid\":\"" + uid + "\",";
+  payload += "\"name\":\"" + name + "\",";
+  payload += "\"timestamp\":" + String(millis()) + ",";
+  payload += "\"device\":\"ESP32_001\"";
+  payload += "}";
+  
+  client.publish(mqtt_topic, payload.c_str());
+}</code></pre>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4 text-accent">System Features</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>RFID card authentication</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>LCD display feedback</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>Audio feedback (buzzer)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>MQTT data transmission</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>WiFi connectivity</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                    <span>User database lookup</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Web Dashboard Development -->
+        <div class="slide bg-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 pt-80">
+                <div class="text-center mb-8">
+                    <h1 class="font-montserrat font-bold text-4xl text-primary mb-4">Web Dashboard Development</h1>
+                    <p class="text-xl text-gray-600">Frontend & Backend Integration</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Node.js Backend Setup</h2>
+                        
+                        <div class="code-container mb-6">
+                            <div class="code-header">
+                                <span class="code-title">server.js</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">const express = require('express');
+const mqtt = require('mqtt');
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+
+const app = express();
+const port = 3000;
+
+// Initialize SQLite database
+const db = new sqlite3.Database('attendance.db');
+
+// Create tables
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS attendance (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid TEXT NOT NULL,
+    name TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    device TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+  
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    uid TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    email TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`);
+});
+
+// MQTT Client
+const client = mqtt.connect('mqtt://broker.hivemq.com');
+
+client.on('connect', () => {
+  console.log('Connected to MQTT broker');
+  client.subscribe('rfid/attendance');
+});
+
+client.on('message', (topic, message) => {
+  if (topic === 'rfid/attendance') {
+    try {
+      const data = JSON.parse(message.toString());
+      
+      // Insert attendance record
+      db.run(`INSERT INTO attendance 
+              (uid, name, timestamp, device) 
+              VALUES (?, ?, ?, ?)`,
+        [data.uid, data.name, data.timestamp, data.device],
+        function(err) {
+          if (err) {
+            console.error('Database error:', err);
+          } else {
+            console.log('Attendance recorded:', data.name);
+          }
+        }
+      );
+    } catch (error) {
+      console.error('JSON parse error:', error);
+    }
+  }
+});
+
+// Middleware
+app.use(express.json());
+app.use(express.static('public'));
+
+// API Routes
+app.get('/api/attendance', (req, res) => {
+  db.all(`SELECT * FROM attendance 
+          ORDER BY created_at DESC 
+          LIMIT 100`, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});</code></pre>
+                        </div>
+                        
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                            <h3 class="font-bold text-blue-800 mb-2">Required Dependencies</h3>
+                            <div class="bg-white p-3 rounded font-mono text-sm">
+                                npm install express mqtt sqlite3
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="font-montserrat font-bold text-2xl mb-6 text-secondary">Frontend Dashboard</h2>
+                        
+                        <div class="code-container mb-6">
+                            <div class="code-header">
+                                <span class="code-title">dashboard.html</span>
+                                <button class="code-copy-btn" onclick="copyCode(this)">
+                                    <i data-feather="copy" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;RFID Attendance Dashboard&lt;/title&gt;
+    &lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body class="bg-gray-100"&gt;
+    &lt;div class="container mx-auto px-4 py-8"&gt;
+        &lt;h1 class="text-3xl font-bold mb-8"&gt;RFID Attendance System&lt;/h1&gt;
+        
+        &lt;!-- Stats Cards --&gt;
+        &lt;div class="grid md:grid-cols-4 gap-6 mb-8"&gt;
+            &lt;div class="bg-white p-6 rounded-lg shadow"&gt;
+                &lt;h3 class="text-lg font-semibold mb-2"&gt;Today's Attendance&lt;/h3&gt;
+                &lt;p class="text-3xl font-bold text-blue-600" id="todayCount"&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="bg-white p-6 rounded-lg shadow"&gt;
+                &lt;h3 class="text-lg font-semibold mb-2"&gt;This Week&lt;/h3&gt;
+                &lt;p class="text-3xl font-bold text-green-600" id="weekCount"&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="bg-white p-6 rounded-lg shadow"&gt;
+                &lt;h3 class="text-lg font-semibold mb-2"&gt;This Month&lt;/h3&gt;
+                &lt;p class="text-3xl font-bold text-purple-600" id="monthCount"&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="bg-white p-6 rounded-lg shadow"&gt;
+                &lt;h3 class="text-lg font-semibold mb-2"&gt;Total Users&lt;/h3&gt;
+                &lt;p class="text-3xl font-bold text-orange-600" id="userCount"&gt;0&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Recent Attendance Table --&gt;
+        &lt;div class="bg-white rounded-lg shadow"&gt;
+            &lt;div class="p-6 border-b"&gt;
+                &lt;h2 class="text-xl font-semibold"&gt;Recent Attendance&lt;/h2&gt;
+            &lt;/div&gt;
+            &lt;div class="overflow-x-auto"&gt;
+                &lt;table class="w-full"&gt;
+                    &lt;thead class="bg-gray-50"&gt;
+                        &lt;tr&gt;
+                            &lt;th class="px-6 py-3 text-left"&gt;Name&lt;/th&gt;
+                            &lt;th class="px-6 py-3 text-left"&gt;UID&lt;/th&gt;
+                            &lt;th class="px-6 py-3 text-left"&gt;Time&lt;/th&gt;
+                            &lt;th class="px-6 py-3 text-left"&gt;Device&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody id="attendanceTable"&gt;
+                        &lt;!-- Data will be loaded here --&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+        // Load attendance data
+        async function loadAttendance() {
+            try {
+                const response = await fetch('/api/attendance');
+                const data = await response.json();
+                
+                const tbody = document.getElementById('attendanceTable');
+                tbody.innerHTML = '';
+                
+                data.forEach(record =&gt; {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        &lt;td class="px-6 py-4"&gt;${record.name}&lt;/td&gt;
+                        &lt;td class="px-6 py-4"&gt;${record.uid}&lt;/td&gt;
+                        &lt;td class="px-6 py-4"&gt;${new Date(record.created_at).toLocaleString()}&lt;/td&gt;
+                        &lt;td class="px-6 py-4"&gt;${record.device}&lt;/td&gt;
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+                // Update stats
+                updateStats(data);
+            } catch (error) {
+                console.error('Error loading attendance:', error);
+            }
+        }
+        
+        function updateStats(data) {
+            const today = new Date().toDateString();
+            const todayCount = data.filter(record =&gt; 
+                new Date(record.created_at).toDateString() === today
+            ).length;
+            
+            document.getElementById('todayCount').textContent = todayCount;
+        }
+        
+        // Load data on page load
+        loadAttendance();
+        
+        // Refresh every 30 seconds
+        setInterval(loadAttendance, 30000);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-6">
+                            <h3 class="font-bold text-lg mb-4 text-primary">Dashboard Features</h3>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center">
+                                    <i data-feather="bar-chart" class="w-4 h-4 text-primary mr-2"></i>
+                                    <span>Real-time attendance statistics</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="table" class="w-4 h-4 text-primary mr-2"></i>
+                                    <span>Recent attendance records</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="refresh-cw" class="w-4 h-4 text-primary mr-2"></i>
+                                    <span>Auto-refresh functionality</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="smartphone" class="w-4 h-4 text-primary mr-2"></i>
+                                    <span>Responsive design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 25: Kesimpulan & Next Steps -->
+        <div class="slide bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center">
+            <div class="max-w-6xl mx-auto px-8 text-center">
+                <h1 class="font-montserrat font-bold text-4xl mb-8">
+                    <i data-feather="check-circle" class="w-12 h-12 inline-block mr-4"></i>
+                    Kesimpulan & Next Steps
+                </h1>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <h2 class="font-montserrat font-bold text-2xl mb-4">Recap Pembelajaran</h2>
+                        <ul class="text-left space-y-2">
+                            <li>✓ Dasar Arduino & ESP32</li>
+                            <li>✓ Komunikasi I2C & Sensor</li>
+                            <li>✓ Konsep IoT & RFID</li>
+                            <li>✓ Arsitektur Sistem</li>
+                            <li>✓ Hardware Implementation</li>
+                            <li>✓ Backend Development</li>
+                            <li>✓ Testing & Deployment</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+                        <h2 class="font-montserrat font-bold text-2xl mb-4">Skill yang Dikuasai</h2>
+                        <ul class="text-left space-y-2">
+                            <li>• Pemrograman ESP32</li>
+                            <li>• Integrasi RFID System</li>
+                            <li>• Node.js Backend</li>
+                            <li>• MQTT Communication</li>
+                            <li>• Web Dashboard</li>
+                            <li>• Database Management</li>
+                            <li>• System Integration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-accent/20 rounded-xl p-6 mb-8">
+                    <h2 class="font-montserrat font-bold text-2xl mb-4">Project Ideas untuk Pengembangan</h2>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm">
+                        <div>• Smart Door Lock</div>
+                        <div>• Inventory Management</div>
+                        <div>• Parking System</div>
+                        <div>• Library Management</div>
+                        <div>• Canteen Payment</div>
+                        <div>• Asset Tracking</div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h2 class="font-montserrat font-bold text-2xl mb-4">Resources untuk Belajar Lebih Lanjut</h2>
+                    <div class="flex justify-center space-x-6">
+                        <div class="text-center">
+                            <i data-feather="book" class="w-8 h-8 mx-auto mb-2"></i>
+                            <p>Arduino Documentation</p>
+                        </div>
+                        <div class="text-center">
+                            <i data-feather="globe" class="w-8 h-8 mx-auto mb-2"></i>
+                            <p>ESP32 Community</p>
+                        </div>
+                        <div class="text-center">
+                            <i data-feather="github" class="w-8 h-8 mx-auto mb-2"></i>
+                            <p>Open Source Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+        
+        // Initialize Prism.js syntax highlighting
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
+        }
+    </script>
+</body>
+</html>
